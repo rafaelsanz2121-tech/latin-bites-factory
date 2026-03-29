@@ -1,0 +1,158 @@
+export const AREAS = [
+  { code: "KITCHEN", name: "Kitchen Area" },
+  { code: "PACKING", name: "Packing Area" },
+  { code: "DRY_STORAGE", name: "Dry Storage" },
+  { code: "SHIPPING_RECEIVING", name: "Shipping / Receiving" },
+  { code: "WALK_IN_FREEZER_1", name: "Walk-In Freezer #1" },
+  { code: "WALK_IN_FREEZER_2", name: "Walk-In Freezer #2" },
+  { code: "WALK_IN_COOLER_1", name: "Walk-In Cooler #1" },
+  { code: "WALK_IN_COOLER_2_PRODUCTION", name: "Walk-In Cooler #2 – Production" },
+  { code: "EMPLOYEE_LOUNGE", name: "Employees Lounge" },
+  { code: "RESTROOMS", name: "Employee Restrooms" },
+  { code: "OUTSIDE_PREMISES", name: "Outside Premises" },
+] as const
+
+export type AreaCode = (typeof AREAS)[number]["code"]
+
+// Pre-Op sanitation sections with their items
+export const PREOP_SECTIONS = [
+  {
+    section: "A_KITCHEN",
+    label: "A – Kitchen Area",
+    hasDualPeriod: false,
+    items: [
+      { key: "fryers", label: "Fryers" },
+      { key: "rational_oven", label: "Rational Oven" },
+      { key: "mixer_1", label: "Mixer 1" },
+      { key: "mixer_2", label: "Mixer 2" },
+      { key: "small_appliances", label: "Small Appliances" },
+      { key: "work_tables", label: "Work Tables" },
+      { key: "containers_all", label: "Containers – all" },
+      { key: "hand_tools_all", label: "Hand Tools – all" },
+      { key: "sheet_pans", label: "Sheet Pans" },
+      { key: "racks", label: "Racks" },
+      { key: "cutting_boards_plastic", label: "Cutting Boards – plastic" },
+      { key: "bins_lids_fillings", label: "Bins and Lids for fillings – plastic" },
+      { key: "hood", label: "Hood" },
+      { key: "tri_compartment_sinks", label: "Tri-Compartment Sinks" },
+      { key: "hand_sink", label: "Hand Sink" },
+      { key: "ceiling_structures", label: "Ceiling & Structures" },
+      { key: "walls_doors", label: "Walls & Doors" },
+      { key: "floor_drains", label: "Floor & Drains" },
+    ],
+  },
+  {
+    section: "B_PACKING",
+    label: "B – Packing Area",
+    hasDualPeriod: false,
+    items: [
+      { key: "auto_l_sealer", label: "Automatic L-Sealer Machine" },
+      { key: "hot_tunnel", label: "Hot Tunnel" },
+      { key: "sealer_machine_1", label: "Sealer Machine #1" },
+      { key: "vacuum_sealer", label: "Vacuum Sealer" },
+      { key: "tables", label: "Tables" },
+      { key: "racks", label: "Racks" },
+      { key: "walls_ceiling", label: "Walls & Ceiling" },
+      { key: "floor", label: "Floor" },
+    ],
+  },
+  {
+    section: "C_DRY_STORAGE",
+    label: "C – Dry Storage",
+    hasDualPeriod: false,
+    items: [
+      { key: "product_protection_id", label: "Product Protection & ID" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "floor", label: "Floor" },
+    ],
+  },
+  {
+    section: "D_SHIPPING_RECEIVING",
+    label: "D – Shipping / Receiving",
+    hasDualPeriod: false,
+    items: [
+      { key: "cleanliness", label: "Cleanliness" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "floor", label: "Floor" },
+    ],
+  },
+  {
+    section: "E_EMPLOYEE_LOUNGE",
+    label: "E – Employees Lounge",
+    hasDualPeriod: false,
+    items: [
+      { key: "cleanliness", label: "Cleanliness" },
+      { key: "counter_sink", label: "Counter and Sink" },
+      { key: "hand_sink", label: "Hand Sink" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "garbage_removal", label: "Garbage Removal" },
+    ],
+  },
+  {
+    section: "F_EMPLOYEE_RESTROOMS",
+    label: "F – Employee Restrooms",
+    hasDualPeriod: false,
+    items: [
+      { key: "cleanliness", label: "Cleanliness" },
+      { key: "hand_soap_towels", label: "Hand Soap / Towels" },
+      { key: "garbage_removal", label: "Garbage Removal" },
+    ],
+  },
+  {
+    section: "G_OUTSIDE_PREMISES",
+    label: "G – Outside Premises",
+    hasDualPeriod: false,
+    items: [
+      { key: "cleanliness", label: "Cleanliness" },
+      { key: "stagnant_waters", label: "Stagnant Waters" },
+      { key: "dumpster_garbage", label: "Dumpster / Garbage Removal" },
+      { key: "pest_control", label: "Pest Control" },
+      { key: "shrubs_weeds", label: "Shrubs / Weeds" },
+    ],
+  },
+  {
+    section: "H_WALK_IN_FREEZER_1",
+    label: "H – Walk-In Freezer #1",
+    hasDualPeriod: true,
+    items: [
+      { key: "product_protection_id", label: "Product Protection & ID" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "ceiling_structure", label: "Ceiling & Structure" },
+      { key: "walls_doors", label: "Walls & Doors" },
+      { key: "floor", label: "Floor" },
+    ],
+  },
+  {
+    section: "I_WALK_IN_FREEZER_2",
+    label: "I – Walk-In Freezer #2",
+    hasDualPeriod: true,
+    items: [
+      { key: "product_protection_id", label: "Product Protection & ID" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "walls_doors", label: "Walls & Doors" },
+      { key: "floor", label: "Floor" },
+    ],
+  },
+  {
+    section: "J_WALK_IN_COOLER_1",
+    label: "J – Walk-In Cooler #1",
+    hasDualPeriod: true,
+    items: [
+      { key: "product_protection_id", label: "Product Protection & ID" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "walls_doors", label: "Walls & Doors" },
+      { key: "cleanliness", label: "Cleanliness" },
+    ],
+  },
+  {
+    section: "K_WALK_IN_COOLER_2_PRODUCTION",
+    label: "K – Walk-In Cooler #2 – Production",
+    hasDualPeriod: true,
+    items: [
+      { key: "product_protection_id", label: "Product Protection & ID" },
+      { key: "housekeeping", label: "Housekeeping" },
+      { key: "walls_doors", label: "Walls & Doors" },
+      { key: "cleanliness", label: "Cleanliness" },
+    ],
+  },
+] as const
