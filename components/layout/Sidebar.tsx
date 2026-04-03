@@ -21,110 +21,114 @@ import {
   Truck,
   Users,
   Wrench,
+  Timer,
+  DollarSign,
+  TrendingUp,
+  Zap,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 
-interface NavItem {
+type NavChild = { label: string; href: string; roles?: UserRole[] }
+
+interface NavSection {
   label: string
-  href?: string
-  icon: React.ElementType
   roles?: UserRole[]
-  children?: { label: string; href: string; roles?: UserRole[] }[]
+  items: {
+    label: string
+    href?: string
+    icon: React.ElementType
+    roles?: UserRole[]
+    badge?: string
+    badgeColor?: string
+    children?: NavChild[]
+  }[]
 }
 
-const navItems: NavItem[] = [
+const navSections: NavSection[] = [
   {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    label: "Receiving",
-    href: "/receiving",
-    icon: Truck,
-  },
-  {
-    label: "Thawing",
-    href: "/thawing",
-    icon: Snowflake,
-  },
-  {
-    label: "Cooking & Chilling",
-    href: "/cooking",
-    icon: Flame,
-  },
-  {
-    label: "Calibration",
-    href: "/calibration",
-    icon: FlaskConical,
-  },
-  {
-    label: "Sanitation",
-    icon: CheckSquare,
-    children: [
-      { label: "Operational", href: "/sanitation/operational" },
-      { label: "Pre-Op Report", href: "/sanitation/preop" },
+    label: "PRINCIPAL",
+    items: [
+      { label: "Dashboard",  href: "/dashboard", icon: LayoutDashboard },
     ],
   },
   {
-    label: "Pre-Shipment",
-    href: "/preshipment",
-    icon: Package,
-    roles: ["admin", "supervisor", "qa"],
-  },
-  {
-    label: "Deviations",
-    href: "/deviations",
-    icon: AlertTriangle,
-  },
-  {
-    label: "Corrective Actions",
-    href: "/corrective-actions",
-    icon: Wrench,
-    roles: ["admin", "supervisor", "qa"],
-  },
-  {
-    label: "Reports",
-    href: "/reports",
-    icon: BarChart3,
-    roles: ["admin", "supervisor", "qa"],
-  },
-  {
-    label: "Production",
-    icon: Factory,
-    roles: ["admin", "supervisor", "qa", "operator"],
-    children: [
-      { label: "Orders", href: "/production" },
-      { label: "Raw Material Lots", href: "/lots" },
-      { label: "Clients", href: "/clients", roles: ["admin", "supervisor"] },
+    label: "COMPLIANCE HACCP",
+    items: [
+      { label: "Recepción",       href: "/receiving",   icon: Truck },
+      { label: "Descongelado",    href: "/thawing",     icon: Snowflake },
+      { label: "Cocción / CCP",   href: "/cooking",     icon: Flame },
+      { label: "Calibración",     href: "/calibration", icon: FlaskConical },
+      {
+        label: "Sanitación",
+        icon: CheckSquare,
+        children: [
+          { label: "Operacional", href: "/sanitation/operational" },
+          { label: "Pre-Op",      href: "/sanitation/preop" },
+        ],
+      },
+      {
+        label: "Pre-Embarque",
+        href: "/preshipment",
+        icon: Package,
+        roles: ["admin", "supervisor", "qa"],
+      },
     ],
   },
   {
-    label: "Admin",
-    icon: ShieldCheck,
+    label: "OPERACIONES",
+    items: [
+      {
+        label: "Producción",
+        icon: Factory,
+        children: [
+          { label: "Órdenes",  href: "/production" },
+          { label: "Lotes MP", href: "/lots" },
+          { label: "Clientes", href: "/clients", roles: ["admin", "supervisor"] },
+        ],
+      },
+    ],
+  },
+  {
+    label: "CONTROL",
+    items: [
+      { label: "Desviaciones",     href: "/deviations",         icon: AlertTriangle },
+      { label: "Acciones CAPA",    href: "/corrective-actions", icon: Wrench, roles: ["admin","supervisor","qa"] },
+      { label: "Reportes",         href: "/reports",            icon: BarChart3,   roles: ["admin","supervisor","qa"] },
+    ],
+  },
+  {
+    label: "EMPRESA",
+    items: [
+      { label: "Costos",     href: "/costos",     icon: DollarSign },
+      { label: "Inventario", href: "/inventario", icon: Boxes      },
+      { label: "Horas MOD",  href: "/horas",      icon: Timer      },
+      { label: "Finanzas",   href: "/finanzas",   icon: TrendingUp },
+    ],
+  },
+  {
+    label: "ADMIN",
     roles: ["admin"],
-    children: [
-      { label: "Users", href: "/admin/users", roles: ["admin"] },
-      { label: "Settings", href: "/admin/settings", roles: ["admin"] },
+    items: [
+      { label: "Usuarios",      href: "/admin/users",     icon: Users,      roles: ["admin"] },
+      { label: "Configuración", href: "/admin/settings",  icon: Settings,   roles: ["admin"] },
     ],
   },
 ]
 
 interface SidebarProps {
   role: UserRole
-  collapsed?: boolean
+  orgName?: string
+  estNumber?: string
 }
 
-export function Sidebar({ role, collapsed = false }: SidebarProps) {
+export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/P2643" }: SidebarProps) {
   const pathname = usePathname()
-  const STORAGE_KEY = "lb_sidebar_groups"
-  const DEFAULT_GROUPS = ["Sanitation", "Production"]
+  const STORAGE_KEY = "fo_sidebar_groups"
 
-  const [openGroups, setOpenGroups] = useState<string[]>(DEFAULT_GROUPS)
+  const [openGroups, setOpenGroups] = useState<string[]>(["Sanitación", "Producción"])
 
-  // Restore persisted state on mount (client only)
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
@@ -134,127 +138,149 @@ export function Sidebar({ role, collapsed = false }: SidebarProps) {
 
   const toggleGroup = (label: string) => {
     setOpenGroups((prev) => {
-      const next = prev.includes(label) ? prev.filter((g) => g !== label) : [...prev, label]
+      const next = prev.includes(label)
+        ? prev.filter((g) => g !== label)
+        : [...prev, label]
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)) } catch {}
       return next
     })
   }
 
-  const isAllowed = (roles?: UserRole[]) => {
-    if (!roles) return true
-    return roles.includes(role)
-  }
+  const isAllowed = (roles?: UserRole[]) => !roles || roles.includes(role)
 
   const isActive = (href: string) => {
     if (href === "/dashboard") return pathname === "/dashboard"
     return pathname.startsWith(href)
   }
 
+  const hasActiveChild = (children: NavChild[]) =>
+    children.some((c) => isActive(c.href))
+
   return (
-    <aside
-      className={cn(
-        "flex flex-col h-full bg-[var(--sidebar)] text-[var(--sidebar-foreground)] transition-all duration-300",
-        collapsed ? "w-16" : "w-64"
-      )}
-    >
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-5 border-b border-[var(--sidebar-border)]">
-        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-          <Factory className="w-4 h-4 text-white" />
+    <aside className="flex flex-col h-full w-64 bg-[#080e1c] text-slate-300">
+
+      {/* ── Logo ───────────────────────────────────────── */}
+      <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.06]">
+        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg shadow-red-900/40">
+          <Zap className="w-4 h-4 text-white" />
         </div>
-        {!collapsed && (
-          <div>
-            <p className="font-bold text-sm text-white leading-tight">Latin Bites</p>
-            <p className="text-xs text-[var(--sidebar-muted)]">Factory Operations</p>
-          </div>
-        )}
+        <div>
+          <p className="font-black text-sm text-white leading-none tracking-tight">
+            Factor<span className="text-red-500">OS</span>
+          </p>
+          <p className="text-[10px] text-slate-500 mt-0.5 font-medium">EST {estNumber}</p>
+        </div>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-0.5">
-        {navItems.map((item) => {
-          if (!isAllowed(item.roles)) return null
+      {/* ── Navigation ─────────────────────────────────── */}
+      <nav className="flex-1 overflow-y-auto py-3 px-3 space-y-0 scrollbar-thin">
+        {navSections.map((section) => {
+          if (!isAllowed(section.roles)) return null
 
-          if (item.children) {
-            const isGroupOpen = openGroups.includes(item.label)
-            const hasActiveChild = item.children.some((c) => isActive(c.href))
-
-            return (
-              <div key={item.label}>
-                <button
-                  onClick={() => toggleGroup(item.label)}
-                  className={cn(
-                    "w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                    hasActiveChild
-                      ? "bg-[var(--sidebar-accent)] text-white"
-                      : "text-[var(--sidebar-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-white"
-                  )}
-                >
-                  <item.icon className="w-4 h-4 flex-shrink-0" />
-                  {!collapsed && (
-                    <>
-                      <span className="flex-1 text-left">{item.label}</span>
-                      <ChevronDown
-                        className={cn(
-                          "w-3.5 h-3.5 transition-transform",
-                          isGroupOpen && "rotate-180"
-                        )}
-                      />
-                    </>
-                  )}
-                </button>
-                {!collapsed && isGroupOpen && (
-                  <div className="mt-0.5 ml-4 pl-3 border-l border-[var(--sidebar-border)] space-y-0.5">
-                    {item.children.map((child) => {
-                      if (!isAllowed(child.roles)) return null
-                      return (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className={cn(
-                            "flex items-center px-3 py-1.5 rounded-md text-sm transition-colors",
-                            isActive(child.href)
-                              ? "bg-blue-600 text-white font-medium"
-                              : "text-[var(--sidebar-muted)] hover:text-white hover:bg-[var(--sidebar-accent)]"
-                          )}
-                        >
-                          {child.label}
-                        </Link>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
-            )
-          }
+          const visibleItems = section.items.filter((item) => isAllowed(item.roles))
+          if (visibleItems.length === 0) return null
 
           return (
-            <Link
-              key={item.href}
-              href={item.href!}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                isActive(item.href!)
-                  ? "bg-blue-600 text-white"
-                  : "text-[var(--sidebar-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-white"
-              )}
-            >
-              <item.icon className="w-4 h-4 flex-shrink-0" />
-              {!collapsed && <span>{item.label}</span>}
-            </Link>
+            <div key={section.label} className="mb-1">
+              {/* Section label */}
+              <p className="text-[9.5px] font-bold tracking-[1.8px] text-slate-600 px-3 py-2 mt-1 uppercase select-none">
+                {section.label}
+              </p>
+
+              {visibleItems.map((item) => {
+                /* ─ Group with children ─ */
+                if (item.children) {
+                  const open = openGroups.includes(item.label)
+                  const active = hasActiveChild(item.children)
+                  const allowedChildren = item.children.filter((c) => isAllowed(c.roles))
+
+                  return (
+                    <div key={item.label}>
+                      <button
+                        onClick={() => toggleGroup(item.label)}
+                        className={cn(
+                          "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150",
+                          active
+                            ? "text-white bg-white/[0.06] border-l-2 border-red-500 pl-[10px]"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                        )}
+                      >
+                        <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0", active ? "text-red-400" : "text-slate-500")} />
+                        <span className="flex-1 text-left">{item.label}</span>
+                        <ChevronDown
+                          className={cn(
+                            "w-3.5 h-3.5 text-slate-600 transition-transform duration-200",
+                            open && "rotate-180"
+                          )}
+                        />
+                      </button>
+
+                      {open && (
+                        <div className="mt-0.5 ml-[22px] pl-3 border-l border-white/[0.06] space-y-0.5 mb-1">
+                          {allowedChildren.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={cn(
+                                "flex items-center px-3 py-1.5 rounded-md text-[12.5px] transition-all duration-150",
+                                isActive(child.href)
+                                  ? "text-white font-semibold bg-red-500/10 border-l-2 border-red-500 pl-2.5"
+                                  : "text-slate-500 hover:text-slate-200 hover:bg-white/[0.04]"
+                              )}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                }
+
+                /* ─ Single link ─ */
+                const active = isActive(item.href!)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href!}
+                    className={cn(
+                      "flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 group",
+                      active
+                        ? "text-white bg-white/[0.07] border-l-2 border-red-500 pl-[10px]"
+                        : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                    )}
+                  >
+                    <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0 transition-colors", active ? "text-red-400" : "text-slate-500 group-hover:text-slate-400")} />
+                    <span className="flex-1">{item.label}</span>
+                    {item.badge && (
+                      <span className={cn(
+                        "text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wide",
+                        item.badgeColor === "gold"
+                          ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                          : "bg-red-500/10 text-red-400 border border-red-500/20"
+                      )}>
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                )
+              })}
+            </div>
           )
         })}
       </nav>
 
-      {/* Footer */}
-      {!collapsed && (
-        <div className="px-4 py-3 border-t border-[var(--sidebar-border)]">
-          <div className="flex items-center gap-2 text-xs text-[var(--sidebar-muted)]">
-            <ClipboardList className="w-3.5 h-3.5" />
-            <span>EST No. M/P2643</span>
-          </div>
+      {/* ── Footer ─────────────────────────────────────── */}
+      <div className="px-4 py-3 border-t border-white/[0.06]">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[10.5px] text-slate-600 font-medium truncate">{orgName}</span>
         </div>
-      )}
+        <div className="flex items-center gap-1.5 mt-1">
+          <ClipboardList className="w-3 h-3 text-slate-700" />
+          <span className="text-[10px] text-slate-700">EST No. {estNumber} · USDA Inspeccionado</span>
+        </div>
+      </div>
     </aside>
   )
 }

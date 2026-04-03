@@ -1,8 +1,8 @@
 "use client"
 
-import { Bell, LogOut, Menu, User } from "lucide-react"
+import { Bell, LogOut, Menu, Settings, ChevronRight, Zap } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import type { Profile } from "@/types"
@@ -10,83 +10,172 @@ import { ROLE_LABELS, ROLE_COLORS } from "@/constants/roles"
 import { cn } from "@/lib/utils"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
 
+/* ── Breadcrumb mapping ─────────────────────────────────── */
+const ROUTE_LABELS: Record<string, string> = {
+  dashboard:          "Dashboard",
+  receiving:          "Recepción",
+  thawing:            "Descongelado",
+  cooking:            "Cocción / CCP",
+  calibration:        "Calibración",
+  sanitation:         "Sanitación",
+  operational:        "Operacional",
+  preop:              "Pre-Op",
+  preshipment:        "Pre-Embarque",
+  deviations:         "Desviaciones",
+  "corrective-actions": "Acciones CAPA",
+  reports:            "Reportes",
+  production:         "Producción",
+  lots:               "Lotes MP",
+  clients:            "Clientes",
+  admin:              "Admin",
+  users:              "Usuarios",
+  settings:           "Configuración",
+  new:                "Nuevo",
+  costos:             "Costos",
+  inventario:         "Inventario",
+  horas:              "Control de Horas",
+  finanzas:           "Finanzas",
+}
+
+const ROLE_DOT: Record<string, string> = {
+  admin:      "bg-red-500",
+  supervisor: "bg-amber-400",
+  qa:         "bg-blue-500",
+  operator:   "bg-green-500",
+}
+
 interface TopbarProps {
   profile: Profile
   onMenuToggle?: () => void
 }
 
 export function Topbar({ profile, onMenuToggle }: TopbarProps) {
-  const router = useRouter()
+  const router   = useRouter()
+  const pathname = usePathname()
   const supabase = createClient()
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
-    toast.success("Signed out successfully")
+    toast.success("Sesión cerrada")
     router.push("/login")
   }
 
+  /* Build breadcrumb segments from pathname */
+  const segments = pathname
+    .split("/")
+    .filter(Boolean)
+    .filter((s) => !s.match(/^[0-9a-f-]{36}$/i)) // skip UUIDs
+    .map((s) => ({ raw: s, label: ROUTE_LABELS[s] ?? s }))
+
+  const initials = profile.initials || profile.full_name?.slice(0, 2).toUpperCase() || "??"
+
   return (
-    <header className="h-14 bg-white border-b border-[var(--border)] flex items-center px-4 gap-4 flex-shrink-0">
-      {/* Menu toggle for mobile */}
+    <header className="h-14 bg-white/[0.98] backdrop-blur-sm border-b border-slate-100 flex items-center px-4 gap-3 flex-shrink-0 shadow-[0_1px_0_0_rgba(0,0,0,0.04)]">
+
+      {/* ── Mobile menu toggle ────────────────────────── */}
       <button
         onClick={onMenuToggle}
-        className="p-2 rounded-md hover:bg-[var(--muted)] transition-colors lg:hidden"
+        className="p-2 rounded-lg hover:bg-slate-100 transition-colors lg:hidden text-slate-500"
+        aria-label="Menu"
       >
         <Menu className="w-4 h-4" />
       </button>
 
-      {/* Breadcrumb area */}
-      <div className="flex-1" />
+      {/* ── Breadcrumb ───────────────────────────────── */}
+      <nav className="flex items-center gap-1 flex-1 min-w-0">
+        <Link href="/dashboard" className="flex items-center gap-1.5 text-slate-400 hover:text-slate-700 transition-colors flex-shrink-0">
+          <Zap className="w-3.5 h-3.5 text-red-500" />
+          <span className="text-[12px] font-semibold text-red-500 hidden sm:block">FactorOS</span>
+        </Link>
+        {segments.map((seg, i) => (
+          <span key={i} className="flex items-center gap-1 min-w-0">
+            <ChevronRight className="w-3 h-3 text-slate-300 flex-shrink-0" />
+            <span className={cn(
+              "text-[12.5px] font-medium truncate",
+              i === segments.length - 1 ? "text-slate-700" : "text-slate-400"
+            )}>
+              {seg.label}
+            </span>
+          </span>
+        ))}
+      </nav>
 
-      {/* Right side */}
-      <div className="flex items-center gap-2">
-        {/* Notifications — future feature */}
-        <button className="relative p-2 rounded-md hover:bg-[var(--muted)] transition-colors">
-          <Bell className="w-4 h-4 text-[var(--muted-foreground)]" />
+      {/* ── Right side ───────────────────────────────── */}
+      <div className="flex items-center gap-1.5 flex-shrink-0">
+
+        {/* Live indicator */}
+        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-green-50 rounded-full border border-green-100 mr-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          <span className="text-[10.5px] font-semibold text-green-700">Sistema activo</span>
+        </div>
+
+        {/* Notifications */}
+        <button className="relative p-2 rounded-lg hover:bg-slate-100 transition-colors">
+          <Bell className="w-4 h-4 text-slate-400" />
         </button>
 
         {/* User menu */}
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
-            <button className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-[var(--muted)] transition-colors text-sm">
-              <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
-                {profile.initials}
+            <button className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+              {/* Avatar */}
+              <div className="relative">
+                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-[11px] font-bold shadow-sm">
+                  {initials}
+                </div>
+                <span className={cn(
+                  "absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border-2 border-white",
+                  ROLE_DOT[profile.role] ?? "bg-slate-400"
+                )} />
               </div>
+              {/* Name + role */}
               <div className="hidden sm:block text-left">
-                <p className="font-medium text-sm leading-none">{profile.full_name}</p>
-                <p className={cn("text-xs mt-0.5 px-1.5 py-0.5 rounded-full inline-block", ROLE_COLORS[profile.role])}>
+                <p className="text-[12px] font-semibold text-slate-700 leading-tight">{profile.full_name}</p>
+                <p className={cn("text-[10px] font-medium leading-tight mt-0.5", ROLE_COLORS[profile.role])}>
                   {ROLE_LABELS[profile.role]}
                 </p>
               </div>
             </button>
           </DropdownMenu.Trigger>
+
           <DropdownMenu.Portal>
             <DropdownMenu.Content
-              className="min-w-[200px] bg-white rounded-lg border border-[var(--border)] shadow-lg p-1 z-50"
-              sideOffset={4}
+              className="min-w-[220px] bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-200/80 p-1.5 z-50 animate-in fade-in-0 zoom-in-95"
+              sideOffset={6}
               align="end"
             >
-              <div className="px-3 py-2 border-b border-[var(--border)] mb-1">
-                <p className="text-sm font-medium">{profile.full_name}</p>
-                <p className="text-xs text-[var(--muted-foreground)]">{profile.employee_id ? `ID: ${profile.employee_id}` : "Operator"}</p>
+              {/* User info */}
+              <div className="px-3 py-2.5 border-b border-slate-100 mb-1">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-xs font-bold">
+                    {initials}
+                  </div>
+                  <div>
+                    <p className="text-[13px] font-semibold text-slate-800">{profile.full_name}</p>
+                    <p className="text-[11px] text-slate-400">{profile.employee_id ? `ID: ${profile.employee_id}` : "Sin ID"}</p>
+                  </div>
+                </div>
               </div>
+
               <DropdownMenu.Item asChild>
                 <Link
                   href="/admin/settings"
-                  className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-[var(--muted)] cursor-pointer outline-none"
+                  className="flex items-center gap-2.5 px-3 py-2 text-[13px] text-slate-600 rounded-lg hover:bg-slate-50 cursor-pointer outline-none transition-colors"
                 >
-                  <User className="w-4 h-4" />
-                  My Profile
+                  <Settings className="w-3.5 h-3.5 text-slate-400" />
+                  Mi Perfil
                 </Link>
               </DropdownMenu.Item>
-              <DropdownMenu.Separator className="h-px bg-[var(--border)] my-1" />
+
+              <DropdownMenu.Separator className="h-px bg-slate-100 my-1" />
+
               <DropdownMenu.Item asChild>
                 <button
                   onClick={handleSignOut}
-                  className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-red-50 text-red-600 cursor-pointer outline-none w-full"
+                  className="flex items-center gap-2.5 px-3 py-2 text-[13px] rounded-lg hover:bg-red-50 text-red-500 cursor-pointer outline-none w-full transition-colors"
                 >
-                  <LogOut className="w-4 h-4" />
-                  Sign Out
+                  <LogOut className="w-3.5 h-3.5" />
+                  Cerrar sesión
                 </button>
               </DropdownMenu.Item>
             </DropdownMenu.Content>

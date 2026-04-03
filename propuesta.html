@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta — Sistema Maestro Latin Bites Factory</title>
+  <style>
+    /* ── VARIABLES ── */
+    :root {
+      --navy:    #1a1a2e;
+      --red:     #c8102e;
+      --gold:    #d4a017;
+      --parch:   #f5f0e8;
+      --light:   #fafaf8;
+      --white:   #ffffff;
+      --gray:    #6b7280;
+      --border:  #e2ddd6;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--parch);
+      color: #1a1a1a;
+      font-size: 10.5pt;
+      line-height: 1.6;
+    }
+
+    /* ── PAGE / SECTION ── */
+    .page {
+      width: 216mm;
+      min-height: 279mm;
+      margin: 0 auto 20px;
+      background: var(--white);
+      padding: 18mm 20mm 16mm;
+      box-shadow: 0 2px 20px rgba(0,0,0,.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-landscape {
+      width: 279mm;
+      min-height: 216mm;
+    }
+
+    /* ── ACCENT BAR ── */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--navy) 60%, var(--red) 100%);
+    }
+
+    /* ── COVER ── */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 279mm;
+      background: var(--navy);
+      color: var(--white);
+      padding: 30mm 20mm;
+    }
+    .cover::before { display: none; }
+
+    .cover-logo {
+      font-size: 52pt;
+      font-weight: 900;
+      letter-spacing: -2px;
+      font-family: 'Georgia', serif;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .cover-logo span { color: var(--red); }
+
+    .cover-est {
+      font-family: system-ui, sans-serif;
+      font-size: 9pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 40px;
+    }
+
+    .cover-divider {
+      width: 80px;
+      height: 3px;
+      background: var(--red);
+      margin: 0 auto 36px;
+    }
+
+    .cover-title {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      font-family: system-ui, sans-serif;
+      line-height: 1.25;
+    }
+
+    .cover-subtitle {
+      font-size: 12pt;
+      color: #94a3b8;
+      font-family: system-ui, sans-serif;
+      margin-bottom: 60px;
+      line-height: 1.5;
+    }
+
+    .cover-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 9pt;
+      color: #64748b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 2;
+    }
+
+    .cover-meta strong { color: #94a3b8; }
+
+    .cover-badge {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      font-family: system-ui, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-num {
+      font-family: system-ui, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 22pt;
+      color: var(--navy);
+      font-weight: 700;
+      font-family: system-ui, sans-serif;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 15pt;
+      color: var(--navy);
+      font-weight: 700;
+      font-family: system-ui, sans-serif;
+      margin-bottom: 4px;
+    }
+
+    h3 {
+      font-size: 11pt;
+      color: var(--navy);
+      font-weight: 700;
+      font-family: system-ui, sans-serif;
+      margin-bottom: 6px;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 2px solid var(--red);
+      width: 48px;
+      margin: 8px 0 20px;
+    }
+
+    p { margin-bottom: 10px; }
+
+    /* ── CARDS ── */
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .card-grid-2 { grid-template-columns: 1fr 1fr; }
+    .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .card-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+    .card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--navy);
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+    .card.red  { border-left-color: var(--red); }
+    .card.gold { border-left-color: var(--gold); }
+    .card.green { border-left-color: #16a34a; }
+
+    .card-icon { font-size: 18pt; margin-bottom: 6px; display: block; }
+    .card-label {
+      font-family: system-ui, sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray);
+      margin-bottom: 3px;
+    }
+    .card-value {
+      font-family: system-ui, sans-serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .card-sub {
+      font-family: system-ui, sans-serif;
+      font-size: 8.5pt;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ── MODULE STATUS TABLE ── */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, sans-serif;
+      font-size: 9.5pt;
+    }
+    .status-table th {
+      background: var(--navy);
+      color: white;
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 8.5pt;
+      letter-spacing: .5px;
+      font-weight: 600;
+    }
+    .status-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .status-table tr:last-child td { border-bottom: none; }
+    .status-table tr:nth-child(even) td { background: var(--light); }
+
+    .badge {
+      display: inline-block;
+      font-family: system-ui, sans-serif;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .badge-live    { background: #dcfce7; color: #15803d; }
+    .badge-build   { background: #fef9c3; color: #a16207; }
+    .badge-planned { background: #e0e7ff; color: #4338ca; }
+
+    /* ── ROLE HIERARCHY ── */
+    .role-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    .role-box {
+      border-radius: 6px;
+      padding: 10px 24px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 10pt;
+      position: relative;
+    }
+
+    .role-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+
+    .role-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .role-row-connector {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      margin: 0;
+    }
+
+    .role-row-connector::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: var(--border);
+    }
+
+    .r-owner  { background: var(--navy); color: white; }
+    .r-sub    { background: var(--red);  color: white; font-size: 9pt; }
+    .r-super  { background: #1e40af; color: white; font-size: 8.5pt; }
+    .r-op     { background: #374151; color: white; font-size: 8pt; }
+
+    .role-tag {
+      font-size: 7pt;
+      font-weight: 400;
+      opacity: .8;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ── MODULE EXPANSION ── */
+    .module-block {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .module-header {
+      background: var(--navy);
+      color: white;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 10.5pt;
+      font-weight: 700;
+    }
+    .module-header .icon { font-size: 16pt; }
+    .module-body {
+      padding: 14px 16px;
+      background: var(--light);
+    }
+    .feature-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      font-family: system-ui, sans-serif;
+      font-size: 9pt;
+    }
+    .feature-list li::before { content: '✓  '; color: #16a34a; font-weight: 700; }
+
+    /* ── ROI TABLE ── */
+    .roi-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: system-ui, sans-serif;
+      font-size: 9.5pt;
+    }
+    .roi-table th {
+      background: var(--navy);
+      color: white;
+      padding: 8px 14px;
+      text-align: left;
+      font-size: 8.5pt;
+    }
+    .roi-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .roi-table tr:last-child td { border-bottom: none; background: #fef2f2; font-weight: 700; }
+    .roi-table td.num { text-align: right; font-weight: 600; color: var(--red); }
+    .roi-table td.num-green { text-align: right; font-weight: 600; color: #16a34a; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .pricing-card {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: system-ui, sans-serif;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--red);
+      position: relative;
+    }
+
+    .pricing-card.featured::before {
+      content: '★ RECOMENDADO';
+      position: absolute;
+      top: -1px; right: 16px;
+      background: var(--red);
+      color: white;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 10px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .pricing-header {
+      background: var(--navy);
+      color: white;
+      padding: 16px 20px;
+      text-align: center;
+    }
+    .pricing-header .opt { font-size: 8pt; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8; }
+    .pricing-header h3 { color: white; font-size: 13pt; margin: 4px 0; }
+
+    .pricing-price {
+      font-size: 26pt;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin: 8px 0 4px;
+    }
+    .pricing-price span { font-size: 14pt; font-weight: 400; }
+
+    .pricing-body {
+      padding: 16px 20px;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 9pt;
+    }
+    .pricing-row:last-child { border-bottom: none; }
+    .pricing-row .val { font-weight: 700; color: var(--navy); }
+
+    .pricing-note {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 8.5pt;
+      color: #991b1b;
+      margin-top: 12px;
+      font-family: system-ui, sans-serif;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      font-family: system-ui, sans-serif;
+      font-size: 9pt;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      display: flex;
+      gap: 16px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+
+    .tl-dot {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 12pt;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--navy);
+    }
+    .tl-dot.red { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+    .tl-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+
+    .tl-content { flex: 1; padding-top: 8px; }
+    .tl-label {
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+    .tl-title { font-size: 11.5pt; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .tl-items { list-style: none; }
+    .tl-items li { padding: 2px 0; color: #374151; }
+    .tl-items li::before { content: '→  '; color: var(--red); font-weight: 700; }
+
+    /* ── SAAS ── */
+    .saas-highlight {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 100%);
+      color: white;
+      border-radius: 8px;
+      padding: 24px 28px;
+      font-family: system-ui, sans-serif;
+    }
+    .saas-highlight h2 { color: white; font-size: 16pt; margin-bottom: 8px; }
+    .saas-highlight p { color: #cbd5e1; font-size: 10pt; margin-bottom: 0; }
+
+    .saas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .saas-stat {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+    }
+    .saas-stat .num { font-size: 22pt; font-weight: 900; color: var(--gold); line-height: 1; }
+    .saas-stat .lbl { font-size: 8.5pt; color: #94a3b8; margin-top: 4px; }
+
+    /* ── SIGNATURE ── */
+    .sig-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 24px;
+    }
+    .sig-block {
+      font-family: system-ui, sans-serif;
+      font-size: 9.5pt;
+    }
+    .sig-line {
+      border-bottom: 1.5px solid #374151;
+      height: 48px;
+      margin-bottom: 6px;
+    }
+    .sig-label { font-size: 8.5pt; color: var(--gray); }
+
+    /* ── UTILITY ── */
+    .mt-8  { margin-top: 8px; }
+    .mt-12 { margin-top: 12px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mb-12 { margin-bottom: 12px; }
+    .mb-16 { margin-bottom: 16px; }
+    .text-sm { font-size: 8.5pt; }
+    .text-gray { color: var(--gray); }
+    .text-center { text-align: center; }
+    .bold { font-weight: 700; }
+    .font-sans { font-family: system-ui, sans-serif; }
+
+    .callout {
+      background: #fef9c3;
+      border-left: 4px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 10px 16px;
+      font-family: system-ui, sans-serif;
+      font-size: 9.5pt;
+      color: #78350f;
+      margin: 16px 0;
+    }
+
+    .page-footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 20mm; right: 20mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: system-ui, sans-serif;
+      font-size: 7.5pt;
+      color: #94a3b8;
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      @page {
+        size: letter;
+        margin: 0;
+      }
+      body { background: white; }
+      .page {
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        min-height: 100vh;
+        border-radius: 0;
+      }
+      .page:last-child { page-break-after: avoid; }
+      .cover { min-height: 100vh; }
+      .no-print { display: none; }
+    }
+
+    /* ── SCREEN HELPER ── */
+    @media screen {
+      .screen-notice {
+        background: var(--navy);
+        color: white;
+        text-align: center;
+        padding: 12px;
+        font-family: system-ui, sans-serif;
+        font-size: 9pt;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+      .screen-notice button {
+        background: var(--red);
+        color: white;
+        border: none;
+        padding: 6px 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 9pt;
+        margin-left: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SCREEN NAV -->
+<div class="screen-notice no-print">
+  Propuesta lista para imprimir · Latin Bites Factory
+  <button onclick="window.print()">🖨 Imprimir / Guardar PDF</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PAGE 1 — PORTADA
+══════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-logo">Latin<span>Bites</span></div>
+  <div class="cover-est">EST. No. M/P2643 &nbsp;·&nbsp; USDA/FSIS Inspected</div>
+  <div class="cover-divider"></div>
+
+  <div class="cover-badge">Propuesta de Inversión Tecnológica</div>
+
+  <div class="cover-title">
+    Sistema Maestro de Gestión<br>Empresarial
+  </div>
+  <div class="cover-subtitle">
+    De formularios en papel a una plataforma digital integrada<br>
+    que unifica cumplimiento HACCP, producción y finanzas
+  </div>
+
+  <div class="cover-meta">
+    <strong>Fecha:</strong> Abril 1, 2026<br>
+    <strong>Preparado para:</strong> Dueño / Gerencia General<br>
+    <strong>Preparado por:</strong> Rafael Sánchez — Desarrollo de Software<br>
+    <strong>Plataforma activa:</strong> latin-bites-factory.vercel.app
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 2 — LO QUE YA EXISTE (LIVE)
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 01</div>
+  <h1>Lo que ya está construido</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray">
+    Sin ningún compromiso previo, se desarrolló y desplegó una plataforma funcional disponible hoy mismo.
+    El sistema ya corre en internet, protegido con login, y listo para que su equipo lo use.
+  </p>
+
+  <div class="callout" style="margin-top:14px;">
+    🔒 Plataforma activa 24/7 en: <strong>latin-bites-factory.vercel.app</strong> &nbsp;·&nbsp;
+    Acceso por usuario y contraseña &nbsp;·&nbsp; Datos guardados en la nube
+  </div>
+
+  <table class="status-table mt-12">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Módulo</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-sans bold">01</td>
+        <td class="bold font-sans">Dashboard Principal</td>
+        <td class="font-sans">KPIs de cumplimiento, alertas de desviaciones abiertas, aprobaciones pendientes</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">02</td>
+        <td class="bold font-sans">Registro de Recepción</td>
+        <td class="font-sans">Temperatura de productos entrantes, proveedor, lote, alerta automática si temp. fuera de rango</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">03</td>
+        <td class="bold font-sans">Registro de Descongelado</td>
+        <td class="font-sans">Métodos cooler / agua corriente, validación de temp. ≤70°F, firma del supervisor</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">04</td>
+        <td class="bold font-sans">Cocción / Enfriamiento (CCP)</td>
+        <td class="font-sans">CCPs 1B / 2B, temperaturas críticas, fases de horno, registro de lote por turno</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">05</td>
+        <td class="bold font-sans">Calibración de Termómetros</td>
+        <td class="font-sans">Auto-calcula tolerancia ±2°F, crea desviación automáticamente si falla</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">06</td>
+        <td class="bold font-sans">Pre-Op Sanitación Semanal</td>
+        <td class="font-sans">Secciones A–K, checklist AM/PM, firma de QA, historial de resultados</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">07</td>
+        <td class="bold font-sans">Sanitación Operacional</td>
+        <td class="font-sans">Bloques de inspección por turno, verificación PPM de sanitizante, inspección de cuchillas</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">08</td>
+        <td class="bold font-sans">Revisión Pre-Embarque</td>
+        <td class="font-sans">Vincula lote con todos los logs de soporte; disposición y firma de QA</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">09</td>
+        <td class="bold font-sans">Desviaciones</td>
+        <td class="font-sans">Severidad crítica/mayor/menor, bandera USDA, seguimiento hasta cierre</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">10</td>
+        <td class="bold font-sans">Acciones Correctivas (CAPA)</td>
+        <td class="font-sans">Causa raíz, responsable, fecha límite, verificación de QA al cierre</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">11</td>
+        <td class="bold font-sans">Producción &amp; Órdenes</td>
+        <td class="font-sans">Órdenes de producción, tracker de fases, vinculación de clientes y recetas</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">12</td>
+        <td class="bold font-sans">Gestión de Clientes &amp; Recetas</td>
+        <td class="font-sans">Ficha de cliente, recetas con temp. de horno configurables por cliente</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">13</td>
+        <td class="bold font-sans">Reportes &amp; Exportación PDF</td>
+        <td class="font-sans">Reportes por módulo y rango de fecha, exportación registrada en audit trail</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">14</td>
+        <td class="bold font-sans">Admin — Usuarios &amp; Roles</td>
+        <td class="font-sans">Crear usuarios, asignar roles (Operador, Supervisor, QA, Admin), áreas de la planta</td>
+        <td><span class="badge badge-live">✓ En vivo</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid card-grid-4 mt-16">
+    <div class="card green">
+      <span class="card-label">Módulos activos</span>
+      <div class="card-value">14</div>
+      <div class="card-sub">En producción hoy</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Tecnología</span>
+      <div class="card-value">Next.js</div>
+      <div class="card-sub">+ Supabase Cloud</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Base de datos</span>
+      <div class="card-value">PostgreSQL</div>
+      <div class="card-sub">10 migraciones aplicadas</div>
+    </div>
+    <div class="card red">
+      <span class="card-label">Disponibilidad</span>
+      <div class="card-value">99.9%</div>
+      <div class="card-sub">Infraestructura Vercel</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 2</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 3 — VISIÓN COMPLETA
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 02</div>
+  <h1>La Visión Completa: Sistema Maestro</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray">
+    El sistema actual cubre el 100% del cumplimiento regulatorio USDA/HACCP. La expansión propuesta convierte
+    esa base sólida en el <strong>cerebro operativo completo</strong> de la empresa — un solo sistema para todo.
+  </p>
+
+  <!-- ARCHITECTURE VISUAL -->
+  <div style="border:2px solid var(--border);border-radius:8px;overflow:hidden;margin-top:20px;font-family:system-ui,sans-serif;">
+
+    <!-- TOP: NEW PILLARS -->
+    <div style="background:var(--parch);padding:16px 20px 12px;border-bottom:2px solid var(--border);">
+      <div style="font-size:7.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">
+        ▶ EXPANSIÓN PROPUESTA — Nuevos módulos empresariales
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:var(--red);color:white;border-radius:6px;padding:14px 12px;text-align:center;">
+          <div style="font-size:20pt;">💰</div>
+          <div style="font-size:10pt;font-weight:700;margin-top:4px;">Costos &amp;<br>Contabilidad</div>
+        </div>
+        <div style="background:#1e40af;color:white;border-radius:6px;padding:14px 12px;text-align:center;">
+          <div style="font-size:20pt;">📦</div>
+          <div style="font-size:10pt;font-weight:700;margin-top:4px;">Control de<br>Inventario</div>
+        </div>
+        <div style="background:#15803d;color:white;border-radius:6px;padding:14px 12px;text-align:center;">
+          <div style="font-size:20pt;">⏱️</div>
+          <div style="font-size:10pt;font-weight:700;margin-top:4px;">Control de<br>Horas</div>
+        </div>
+        <div style="background:#7c3aed;color:white;border-radius:6px;padding:14px 12px;text-align:center;">
+          <div style="font-size:20pt;">📊</div>
+          <div style="font-size:10pt;font-weight:700;margin-top:4px;">Dashboard<br>Financiero</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: EXISTING -->
+    <div style="background:#e8f4f8;padding:14px 20px;border-bottom:2px solid var(--border);">
+      <div style="font-size:7.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1e40af;margin-bottom:10px;">
+        ✓ YA CONSTRUIDO &amp; EN VIVO — Cumplimiento HACCP / Operaciones
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;">
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Recepción</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Descongelado</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Cocción CCP</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Sanitación</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Desviaciones</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">CAPA</div>
+        <div style="background:white;border:1px solid #bfdbfe;border-radius:4px;padding:6px 4px;text-align:center;font-size:7.5pt;font-weight:600;color:#1e40af;">Producción</div>
+      </div>
+    </div>
+
+    <!-- BOTTOM: FOUNDATION -->
+    <div style="background:var(--navy);color:white;padding:12px 20px;text-align:center;">
+      <span style="font-family:system-ui;font-size:9pt;font-weight:700;letter-spacing:1px;">
+        🔐 BASE: Supabase PostgreSQL · Autenticación segura · Audit Trail inmutable · RBAC por roles
+      </span>
+    </div>
+  </div>
+
+  <div class="callout mt-16">
+    <strong>La clave:</strong> Los datos ya fluyen — recepción conecta con producción, producción conecta con costos,
+    costos conecta con el reporte financiero del dueño. <strong>Un sistema, una verdad.</strong>
+  </div>
+
+  <div style="margin-top:20px;">
+    <h2 style="margin-bottom:14px;">Beneficios de unificar todo</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <span class="card-icon">🚫</span>
+        <h3>Elimina el Excel</h3>
+        <p class="font-sans text-sm">La contadora ya no necesita armar hojas manuales. Los costos se calculan automáticamente desde producción.</p>
+      </div>
+      <div class="card red">
+        <span class="card-icon">📋</span>
+        <h3>Auditorías USDA</h3>
+        <p class="font-sans text-sm">Cualquier inspector puede ver el historial completo en segundos. Cero riesgo de pérdida de documentos.</p>
+      </div>
+      <div class="card gold">
+        <span class="card-icon">👁</span>
+        <h3>Visibilidad total</h3>
+        <p class="font-sans text-sm">El dueño ve en tiempo real: costos por lote, margen por producto, inventario disponible, costo de mano de obra del período.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 3</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 4 — ROLES + MÓDULOS EXPANDIDOS
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 03</div>
+  <h1>Jerarquía de Acceso por Roles</h1>
+  <hr class="section-rule">
+
+  <div class="role-tree">
+    <!-- OWNER -->
+    <div class="role-box r-owner" style="min-width:200px;">
+      👑 Dueño / Super Admin
+      <span class="role-tag">Acceso total · Dashboard financiero completo</span>
+    </div>
+
+    <div class="role-connector"></div>
+
+    <!-- AREA ADMINS -->
+    <div style="font-family:system-ui;font-size:7.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px;text-align:center;">Sub-Administradores de Área</div>
+    <div class="role-row">
+      <div class="role-box r-sub" style="min-width:130px;">
+        🏭 Admin Producción
+        <span class="role-tag">Órdenes · Recetas · Lotes</span>
+      </div>
+      <div class="role-box r-sub" style="min-width:130px;">
+        🧪 Admin Calidad
+        <span class="role-tag">CCPs · Desviaciones · CAPA</span>
+      </div>
+      <div class="role-box r-sub" style="min-width:130px;">
+        💼 Admin Contabilidad
+        <span class="role-tag">Costos · Horas · Finanzas</span>
+      </div>
+      <div class="role-box r-sub" style="min-width:130px;">
+        ⚙️ Admin Operaciones
+        <span class="role-tag">Sanitación · Inventario</span>
+      </div>
+    </div>
+
+    <div class="role-connector"></div>
+
+    <!-- SUPERVISORS -->
+    <div style="font-family:system-ui;font-size:7.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px;text-align:center;">Supervisores</div>
+    <div class="role-row">
+      <div class="role-box r-super" style="min-width:150px;">
+        Supervisor de Turno
+        <span class="role-tag">Verifica logs · Aprueba excepciones</span>
+      </div>
+      <div class="role-box r-super" style="min-width:150px;">
+        QA Inspector
+        <span class="role-tag">Cierra desviaciones · Aprueba lotes</span>
+      </div>
+    </div>
+
+    <div class="role-connector"></div>
+
+    <!-- OPERATORS -->
+    <div style="font-family:system-ui;font-size:7.5pt;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:6px;text-align:center;">Operadores</div>
+    <div class="role-row">
+      <div class="role-box r-op" style="min-width:110px;">
+        Op. Producción
+        <span class="role-tag">Registra logs de turno</span>
+      </div>
+      <div class="role-box r-op" style="min-width:110px;">
+        Op. Recepción
+        <span class="role-tag">Registra entregas</span>
+      </div>
+      <div class="role-box r-op" style="min-width:110px;">
+        Op. Sanitación
+        <span class="role-tag">Checklists diarios</span>
+      </div>
+      <div class="role-box r-op" style="min-width:110px;">
+        Op. Inventario
+        <span class="role-tag">Conteos &amp; ajustes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout mt-16">
+    <strong>Regla de negocio clave:</strong> Ningún usuario puede aprobar un registro que él mismo creó.
+    Esto es un requisito HACCP aplicado a nivel de base de datos — no puede ser "saltado" por nadie.
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 4</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 5 — MÓDULOS DE EXPANSIÓN
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 04</div>
+  <h1>Módulos de Expansión Empresarial</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray mb-16">
+    Cuatro módulos nuevos que transforman el sistema de cumplimiento en un ERP completo para manufactura de alimentos.
+  </p>
+
+  <!-- COSTOS -->
+  <div class="module-block">
+    <div class="module-header">
+      <span class="icon">💰</span>
+      Módulo 1 — Costos &amp; Contabilidad
+    </div>
+    <div class="module-body">
+      <p class="font-sans text-sm mb-12">
+        Reemplaza el Excel de la contadora. Calcula el costo real de cada lote automáticamente usando
+        los datos ya registrados en producción, recepción e inventario.
+      </p>
+      <ul class="feature-list">
+        <li>Ficha de costo por producto (Chicharrón, Pork Belly, Buñuelos)</li>
+        <li>Costo de materia prima por lote (jalado de recepción)</li>
+        <li>Costo de mano de obra asignado por orden de producción</li>
+        <li>Costo de empaque y materiales indirectos</li>
+        <li>Margen bruto por lote y por cliente</li>
+        <li>Reporte de P&amp;L (Ganancias &amp; Pérdidas) mensual</li>
+        <li>Comparativo precio de venta vs. costo real</li>
+        <li>Exportación a PDF listo para el contador externo</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- INVENTARIO -->
+  <div class="module-block">
+    <div class="module-header" style="background:#1e40af;">
+      <span class="icon">📦</span>
+      Módulo 2 — Control de Inventario
+    </div>
+    <div class="module-body">
+      <p class="font-sans text-sm mb-12">
+        Rastrea materias primas, materiales de empaque y producto terminado en tiempo real.
+        Conectado con recepción y producción para movimientos automáticos.
+      </p>
+      <ul class="feature-list">
+        <li>Inventario de materia prima (carne, insumos)</li>
+        <li>Inventario de producto terminado por lote</li>
+        <li>Materiales de empaque (bolsas, cajas, etiquetas)</li>
+        <li>Entradas automáticas desde Registro de Recepción</li>
+        <li>Salidas automáticas desde Órdenes de Producción</li>
+        <li>Alertas de stock mínimo por producto</li>
+        <li>Historial de movimientos con trazabilidad de lote</li>
+        <li>Reporte de inventario valorizado (cost accounting)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NÓMINA -->
+  <div class="module-block">
+    <div class="module-header" style="background:#15803d;">
+      <span class="icon">⏱️</span>
+      Módulo 3 — Control de Horas de Producción
+    </div>
+    <div class="module-body">
+      <p class="font-sans text-sm mb-12">
+        <strong>No reemplaza ADP ni QuickBooks</strong> — los complementa. Registra cuántas horas trabajó
+        cada empleado en cada orden de producción específica, para calcular el costo real de mano de obra
+        por lote. El pago lo sigue procesando su sistema actual; nosotros rastreamos <em>en qué se usaron esas horas</em>.
+      </p>
+      <ul class="feature-list">
+        <li>Registro de horas por empleado y turno</li>
+        <li>Asignación de horas a órdenes de producción específicas</li>
+        <li>Tasa horaria por empleado (ingresada una vez)</li>
+        <li>Costo de MOD (Mano de Obra Directa) por lote automático</li>
+        <li>Reporte de horas por área / turno / semana</li>
+        <li>Compatible con ADP, QuickBooks y cualquier sistema de nómina</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FINANCIERO -->
+  <div class="module-block">
+    <div class="module-header" style="background:#7c3aed;">
+      <span class="icon">📊</span>
+      Módulo 4 — Dashboard Financiero del Dueño
+    </div>
+    <div class="module-body">
+      <p class="font-sans text-sm mb-12">
+        Una pantalla exclusiva para el dueño con toda la información financiera y operativa
+        consolidada. Diseñada para tomar decisiones en 30 segundos.
+      </p>
+      <ul class="feature-list">
+        <li>Ventas del mes vs. mes anterior</li>
+        <li>Margen por producto (Chicharrón / Pork Belly / Buñuelos)</li>
+        <li>Costo total de producción del período</li>
+        <li>Costo de mano de obra del período vs. presupuesto</li>
+        <li>Inventario valorizado en tiempo real</li>
+        <li>Comparativo de clientes más rentables</li>
+        <li>Alertas: desviaciones abiertas, CAPAs vencidos</li>
+        <li>Resumen ejecutivo exportable a PDF</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 5</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 6 — ROI / ANÁLISIS DE AHORRO
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 05</div>
+  <h1>Análisis de Retorno de Inversión (ROI)</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray mb-16">
+    Estos son los costos y riesgos reales que el sistema elimina o reduce. Los números están basados
+    en promedios de la industria de manufactura de alimentos regulada por USDA.
+  </p>
+
+  <table class="roi-table">
+    <thead>
+      <tr>
+        <th>Costo / Riesgo actual</th>
+        <th>Situación hoy (papel / Excel)</th>
+        <th>Con el sistema</th>
+        <th>Ahorro estimado / año</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="font-sans"><strong>Horas de la contadora en Excel</strong></td>
+        <td class="font-sans">~8–12 hrs/semana armar costos manualmente</td>
+        <td class="font-sans">Reporte automático en segundos</td>
+        <td class="num">$4,800 – $7,200</td>
+      </tr>
+      <tr>
+        <td class="font-sans"><strong>Riesgo de multa / rechazo USDA</strong></td>
+        <td class="font-sans">Registros en papel pueden perderse, borrarse o ser ilegibles</td>
+        <td class="font-sans">Audit trail digital inmutable, 24/7 disponible</td>
+        <td class="num">$5,000 – $15,000+</td>
+      </tr>
+      <tr>
+        <td class="font-sans"><strong>Mermas por falta de control de inventario</strong></td>
+        <td class="font-sans">Sin alertas de vencimiento ni stock mínimo</td>
+        <td class="font-sans">Alertas automáticas, trazabilidad por lote</td>
+        <td class="num">$2,400 – $4,800</td>
+      </tr>
+      <tr>
+        <td class="font-sans"><strong>Errores de costeo (precio incorrecto)</strong></td>
+        <td class="font-sans">Margen real desconocido; riesgo de vender a pérdida</td>
+        <td class="font-sans">Costo real por lote, margen real por cliente</td>
+        <td class="num">Variable — crítico</td>
+      </tr>
+      <tr>
+        <td class="font-sans"><strong>Tiempo en preparar informes para inspector</strong></td>
+        <td class="font-sans">2–4 hrs por visita buscando papeles</td>
+        <td class="font-sans">Reporte listo en 1 clic, cualquier rango de fecha</td>
+        <td class="num">$800 – $1,600</td>
+      </tr>
+      <tr>
+        <td class="font-sans"><strong>Riesgo de recall / retiro de producto</strong></td>
+        <td class="font-sans">Sin trazabilidad digital: recall = costo masivo</td>
+        <td class="font-sans">Trazabilidad completa lote a lote, acción inmediata</td>
+        <td class="num">$10,000 – $100,000+</td>
+      </tr>
+      <tr>
+        <td class="font-sans bold">AHORRO / PROTECCIÓN TOTAL ESTIMADA</td>
+        <td></td>
+        <td></td>
+        <td class="num">$23,000 – $129,000 / año</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card-grid card-grid-3 mt-16">
+    <div class="card green">
+      <span class="card-label">ROI del proyecto completo</span>
+      <div class="card-value">6 meses</div>
+      <div class="card-sub">La inversión se recupera en el primer semestre</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Horas ahorradas / año</span>
+      <div class="card-value">400 – 600 hrs</div>
+      <div class="card-sub">De contadora, supervisores y QA</div>
+    </div>
+    <div class="card red">
+      <span class="card-label">Riesgo USDA eliminado</span>
+      <div class="card-value">100%</div>
+      <div class="card-sub">Registros siempre disponibles y verificables</div>
+    </div>
+  </div>
+
+  <div class="callout mt-16">
+    <strong>Dato clave:</strong> El costo promedio de un recall de producto en manufactura de alimentos en EE.UU.
+    es de <strong>$10 millones de dólares</strong> para grandes plantas y <strong>$30,000–$150,000</strong> para
+    plantas medianas. La trazabilidad digital no es un lujo — es protección legal.
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 6</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 7 — PROPUESTA ECONÓMICA
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 06</div>
+  <h1>Propuesta Económica</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray">
+    Se presentan dos opciones según la preferencia de flujo de caja de la empresa.
+    El alcance es idéntico en ambas — solo cambia la forma de pago.
+  </p>
+
+  <div class="pricing-grid">
+
+    <!-- OPTION A -->
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div class="opt">Opción A</div>
+        <h3>Proyecto Completo</h3>
+        <div class="pricing-price">$14,500 <span>único pago</span></div>
+        <div style="font-size:8pt;color:#94a3b8;margin-top:4px;">+ $199 / mes mantenimiento</div>
+      </div>
+      <div class="pricing-body">
+        <div class="pricing-row">
+          <span>Sistema de cumplimiento HACCP (ya construido)</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Módulo Costos &amp; Contabilidad</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Módulo Control de Inventario</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Módulo Control de Horas de Producción</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Dashboard Financiero del Dueño</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Capacitación del equipo (4 hrs)</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Soporte prioritario 12 meses</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Mantenimiento mensual (hosting + updates)</span>
+          <span class="val">$199/mes</span>
+        </div>
+        <div class="pricing-note">
+          Descuento de $1,500 por pago único. El ahorro neto vs. Opción B es de $1,000 en el primer año.
+        </div>
+      </div>
+    </div>
+
+    <!-- OPTION B -->
+    <div class="pricing-card featured">
+      <div class="pricing-header">
+        <div class="opt">Opción B</div>
+        <h3>Pagos por Fases</h3>
+        <div class="pricing-price">3 × $5,000</div>
+        <div style="font-size:8pt;color:#94a3b8;margin-top:4px;">+ $199 / mes mantenimiento al final</div>
+      </div>
+      <div class="pricing-body">
+        <div class="pricing-row">
+          <span><strong>Pago 1</strong> — Al inicio (Fase 1)</span>
+          <span class="val">$5,000</span>
+        </div>
+        <div class="pricing-row">
+          <span><strong>Pago 2</strong> — Entrega Fase 2 (semana 4)</span>
+          <span class="val">$5,000</span>
+        </div>
+        <div class="pricing-row">
+          <span><strong>Pago 3</strong> — Entrega final (semana 8)</span>
+          <span class="val">$5,000</span>
+        </div>
+        <div class="pricing-row">
+          <span>Total de desarrollo</span>
+          <span class="val">$15,000</span>
+        </div>
+        <div class="pricing-row">
+          <span>Sistema HACCP ya construido</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Los 4 módulos nuevos</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Capacitación + soporte 12 meses</span>
+          <span class="val">✓ Incluido</span>
+        </div>
+        <div class="pricing-row">
+          <span>Mantenimiento mensual</span>
+          <span class="val">$199/mes</span>
+        </div>
+        <div class="pricing-note">
+          Sin desembolso completo al inicio. Cada pago se hace al ver los entregables de cada fase funcionando.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WHAT'S INCLUDED -->
+  <div style="margin-top:24px;">
+    <h2 style="margin-bottom:12px;">Ambas opciones incluyen:</h2>
+    <div class="card-grid card-grid-4">
+      <div class="card">
+        <span class="card-label">Hosting &amp; Base de datos</span>
+        <div class="card-sub">Vercel Pro + Supabase en la nube. Sin servidor propio.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Código fuente</span>
+        <div class="card-sub">El código es propiedad de Latin Bites Factory al completar el pago.</div>
+      </div>
+      <div class="card">
+        <span class="card-label">Actualizaciones</span>
+        <div class="card-sub">Mejoras y correcciones durante 12 meses sin costo adicional.</div>
+      </div>
+      <div class="card red">
+        <span class="card-label">Garantía</span>
+        <div class="card-sub">Si algo no funciona como se acordó, se corrige sin costo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 7</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 8 — CRONOGRAMA
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 07</div>
+  <h1>Cronograma de Entrega</h1>
+  <hr class="section-rule">
+  <p class="font-sans text-sm text-gray mb-16">
+    El sistema HACCP completo (14 módulos) ya está construido y en vivo. El cronograma
+    aplica únicamente al desarrollo de los 4 módulos empresariales nuevos.
+  </p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">✓</div>
+      <div class="tl-content">
+        <div class="tl-label">Completado · Hoy mismo</div>
+        <div class="tl-title">Fase 0 — Plataforma HACCP en producción</div>
+        <ul class="tl-items">
+          <li>14 módulos de cumplimiento regulatorio funcionando</li>
+          <li>Autenticación, roles, audit trail, exportación PDF</li>
+          <li>Desplegado en Vercel con dominio propio</li>
+          <li>10 migraciones de base de datos aplicadas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot red">1</div>
+      <div class="tl-content">
+        <div class="tl-label">Semanas 1–3 · Primer pago al inicio</div>
+        <div class="tl-title">Fase 1 — Inventario &amp; Costos base</div>
+        <ul class="tl-items">
+          <li>Módulo de inventario: materia prima, empaque, producto terminado</li>
+          <li>Entradas automáticas desde recepción, salidas desde producción</li>
+          <li>Ficha de costo por producto con estructura de costos</li>
+          <li>Costo real por lote calculado automáticamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-content">
+        <div class="tl-label">Semanas 4–6 · Segundo pago al entregar</div>
+        <div class="tl-title">Fase 2 — Control de Horas &amp; Costo de Mano de Obra</div>
+        <ul class="tl-items">
+          <li>Registro de horas por empleado y turno</li>
+          <li>Asignación de horas a órdenes de producción específicas</li>
+          <li>Cálculo de MOD (Mano de Obra Directa) por lote</li>
+          <li>Compatible con ADP y cualquier sistema de nómina externo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot gold">3</div>
+      <div class="tl-content">
+        <div class="tl-label">Semanas 7–10 · Tercer pago al entregar</div>
+        <div class="tl-title">Fase 3 — Dashboard Financiero &amp; Reportes P&amp;L</div>
+        <ul class="tl-items">
+          <li>Dashboard del dueño con KPIs financieros y operativos</li>
+          <li>Reporte de Ganancias &amp; Pérdidas mensual</li>
+          <li>Margen por producto y por cliente</li>
+          <li>Comparativo de períodos, alertas de stock y desviaciones</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">★</div>
+      <div class="tl-content">
+        <div class="tl-label">Semanas 11–12 · Sin costo adicional</div>
+        <div class="tl-title">Fase 4 — Capacitación, ajustes finales &amp; entrega</div>
+        <ul class="tl-items">
+          <li>Sesión de capacitación para cada área (4 horas total)</li>
+          <li>Ajustes según feedback del equipo</li>
+          <li>Documentación de usuario en español</li>
+          <li>Entrega formal del código fuente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid card-grid-3 mt-16">
+    <div class="card green">
+      <span class="card-label">Sistema HACCP</span>
+      <div class="card-value">Ya entregado</div>
+      <div class="card-sub">100% funcional desde hoy</div>
+    </div>
+    <div class="card">
+      <span class="card-label">Expansión empresarial</span>
+      <div class="card-value">10–12 semanas</div>
+      <div class="card-sub">Desde la aprobación</div>
+    </div>
+    <div class="card red">
+      <span class="card-label">Entrega por fases</span>
+      <div class="card-value">Cada 3 sem.</div>
+      <div class="card-sub">Puede ver avances antes de pagar</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 8</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 9 — OPORTUNIDAD SAAS
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 08</div>
+  <h1>Oportunidad Futura: Modelo SaaS</h1>
+  <hr class="section-rule">
+
+  <div class="saas-highlight">
+    <h2>¿Y si pudieran vender esto a otras plantas?</h2>
+    <p>
+      Latin Bites Factory puede convertirse en el primer cliente y caso de estudio de un producto
+      SaaS (Software as a Service) diseñado específicamente para plantas de manufactura de alimentos
+      reguladas por USDA. Una vez construido para ustedes, puede venderse a cientos de plantas similares
+      en todo el país — con una inversión marginal adicional.
+    </p>
+
+    <div class="saas-grid">
+      <div class="saas-stat">
+        <div class="num">6,500+</div>
+        <div class="lbl">Plantas cárnicas reguladas<br>por USDA en EE.UU.</div>
+      </div>
+      <div class="saas-stat">
+        <div class="num">$599</div>
+        <div class="lbl">Precio sugerido/mes<br>por planta (SaaS)</div>
+      </div>
+      <div class="saas-stat">
+        <div class="num">$71K+</div>
+        <div class="lbl">Ingreso mensual recurrente<br>con solo 120 clientes</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;">
+    <h2 style="margin-bottom:14px;">¿Qué significaría para Latin Bites?</h2>
+    <div class="card-grid card-grid-2">
+      <div class="card gold">
+        <span class="card-icon">🤝</span>
+        <h3>Sociedad tecnológica</h3>
+        <p class="font-sans text-sm">
+          Latin Bites puede participar como co-propietario del software o recibir regalías por cada
+          cliente nuevo que el sistema consiga usando su caso de éxito como referencia.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏆</span>
+        <h3>Ventaja competitiva inmediata</h3>
+        <p class="font-sans text-sm">
+          Mientras otras plantas siguen usando papel, ustedes ya operan con tecnología de punta.
+          Eso es un argumento poderoso ante clientes grandes que exigen trazabilidad digital.
+        </p>
+      </div>
+      <div class="card red">
+        <span class="card-icon">📈</span>
+        <h3>Activo que se valoriza</h3>
+        <p class="font-sans text-sm">
+          A diferencia de una máquina que se deprecia, el software crece en valor con cada mejora.
+          Una empresa SaaS de nicho puede valer 5–10x sus ingresos anuales.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔒</span>
+        <h3>Sin riesgo adicional</h3>
+        <p class="font-sans text-sm">
+          El sistema que se construye para Latin Bites es 100% útil internamente,
+          independientemente de si se decide explorar el modelo SaaS en el futuro.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout mt-16">
+    <strong>Este punto es opcional:</strong> La prioridad es construir el sistema que Latin Bites Factory necesita.
+    La oportunidad SaaS se menciona para mostrar que la inversión tiene potencial de retorno
+    mucho más allá del ahorro operativo interno.
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 9</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     PAGE 10 — TÉRMINOS Y FIRMA
+══════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-num">Sección 09</div>
+  <h1>Términos &amp; Aceptación</h1>
+  <hr class="section-rule">
+
+  <div style="font-family:system-ui,sans-serif;font-size:9.5pt;line-height:1.7;color:#374151;">
+
+    <h2 style="margin-bottom:10px;">Alcance del proyecto</h2>
+    <p>
+      El presente documento describe el desarrollo de cuatro módulos adicionales sobre la plataforma
+      de cumplimiento HACCP ya construida y desplegada para Latin Bites Factory (EST No. M/P2643).
+      Los módulos a desarrollar son: (1) Costos &amp; Contabilidad, (2) Control de Inventario,
+      (3) Control de Horas de Producción, y (4) Dashboard Financiero del Dueño.
+    </p>
+
+    <h2 style="margin:16px 0 8px;">Condiciones generales</h2>
+    <ul style="list-style:none;padding:0;">
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; El código fuente queda en propiedad de Latin Bites Factory al completar el pago total.
+      </li>
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; El sistema actual (HACCP) seguirá funcionando sin interrupción durante el desarrollo de los módulos nuevos.
+      </li>
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; Los pagos por fases se realizan al verificar la funcionalidad de cada entregable, no antes.
+      </li>
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; El mantenimiento mensual de $199 inicia únicamente al completar el proyecto final.
+      </li>
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; El soporte incluye corrección de errores y ajustes menores durante 12 meses.
+      </li>
+      <li style="padding:5px 0;border-bottom:1px solid var(--border);">
+        ✓ &nbsp; Cualquier funcionalidad adicional fuera del alcance descrito se cotizará por separado.
+      </li>
+      <li style="padding:5px 0;">
+        ✓ &nbsp; Tiempo de respuesta de soporte: máximo 24 horas en días hábiles.
+      </li>
+    </ul>
+
+    <h2 style="margin:20px 0 8px;">Opción seleccionada</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+      <div style="border:2px solid var(--border);border-radius:6px;padding:14px 16px;">
+        <div style="font-size:8pt;font-weight:700;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Opción A</div>
+        <div style="font-size:12pt;font-weight:700;color:var(--navy);">☐ &nbsp; Pago único — $14,500</div>
+        <div style="font-size:8.5pt;color:var(--gray);margin-top:4px;">+ $199/mes mantenimiento al terminar</div>
+      </div>
+      <div style="border:2px solid var(--red);border-radius:6px;padding:14px 16px;background:#fef2f2;">
+        <div style="font-size:8pt;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Opción B — Recomendada</div>
+        <div style="font-size:12pt;font-weight:700;color:var(--navy);">☐ &nbsp; Tres pagos — 3 × $5,000</div>
+        <div style="font-size:8.5pt;color:var(--gray);margin-top:4px;">+ $199/mes mantenimiento al terminar</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIGNATURES -->
+  <div style="border-top:2px solid var(--navy);padding-top:20px;margin-top:8px;">
+    <h2 style="margin-bottom:6px;">Firmas de aceptación</h2>
+    <p class="font-sans text-sm text-gray" style="margin-bottom:20px;">
+      Con la firma a continuación, ambas partes confirman haber leído y acordado los términos de esta propuesta.
+    </p>
+
+    <div class="sig-grid">
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Por Latin Bites Factory</strong><br>
+        Nombre: _________________________________<br>
+        Cargo: __________________________________<br>
+        Fecha: __________________________________
+        </div>
+      </div>
+      <div class="sig-block">
+        <div class="sig-line"></div>
+        <div class="sig-label"><strong>Por el Desarrollador</strong><br>
+        Nombre: Rafael Sánchez<br>
+        Contacto: ______________________________<br>
+        Fecha: __________________________________
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:32px;font-family:system-ui,sans-serif;font-size:8pt;color:#94a3b8;line-height:1.8;">
+    Esta propuesta es válida por 30 días a partir del 1 de abril de 2026.<br>
+    Plataforma activa: <strong>latin-bites-factory.vercel.app</strong> &nbsp;·&nbsp;
+    EST No. M/P2643 &nbsp;·&nbsp; Confidencial
+  </div>
+
+  <div class="page-footer">
+    <span>Latin Bites Factory · EST No. M/P2643</span>
+    <span>Propuesta Confidencial · Abril 2026</span>
+    <span>Pág. 10</span>
+  </div>
+</div>
+
+</body>
+</html>
