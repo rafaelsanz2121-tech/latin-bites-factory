@@ -4,6 +4,7 @@ import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import { DollarSign, ArrowLeft, Package, Users, Tag, Layers } from "lucide-react"
 import { AddCostItemForm } from "./AddCostItemForm"
+import { ExportCostosButton } from "@/components/export/ExportCostosButton"
 
 function fmt$(n: number | null | undefined) {
   if (n == null) return "—"
@@ -86,11 +87,14 @@ export default async function CostoDetailPage({
               {o.clients?.company_name} · {o.products?.name} · {formatDate(o.order_date)}
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-[11px] text-slate-400 font-medium">Cantidad</p>
-            <p className="text-xl font-black text-slate-700 tabular-nums">
-              {order.quantity_lbs ? `${Number(order.quantity_lbs).toLocaleString()} lbs` : "—"}
-            </p>
+          <div className="flex items-start gap-3">
+            <div className="text-right">
+              <p className="text-[11px] text-slate-400 font-medium">Cantidad</p>
+              <p className="text-xl font-black text-slate-700 tabular-nums">
+                {order.quantity_lbs ? `${Number(order.quantity_lbs).toLocaleString()} lbs` : "—"}
+              </p>
+            </div>
+            <ExportCostosButton orderId={orderId} label="Exportar" />
           </div>
         </div>
       </div>

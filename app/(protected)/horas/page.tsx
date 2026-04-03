@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import { Timer, Plus, ArrowUpRight, Users, DollarSign, Clock } from "lucide-react"
+import { ExportHorasButton } from "@/components/export/ExportHorasButton"
 
 function fmt$(n: number) {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 })
@@ -80,12 +81,15 @@ export default async function HorasPage({
             Complementa ADP — asigna horas a órdenes de producción para calcular costo MOD real
           </p>
         </div>
-        <Link
-          href="/horas/nuevo"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-colors"
-        >
-          <Plus className="w-4 h-4" /> Registrar Horas
-        </Link>
+        <div className="flex items-center gap-2">
+          <ExportHorasButton dateFrom={start} dateTo={end} label="Exportar Horas" />
+          <Link
+            href="/horas/nuevo"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-colors"
+          >
+            <Plus className="w-4 h-4" /> Registrar Horas
+          </Link>
+        </div>
       </div>
 
       {/* ADP compatibility note */}

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import { DollarSign, TrendingDown, TrendingUp, Package, ArrowUpRight, Plus, AlertCircle } from "lucide-react"
+import { ExportCostosButton } from "@/components/export/ExportCostosButton"
 
 function fmt$(n: number | null) {
   if (n == null) return "—"
@@ -59,7 +60,7 @@ export default async function CostosPage() {
     <div className="space-y-6 max-w-[1200px]">
 
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
             <span className="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
@@ -69,6 +70,7 @@ export default async function CostosPage() {
           </h1>
           <p className="text-sm text-slate-400 mt-1">Costo real por lote · Compatible con ADP y QuickBooks</p>
         </div>
+        <ExportCostosButton label="Exportar Costos" />
       </div>
 
       {/* Migration notice if no data */}
