@@ -27,6 +27,7 @@
   --radius: 0.5rem;
 }
 
+/* ── Light mode (default) ─────────────────────────────────── */
 :root {
   --background: #f8fafc;
   --foreground: #0f172a;
@@ -44,11 +45,68 @@
   --border: #e2e8f0;
   --input: #e2e8f0;
   --ring: #1e40af;
-  --sidebar: #0f172a;
+  --sidebar: #080e1c;
   --sidebar-foreground: #e2e8f0;
-  --sidebar-border: #1e293b;
+  --sidebar-border: #1a2235;
   --sidebar-accent: #1e293b;
   --sidebar-muted: #94a3b8;
+
+  /* Surface tokens used by cards/tables */
+  --surface-1: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #f1f5f9;
+  --border-subtle: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --topbar-bg: rgba(255,255,255,0.98);
+  --topbar-border: #f1f5f9;
+}
+
+/* ── Dark mode ────────────────────────────────────────────── */
+.dark {
+  --background: #0b0f1a;
+  --foreground: #e2e8f0;
+  --card: #111827;
+  --card-foreground: #e2e8f0;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #e2e8f0;
+  --muted: #1e293b;
+  --muted-foreground: #64748b;
+  --accent: #1e3a5f;
+  --accent-foreground: #93c5fd;
+  --destructive: #ef4444;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --sidebar: #050914;
+  --sidebar-foreground: #e2e8f0;
+  --sidebar-border: #0d1424;
+  --sidebar-accent: #111827;
+  --sidebar-muted: #475569;
+
+  --surface-1: #111827;
+  --surface-2: #0f172a;
+  --surface-3: #1a2235;
+  --border-subtle: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  --topbar-bg: rgba(11,15,26,0.98);
+  --topbar-border: #1e293b;
+}
+
+/* ── Smooth theme transitions ─────────────────────────────── */
+*, *::before, *::after {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.15s ease;
+}
+
+/* Disable transitions for elements that shouldn't animate */
+button, a, input, select, textarea {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.1s ease,
+              opacity 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 * {
@@ -63,7 +121,82 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ── Dark mode overrides for common patterns ─────────────── */
+.dark .bg-white {
+  background-color: var(--surface-1) !important;
+}
+
+.dark .bg-slate-50,
+.dark .hover\:bg-slate-50:hover {
+  background-color: var(--surface-3) !important;
+}
+
+.dark .bg-white\/\[0\.98\] {
+  background-color: var(--topbar-bg) !important;
+}
+
+.dark .border-slate-100 {
+  border-color: var(--border-subtle) !important;
+}
+
+.dark .text-slate-800,
+.dark .text-slate-700 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-slate-600,
+.dark .text-slate-500 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Dropdown menus */
+.dark [data-radix-popper-content-wrapper] .bg-white {
+  background-color: #1a2235 !important;
+  border-color: #1e293b !important;
+}
+
+.dark [data-radix-popper-content-wrapper] .border-slate-100 {
+  border-color: #263148 !important;
+}
+
+.dark [data-radix-popper-content-wrapper] .hover\:bg-slate-50:hover {
+  background-color: #263148 !important;
+}
+
+.dark [data-radix-popper-content-wrapper] .text-slate-600,
+.dark [data-radix-popper-content-wrapper] .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+/* Form inputs */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #475569 !important;
+}
+
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #3b82f6 !important;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+.dark ::-webkit-scrollbar-thumb { background: #334155; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #475569; }

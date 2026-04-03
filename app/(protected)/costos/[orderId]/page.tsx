@@ -37,6 +37,9 @@ export default async function CostoDetailPage({
 
   if (!order) notFound()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const o = order as any
+
   /* ── Fetch cost items ── */
   const { data: costItems } = await supabase
     .from("cost_items")
@@ -80,7 +83,7 @@ export default async function CostoDetailPage({
               {order.order_number}
             </h1>
             <p className="text-sm text-slate-400 mt-0.5">
-              {order.clients?.company_name} · {order.products?.name} · {formatDate(order.order_date)}
+              {o.clients?.company_name} · {o.products?.name} · {formatDate(o.order_date)}
             </p>
           </div>
           <div className="text-right">

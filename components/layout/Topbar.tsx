@@ -1,6 +1,6 @@
 "use client"
 
-import { Bell, LogOut, Menu, Settings, ChevronRight, Zap } from "lucide-react"
+import { Bell, LogOut, Menu, Settings, ChevronRight, Zap, Sun, Moon } from "lucide-react"
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
@@ -9,6 +9,8 @@ import type { Profile } from "@/types"
 import { ROLE_LABELS, ROLE_COLORS } from "@/constants/roles"
 import { cn } from "@/lib/utils"
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 /* ── Breadcrumb mapping ─────────────────────────────────── */
 const ROUTE_LABELS: Record<string, string> = {
@@ -53,6 +55,9 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
   const router   = useRouter()
   const pathname = usePathname()
   const supabase = createClient()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -70,7 +75,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
   const initials = profile.initials || profile.full_name?.slice(0, 2).toUpperCase() || "??"
 
   return (
-    <header className="h-14 bg-white/[0.98] backdrop-blur-sm border-b border-slate-100 flex items-center px-4 gap-3 flex-shrink-0 shadow-[0_1px_0_0_rgba(0,0,0,0.04)]">
+    <header className="h-14 bg-[var(--topbar-bg)] backdrop-blur-sm border-b border-[var(--topbar-border)] flex items-center px-4 gap-3 flex-shrink-0 shadow-[0_1px_0_0_rgba(0,0,0,0.04)]">
 
       {/* ── Mobile menu toggle ────────────────────────── */}
       <button
@@ -109,15 +114,30 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
           <span className="text-[10.5px] font-semibold text-green-700">Sistema activo</span>
         </div>
 
+        {/* Theme toggle */}
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors"
+            aria-label="Cambiar tema"
+            title={theme === "dark" ? "Modo diurno" : "Modo nocturno"}
+          >
+            {theme === "dark"
+              ? <Sun className="w-4 h-4 text-amber-400" />
+              : <Moon className="w-4 h-4 text-slate-400" />
+            }
+          </button>
+        )}
+
         {/* Notifications */}
-        <button className="relative p-2 rounded-lg hover:bg-slate-100 transition-colors">
+        <button className="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors">
           <Bell className="w-4 h-4 text-slate-400" />
         </button>
 
         {/* User menu */}
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
-            <button className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+            <button className="flex items-center gap-2.5 pl-2 pr-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors">
               {/* Avatar */}
               <div className="relative">
                 <div className="w-7 h-7 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-[11px] font-bold shadow-sm">
@@ -140,19 +160,19 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
 
           <DropdownMenu.Portal>
             <DropdownMenu.Content
-              className="min-w-[220px] bg-white rounded-xl border border-slate-100 shadow-xl shadow-slate-200/80 p-1.5 z-50 animate-in fade-in-0 zoom-in-95"
+              className="min-w-[220px] bg-[var(--surface-1)] rounded-xl border border-[var(--border-subtle)] shadow-xl shadow-black/20 p-1.5 z-50 animate-in fade-in-0 zoom-in-95"
               sideOffset={6}
               align="end"
             >
               {/* User info */}
-              <div className="px-3 py-2.5 border-b border-slate-100 mb-1">
+              <div className="px-3 py-2.5 border-b border-[var(--border-subtle)] mb-1">
                 <div className="flex items-center gap-2.5">
                   <div className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-xs font-bold">
                     {initials}
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-slate-800">{profile.full_name}</p>
-                    <p className="text-[11px] text-slate-400">{profile.employee_id ? `ID: ${profile.employee_id}` : "Sin ID"}</p>
+                    <p className="text-[13px] font-semibold text-[var(--text-primary)]">{profile.full_name}</p>
+                    <p className="text-[11px] text-[var(--text-muted)]">{profile.employee_id ? `ID: ${profile.employee_id}` : "Sin ID"}</p>
                   </div>
                 </div>
               </div>
@@ -160,14 +180,14 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
               <DropdownMenu.Item asChild>
                 <Link
                   href="/admin/settings"
-                  className="flex items-center gap-2.5 px-3 py-2 text-[13px] text-slate-600 rounded-lg hover:bg-slate-50 cursor-pointer outline-none transition-colors"
+                  className="flex items-center gap-2.5 px-3 py-2 text-[13px] text-[var(--text-secondary)] rounded-lg hover:bg-[var(--surface-3)] cursor-pointer outline-none transition-colors"
                 >
                   <Settings className="w-3.5 h-3.5 text-slate-400" />
                   Mi Perfil
                 </Link>
               </DropdownMenu.Item>
 
-              <DropdownMenu.Separator className="h-px bg-slate-100 my-1" />
+              <DropdownMenu.Separator className="h-px bg-[var(--border-subtle)] my-1" />
 
               <DropdownMenu.Item asChild>
                 <button
