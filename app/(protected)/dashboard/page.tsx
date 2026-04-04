@@ -26,8 +26,9 @@ const LOG_TABLES = [
 ] as const
 
 async function getDashboardData() {
-  const supabase = await createClient()
-  const today    = new Date().toISOString().split("T")[0]
+  const supabase  = await createClient()
+  const today     = new Date().toISOString().split("T")[0]
+  const monthStart = today.slice(0, 7) + "-01"
 
   const [
     { count: openDeviations },
@@ -49,6 +50,28 @@ async function getDashboardData() {
     ...LOG_TABLES.map((t) => supabase.from(t).select("*",{count:"exact",head:true}).eq("status","submitted")),
   ])
 
+  /* ── Enterprise KPIs (graceful — tables may not exist yet) ── */
+  let cogsMonth    = 0
+  let lowStockCnt  = 0
+  let inventoryVal = 0
+  let hoursWeek    = 0
+  try {
+    const weekStart = new Date(today)
+    weekStart.setDate(weekStart.getDate() - weekStart.getDay())
+    const ws = weekStart.toISOString().split("T")[0]
+
+    const [costRes, invRes, hoursRes] = await Promise.all([
+      supabase.from("cost_items").select("total_cost").gte("created_at", monthStart + "T00:00:00"),
+      supabase.from("inventory_items").select("current_stock, min_stock, cost_per_unit").eq("is_active", true),
+      supabase.from("labor_entries").select("hours_worked").gte("work_date", ws),
+    ])
+    cogsMonth   = (costRes.data  || []).reduce((s:number, r:any) => s + Number(r.total_cost  ?? 0), 0)
+    hoursWeek   = (hoursRes.data || []).reduce((s:number, r:any) => s + Number(r.hours_worked ?? 0), 0)
+    const invItems = invRes.data || []
+    inventoryVal  = invItems.reduce((s:number, i:any) => s + Number(i.current_stock) * Number(i.cost_per_unit ?? 0), 0)
+    lowStockCnt   = invItems.filter((i:any) => Number(i.current_stock) <= Number(i.min_stock ?? 0)).length
+  } catch { /* tables not migrated yet */ }
+
   const pendingApproval = pendingResults.reduce((s,r) => s + (r.count||0), 0)
 
   const coverageResults = await Promise.all(
@@ -65,6 +88,8 @@ async function getDashboardData() {
     recentThawing: recentThawing||[], recentDeviations: recentDeviations||[],
     activeOrders: activeOrders||0, readyToShip: readyToShip||0,
     recentOrders: recentOrders||[], coverage,
+    /* enterprise */
+    cogsMonth, lowStockCnt, inventoryVal, hoursWeek,
   }
 }
 
@@ -182,32 +207,74 @@ export default async function DashboardPage() {
         })}
       </div>
 
-      {/* ── Enterprise Modules Teaser ──────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          { label: "Costos por Lote",   icon: DollarSign, href: "/costos",     color: "amber",  value: "Próximo" },
-          { label: "Control Inventario",icon: Boxes,       href: "/inventario", color: "blue",   value: "Próximo" },
-          { label: "Horas de Producción",icon:Timer,       href: "/horas",      color: "green",  value: "Próximo" },
-          { label: "Dashboard Financiero",icon:TrendingUp,  href: "/finanzas",   color: "purple", value: "Próximo" },
-        ].map((mod) => {
-          const c: Record<string,{bg:string,text:string,border:string,iconBg:string}> = {
-            amber:  { bg:"bg-amber-950/20",  text:"text-amber-400",  border:"border-amber-900/30",  iconBg:"bg-amber-950/40" },
-            blue:   { bg:"bg-blue-950/20",   text:"text-blue-400",   border:"border-blue-900/30",   iconBg:"bg-blue-950/40" },
-            green:  { bg:"bg-green-950/20",  text:"text-green-400",  border:"border-green-900/30",  iconBg:"bg-green-950/40" },
-            purple: { bg:"bg-purple-950/20", text:"text-purple-400", border:"border-purple-900/30", iconBg:"bg-purple-950/40" },
-          }
-          const col = c[mod.color]
-          return (
-            <div key={mod.label} className={`rounded-xl border p-4 ${col.bg} ${col.border} opacity-60`}>
-              <div className={`w-8 h-8 rounded-lg ${col.iconBg} flex items-center justify-center mb-2.5`}>
-                <mod.icon className={`w-4 h-4 ${col.text}`} />
-              </div>
-              <p className={`text-[10px] font-bold uppercase tracking-wider ${col.text} mb-1`}>{mod.value}</p>
-              <p className="text-[12px] font-semibold text-slate-400">{mod.label}</p>
-            </div>
-          )
-        })}
-      </div>
+      {/* ── Enterprise Modules — live KPIs ──────────────────── */}
+      {(() => {
+        const fmt$ = (n: number) => n > 0
+          ? n.toLocaleString("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 })
+          : "—"
+        const { lowStockCnt } = stats
+        const enterpriseMods = [
+          {
+            label: "COGS del mes",
+            sub:   "Costos de Producción",
+            icon:  DollarSign,
+            href:  "/costos",
+            value: fmt$(stats.cogsMonth),
+            alert: false,
+            colors: { bg: "bg-amber-50 dark:bg-amber-900/20", text: "text-amber-700 dark:text-amber-300", border: "border-amber-100 dark:border-amber-800/30", icon: "text-amber-600" },
+          },
+          {
+            label: lowStockCnt > 0 ? `${lowStockCnt} bajo mínimo` : "Stock OK",
+            sub:   "Control de Inventario",
+            icon:  Boxes,
+            href:  "/inventario",
+            value: fmt$(stats.inventoryVal),
+            alert: lowStockCnt > 0,
+            colors: lowStockCnt > 0
+              ? { bg: "bg-orange-50 dark:bg-orange-900/20", text: "text-orange-700 dark:text-orange-300", border: "border-orange-200 dark:border-orange-800/30", icon: "text-orange-500" }
+              : { bg: "bg-blue-50 dark:bg-blue-900/20",    text: "text-blue-700 dark:text-blue-300",    border: "border-blue-100 dark:border-blue-800/30",    icon: "text-blue-600"   },
+          },
+          {
+            label: "Horas esta semana",
+            sub:   "Control de Horas MOD",
+            icon:  Timer,
+            href:  "/horas",
+            value: stats.hoursWeek > 0 ? `${stats.hoursWeek.toFixed(1)} h` : "—",
+            alert: false,
+            colors: { bg: "bg-green-50 dark:bg-green-900/20", text: "text-green-700 dark:text-green-300", border: "border-green-100 dark:border-green-800/30", icon: "text-green-600" },
+          },
+          {
+            label: "Dashboard financiero",
+            sub:   "Finanzas",
+            icon:  TrendingUp,
+            href:  "/finanzas",
+            value: "Ver reporte",
+            alert: false,
+            colors: { bg: "bg-purple-50 dark:bg-purple-900/20", text: "text-purple-700 dark:text-purple-300", border: "border-purple-100 dark:border-purple-800/30", icon: "text-purple-600" },
+          },
+        ]
+        return (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {enterpriseMods.map((mod) => (
+              <Link key={mod.href} href={mod.href}
+                className={`rounded-xl border p-4 transition-all hover:shadow-md hover:-translate-y-0.5 ${mod.colors.bg} ${mod.colors.border}`}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-white/60 dark:bg-white/10 flex items-center justify-center">
+                    <mod.icon className={`w-4 h-4 ${mod.colors.icon}`} />
+                  </div>
+                  {mod.alert && (
+                    <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                  )}
+                </div>
+                <p className={`text-lg font-black leading-none ${mod.colors.text} tabular-nums`}>{mod.value}</p>
+                <p className={`text-[10.5px] font-semibold mt-1 ${mod.colors.text}`}>{mod.label}</p>
+                <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">{mod.sub}</p>
+              </Link>
+            ))}
+          </div>
+        )
+      })()}
 
       {/* ── Today's Coverage ──────────────────────────────── */}
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
