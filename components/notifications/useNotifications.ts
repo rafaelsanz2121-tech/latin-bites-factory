@@ -146,6 +146,114 @@ export function useNotifications() {
         }
       })
 
+      /* ── 6. Listeria: zonas vencidas (graceful) ── */
+      try {
+        const { data: listeriaSamples } = await supabase
+          .from("listeria_samples")
+          .select("zone, sample_date, result")
+          .order("sample_date", { ascending: false })
+          .limit(200)
+
+        if (listeriaSamples && listeriaSamples.length > 0) {
+          // Zone frequency requirements: Z1 = 30d, Z2 = 7d, Z3 = 7d, Z4 = 30d
+          const ZONE_DAYS: Record<number, number> = { 1: 30, 2: 7, 3: 7, 4: 30 }
+          const latestByZone: Record<number, string> = {}
+
+          for (const s of listeriaSamples) {
+            if (!latestByZone[s.zone]) latestByZone[s.zone] = s.sample_date
+          }
+
+          const todayMs = Date.now()
+          for (let zone = 1; zone <= 4; zone++) {
+            const last = latestByZone[zone]
+            const maxDays = ZONE_DAYS[zone]
+            if (!last) {
+              results.push({
+                id:          `listeria-zone-${zone}`,
+                type:        "listeria_overdue",
+                severity:    "critical",
+                title:       `Listeria Zona ${zone} — Sin muestras`,
+                description: `No hay muestras registradas para la Zona ${zone}. Frecuencia requerida: cada ${maxDays}d.`,
+                href:        "/listeria",
+              })
+            } else {
+              const daysSince = Math.floor((todayMs - new Date(last).getTime()) / 86_400_000)
+              if (daysSince > maxDays) {
+                results.push({
+                  id:          `listeria-zone-${zone}`,
+                  type:        "listeria_overdue",
+                  severity:    "critical",
+                  title:       `Listeria Zona ${zone} — Vencida hace ${daysSince - maxDays}d`,
+                  description: `Última muestra hace ${daysSince}d. Requiere muestreo cada ${maxDays}d (9 CFR 430.4).`,
+                  href:        "/listeria",
+                })
+              }
+            }
+          }
+
+          // Positive results without reviewer — critical
+          const positives = (listeriaSamples as any[]).filter(
+            (s) => s.result === "positive" && !s.reviewed_by
+          )
+          positives.slice(0, 3).forEach((s) => {
+            results.push({
+              id:          `listeria-pos-${s.id ?? s.sample_date}`,
+              type:        "listeria_positive",
+              severity:    "critical",
+              title:       `Listeria POSITIVO — Zona ${s.zone}`,
+              description: `Muestra del ${s.sample_date} requiere acción correctiva y revisión.`,
+              href:        "/listeria",
+            })
+          })
+        }
+      } catch { /* table not migrated yet */ }
+
+      /* ── 7. Capacitaciones vencidas / por vencer (graceful) ── */
+      try {
+        const in30 = new Date()
+        in30.setDate(in30.getDate() + 30)
+        const in30Str = in30.toISOString().split("T")[0]
+
+        const { data: expiredTraining } = await supabase
+          .from("training_records")
+          .select("id, training_type, expiry_date, employee_id")
+          .lt("expiry_date", today)
+          .eq("result", "passed")
+          .order("expiry_date", { ascending: true })
+          .limit(10)
+
+        const { data: expiringTraining } = await supabase
+          .from("training_records")
+          .select("id, training_type, expiry_date, employee_id")
+          .gte("expiry_date", today)
+          .lte("expiry_date", in30Str)
+          .eq("result", "passed")
+          .order("expiry_date", { ascending: true })
+          .limit(10)
+
+        if ((expiredTraining || []).length > 0) {
+          results.push({
+            id:          "training-expired",
+            type:        "training_expired",
+            severity:    "critical",
+            title:       `${expiredTraining!.length} capacitación${expiredTraining!.length > 1 ? "es" : ""} vencida${expiredTraining!.length > 1 ? "s" : ""}`,
+            description: `Incluye: ${expiredTraining!.map((t) => t.training_type).slice(0, 2).join(", ")}${expiredTraining!.length > 2 ? "…" : ""}`,
+            href:        "/capacitacion",
+          })
+        }
+
+        if ((expiringTraining || []).length > 0) {
+          results.push({
+            id:          "training-expiring",
+            type:        "training_expiring",
+            severity:    "warning",
+            title:       `${expiringTraining!.length} capacitación${expiringTraining!.length > 1 ? "es" : ""} por vencer`,
+            description: `Vence en los próximos 30 días: ${expiringTraining!.map((t) => t.training_type).slice(0, 2).join(", ")}`,
+            href:        "/capacitacion",
+          })
+        }
+      } catch { /* table not migrated yet */ }
+
       /* Sort: critical first, then warning, then info */
       const ORDER: Record<NotifSeverity, number> = { critical: 0, warning: 1, info: 2 }
       results.sort((a, b) => ORDER[a.severity] - ORDER[b.severity])
