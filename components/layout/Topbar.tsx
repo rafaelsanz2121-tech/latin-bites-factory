@@ -1,6 +1,7 @@
 "use client"
 
-import { Bell, LogOut, Menu, Settings, ChevronRight, Zap, Sun, Moon } from "lucide-react"
+import { LogOut, Menu, Settings, ChevronRight, Zap, Sun, Moon } from "lucide-react"
+import { NotificationBell } from "@/components/notifications/NotificationBell"
 import Link from "next/link"
 import { useRouter, usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
@@ -130,9 +131,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
         )}
 
         {/* Notifications */}
-        <button className="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-white/[0.08] transition-colors">
-          <Bell className="w-4 h-4 text-slate-400" />
-        </button>
+        <NotificationBell />
 
         {/* User menu */}
         <DropdownMenu.Root>
