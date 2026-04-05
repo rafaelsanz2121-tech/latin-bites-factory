@@ -6,7 +6,7 @@ import {
   AlertTriangle,
   BarChart3,
   Boxes,
-  Briefcase,
+  Building2,
   CheckSquare,
   ChevronDown,
   ClipboardList,
@@ -15,7 +15,9 @@ import {
   Flame,
   GraduationCap,
   LayoutDashboard,
+  Microscope,
   Package,
+  Send,
   Settings,
   ShieldCheck,
   Snowflake,
@@ -26,7 +28,6 @@ import {
   DollarSign,
   TrendingUp,
   Zap,
-  Microscope,
 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -76,8 +77,11 @@ const navSections: NavSection[] = [
         icon: Package,
         roles: ["admin", "supervisor", "qa"],
       },
-      { label: "Listeria",       href: "/listeria",      icon: Microscope,     roles: ["admin","supervisor","qa"] },
-      { label: "Capacitación",   href: "/capacitacion",  icon: GraduationCap                                      },
+      { label: "Listeria",         href: "/listeria",        icon: Microscope,    roles: ["admin","supervisor","qa"] },
+      { label: "Capacitación",    href: "/capacitacion",   icon: GraduationCap                                       },
+      { label: "Det. de Metales", href: "/metal-detector", icon: Zap                                                 },
+      { label: "Proveedores",     href: "/proveedores",    icon: Building2,     roles: ["admin","supervisor","qa"]    },
+      { label: "Despacho",        href: "/despacho",       icon: Send                                                },
     ],
   },
   {
