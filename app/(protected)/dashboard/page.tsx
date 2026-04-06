@@ -116,7 +116,7 @@ export default async function DashboardPage() {
       {/* ── Welcome Header ──────────────────────────────────── */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-800 tracking-tight">
+          <h1 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">
             {greeting}{firstName ? `, ${firstName}` : ""} 👋
           </h1>
           <p className="text-sm text-slate-400 mt-1">
@@ -180,13 +180,13 @@ export default async function DashboardPage() {
           },
         ].map((kpi) => {
           const accentMap: Record<string,{bg:string,text:string,border:string,iconBg:string}> = {
-            blue:    { bg:"bg-blue-50",    text:"text-blue-700",    border:"border-blue-100",   iconBg:"bg-blue-100" },
-            amber:   { bg:"bg-amber-50",   text:"text-amber-700",   border:"border-amber-100",  iconBg:"bg-amber-100" },
-            red:     { bg:"bg-red-50",     text:"text-red-700",     border:"border-red-100",    iconBg:"bg-red-100" },
-            green:   { bg:"bg-green-50",   text:"text-green-700",   border:"border-green-100",  iconBg:"bg-green-100" },
-            indigo:  { bg:"bg-indigo-50",  text:"text-indigo-700",  border:"border-indigo-100", iconBg:"bg-indigo-100" },
-            emerald: { bg:"bg-emerald-50", text:"text-emerald-700", border:"border-emerald-100",iconBg:"bg-emerald-100" },
-            slate:   { bg:"bg-slate-50",   text:"text-slate-500",   border:"border-slate-100",  iconBg:"bg-slate-100" },
+            blue:    { bg:"bg-blue-50 dark:bg-blue-900/20",    text:"text-blue-700 dark:text-blue-300",    border:"border-blue-100 dark:border-blue-800/30",   iconBg:"bg-blue-100 dark:bg-blue-900/40" },
+            amber:   { bg:"bg-amber-50 dark:bg-amber-900/20",   text:"text-amber-700 dark:text-amber-300",   border:"border-amber-100 dark:border-amber-800/30",  iconBg:"bg-amber-100 dark:bg-amber-900/40" },
+            red:     { bg:"bg-red-50 dark:bg-red-900/20",     text:"text-red-700 dark:text-red-300",     border:"border-red-100 dark:border-red-800/30",    iconBg:"bg-red-100 dark:bg-red-900/40" },
+            green:   { bg:"bg-green-50 dark:bg-green-900/20",   text:"text-green-700 dark:text-green-300",   border:"border-green-100 dark:border-green-800/30",  iconBg:"bg-green-100 dark:bg-green-900/40" },
+            indigo:  { bg:"bg-indigo-50 dark:bg-indigo-900/20",  text:"text-indigo-700 dark:text-indigo-300",  border:"border-indigo-100 dark:border-indigo-800/30", iconBg:"bg-indigo-100 dark:bg-indigo-900/40" },
+            emerald: { bg:"bg-emerald-50 dark:bg-emerald-900/20", text:"text-emerald-700 dark:text-emerald-300", border:"border-emerald-100 dark:border-emerald-800/30",iconBg:"bg-emerald-100 dark:bg-emerald-900/40" },
+            slate:   { bg:"bg-slate-50 dark:bg-slate-800/50",   text:"text-slate-500 dark:text-slate-400",   border:"border-slate-100 dark:border-slate-700",  iconBg:"bg-slate-100 dark:bg-slate-700" },
           }
           const c = accentMap[kpi.accent]
           return (
@@ -277,10 +277,10 @@ export default async function DashboardPage() {
       })()}
 
       {/* ── Today's Coverage ──────────────────────────────── */}
-      <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700">
           <div>
-            <h2 className="text-sm font-bold text-slate-800">Cobertura de Logs — Hoy</h2>
+            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Cobertura de Logs — Hoy</h2>
             <p className="text-[11px] text-slate-400 mt-0.5">Módulos que deben tener al menos un registro diario</p>
           </div>
           <span className={`text-xs font-bold px-3 py-1 rounded-full ${
@@ -317,7 +317,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── Quick Actions ──────────────────────────────────── */}
-      <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-5">
+      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm p-5">
         <h2 className="text-sm font-bold text-slate-800 mb-4">Acciones Rápidas</h2>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {[
@@ -331,7 +331,7 @@ export default async function DashboardPage() {
             <Link
               key={action.href}
               href={action.href}
-              className={`flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 transition-all duration-150 text-center ${action.color}`}
+              className={`flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 dark:border-slate-700 transition-all duration-150 text-center ${action.color}`}
             >
               <span className="text-2xl leading-none">{action.emoji}</span>
               <span className="text-[11px] font-semibold text-slate-600 leading-tight">{action.label}</span>
@@ -344,21 +344,21 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         {/* Recent Logs */}
-        <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
-            <h2 className="text-sm font-bold text-slate-800">Últimos Registros</h2>
+        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
+            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Últimos Registros</h2>
             <Link href="/thawing" className="text-[11.5px] text-red-500 hover:text-red-600 font-semibold flex items-center gap-0.5">
               Ver todos <ArrowUpRight className="w-3 h-3" />
             </Link>
           </div>
-          <div className="divide-y divide-slate-50">
+          <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
             {stats.recentThawing.length === 0 ? (
               <p className="text-sm text-slate-400 text-center py-8">Sin registros hoy</p>
             ) : stats.recentThawing.map((log: any) => (
               <Link
                 key={log.id}
                 href={`/thawing/${log.id}`}
-                className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 transition-colors"
+                className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
               >
                 <div>
                   <p className="text-[13px] font-semibold text-slate-700">{log.products?.name || "—"}</p>
@@ -371,14 +371,14 @@ export default async function DashboardPage() {
         </div>
 
         {/* Recent Deviations */}
-        <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
-            <h2 className="text-sm font-bold text-slate-800">Desviaciones Recientes</h2>
+        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
+            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Desviaciones Recientes</h2>
             <Link href="/deviations" className="text-[11.5px] text-red-500 hover:text-red-600 font-semibold flex items-center gap-0.5">
               Ver todas <ArrowUpRight className="w-3 h-3" />
             </Link>
           </div>
-          <div className="divide-y divide-slate-50">
+          <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
             {stats.recentDeviations.length === 0 ? (
               <div className="flex flex-col items-center py-8 text-slate-300">
                 <ShieldAlert className="w-8 h-8 mb-2" />
@@ -388,7 +388,7 @@ export default async function DashboardPage() {
               <Link
                 key={dev.id}
                 href={`/deviations/${dev.id}`}
-                className="flex items-start gap-3 px-5 py-3 hover:bg-slate-50 transition-colors"
+                className="flex items-start gap-3 px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
               >
                 <span className={`mt-1.5 w-2 h-2 rounded-full flex-shrink-0 ${
                   dev.severity==="critical" ? "bg-red-500" :
@@ -409,8 +409,8 @@ export default async function DashboardPage() {
 
       {/* ── Active Production Orders ────────────────────────── */}
       {stats.recentOrders.length > 0 && (
-        <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100">
+        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
             <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2">
               <Factory className="w-4 h-4 text-indigo-500" />
               Órdenes de Producción Activas
@@ -419,7 +419,7 @@ export default async function DashboardPage() {
               Ver todas <ArrowUpRight className="w-3 h-3" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-slate-50">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-slate-50 dark:divide-slate-700/50">
             {stats.recentOrders.map((order: any) => {
               const statusConfig: Record<string,{label:string,bg:string,text:string}> = {
                 planned:       { label:"Planificado", bg:"bg-blue-100",    text:"text-blue-700" },
@@ -435,7 +435,7 @@ export default async function DashboardPage() {
                 <Link
                   key={order.id}
                   href={`/production/${order.id}`}
-                  className="flex flex-col gap-2 p-4 hover:bg-slate-50 transition-colors"
+                  className="flex flex-col gap-2 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[10.5px] font-mono text-slate-400">{order.order_number}</span>
