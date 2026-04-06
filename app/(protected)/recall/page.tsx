@@ -131,10 +131,18 @@ export default async function RecallPage() {
               <span className="text-xs text-slate-600 dark:text-slate-300">{totalRecalls} registros</span>
             </div>
             {recalls.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-16 gap-3">
-                <RotateCcw className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-600 dark:text-slate-300">Sin simulacros registrados.</p>
-                <Link href="/recall/nuevo" className="text-sm text-rose-600 font-semibold hover:underline">+ Registrar primer simulacro</Link>
+              <div className="flex flex-col items-center justify-center py-16 px-4">
+                <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-4">
+                  <RotateCcw className="w-8 h-8 text-slate-400 dark:text-slate-500" />
+                </div>
+                <h3 className="text-base font-bold text-slate-700 dark:text-slate-200 mb-1">Sin registros aún</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 text-center max-w-xs mb-6">
+                  Realiza y documenta simulacros de recall para demostrar trazabilidad efectiva del producto. FSMA exige al menos un ejercicio anual.
+                </p>
+                <Link href="/recall/nuevo" className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-sm">
+                  <Plus className="w-4 h-4" />
+                  Crear primer registro
+                </Link>
               </div>
             ) : (
               <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
