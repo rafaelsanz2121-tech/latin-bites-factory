@@ -1,29 +1,23 @@
 "use client"
 import { Printer } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 interface Props {
-  module: string  // e.g. "thawing", "receiving", "cooking", etc.
+  module: string
   id: string
   className?: string
 }
 
-export function PrintButton({ module, id, className }: Props) {
+export function PrintButton({ module, id, className = "" }: Props) {
   const handlePrint = () => {
-    const url = `/print/${module}/${id}`
-    const win = window.open(url, "_blank", "width=900,height=700")
-    if (win) {
-      win.onload = () => {
-        win.focus()
-        win.print()
-      }
-    }
+    window.open(`/print/${module}/${id}`, "_blank")
   }
-
   return (
-    <Button variant="outline" size="sm" onClick={handlePrint} className={className}>
-      <Printer className="w-4 h-4" />
-      Export PDF
-    </Button>
+    <button
+      onClick={handlePrint}
+      className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 transition-all ${className}`}
+    >
+      <Printer className="w-3.5 h-3.5" />
+      Imprimir
+    </button>
   )
 }

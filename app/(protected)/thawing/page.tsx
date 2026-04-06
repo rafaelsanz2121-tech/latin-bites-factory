@@ -74,6 +74,7 @@ export default async function ThawingListPage({
                   <th className="text-left px-4 py-3">End Temp</th>
                   <th className="text-left px-4 py-3">Operator</th>
                   <th className="text-left px-4 py-3">Status</th>
+                  <th className="text-left px-4 py-3">Imprimir</th>
                   <th className="px-4 py-3" />
                 </tr>
               </thead>
@@ -132,6 +133,12 @@ export default async function ThawingListPage({
                       </td>
                       <td className="px-4 py-3">
                         <LogStatusBadge status={log.status as LogStatus} />
+                      </td>
+                      <td className="px-4 py-3">
+                        <a href={`/print/thawing/${log.id}`} target="_blank"
+                           className="text-slate-300 hover:text-slate-600 transition-colors p-1 rounded">
+                          🖨
+                        </a>
                       </td>
                       <td className="px-4 py-3">
                         <Link href={`/thawing/${log.id}`} className="text-xs text-blue-600 hover:underline">
