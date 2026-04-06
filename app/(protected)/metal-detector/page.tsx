@@ -155,7 +155,7 @@ export default async function MetalDetectorPage() {
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(f.check_date)}</span>
-                    <span className="text-slate-500">{f.check_time?.slice(0, 5)}</span>
+                    <span className="text-slate-600 dark:text-slate-400">{f.check_time?.slice(0, 5)}</span>
                     <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${CHECK_TYPE[f.check_type]?.color}`}>
                       {CHECK_TYPE[f.check_type]?.label ?? f.check_type}
                     </span>

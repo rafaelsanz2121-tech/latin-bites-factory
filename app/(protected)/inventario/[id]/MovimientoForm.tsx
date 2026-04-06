@@ -116,7 +116,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
                   }`}
                 >
                   <mt.icon className={`w-4 h-4 ${type === mt.value ? mt.color : "text-slate-400"}`} />
-                  <span className={`text-[11px] font-bold ${type === mt.value ? mt.color : "text-slate-500"}`}>
+                  <span className={`text-[11px] font-bold ${type === mt.value ? mt.color : "text-slate-600 dark:text-slate-400"}`}>
                     {mt.label}
                   </span>
                 </button>

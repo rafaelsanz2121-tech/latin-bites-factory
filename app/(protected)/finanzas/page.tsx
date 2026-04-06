@@ -213,7 +213,7 @@ export default async function FinanzasPage({
               ? `${cogsDelta > 0 ? "+" : ""}${cogsDelta.toFixed(1)}% vs mes anterior`
               : "Sin dato anterior",
             icon: DollarSign,
-            bg: "bg-amber-50", text: "text-amber-700", border: "border-amber-100",
+            bar: "bg-amber-500", iconBg: "bg-amber-100 dark:bg-amber-900/40", iconText: "text-amber-600 dark:text-amber-300",
             trend: cogsDelta,
           },
           {
@@ -221,7 +221,7 @@ export default async function FinanzasPage({
             value: `${totalHours.toFixed(1)} hrs`,
             sub: `Costo total: ${fmt$(totalLabor)}`,
             icon: Users,
-            bg: "bg-green-50", text: "text-green-700", border: "border-green-100",
+            bar: "bg-green-500", iconBg: "bg-green-100 dark:bg-green-900/40", iconText: "text-green-600 dark:text-green-300",
             trend: null,
           },
           {
@@ -229,7 +229,7 @@ export default async function FinanzasPage({
             value: avgCostPerLb > 0 ? fmt$2(avgCostPerLb) : "—",
             sub: `${totalLbs.toLocaleString()} lbs producidas`,
             icon: BarChart3,
-            bg: "bg-blue-50", text: "text-blue-700", border: "border-blue-100",
+            bar: "bg-blue-500", iconBg: "bg-blue-100 dark:bg-blue-900/40", iconText: "text-blue-600 dark:text-blue-300",
             trend: null,
           },
           {
@@ -237,14 +237,15 @@ export default async function FinanzasPage({
             value: inventoryValue > 0 ? fmt$(inventoryValue) : "—",
             sub: `${inventoryItems.length} artículos activos`,
             icon: Package,
-            bg: "bg-purple-50", text: "text-purple-700", border: "border-purple-100",
+            bar: "bg-purple-500", iconBg: "bg-purple-100 dark:bg-purple-900/40", iconText: "text-purple-600 dark:text-purple-300",
             trend: null,
           },
         ].map((k) => (
-          <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
-            <div className="flex items-start justify-between mb-3">
-              <div className="w-8 h-8 rounded-lg bg-white/60 flex items-center justify-center">
-                <k.icon className={`w-4 h-4 ${k.text}`} />
+          <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
+            <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
+            <div className="flex items-start justify-between mb-3 mt-1">
+              <div className={`w-8 h-8 rounded-lg ${k.iconBg ?? "bg-slate-100"} flex items-center justify-center`}>
+                <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
               </div>
               {k.trend !== null && (
                 <span className={`flex items-center gap-0.5 text-[11px] font-bold ${k.trend > 5 ? "text-red-500" : k.trend < -5 ? "text-green-600" : "text-slate-400"}`}>
@@ -253,8 +254,8 @@ export default async function FinanzasPage({
                 </span>
               )}
             </div>
-            <p className={`text-xl font-black ${k.text} leading-none`}>{k.value}</p>
-            <p className="text-[10.5px] font-medium text-slate-500 mt-1">{k.label}</p>
+            <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
+            <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-400 mt-1">{k.label}</p>
             <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">{k.sub}</p>
           </div>
         ))}

@@ -83,7 +83,7 @@ export default async function SaludPersonalPage() {
             <div key={d.id} className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-3 text-xs space-y-1">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(d.declaration_date)}</span>
-                <span className="text-slate-500">{SHIFT[d.shift] ?? d.shift}</span>
+                <span className="text-slate-600 dark:text-slate-400">{SHIFT[d.shift] ?? d.shift}</span>
                 {d.restriction_note && (
                   <span className="text-slate-600 dark:text-slate-300">{d.restriction_note}</span>
                 )}

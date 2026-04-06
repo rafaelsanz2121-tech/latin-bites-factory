@@ -44,7 +44,7 @@ const STATUS_STYLE = {
   expiring_soon:{ label: "Vence pronto",     icon: Clock,        color: "text-amber-700", bg: "bg-amber-100 dark:bg-amber-900/40"  },
   expired:      { label: "Vencido",          icon: AlertTriangle,color: "text-red-700",   bg: "bg-red-100 dark:bg-red-900/40"      },
   no_expiry:    { label: "Sin vencimiento",  icon: Shield,       color: "text-blue-700",  bg: "bg-blue-100 dark:bg-blue-900/40"    },
-  missing:      { label: "Sin entrenamiento",icon: XCircle,      color: "text-slate-500", bg: "bg-slate-100 dark:bg-slate-700/40"  },
+  missing:      { label: "Sin entrenamiento",icon: XCircle,      color: "text-slate-600 dark:text-slate-400", bg: "bg-slate-100 dark:bg-slate-700/40"  },
 }
 
 const ROLE_ES: Record<string, string> = {
@@ -160,13 +160,13 @@ export default async function CapacitacionPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Empleados al día",       value: compliantCount,                       icon: CheckCircle2, bg: "bg-white dark:bg-[#111827]",   text: "text-slate-900 dark:text-slate-100"  },
-          { label: "Entrenamientos vencidos", value: expiredCount,                         icon: AlertTriangle, bg: expiredCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40",     text: expiredCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-500"        },
-          { label: "Vencen en 30 días",       value: expiringCount,                        icon: Clock,        bg: expiringCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: expiringCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-500"    },
-          { label: "Sin entrenamiento req.",  value: missingCount,                         icon: XCircle,      bg: missingCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: missingCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-500"  },
+          { label: "Entrenamientos vencidos", value: expiredCount,                         icon: AlertTriangle, bg: expiredCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40",     text: expiredCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"        },
+          { label: "Vencen en 30 días",       value: expiringCount,                        icon: Clock,        bg: expiringCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: expiringCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"    },
+          { label: "Sin entrenamiento req.",  value: missingCount,                         icon: XCircle,      bg: missingCount > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: missingCount > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"  },
         ].map((k) => (
           <div key={k.label} className={`rounded-xl border border-transparent p-4 ${k.bg}`}>
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
-            <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
+            <p className={`text-3xl font-black tabular-nums ${k.iconText ?? k.text}`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}

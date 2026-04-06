@@ -126,11 +126,11 @@ export default async function HorasPage({
           { label: "Empleados",          value: String(uniqueEmps),             icon: Users,       bg: "bg-blue-50",   text: "text-blue-700",   border: "border-blue-100" },
           { label: "Horas overtime",    value: `${overtimeHours.toFixed(1)} hrs`, icon: Timer,     bg: overtimeHours > 0 ? "bg-orange-50" : "bg-slate-50", text: overtimeHours > 0 ? "text-orange-700" : "text-slate-400", border: overtimeHours > 0 ? "border-orange-100" : "border-slate-100" },
         ].map((k) => (
-          <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
-            <div className="w-8 h-8 rounded-lg bg-white/60 flex items-center justify-center mb-3">
-              <k.icon className={`w-4 h-4 ${k.text}`} />
+          <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
+            <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700/60 flex items-center justify-center mb-3">
+              <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
             </div>
-            <p className={`text-xl font-black ${k.text} leading-none`}>{k.value}</p>
+            <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
             <p className="text-[11px] font-medium text-slate-500 mt-1.5">{k.label}</p>
           </div>
         ))}

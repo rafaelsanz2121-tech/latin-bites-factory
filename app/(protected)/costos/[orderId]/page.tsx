@@ -169,11 +169,11 @@ export default async function CostoDetailPage({
                           {ct.label}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[12.5px] text-slate-600">{item.description}</td>
-                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
+                      <td className="px-4 py-3 text-[12.5px] text-slate-700 dark:text-slate-300">{item.description}</td>
+                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-700 dark:text-slate-300">
                         {item.quantity != null ? Number(item.quantity).toLocaleString() : "1"}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
+                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-700 dark:text-slate-300">
                         {fmt$(item.unit_cost)}
                       </td>
                       <td className="px-4 py-3 text-right">

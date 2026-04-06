@@ -90,16 +90,19 @@ export default async function CostosPage() {
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {[
-          { label: "Total COGS",        value: fmt$(totalCOGS),                          icon: DollarSign, bg: "bg-amber-50",  text: "text-amber-700",   border: "border-amber-100" },
-          { label: "Órdenes con costo", value: `${ordersWithCosts.length} / ${allOrders.length}`, icon: Package,     bg: "bg-blue-50",   text: "text-blue-700",    border: "border-blue-100" },
-          { label: "Costo prom./lb",    value: avgCostPerLb ? `$${avgCostPerLb.toFixed(3)}` : "—", icon: TrendingDown, bg: "bg-green-50",  text: "text-green-700",   border: "border-green-100" },
-          { label: "Sin costo cargado", value: String(ordersNoCost),                     icon: AlertCircle, bg: ordersNoCost > 0 ? "bg-red-50" : "bg-slate-50", text: ordersNoCost > 0 ? "text-red-600" : "text-slate-400", border: ordersNoCost > 0 ? "border-red-100" : "border-slate-100" },
+          { label: "Total COGS",        value: fmt$(totalCOGS),                          icon: DollarSign, bar: "bg-amber-500",  iconBg: "bg-amber-100",  iconText: "text-amber-600" },
+          { label: "Órdenes con costo", value: `${ordersWithCosts.length} / ${allOrders.length}`, icon: Package,     bar: "bg-blue-500",   iconBg: "bg-blue-100",   iconText: "text-blue-600" },
+          { label: "Costo prom./lb",    value: avgCostPerLb ? `$${avgCostPerLb.toFixed(3)}` : "—", icon: TrendingDown, bar: "bg-green-500",  iconBg: "bg-green-100",  iconText: "text-green-600" },
+          { label: "Sin costo cargado", value: String(ordersNoCost), icon: AlertCircle, bar: ordersNoCost > 0 ? "bg-red-500" : "bg-slate-300", iconBg: ordersNoCost > 0 ? "bg-red-100 dark:bg-red-900/40" : "bg-slate-100 dark:bg-slate-700", iconText: ordersNoCost > 0 ? "text-red-600 dark:text-red-300" : "text-slate-500 dark:text-slate-400" },
         ].map((k) => (
-          <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
-            <div className={`w-8 h-8 rounded-lg bg-white/60 flex items-center justify-center mb-3`}>
-              <k.icon className={`w-4 h-4 ${k.text}`} />
+          <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
+            <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
+            <div>
+              <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
+              <div className={`w-8 h-8 rounded-lg ${k.iconBg} flex items-center justify-center mb-3 mt-1`}>
+              <k.icon className={`w-4 h-4 ${k.iconText}`} />
             </div>
-            <p className={`text-xl font-black ${k.text} leading-none`}>{k.value}</p>
+            <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
             <p className="text-[11px] font-medium text-slate-500 mt-1.5">{k.label}</p>
           </div>
         ))}
@@ -148,7 +151,7 @@ export default async function CostosPage() {
                         <p className="text-[12.5px] font-mono font-bold text-slate-700">{order.order_number}</p>
                         <p className="text-[10.5px]  text-slate-600 dark:text-slate-300">{formatDate(order.order_date)}</p>
                       </td>
-                      <td className="px-4 py-3 text-[12.5px] text-slate-600">{order.clients?.company_name || "—"}</td>
+                      <td className="px-4 py-3 text-[12.5px] text-slate-700 dark:text-slate-300">{order.clients?.company_name || "—"}</td>
                       <td className="px-4 py-3">
                         <span className="text-[11px] font-semibold px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full">
                           {order.products?.name || "—"}
@@ -157,13 +160,13 @@ export default async function CostosPage() {
                       <td className="px-4 py-3 text-right text-[12.5px] font-semibold text-slate-600 tabular-nums">
                         {order.quantity_lbs ? Number(order.quantity_lbs).toLocaleString() : "—"}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
+                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-700 dark:text-slate-300">
                         {hasCost ? fmt$(cost.raw_material_cost) : <span className="text-slate-200">—</span>}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
+                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-700 dark:text-slate-300">
                         {hasCost ? fmt$(cost.labor_cost) : <span className="text-slate-200">—</span>}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
+                      <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-700 dark:text-slate-300">
                         {hasCost ? fmt$(cost.packaging_cost) : <span className="text-slate-200">—</span>}
                       </td>
                       <td className="px-4 py-3 text-right">

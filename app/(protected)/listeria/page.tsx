@@ -131,11 +131,11 @@ export default async function ListeriaPage() {
           { label: "Muestras (90 días)", value: totalSamples, icon: Microscope, bg: "bg-slate-50 dark:bg-slate-700/40", text: "text-slate-700 dark:text-slate-200", border: "border-slate-200 dark:border-slate-600" },
           { label: "Resultados positivos", value: positives, icon: AlertCircle, bg: positives > 0 ? "bg-white dark:bg-[#111827]" : "bg-white dark:bg-[#111827]", text: positives > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100", border: positives > 0 ? "border-red-200" : "border-green-200" },
           { label: "Zonas vencidas", value: overdueZones, icon: AlertTriangle, bg: overdueZones > 0 ? "bg-white dark:bg-[#111827]" : "bg-white dark:bg-[#111827]", text: overdueZones > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100", border: overdueZones > 0 ? "border-amber-200" : "border-green-200" },
-          { label: "Acciones abiertas", value: openActions, icon: Clock, bg: openActions > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: openActions > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-500", border: openActions > 0 ? "border-orange-200" : "border-slate-200" },
+          { label: "Acciones abiertas", value: openActions, icon: Clock, bg: openActions > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: openActions > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400", border: openActions > 0 ? "border-orange-200" : "border-slate-200" },
         ].map((k) => (
-          <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
+          <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
-            <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
+            <p className={`text-3xl font-black tabular-nums ${k.iconText ?? k.text}`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}
