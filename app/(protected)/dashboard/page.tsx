@@ -179,62 +179,57 @@ export default async function DashboardPage() {
         {[
           {
             label: "Logs Hoy", value: stats.logsToday, icon: ClipboardList,
-            href: "/thawing",
-            accent: "blue",
-            alert: false,
+            href: "/thawing", accent: "blue", alert: false,
           },
           {
             label: "Pendientes", value: stats.pendingApproval, icon: CheckSquare,
-            href: "/thawing",
-            accent: stats.pendingApproval > 0 ? "amber" : "green",
+            href: "/thawing", accent: stats.pendingApproval > 0 ? "amber" : "green",
             alert: stats.pendingApproval > 0,
           },
           {
             label: "Desviaciones", value: stats.openDeviations, icon: AlertTriangle,
-            href: "/deviations",
-            accent: stats.openDeviations > 0 ? "red" : "green",
+            href: "/deviations", accent: stats.openDeviations > 0 ? "red" : "green",
             alert: stats.openDeviations > 0,
           },
           {
             label: "CAPAs Vencidos", value: stats.overdueCapas, icon: Wrench,
-            href: "/corrective-actions",
-            accent: stats.overdueCapas > 0 ? "red" : "green",
+            href: "/corrective-actions", accent: stats.overdueCapas > 0 ? "red" : "green",
             alert: stats.overdueCapas > 0,
           },
           {
             label: "Órdenes Activas", value: stats.activeOrders, icon: Factory,
-            href: "/production",
-            accent: stats.activeOrders > 0 ? "indigo" : "slate",
+            href: "/production", accent: stats.activeOrders > 0 ? "indigo" : "slate",
             alert: false,
           },
           {
             label: "Listos p/ Envío", value: stats.readyToShip, icon: Truck,
-            href: "/production?status=ready",
-            accent: stats.readyToShip > 0 ? "emerald" : "slate",
+            href: "/production?status=ready", accent: stats.readyToShip > 0 ? "emerald" : "slate",
             alert: stats.readyToShip > 0,
           },
         ].map((kpi) => {
-          const accentMap: Record<string,{bg:string,text:string,border:string,iconBg:string}> = {
-            blue:    { bg:"bg-blue-50 dark:bg-blue-900/20",    text:"text-blue-700 dark:text-blue-300",    border:"border-blue-100 dark:border-blue-800/30",   iconBg:"bg-blue-100 dark:bg-blue-900/40" },
-            amber:   { bg:"bg-amber-50 dark:bg-amber-900/20",   text:"text-amber-700 dark:text-amber-300",   border:"border-amber-100 dark:border-amber-800/30",  iconBg:"bg-amber-100 dark:bg-amber-900/40" },
-            red:     { bg:"bg-red-50 dark:bg-red-900/20",     text:"text-red-700 dark:text-red-300",     border:"border-red-100 dark:border-red-800/30",    iconBg:"bg-red-100 dark:bg-red-900/40" },
-            green:   { bg:"bg-green-50 dark:bg-green-900/20",   text:"text-green-700 dark:text-green-300",   border:"border-green-100 dark:border-green-800/30",  iconBg:"bg-green-100 dark:bg-green-900/40" },
-            indigo:  { bg:"bg-indigo-50 dark:bg-indigo-900/20",  text:"text-indigo-700 dark:text-indigo-300",  border:"border-indigo-100 dark:border-indigo-800/30", iconBg:"bg-indigo-100 dark:bg-indigo-900/40" },
-            emerald: { bg:"bg-emerald-50 dark:bg-emerald-900/20", text:"text-emerald-700 dark:text-emerald-300", border:"border-emerald-100 dark:border-emerald-800/30",iconBg:"bg-emerald-100 dark:bg-emerald-900/40" },
-            slate:   { bg:"bg-slate-50 dark:bg-slate-800/50",   text:"text-slate-500 dark:text-slate-400",   border:"border-slate-100 dark:border-slate-700",  iconBg:"bg-slate-100 dark:bg-slate-700" },
+          const accentMap: Record<string,{iconBg:string,iconText:string,bar:string,alertDot:string}> = {
+            blue:    { iconBg:"bg-blue-100 dark:bg-blue-900/40",    iconText:"text-blue-600 dark:text-blue-300",    bar:"bg-blue-500",    alertDot:"bg-blue-500" },
+            amber:   { iconBg:"bg-amber-100 dark:bg-amber-900/40",   iconText:"text-amber-600 dark:text-amber-300",   bar:"bg-amber-500",   alertDot:"bg-amber-500" },
+            red:     { iconBg:"bg-red-100 dark:bg-red-900/40",     iconText:"text-red-600 dark:text-red-300",     bar:"bg-red-500",     alertDot:"bg-red-500" },
+            green:   { iconBg:"bg-green-100 dark:bg-green-900/40",   iconText:"text-green-600 dark:text-green-300",   bar:"bg-green-500",   alertDot:"bg-green-500" },
+            indigo:  { iconBg:"bg-indigo-100 dark:bg-indigo-900/40",  iconText:"text-indigo-600 dark:text-indigo-300",  bar:"bg-indigo-500",  alertDot:"bg-indigo-500" },
+            emerald: { iconBg:"bg-emerald-100 dark:bg-emerald-900/40", iconText:"text-emerald-600 dark:text-emerald-300", bar:"bg-emerald-500", alertDot:"bg-emerald-500" },
+            slate:   { iconBg:"bg-slate-100 dark:bg-slate-700",      iconText:"text-slate-500 dark:text-slate-300",   bar:"bg-slate-300",   alertDot:"bg-slate-400" },
           }
           const c = accentMap[kpi.accent]
           return (
             <Link key={kpi.label} href={kpi.href}>
-              <div className={`relative rounded-xl border p-4 hover:shadow-md transition-all duration-200 cursor-pointer group ${c.bg} ${c.border}`}>
+              <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 cursor-pointer group overflow-hidden">
+                {/* colored top bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${c.bar}`} />
                 {kpi.alert && (
-                  <span className="absolute top-3 right-3 w-2 h-2 rounded-full bg-current opacity-60 animate-pulse" />
+                  <span className={`absolute top-3 right-3 w-2 h-2 rounded-full ${c.alertDot} animate-pulse`} />
                 )}
-                <div className={`w-9 h-9 rounded-lg ${c.iconBg} flex items-center justify-center mb-3`}>
-                  <kpi.icon className={`w-4 h-4 ${c.text}`} />
+                <div className={`w-9 h-9 rounded-lg ${c.iconBg} flex items-center justify-center mb-3 mt-1`}>
+                  <kpi.icon className={`w-4 h-4 ${c.iconText}`} />
                 </div>
-                <p className={`text-2xl font-black ${c.text} leading-none`}>{kpi.value}</p>
-                <p className="text-[11px] font-medium text-slate-500 mt-1.5">{kpi.label}</p>
+                <p className="text-2xl font-black text-slate-900 dark:text-slate-100 leading-none">{kpi.value}</p>
+                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1.5">{kpi.label}</p>
                 <ArrowUpRight className="absolute bottom-3 right-3 w-3 h-3 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
@@ -256,7 +251,9 @@ export default async function DashboardPage() {
             href:  "/costos",
             value: fmt$(stats.cogsMonth),
             alert: false,
-            colors: { bg: "bg-amber-50 dark:bg-amber-900/20", text: "text-amber-700 dark:text-amber-300", border: "border-amber-100 dark:border-amber-800/30", icon: "text-amber-600" },
+            bar: "bg-amber-500",
+            iconBg: "bg-amber-100 dark:bg-amber-900/40",
+            iconText: "text-amber-600 dark:text-amber-300",
           },
           {
             label: lowStockCnt > 0 ? `${lowStockCnt} bajo mínimo` : "Stock OK",
@@ -265,9 +262,9 @@ export default async function DashboardPage() {
             href:  "/inventario",
             value: fmt$(stats.inventoryVal),
             alert: lowStockCnt > 0,
-            colors: lowStockCnt > 0
-              ? { bg: "bg-orange-50 dark:bg-orange-900/20", text: "text-orange-700 dark:text-orange-300", border: "border-orange-200 dark:border-orange-800/30", icon: "text-orange-500" }
-              : { bg: "bg-blue-50 dark:bg-blue-900/20",    text: "text-blue-700 dark:text-blue-300",    border: "border-blue-100 dark:border-blue-800/30",    icon: "text-blue-600"   },
+            bar: lowStockCnt > 0 ? "bg-orange-500" : "bg-blue-500",
+            iconBg: lowStockCnt > 0 ? "bg-orange-100 dark:bg-orange-900/40" : "bg-blue-100 dark:bg-blue-900/40",
+            iconText: lowStockCnt > 0 ? "text-orange-600 dark:text-orange-300" : "text-blue-600 dark:text-blue-300",
           },
           {
             label: "Horas esta semana",
@@ -276,7 +273,9 @@ export default async function DashboardPage() {
             href:  "/horas",
             value: stats.hoursWeek > 0 ? `${stats.hoursWeek.toFixed(1)} h` : "—",
             alert: false,
-            colors: { bg: "bg-green-50 dark:bg-green-900/20", text: "text-green-700 dark:text-green-300", border: "border-green-100 dark:border-green-800/30", icon: "text-green-600" },
+            bar: "bg-green-500",
+            iconBg: "bg-green-100 dark:bg-green-900/40",
+            iconText: "text-green-600 dark:text-green-300",
           },
           {
             label: "Dashboard financiero",
@@ -285,26 +284,29 @@ export default async function DashboardPage() {
             href:  "/finanzas",
             value: "Ver reporte",
             alert: false,
-            colors: { bg: "bg-purple-50 dark:bg-purple-900/20", text: "text-purple-700 dark:text-purple-300", border: "border-purple-100 dark:border-purple-800/30", icon: "text-purple-600" },
+            bar: "bg-purple-500",
+            iconBg: "bg-purple-100 dark:bg-purple-900/40",
+            iconText: "text-purple-600 dark:text-purple-300",
           },
         ]
         return (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {enterpriseMods.map((mod) => (
               <Link key={mod.href} href={mod.href}
-                className={`rounded-xl border p-4 transition-all hover:shadow-md hover:-translate-y-0.5 ${mod.colors.bg} ${mod.colors.border}`}
+                className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden transition-all hover:shadow-md hover:-translate-y-0.5 hover:border-slate-300 dark:hover:border-slate-600"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-white/60 dark:bg-white/10 flex items-center justify-center">
-                    <mod.icon className={`w-4 h-4 ${mod.colors.icon}`} />
+                <div className={`absolute top-0 left-0 right-0 h-1 ${mod.bar}`} />
+                <div className="flex items-center justify-between mb-3 mt-1">
+                  <div className={`w-8 h-8 rounded-lg ${mod.iconBg} flex items-center justify-center`}>
+                    <mod.icon className={`w-4 h-4 ${mod.iconText}`} />
                   </div>
                   {mod.alert && (
                     <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
                   )}
                 </div>
-                <p className={`text-lg font-black leading-none ${mod.colors.text} tabular-nums`}>{mod.value}</p>
-                <p className={`text-[10.5px] font-semibold mt-1 ${mod.colors.text}`}>{mod.label}</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">{mod.sub}</p>
+                <p className="text-lg font-black leading-none text-slate-900 dark:text-slate-100 tabular-nums">{mod.value}</p>
+                <p className="text-[10.5px] font-semibold mt-1 text-slate-700 dark:text-slate-300">{mod.label}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{mod.sub}</p>
               </Link>
             ))}
           </div>
@@ -316,7 +318,7 @@ export default async function DashboardPage() {
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700">
           <div>
             <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Cobertura de Logs — Hoy</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">Módulos que deben tener al menos un registro diario</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Módulos que deben tener al menos un registro diario</p>
           </div>
           <span className={`text-xs font-bold px-3 py-1 rounded-full ${
             coveredCount === stats.coverage.length
@@ -388,7 +390,7 @@ export default async function DashboardPage() {
           </div>
           <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
             {stats.recentThawing.length === 0 ? (
-              <p className="text-sm text-slate-400 text-center py-8">Sin registros hoy</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin registros hoy</p>
             ) : stats.recentThawing.map((log: any) => (
               <Link
                 key={log.id}
@@ -397,7 +399,7 @@ export default async function DashboardPage() {
               >
                 <div>
                   <p className="text-[13px] font-semibold text-slate-700">{log.products?.name || "—"}</p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">{log.lot_batch_number || "Sin lote"} · {formatDate(log.date)}</p>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">{log.lot_batch_number || "Sin lote"} · {formatDate(log.date)}</p>
                 </div>
                 <LogStatusBadge status={log.status as LogStatus} />
               </Link>
@@ -417,7 +419,7 @@ export default async function DashboardPage() {
             {stats.recentDeviations.length === 0 ? (
               <div className="flex flex-col items-center py-8 text-slate-300">
                 <ShieldAlert className="w-8 h-8 mb-2" />
-                <p className="text-sm font-medium text-slate-400">Sin desviaciones abiertas</p>
+                <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin desviaciones abiertas</p>
               </div>
             ) : stats.recentDeviations.map((dev: any) => (
               <Link
@@ -431,7 +433,7 @@ export default async function DashboardPage() {
                 }`} />
                 <div className="min-w-0 flex-1">
                   <p className="text-[13px] font-semibold text-slate-700 truncate">{dev.description}</p>
-                  <p className="text-[11px] text-slate-400 mt-0.5">{formatDate(dev.date_identified)} · <span className="capitalize">{dev.severity}</span></p>
+                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">{formatDate(dev.date_identified)} · <span className="capitalize">{dev.severity}</span></p>
                 </div>
                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${
                   dev.status==="open" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"
@@ -473,11 +475,11 @@ export default async function DashboardPage() {
                   className="flex flex-col gap-2 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10.5px] font-mono text-slate-400">{order.order_number}</span>
+                    <span className="text-[10.5px] font-mono  text-slate-600 dark:text-slate-300">{order.order_number}</span>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{sc.label}</span>
                   </div>
                   <p className="text-[13px] font-bold text-slate-800 truncate">{order.clients?.company_name || "—"}</p>
-                  <p className="text-[11px] text-slate-400">{order.products?.name} · {Number(order.quantity_lbs||0).toLocaleString()} lbs</p>
+                  <p className="text-[11px]  text-slate-600 dark:text-slate-300">{order.products?.name} · {Number(order.quantity_lbs||0).toLocaleString()} lbs</p>
                 </Link>
               )
             })}

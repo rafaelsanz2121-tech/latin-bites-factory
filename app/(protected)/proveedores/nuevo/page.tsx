@@ -19,9 +19,9 @@ const COMPANY_TYPES = [
 ]
 
 const RISK_OPTIONS = [
-  { value: "low",    label: "Bajo",  desc: "Ingredientes no críticos, proveedor certificado.",      color: "border-green-300 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300" },
-  { value: "medium", label: "Medio", desc: "Materias primas directas o sin certificación completa.", color: "border-amber-300 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300" },
-  { value: "high",   label: "Alto",  desc: "Proteínas animales, ingredientes RTE, sin auditoría.",  color: "border-red-300 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300" },
+  { value: "low",    label: "Bajo",  desc: "Ingredientes no críticos, proveedor certificado.",      color: "border-green-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
+  { value: "medium", label: "Medio", desc: "Materias primas directas o sin certificación completa.", color: "border-amber-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
+  { value: "high",   label: "Alto",  desc: "Proteínas animales, ingredientes RTE, sin auditoría.",  color: "border-red-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
 ]
 
 const VERIF_TYPES = [
@@ -138,7 +138,7 @@ export default function NuevoProveedorPage() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Proveedor registrado</p>
-        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -160,7 +160,7 @@ export default function NuevoProveedorPage() {
             </span>
             Nuevo Proveedor
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 417.4 · Verificación de proveedores</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 417.4 · Verificación de proveedores</p>
         </div>
       </div>
 
@@ -169,42 +169,42 @@ export default function NuevoProveedorPage() {
         {/* Info */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <Building2 className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Información del proveedor</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre *</label>
               <input type="text" value={form.name} onChange={(e) => setF("name", e.target.value)} required placeholder="Nombre del proveedor o empresa" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tipo de empresa</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tipo de empresa</label>
               <select value={form.company_type} onChange={(e) => setF("company_type", e.target.value)} className={inputCls}>
                 {COMPANY_TYPES.map((ct) => <option key={ct.value} value={ct.value}>{ct.label}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. EST (USDA)</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. EST (USDA)</label>
               <input type="text" value={form.est_number} onChange={(e) => setF("est_number", e.target.value)} placeholder="Solo si aplica" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Contacto</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Contacto</label>
               <input type="text" value={form.contact_name} onChange={(e) => setF("contact_name", e.target.value)} placeholder="Nombre del contacto" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Teléfono</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Teléfono</label>
               <input type="tel" value={form.phone} onChange={(e) => setF("phone", e.target.value)} placeholder="+1 (555) 000-0000" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Email</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Email</label>
               <input type="email" value={form.email} onChange={(e) => setF("email", e.target.value)} placeholder="correo@empresa.com" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Dirección</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Dirección</label>
               <input type="text" value={form.address} onChange={(e) => setF("address", e.target.value)} placeholder="Ciudad, Estado" className={inputCls} />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Productos que suministra</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Productos que suministra</label>
               <textarea value={form.products_supplied} onChange={(e) => setF("products_supplied", e.target.value)} rows={2} placeholder="Ej. Panceta de cerdo, especias, empaques…" className={inputCls + " resize-none"} />
             </div>
           </div>
@@ -213,13 +213,13 @@ export default function NuevoProveedorPage() {
         {/* Risk */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <ShieldCheck className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Nivel de riesgo</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
             {RISK_OPTIONS.map((r) => (
               <button key={r.value} type="button" onClick={() => setF("risk_level", r.value)}
-                className={`text-left p-4 rounded-xl border-2 transition-all ${form.risk_level === r.value ? r.color + " font-semibold shadow-sm" : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"}`}>
+                className={`text-left p-4 rounded-xl border-2 transition-all ${form.risk_level === r.value ? r.color + " font-semibold shadow-sm" : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"}`}>
                 <span className="block font-bold text-sm mb-1">{r.label}</span>
                 <span className="text-[11px] opacity-80 leading-relaxed">{r.desc}</span>
               </button>
@@ -230,7 +230,7 @@ export default function NuevoProveedorPage() {
         {/* Approval */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <Calendar className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Estado de aprobación</span>
           </div>
           <div className="p-5 space-y-4">
@@ -241,11 +241,11 @@ export default function NuevoProveedorPage() {
             {form.is_approved && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha de aprobación</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha de aprobación</label>
                   <input type="date" value={form.approval_date} max={today} onChange={(e) => setF("approval_date", e.target.value)} className={inputCls} />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Vence el</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Vence el</label>
                   <input type="date" value={form.approval_expiry} min={today} onChange={(e) => setF("approval_expiry", e.target.value)} className={inputCls} />
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default function NuevoProveedorPage() {
         {/* Notes */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <FileText className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">
@@ -276,33 +276,33 @@ export default function NuevoProveedorPage() {
             <div className="p-5 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha</label>
                   <input type="date" value={verif.verification_date} max={today} onChange={(e) => setV("verification_date", e.target.value)} className={inputCls} />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tipo</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tipo</label>
                   <select value={verif.verification_type} onChange={(e) => setV("verification_type", e.target.value)} className={inputCls}>
                     {VERIF_TYPES.map((vt) => <option key={vt.value} value={vt.value}>{vt.label}</option>)}
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Resultado</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Resultado</label>
                 <div className="flex gap-2 flex-wrap">
                   {VERIF_RESULTS.map((r) => (
                     <button key={r.value} type="button" onClick={() => setV("result", r.value)}
-                      className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${verif.result === r.value ? r.color : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"}`}>
+                      className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${verif.result === r.value ? r.color : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"}`}>
                       {r.label}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hallazgos</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hallazgos</label>
                 <textarea value={verif.findings} onChange={(e) => setV("findings", e.target.value)} rows={2} placeholder="Resultados o hallazgos…" className={inputCls + " resize-none"} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Próxima revisión</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Próxima revisión</label>
                 <input type="date" value={verif.next_review_date} min={today} onChange={(e) => setV("next_review_date", e.target.value)} className={inputCls} />
               </div>
             </div>
@@ -310,9 +310,9 @@ export default function NuevoProveedorPage() {
         </div>
 
         {error && (
-          <div className="flex items-center gap-2.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
+          <div className="flex items-center gap-2.5 bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
             <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-            <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+            <p className="text-sm text-slate-900 dark:text-slate-100">{error}</p>
           </div>
         )}
 

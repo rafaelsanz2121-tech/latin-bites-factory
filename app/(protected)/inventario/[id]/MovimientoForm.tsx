@@ -92,8 +92,8 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
           </span>
         </div>
         {open
-          ? <ChevronUp   className="w-4 h-4 text-slate-400" />
-          : <ChevronDown className="w-4 h-4 text-slate-400" />
+          ? <ChevronUp   className="w-4 h-4  text-slate-600 dark:text-slate-300" />
+          : <ChevronDown className="w-4 h-4  text-slate-600 dark:text-slate-300" />
         }
       </button>
 
@@ -178,7 +178,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
           <div className="flex items-center justify-between gap-4 pt-1">
             {qty > 0 ? (
               <div className="flex items-center gap-3 text-sm">
-                <span className="text-slate-400">Stock resultante:</span>
+                <span className="text-slate-600 dark:text-slate-300">Stock resultante:</span>
                 <span className={`font-black text-base tabular-nums ${
                   newStock <= 0 ? "text-red-600" : newStock < currentStock ? "text-amber-600" : "text-green-600"
                 }`}>

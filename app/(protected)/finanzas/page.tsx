@@ -165,7 +165,7 @@ export default async function FinanzasPage({
             </span>
             Dashboard Financiero
           </h1>
-          <p className="text-sm text-slate-400 mt-1">Costos reales de producción · Mano de obra · Inventario</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Costos reales de producción · Mano de obra · Inventario</p>
         </div>
 
         {/* Period navigation */}
@@ -255,7 +255,7 @@ export default async function FinanzasPage({
             </div>
             <p className={`text-xl font-black ${k.text} leading-none`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-500 mt-1">{k.label}</p>
-            <p className="text-[10px] text-slate-400 mt-0.5">{k.sub}</p>
+            <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">{k.sub}</p>
           </div>
         ))}
       </div>
@@ -266,10 +266,10 @@ export default async function FinanzasPage({
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
           <div className="px-5 py-4 border-b border-slate-100">
             <h2 className="text-sm font-bold text-slate-800">Desglose de Costos</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">Por categoría este período</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Por categoría este período</p>
           </div>
           {typeEntries.length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-8">Sin costos registrados</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin costos registrados</p>
           ) : (
             <div className="p-5 space-y-4">
               {typeEntries.map(([type, amount]) => {
@@ -283,7 +283,7 @@ export default async function FinanzasPage({
                       </span>
                       <div className="text-right">
                         <span className="text-[13px] font-black text-slate-700">{fmt$(amount)}</span>
-                        <span className="text-[10px] text-slate-400 ml-1">{pct.toFixed(1)}%</span>
+                        <span className="text-[10px] text-slate-600 dark:text-slate-300 ml-1">{pct.toFixed(1)}%</span>
                       </div>
                     </div>
                     <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
@@ -307,10 +307,10 @@ export default async function FinanzasPage({
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
           <div className="px-5 py-4 border-b border-slate-100">
             <h2 className="text-sm font-bold text-slate-800">Costo por Producto</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">Ordenado por costo total</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Ordenado por costo total</p>
           </div>
           {productEntries.length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-8">Sin datos</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin datos</p>
           ) : (
             <div className="divide-y divide-slate-50">
               {productEntries.map((p) => {
@@ -341,10 +341,10 @@ export default async function FinanzasPage({
         <div className="bg-white rounded-xl border border-slate-100 shadow-sm">
           <div className="px-5 py-4 border-b border-slate-100">
             <h2 className="text-sm font-bold text-slate-800">MOD por Empleado</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">Top 5 por costo de mano de obra</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Top 5 por costo de mano de obra</p>
           </div>
           {employeeEntries.length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-8">Sin horas registradas</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin horas registradas</p>
           ) : (
             <div className="divide-y divide-slate-50">
               {employeeEntries.map((emp) => {
@@ -383,7 +383,7 @@ export default async function FinanzasPage({
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <div>
             <h2 className="text-sm font-bold text-slate-800">Partidas de Costo Recientes</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">{costItems.length} registros este período</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">{costItems.length} registros este período</p>
           </div>
           <a href="/costos" className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600 hover:text-amber-700 transition-colors">
             Ver todas <ArrowUpRight className="w-3 h-3" />
@@ -393,7 +393,7 @@ export default async function FinanzasPage({
         {costItems.length === 0 ? (
           <div className="flex flex-col items-center py-12 text-slate-300">
             <ShoppingCart className="w-8 h-8 mb-2" />
-            <p className="text-sm font-medium text-slate-400">Sin costos registrados este período</p>
+            <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin costos registrados este período</p>
             <a href="/costos" className="mt-3 text-sm text-amber-500 hover:underline font-semibold">
               Ir a Control de Costos →
             </a>
@@ -402,7 +402,7 @@ export default async function FinanzasPage({
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Descripción</th>
                   <th className="text-left px-4 py-3">Tipo</th>
                   <th className="text-left px-4 py-3">Orden</th>
@@ -462,7 +462,7 @@ export default async function FinanzasPage({
           <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
             <div>
               <h2 className="text-sm font-bold text-slate-800">Snapshot de Inventario</h2>
-              <p className="text-[11px] text-slate-400 mt-0.5">Valor actual en planta por categoría</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Valor actual en planta por categoría</p>
             </div>
             <a href="/inventario" className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors">
               Ver inventario <ArrowUpRight className="w-3 h-3" />
@@ -488,7 +488,7 @@ export default async function FinanzasPage({
                     <div key={cat} className="bg-slate-50 rounded-lg p-3 border border-slate-100">
                       <p className="text-[10.5px] font-semibold text-slate-500 mb-1">{CAT_ES[cat] ?? cat}</p>
                       <p className="text-[15px] font-black text-slate-800">{value > 0 ? fmt$(value) : "—"}</p>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{count} artículo{count !== 1 ? "s" : ""}</p>
+                      <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">{count} artículo{count !== 1 ? "s" : ""}</p>
                     </div>
                   ))}
                 </div>

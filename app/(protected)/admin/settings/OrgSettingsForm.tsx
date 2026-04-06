@@ -95,7 +95,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
               {STATUS_ES[org.subscription_status] ?? org.subscription_status}
             </span>
             {org.subscription_status === "trial" && trialEnd && (
-              <span className="text-xs text-slate-400">Prueba hasta: <strong>{trialEnd}</strong></span>
+              <span className="text-xs  text-slate-600 dark:text-slate-300">Prueba hasta: <strong>{trialEnd}</strong></span>
             )}
           </div>
           <a
@@ -110,7 +110,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
       {/* ── Establishment info (editable) ────────────────────── */}
       <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-          <Building2 className="w-4 h-4 text-slate-400" />
+          <Building2 className="w-4 h-4  text-slate-600 dark:text-slate-300" />
           <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Datos del Establecimiento</span>
         </div>
         <div className="p-5 space-y-4">
@@ -210,9 +210,9 @@ export function OrgSettingsForm({ org }: { org: Org }) {
 
         {/* Save bar */}
         <div className={`px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between transition-colors ${
-          dirty ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50/60 dark:bg-white/[0.02]"
+          dirty ? "bg-white dark:bg-[#111827]" : "bg-slate-50/60 dark:bg-white/[0.02]"
         }`}>
-          <p className={`text-xs font-medium ${dirty ? "text-amber-700 dark:text-amber-300" : "text-slate-400"}`}>
+          <p className={`text-xs font-medium ${dirty ? "text-slate-900 dark:text-slate-100" : "text-slate-400"}`}>
             {dirty ? "Tienes cambios sin guardar" : "Información guardada"}
           </p>
           <button

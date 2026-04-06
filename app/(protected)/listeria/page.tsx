@@ -91,7 +91,7 @@ export default async function ListeriaPage() {
             </span>
             Monitoreo de Listeria
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
             Programa ambiental · 9 CFR Part 430 · Zonas 1–4
           </p>
         </div>
@@ -105,11 +105,11 @@ export default async function ListeriaPage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 flex items-start gap-3">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5 flex items-start gap-3">
           <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Módulo no activado</p>
-            <p className="text-sm text-blue-700 dark:text-blue-300 mt-0.5">
+            <p className="text-sm text-slate-900 dark:text-slate-100 mt-0.5">
               Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded font-mono">013_listeria_training.sql</code> en el SQL Editor de Supabase.
             </p>
           </div>
@@ -117,7 +117,7 @@ export default async function ListeriaPage() {
       )}
 
       {/* Regulatory banner */}
-      <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800/40 rounded-xl px-5 py-3 flex items-center gap-3">
+      <div className="bg-white dark:bg-[#111827] border border-purple-200 dark:border-purple-800/40 rounded-xl px-5 py-3 flex items-center gap-3">
         <ShieldCheck className="w-4 h-4 text-purple-600 flex-shrink-0" />
         <p className="text-[12.5px] text-purple-800 dark:text-purple-200 font-medium">
           <strong>9 CFR 430.4</strong> — Productos RTE deben muestrear superficies de Zona 1 al menos <strong>mensualmente</strong> y
@@ -129,14 +129,14 @@ export default async function ListeriaPage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
           { label: "Muestras (90 días)", value: totalSamples, icon: Microscope, bg: "bg-slate-50 dark:bg-slate-700/40", text: "text-slate-700 dark:text-slate-200", border: "border-slate-200 dark:border-slate-600" },
-          { label: "Resultados positivos", value: positives, icon: AlertCircle, bg: positives > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-green-50 dark:bg-green-900/20", text: positives > 0 ? "text-red-700 dark:text-red-300" : "text-green-700 dark:text-green-300", border: positives > 0 ? "border-red-200" : "border-green-200" },
-          { label: "Zonas vencidas", value: overdueZones, icon: AlertTriangle, bg: overdueZones > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-green-50 dark:bg-green-900/20", text: overdueZones > 0 ? "text-amber-700 dark:text-amber-300" : "text-green-700 dark:text-green-300", border: overdueZones > 0 ? "border-amber-200" : "border-green-200" },
-          { label: "Acciones abiertas", value: openActions, icon: Clock, bg: openActions > 0 ? "bg-orange-50 dark:bg-orange-900/20" : "bg-slate-50 dark:bg-slate-700/40", text: openActions > 0 ? "text-orange-700 dark:text-orange-300" : "text-slate-500", border: openActions > 0 ? "border-orange-200" : "border-slate-200" },
+          { label: "Resultados positivos", value: positives, icon: AlertCircle, bg: positives > 0 ? "bg-white dark:bg-[#111827]" : "bg-white dark:bg-[#111827]", text: positives > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100", border: positives > 0 ? "border-red-200" : "border-green-200" },
+          { label: "Zonas vencidas", value: overdueZones, icon: AlertTriangle, bg: overdueZones > 0 ? "bg-white dark:bg-[#111827]" : "bg-white dark:bg-[#111827]", text: overdueZones > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100", border: overdueZones > 0 ? "border-amber-200" : "border-green-200" },
+          { label: "Acciones abiertas", value: openActions, icon: Clock, bg: openActions > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-50 dark:bg-slate-700/40", text: openActions > 0 ? "text-slate-900 dark:text-slate-100" : "text-slate-500", border: openActions > 0 ? "border-orange-200" : "border-slate-200" },
         ].map((k) => (
           <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
             <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
-            <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+            <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}
       </div>
@@ -145,10 +145,10 @@ export default async function ListeriaPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {zoneCompliance.map((z) => {
           const statusColor = z.overdue
-            ? "border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-900/20"
+            ? "border-red-300 dark:border-red-700 bg-white dark:bg-[#111827]"
             : z.positives > 0
-            ? "border-orange-300 dark:border-orange-700 bg-orange-50 dark:bg-orange-900/20"
-            : "border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20"
+            ? "border-orange-300 dark:border-orange-700 bg-white dark:bg-[#111827]"
+            : "border-green-200 dark:border-green-800 bg-white dark:bg-[#111827]"
 
           return (
             <div key={z.zone} className={`rounded-xl border-2 p-4 ${statusColor}`}>
@@ -162,26 +162,26 @@ export default async function ListeriaPage() {
                   : <CheckCircle2 className="w-4 h-4 text-green-500" />
                 }
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-300 mb-2">{z.desc}</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 mb-2">{z.desc}</p>
               <div className="space-y-1.5">
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-500 dark:text-slate-300">Frecuencia:</span>
+                  <span className="text-slate-600 dark:text-slate-300">Frecuencia:</span>
                   <span className="font-semibold text-slate-600 dark:text-slate-300 capitalize">{z.freq}</span>
                 </div>
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-500 dark:text-slate-300">Último muestreo:</span>
-                  <span className={`font-semibold ${z.overdue ? "text-red-600 dark:text-red-400" : "text-green-600 dark:text-green-400"}`}>
+                  <span className="text-slate-600 dark:text-slate-300">Último muestreo:</span>
+                  <span className={`font-semibold ${z.overdue ? "text-slate-600 dark:text-slate-300" : "text-slate-600 dark:text-slate-300"}`}>
                     {z.last ? `hace ${z.daysSinceLast}d` : "Nunca"}
                   </span>
                 </div>
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-500 dark:text-slate-300">Total muestras:</span>
+                  <span className="text-slate-600 dark:text-slate-300">Total muestras:</span>
                   <span className="font-semibold text-slate-600 dark:text-slate-300">{z.total}</span>
                 </div>
                 {z.positives > 0 && (
                   <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-500 dark:text-slate-300">Positivos:</span>
-                    <span className="font-bold text-red-600 dark:text-red-400">{z.positives}</span>
+                    <span className="text-slate-600 dark:text-slate-300">Positivos:</span>
+                    <span className="font-bold text-slate-600 dark:text-slate-300">{z.positives}</span>
                   </div>
                 )}
               </div>
@@ -192,7 +192,7 @@ export default async function ListeriaPage() {
 
       {/* Positives requiring action */}
       {positives > 0 && (
-        <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border-2 border-red-300 dark:border-red-700 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <AlertCircle className="w-5 h-5 text-red-600" />
             <h3 className="text-sm font-black text-red-800 dark:text-red-200">
@@ -218,7 +218,7 @@ export default async function ListeriaPage() {
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
                   {s.product_on_hold && (
-                    <span className="text-[10px] font-bold bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-bold bg-red-100 dark:bg-red-900 text-slate-900 dark:text-slate-100 px-2 py-0.5 rounded-full">
                       PRODUCTO EN HOLD
                     </span>
                   )}
@@ -239,15 +239,15 @@ export default async function ListeriaPage() {
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
           <div>
             <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Historial de Muestras</h2>
-            <p className="text-[11px] text-slate-500 dark:text-slate-300 mt-0.5">Últimos 90 días · {samples.length} registros</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Últimos 90 días · {samples.length} registros</p>
           </div>
-          <span className="text-[10.5px] text-slate-500 dark:text-slate-300">Retención requerida: 1 año (9 CFR 417.5)</span>
+          <span className="text-[10.5px] text-slate-600 dark:text-slate-300">Retención requerida: 1 año (9 CFR 417.5)</span>
         </div>
 
         {samples.length === 0 ? (
           <div className="flex flex-col items-center py-12">
             <Microscope className="w-8 h-8 text-slate-200 mb-2" />
-            <p className="text-sm font-medium text-slate-500 dark:text-slate-300">Sin muestras registradas</p>
+            <p className="text-sm font-medium text-slate-600 dark:text-slate-300">Sin muestras registradas</p>
             <Link href="/listeria/nuevo" className="mt-3 text-sm text-purple-500 hover:underline font-semibold">
               Registrar primera muestra →
             </Link>
@@ -256,7 +256,7 @@ export default async function ListeriaPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Fecha</th>
                   <th className="text-left px-4 py-3">Zona</th>
                   <th className="text-left px-4 py-3">Ubicación</th>
@@ -287,7 +287,7 @@ export default async function ListeriaPage() {
                       <td className="px-4 py-3 text-[11.5px] text-slate-500">
                         {SURFACE_ES[s.surface_type] ?? s.surface_type}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-500 dark:text-slate-300 font-mono">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-300 font-mono">
                         {s.test_method || "—"}
                       </td>
                       <td className="px-4 py-3">
@@ -302,7 +302,7 @@ export default async function ListeriaPage() {
                       <td className="px-4 py-3 text-[11.5px] text-slate-500 max-w-[200px] truncate">
                         {s.action_taken || "—"}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-500 dark:text-slate-300">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-300">
                         {s.profiles?.full_name ?? "—"}
                       </td>
                     </tr>

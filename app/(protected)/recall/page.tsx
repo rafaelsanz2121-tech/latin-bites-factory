@@ -67,7 +67,7 @@ export default async function RecallPage() {
             </span>
             Recall / Trazabilidad
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">FSMA · 9 CFR 320 · Simulacros y retiros efectivos de mercado</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">FSMA · 9 CFR 320 · Simulacros y retiros efectivos de mercado</p>
         </div>
         <Link
           href="/recall/nuevo"
@@ -80,7 +80,7 @@ export default async function RecallPage() {
 
       {/* Drill frequency warning */}
       {tableExists && daysSinceDrill !== null && daysSinceDrill > 365 && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
+        <div className="bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
           <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
           <p className="text-sm text-amber-800 dark:text-amber-200">
             <strong>Último simulacro hace {daysSinceDrill} días.</strong> FSMA recomienda simulacro anual de recall mínimo.
@@ -88,7 +88,7 @@ export default async function RecallPage() {
         </div>
       )}
       {tableExists && daysSinceDrill === null && recalls.length === 0 && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
+        <div className="bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
           <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
           <p className="text-sm text-amber-800 dark:text-amber-200">
             <strong>Sin simulacros registrados.</strong> FSMA requiere al menos un simulacro de recall anual para demostrar trazabilidad efectiva.
@@ -98,9 +98,9 @@ export default async function RecallPage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">015_allergen_pest_recall.sql</code> en Supabase para activar este módulo.
           </p>
         </div>
@@ -111,15 +111,15 @@ export default async function RecallPage() {
           {/* KPIs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: "Simulacros realizados", value: mockDrills,                                              icon: Target,    color: "text-rose-600",   bg: "bg-rose-50 dark:bg-rose-900/20"         },
-              { label: "Retiros reales",         value: actualRecalls,                                           icon: AlertTriangle, color: actualRecalls > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: actualRecalls > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "% recuperación prom.",   value: avgRecovery !== null ? `${avgRecovery}%` : "—",          icon: TrendingUp, color: (avgRecovery ?? 0) >= 90 ? "text-green-600" : "text-amber-600", bg: (avgRecovery ?? 0) >= 90 ? "bg-green-50 dark:bg-green-900/20" : "bg-amber-50 dark:bg-amber-900/20" },
+              { label: "Simulacros realizados", value: mockDrills,                                              icon: Target,    color: "text-rose-600",   bg: "bg-white dark:bg-[#111827]"         },
+              { label: "Retiros reales",         value: actualRecalls,                                           icon: AlertTriangle, color: actualRecalls > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300", bg: actualRecalls > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "% recuperación prom.",   value: avgRecovery !== null ? `${avgRecovery}%` : "—",          icon: TrendingUp, color: (avgRecovery ?? 0) >= 90 ? "text-green-600" : "text-amber-600", bg: (avgRecovery ?? 0) >= 90 ? "bg-white dark:bg-[#111827]" : "bg-white dark:bg-[#111827]" },
               { label: "Tiempo prom. identificar",value: avgTimeMin !== null ? `${avgTimeMin}min` : "—",         icon: Clock,     color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -128,12 +128,12 @@ export default async function RecallPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Historial de simulacros y retiros</span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{totalRecalls} registros</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{totalRecalls} registros</span>
             </div>
             {recalls.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <RotateCcw className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin simulacros registrados.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin simulacros registrados.</p>
                 <Link href="/recall/nuevo" className="text-sm text-rose-600 font-semibold hover:underline">+ Registrar primer simulacro</Link>
               </div>
             ) : (
@@ -154,7 +154,7 @@ export default async function RecallPage() {
                             <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${oc.color}`}>{oc.label}</span>
                           </div>
                           <p className="font-bold text-slate-800 dark:text-slate-100 text-[15px]">{r.product_name}</p>
-                          <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">Lotes: {r.lot_numbers} · {fmtDate(r.recall_date)}</p>
+                          <p className="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Lotes: {r.lot_numbers} · {fmtDate(r.recall_date)}</p>
                         </div>
                         <div className="text-right flex-shrink-0">
                           {recovPct > 0 && (
@@ -162,10 +162,10 @@ export default async function RecallPage() {
                               {recovPct.toFixed(1)}%
                             </p>
                           )}
-                          <p className="text-[10px] text-slate-500 dark:text-slate-300">recuperado</p>
+                          <p className="text-[10px] text-slate-600 dark:text-slate-300">recuperado</p>
                         </div>
                       </div>
-                      <div className="flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-300">
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-600 dark:text-slate-300">
                         {r.time_to_identify_min && (
                           <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Identificado en {r.time_to_identify_min}min</span>
                         )}
@@ -173,11 +173,11 @@ export default async function RecallPage() {
                           <span className="flex items-center gap-1"><Package className="w-3 h-3" /> {r.customers_notified} clientes notificados</span>
                         )}
                         {r.usda_notified && (
-                          <span className="flex items-center gap-1 text-red-600 dark:text-red-400 font-semibold"><AlertTriangle className="w-3 h-3" /> USDA notificado</span>
+                          <span className="flex items-center gap-1 text-slate-600 dark:text-slate-300 font-semibold"><AlertTriangle className="w-3 h-3" /> USDA notificado</span>
                         )}
                       </div>
                       {r.corrective_action && (
-                        <p className="text-xs text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2">
+                        <p className="text-xs text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2">
                           <span className="font-semibold">Mejora identificada:</span> {r.corrective_action}
                         </p>
                       )}

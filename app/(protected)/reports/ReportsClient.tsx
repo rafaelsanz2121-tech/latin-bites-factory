@@ -122,7 +122,7 @@ export function ReportsClient() {
   return (
     <div className="space-y-4">
       {/* Print tip banner */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+      <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-4">
         <p className="text-sm text-blue-800 dark:text-blue-200">
           💡 Tip: Para imprimir cualquier registro individual, abre el registro y usa el botón <strong>Imprimir</strong> en la esquina superior derecha.
         </p>

@@ -41,7 +41,7 @@ export default async function PreOpDetailPage({ params }: Props) {
   const valueIcon = (val: string | undefined) => {
     if (val === "pass") return <CheckCircle className="w-4 h-4 text-emerald-600" />
     if (val === "fail") return <XCircle className="w-4 h-4 text-red-600" />
-    if (val === "na") return <MinusCircle className="w-4 h-4 text-slate-400" />
+    if (val === "na") return <MinusCircle className="w-4 h-4  text-slate-600 dark:text-slate-300" />
     return <span className="w-4 h-4 rounded-full border-2 border-dashed border-slate-300 inline-block" />
   }
 
@@ -86,7 +86,7 @@ export default async function PreOpDetailPage({ params }: Props) {
               <span className="text-sm font-semibold text-red-700">{report.fail_count} Fail</span>
             </div>
             <div className="flex items-center gap-2">
-              <MinusCircle className="w-4 h-4 text-slate-400" />
+              <MinusCircle className="w-4 h-4  text-slate-600 dark:text-slate-300" />
               <span className="text-sm text-slate-600">{report.na_count} N/A</span>
             </div>
             <span className="text-sm text-[var(--muted-foreground)] ml-auto">{report.total_items} total items</span>

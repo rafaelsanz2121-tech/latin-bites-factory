@@ -104,7 +104,7 @@ export default function NuevaHoraPage() {
           </span>
           Registrar Horas de Producción
         </h1>
-        <p className="text-sm text-slate-400 mt-1">Asigna horas trabajadas a una orden de producción para calcular el costo MOD real del lote.</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Asigna horas trabajadas a una orden de producción para calcular el costo MOD real del lote.</p>
       </div>
 
       {/* ADP notice */}

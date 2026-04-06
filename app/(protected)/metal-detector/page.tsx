@@ -70,7 +70,7 @@ export default async function MetalDetectorPage() {
             </span>
             Detector de Metales
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
             CCP — 9 CFR 417.3 · Verificación de sensibilidad y registros de producción
           </p>
         </div>
@@ -85,9 +85,9 @@ export default async function MetalDetectorPage() {
 
       {/* ── Migration notice ── */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta{" "}
             <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">
               014_metal_supplier_dispatch.sql
@@ -113,15 +113,15 @@ export default async function MetalDetectorPage() {
                 label: "Fallas",
                 value: failedChecks,
                 icon:  XCircle,
-                color: failedChecks > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",
-                bg:    failedChecks > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800",
+                color: failedChecks > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300",
+                bg:    failedChecks > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800",
               },
               {
                 label: "Unidades rechazadas",
                 value: totalRejected,
                 icon:  Package,
-                color: totalRejected > 0 ? "text-orange-600" : "text-slate-500 dark:text-slate-300",
-                bg:    totalRejected > 0 ? "bg-orange-50 dark:bg-orange-900/20" : "bg-slate-100 dark:bg-slate-800",
+                color: totalRejected > 0 ? "text-orange-600" : "text-slate-600 dark:text-slate-300",
+                bg:    totalRejected > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800",
               },
               {
                 label: "Último chequeo",
@@ -134,14 +134,14 @@ export default async function MetalDetectorPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
 
           {/* ── Recent fails alert ── */}
           {recentFails.length > 0 && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
+            <div className="bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
                 <p className="text-sm font-bold text-red-800 dark:text-red-200">
@@ -154,7 +154,7 @@ export default async function MetalDetectorPage() {
                   className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-3 text-sm space-y-1.5"
                 >
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-bold text-red-700 dark:text-red-300">{fmtDate(f.check_date)}</span>
+                    <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(f.check_date)}</span>
                     <span className="text-slate-500">{f.check_time?.slice(0, 5)}</span>
                     <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${CHECK_TYPE[f.check_type]?.color}`}>
                       {CHECK_TYPE[f.check_type]?.label ?? f.check_type}
@@ -192,13 +192,13 @@ export default async function MetalDetectorPage() {
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">
                 Registros — últimos 90 días
               </span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{totalChecks} chequeos</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{totalChecks} chequeos</span>
             </div>
 
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Zap className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin registros todavía.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin registros todavía.</p>
                 <Link
                   href="/metal-detector/nuevo"
                   className="text-sm text-violet-600 font-semibold hover:underline"
@@ -214,7 +214,7 @@ export default async function MetalDetectorPage() {
                       {["Fecha", "Hora", "Tipo", "Producto / Lote", "Fe", "No-Fe", "Inox", "Estado", "Rechazados"].map((h) => (
                         <th
                           key={h}
-                          className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap"
+                          className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap"
                         >
                           {h}
                         </th>
@@ -231,7 +231,7 @@ export default async function MetalDetectorPage() {
                             : <CheckCircle2 className="w-4 h-4 text-green-500" />
                           }
                           {mm != null && (
-                            <span className="text-[10px] text-slate-500 dark:text-slate-300">{mm}mm</span>
+                            <span className="text-[10px] text-slate-600 dark:text-slate-300">{mm}mm</span>
                           )}
                         </div>
                       )
@@ -245,7 +245,7 @@ export default async function MetalDetectorPage() {
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
                             {fmtDate(log.check_date)}
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 tabular-nums">
+                          <td className="px-4 py-3 text-slate-600 dark:text-slate-300 tabular-nums">
                             {log.check_time?.slice(0, 5) ?? "—"}
                           </td>
                           <td className="px-4 py-3">
@@ -256,7 +256,7 @@ export default async function MetalDetectorPage() {
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                             <p className="font-medium">{log.product_name || "—"}</p>
                             {log.lot_number && (
-                              <p className="text-xs text-slate-500 dark:text-slate-300">{log.lot_number}</p>
+                              <p className="text-xs text-slate-600 dark:text-slate-300">{log.lot_number}</p>
                             )}
                           </td>
                           <td className="px-4 py-3">

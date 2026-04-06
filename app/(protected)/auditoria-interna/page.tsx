@@ -15,9 +15,9 @@ const AUDIT_TYPE: Record<string, string> = {
 }
 
 const RESULT_CONFIG = {
-  satisfactory:  { label: "Satisfactorio", bg: "bg-green-100 dark:bg-green-900/30",  text: "text-green-700 dark:text-green-300"  },
-  conditional:   { label: "Condicional",   bg: "bg-amber-100 dark:bg-amber-900/30",  text: "text-amber-700 dark:text-amber-300"  },
-  unsatisfactory:{ label: "No Satisfactorio", bg: "bg-red-100 dark:bg-red-900/30",   text: "text-red-700 dark:text-red-300"      },
+  satisfactory:  { label: "Satisfactorio", bg: "bg-green-100 dark:bg-green-900/30",  text: "text-slate-900 dark:text-slate-100"  },
+  conditional:   { label: "Condicional",   bg: "bg-amber-100 dark:bg-amber-900/30",  text: "text-slate-900 dark:text-slate-100"  },
+  unsatisfactory:{ label: "No Satisfactorio", bg: "bg-red-100 dark:bg-red-900/30",   text: "text-slate-900 dark:text-slate-100"      },
 }
 
 export default async function AuditoriaInternaPage() {
@@ -70,7 +70,7 @@ export default async function AuditoriaInternaPage() {
             </span>
             Auditoría Interna HACCP
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 417.8 · Verificación y auditoría del sistema HACCP</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 417.8 · Verificación y auditoría del sistema HACCP</p>
         </div>
         <Link
           href="/auditoria-interna/nuevo"
@@ -85,8 +85,8 @@ export default async function AuditoriaInternaPage() {
       {tableExists && (daysSinceLast === null || daysSinceLast > 300) && (
         <div className={`rounded-xl px-5 py-4 border flex items-start gap-3 ${
           daysSinceLast === null || daysSinceLast > 365
-            ? "bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700"
-            : "bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-700"
+            ? "bg-white dark:bg-[#111827] border-red-300 dark:border-red-700"
+            : "bg-white dark:bg-[#111827] border-amber-200 dark:border-amber-700"
         }`}>
           <Clock className={`w-5 h-5 flex-shrink-0 mt-0.5 ${daysSinceLast === null || daysSinceLast > 365 ? "text-red-500" : "text-amber-500"}`} />
           <div>
@@ -95,7 +95,7 @@ export default async function AuditoriaInternaPage() {
                 ? "⚠ Sin auditorías registradas — 9 CFR 417.8 requiere revisión anual del plan HACCP"
                 : `⚠ Última auditoría hace ${daysSinceLast} días — Se acerca el vencimiento anual`}
             </p>
-            <p className={`text-xs mt-0.5 ${daysSinceLast === null || daysSinceLast > 365 ? "text-red-700 dark:text-red-300" : "text-amber-700 dark:text-amber-300"}`}>
+            <p className={`text-xs mt-0.5 ${daysSinceLast === null || daysSinceLast > 365 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100"}`}>
               El sistema HACCP debe ser auditado al menos una vez al año o cuando ocurran cambios significativos en el proceso.
             </p>
           </div>
@@ -104,7 +104,7 @@ export default async function AuditoriaInternaPage() {
 
       {/* Critical open findings alert */}
       {tableExists && criticalOpen.length > 0 && (
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-2">
+        <div className="bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-2">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
             <p className="text-sm font-bold text-red-800 dark:text-red-200">
@@ -113,8 +113,8 @@ export default async function AuditoriaInternaPage() {
           </div>
           {criticalOpen.map((a) => (
             <div key={a.id} className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-2 text-xs">
-              <span className="font-bold text-red-700 dark:text-red-300">{fmtDate(a.audit_date)}</span>
-              <span className="text-slate-500 dark:text-slate-300 ml-2">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</span>
+              <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(a.audit_date)}</span>
+              <span className="text-slate-600 dark:text-slate-300 ml-2">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</span>
               <p className="text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">{a.critical_findings}</p>
             </div>
           ))}
@@ -123,9 +123,9 @@ export default async function AuditoriaInternaPage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">016_water_audit_health.sql</code> en Supabase para activar este módulo.
           </p>
         </div>
@@ -136,21 +136,21 @@ export default async function AuditoriaInternaPage() {
           {/* KPIs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: "Auditorías (12m)",     value: total,          icon: ClipboardCheck, color: "text-indigo-600",  bg: "bg-indigo-50 dark:bg-indigo-900/20" },
-              { label: "No satisfactorias",    value: unsatisfactory, icon: XCircle,        color: unsatisfactory > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",   bg: unsatisfactory > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "Condicionales",        value: conditional,    icon: AlertTriangle,  color: conditional > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300",    bg: conditional > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "Seguimientos vencidos",value: overdueFollowUp,icon: Clock,          color: overdueFollowUp > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",  bg: overdueFollowUp > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Auditorías (12m)",     value: total,          icon: ClipboardCheck, color: "text-indigo-600",  bg: "bg-white dark:bg-[#111827]" },
+              { label: "No satisfactorias",    value: unsatisfactory, icon: XCircle,        color: unsatisfactory > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300",   bg: unsatisfactory > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Condicionales",        value: conditional,    icon: AlertTriangle,  color: conditional > 0 ? "text-amber-600" : "text-slate-600 dark:text-slate-300",    bg: conditional > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Seguimientos vencidos",value: overdueFollowUp,icon: Clock,          color: overdueFollowUp > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300",  bg: overdueFollowUp > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
 
           {/* Regulatory requirements panel */}
-          <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl px-5 py-4">
+          <div className="bg-white dark:bg-[#111827] border border-indigo-200 dark:border-indigo-800 rounded-xl px-5 py-4">
             <p className="text-xs font-bold text-indigo-800 dark:text-indigo-200 mb-2">Requisitos 9 CFR 417.8 — Verificación del Sistema HACCP</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {[
@@ -163,7 +163,7 @@ export default async function AuditoriaInternaPage() {
               ].map((r) => (
                 <div key={r.req} className="flex items-center justify-between bg-white dark:bg-indigo-900/10 rounded-lg px-3 py-2 gap-2">
                   <p className="font-semibold text-indigo-800 dark:text-indigo-200">{r.req}</p>
-                  <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 whitespace-nowrap">{r.freq}</span>
+                  <span className="text-[10px] font-bold text-slate-600 dark:text-slate-300 whitespace-nowrap">{r.freq}</span>
                 </div>
               ))}
             </div>
@@ -173,12 +173,12 @@ export default async function AuditoriaInternaPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Auditorías — últimos 12 meses</span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{total} registros</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{total} registros</span>
             </div>
             {audits.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <ClipboardCheck className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin auditorías registradas.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin auditorías registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 417.8 requiere al menos una revisión anual del Plan HACCP.</p>
                 <Link href="/auditoria-interna/nuevo" className="text-sm text-indigo-600 font-semibold hover:underline">+ Primera auditoría</Link>
               </div>
@@ -188,7 +188,7 @@ export default async function AuditoriaInternaPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Tipo","Auditor","Items ✓","Items ✗","Hallazgos críticos","Seguimiento","Resultado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -201,13 +201,13 @@ export default async function AuditoriaInternaPage() {
                         <tr key={a.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${a.overall_result === "unsatisfactory" ? "bg-red-50/20 dark:bg-red-900/5" : ""}`}>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(a.audit_date)}</td>
                           <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{a.auditor_name}</td>
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">{a.auditor_name}</td>
                           <td className="px-4 py-3 text-xs text-green-600 font-bold tabular-nums">{a.items_passed}</td>
-                          <td className="px-4 py-3 text-xs font-bold tabular-nums">{a.items_failed > 0 ? <span className="text-red-600">{a.items_failed}</span> : <span className="text-slate-500 dark:text-slate-300">0</span>}</td>
+                          <td className="px-4 py-3 text-xs font-bold tabular-nums">{a.items_failed > 0 ? <span className="text-red-600">{a.items_failed}</span> : <span className="text-slate-600 dark:text-slate-300">0</span>}</td>
                           <td className="px-4 py-3 max-w-[200px]">
                             {a.critical_findings
-                              ? <span className="text-xs text-red-600 dark:text-red-400 line-clamp-2 font-medium">{a.critical_findings}</span>
-                              : <span className="text-xs text-slate-500 dark:text-slate-300">—</span>}
+                              ? <span className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 font-medium">{a.critical_findings}</span>
+                              : <span className="text-xs text-slate-600 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3 text-xs">
                             {a.corrective_actions_required
@@ -216,7 +216,7 @@ export default async function AuditoriaInternaPage() {
                                 : followUpOverdue
                                 ? <span className="text-red-600 font-bold flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Vencido</span>
                                 : <span className="text-amber-600 font-bold">Pendiente</span>
-                              : <span className="text-slate-500 dark:text-slate-300">N/A</span>}
+                              : <span className="text-slate-600 dark:text-slate-300">N/A</span>}
                           </td>
                           <td className="px-4 py-3">
                             {rc && (

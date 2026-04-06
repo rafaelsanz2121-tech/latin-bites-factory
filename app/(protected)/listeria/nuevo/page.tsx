@@ -8,10 +8,10 @@ import Link from "next/link"
 import { ArrowLeft, Microscope, Loader2, AlertTriangle } from "lucide-react"
 
 const ZONES = [
-  { value: 1, label: "Zona 1 — Contacto directo con producto (mensual)", color: "border-red-400 bg-red-50 dark:bg-red-900/20" },
-  { value: 2, label: "Zona 2 — Superficies adyacentes (semanal)",        color: "border-orange-400 bg-orange-50 dark:bg-orange-900/20" },
-  { value: 3, label: "Zona 3 — Ambiente cercano a la línea (semanal)",   color: "border-amber-400 bg-amber-50 dark:bg-amber-900/20" },
-  { value: 4, label: "Zona 4 — Áreas remotas / desagües (mensual)",      color: "border-blue-400 bg-blue-50 dark:bg-blue-900/20" },
+  { value: 1, label: "Zona 1 — Contacto directo con producto (mensual)", color: "border-red-400 bg-white dark:bg-[#111827]" },
+  { value: 2, label: "Zona 2 — Superficies adyacentes (semanal)",        color: "border-orange-400 bg-white dark:bg-[#111827]" },
+  { value: 3, label: "Zona 3 — Ambiente cercano a la línea (semanal)",   color: "border-amber-400 bg-white dark:bg-[#111827]" },
+  { value: 4, label: "Zona 4 — Áreas remotas / desagües (mensual)",      color: "border-blue-400 bg-white dark:bg-[#111827]" },
 ]
 
 const SURFACE_TYPES = [
@@ -132,7 +132,7 @@ export default function NuevaListeriaMuestraPage() {
           </span>
           Registrar Muestra Ambiental
         </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 430.4 — Listeria monocytogenes Environmental Monitoring</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 430.4 — Listeria monocytogenes Environmental Monitoring</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -224,7 +224,7 @@ export default function NuevaListeriaMuestraPage() {
                   onClick={() => set("surface_type", st.value)}
                   className={`px-3 py-2 rounded-lg border text-[11.5px] font-semibold transition-all text-left ${
                     form.surface_type === st.value
-                      ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+                      ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30 text-slate-900 dark:text-slate-100"
                       : "border-slate-200 dark:border-slate-600 text-slate-500 hover:border-slate-300"
                   }`}
                 >
@@ -241,9 +241,9 @@ export default function NuevaListeriaMuestraPage() {
 
           <div className="grid grid-cols-3 gap-3">
             {[
-              { value: "negative", label: "Negativo ✓", color: "border-green-500 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300" },
-              { value: "positive", label: "⚠ Positivo", color: "border-red-500 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300" },
-              { value: "pending",  label: "Pendiente",  color: "border-amber-400 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300" },
+              { value: "negative", label: "Negativo ✓", color: "border-green-500 bg-green-50 dark:bg-green-900/30 text-slate-900 dark:text-slate-100" },
+              { value: "positive", label: "⚠ Positivo", color: "border-red-500 bg-red-50 dark:bg-red-900/30 text-slate-900 dark:text-slate-100" },
+              { value: "pending",  label: "Pendiente",  color: "border-amber-400 bg-amber-50 dark:bg-amber-900/30 text-slate-900 dark:text-slate-100" },
             ].map((r) => (
               <button
                 key={r.value}
@@ -261,7 +261,7 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Corrective action — shown only when positive */}
         {isPositive && (
-          <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 space-y-4">
+          <div className="bg-white dark:bg-[#111827] border-2 border-red-300 dark:border-red-700 rounded-xl p-5 space-y-4">
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-red-600" />
               <p className="text-sm font-black text-red-800 dark:text-red-200">
@@ -270,7 +270,7 @@ export default function NuevaListeriaMuestraPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-red-700 dark:text-red-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-1.5">
                 Acción correctiva tomada *
               </label>
               <textarea
@@ -306,7 +306,7 @@ export default function NuevaListeriaMuestraPage() {
 
             {form.product_on_hold && (
               <div>
-                <label className="block text-xs font-bold text-red-700 dark:text-red-300 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider mb-1.5">
                   Lote(s) en retención
                 </label>
                 <input

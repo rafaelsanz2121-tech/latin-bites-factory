@@ -83,7 +83,7 @@ export default async function CostoDetailPage({
             <h1 className="text-2xl font-black text-slate-800 tracking-tight font-mono">
               {order.order_number}
             </h1>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <p className="text-sm text-slate-600 dark:text-slate-300 mt-0.5">
               {o.clients?.company_name} · {o.products?.name} · {formatDate(o.order_date)}
             </p>
           </div>
@@ -137,20 +137,20 @@ export default async function CostoDetailPage({
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-800">Detalle de Costos</h2>
-          <span className="text-[11px] text-slate-400">{items.length} partida{items.length !== 1 ? "s" : ""}</span>
+          <span className="text-[11px]  text-slate-600 dark:text-slate-300">{items.length} partida{items.length !== 1 ? "s" : ""}</span>
         </div>
 
         {items.length === 0 ? (
           <div className="flex flex-col items-center py-10 text-slate-300">
             <DollarSign className="w-8 h-8 mb-2" />
-            <p className="text-sm font-medium text-slate-400">Sin costos cargados aún</p>
+            <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin costos cargados aún</p>
             <p className="text-xs text-slate-300 mt-1">Usa el formulario de abajo para agregar el primer costo</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Tipo</th>
                   <th className="text-left px-4 py-3">Descripción</th>
                   <th className="text-right px-4 py-3">Cantidad</th>
@@ -179,7 +179,7 @@ export default async function CostoDetailPage({
                       <td className="px-4 py-3 text-right">
                         <span className="text-[13px] font-bold text-amber-700">{fmt$(item.total_cost)}</span>
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-400">
+                      <td className="px-4 py-3 text-[11.5px]  text-slate-600 dark:text-slate-300">
                         {item.profiles?.full_name ?? "—"}
                       </td>
                     </tr>

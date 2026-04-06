@@ -72,7 +72,7 @@ export default async function AguaPotablePage() {
             </span>
             Agua Potable
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 416.4 · Control de Calidad del Agua de Proceso</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 416.4 · Control de Calidad del Agua de Proceso</p>
         </div>
         <Link
           href="/agua-potable/nuevo"
@@ -87,7 +87,7 @@ export default async function AguaPotablePage() {
       {tableExists && (daysSinceDaily === null || daysSinceDaily >= 1 || daysSinceMonthly === null || (daysSinceMonthly !== null && daysSinceMonthly >= 30)) && (
         <div className="space-y-2">
           {(daysSinceDaily === null || daysSinceDaily >= 1) && (
-            <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl px-5 py-3 flex items-center gap-3">
+            <div className="bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-700 rounded-xl px-5 py-3 flex items-center gap-3">
               <Clock className="w-4 h-4 text-amber-500 flex-shrink-0" />
               <p className="text-sm text-amber-800 dark:text-amber-200">
                 <span className="font-black">Prueba de cloro pendiente —</span>{" "}
@@ -98,7 +98,7 @@ export default async function AguaPotablePage() {
             </div>
           )}
           {(daysSinceMonthly === null || (daysSinceMonthly !== null && daysSinceMonthly >= 30)) && (
-            <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-700 rounded-xl px-5 py-3 flex items-center gap-3">
+            <div className="bg-white dark:bg-[#111827] border border-orange-200 dark:border-orange-700 rounded-xl px-5 py-3 flex items-center gap-3">
               <FlaskConical className="w-4 h-4 text-orange-500 flex-shrink-0" />
               <p className="text-sm text-orange-800 dark:text-orange-200">
                 <span className="font-black">Análisis bacteriológico mensual pendiente —</span>{" "}
@@ -113,9 +113,9 @@ export default async function AguaPotablePage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">016_water_audit_health.sql</code> en Supabase para activar este módulo.
           </p>
         </div>
@@ -126,21 +126,21 @@ export default async function AguaPotablePage() {
           {/* KPIs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: "Pruebas (90d)",   value: total,                               icon: FlaskConical, color: "text-blue-600",   bg: "bg-blue-50 dark:bg-blue-900/20"        },
-              { label: "Fuera de rango",  value: fails,                               icon: XCircle,      color: fails > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",   bg: fails > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "Pendientes",      value: pending,                             icon: Clock,        color: pending > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: pending > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Pruebas (90d)",   value: total,                               icon: FlaskConical, color: "text-blue-600",   bg: "bg-white dark:bg-[#111827]"        },
+              { label: "Fuera de rango",  value: fails,                               icon: XCircle,      color: fails > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300",   bg: fails > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Pendientes",      value: pending,                             icon: Clock,        color: pending > 0 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: pending > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
               { label: "Tasa de conformidad", value: passRate !== null ? `${passRate}%` : "—", icon: Activity, color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
 
           {/* Potability standards */}
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl px-5 py-4">
+          <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl px-5 py-4">
             <p className="text-xs font-bold text-blue-800 dark:text-blue-200 mb-2">Parámetros de potabilidad — 9 CFR 416.4 / EPA / OMS</p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {[
@@ -155,7 +155,7 @@ export default async function AguaPotablePage() {
               ].map((s) => (
                 <div key={s.param} className="bg-white dark:bg-blue-900/10 rounded-lg px-3 py-2">
                   <p className="font-semibold text-blue-800 dark:text-blue-200">{s.param}</p>
-                  <p className="text-blue-600 dark:text-blue-400 font-bold">{s.range}</p>
+                  <p className="text-slate-600 dark:text-slate-300 font-bold">{s.range}</p>
                   <p className="text-blue-500/70 dark:text-blue-500 text-[10px]">{s.note}</p>
                 </div>
               ))}
@@ -164,7 +164,7 @@ export default async function AguaPotablePage() {
 
           {/* Recent fails */}
           {recentFails.length > 0 && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
+            <div className="bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
                 <p className="text-sm font-bold text-red-800 dark:text-red-200">
@@ -174,7 +174,7 @@ export default async function AguaPotablePage() {
               {recentFails.map((f) => (
                 <div key={f.id} className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-3 text-sm space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-bold text-red-700 dark:text-red-300">{fmtDate(f.test_date)}</span>
+                    <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(f.test_date)}</span>
                     <span className="text-slate-600 dark:text-slate-300">{TEST_TYPE[f.test_type] ?? f.test_type}</span>
                     <span className="text-xs text-slate-500">{f.sample_location}</span>
                     {f.chlorine_residual_ppm && (
@@ -196,12 +196,12 @@ export default async function AguaPotablePage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{total} pruebas</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{total} pruebas</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Droplets className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin pruebas registradas.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin pruebas registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 416.4 requiere documentación de la potabilidad del agua de proceso.</p>
                 <Link href="/agua-potable/nuevo" className="text-sm text-blue-600 font-semibold hover:underline">+ Primera prueba</Link>
               </div>
@@ -211,7 +211,7 @@ export default async function AguaPotablePage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Tipo","Fuente","Ubicación","Cl₂ (ppm)","pH","Turbidez","Coliformes","E. coli","Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -224,15 +224,15 @@ export default async function AguaPotablePage() {
                         <tr key={log.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${rowFail ? "bg-red-50/30 dark:bg-red-900/10" : ""}`}>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(log.test_date)}</td>
                           <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 whitespace-nowrap">{TEST_TYPE[log.test_type] ?? log.test_type}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{WATER_SOURCE[log.water_source] ?? log.water_source}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{log.sample_location}</td>
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">{WATER_SOURCE[log.water_source] ?? log.water_source}</td>
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">{log.sample_location}</td>
                           <td className={`px-4 py-3 font-bold tabular-nums text-xs ${clFail ? "text-red-600" : "text-slate-600 dark:text-slate-300"}`}>
                             {log.chlorine_residual_ppm !== null ? `${log.chlorine_residual_ppm}` : "—"}
                           </td>
                           <td className={`px-4 py-3 font-bold tabular-nums text-xs ${phFail ? "text-red-600" : "text-slate-600 dark:text-slate-300"}`}>
                             {log.ph !== null ? `${log.ph}` : "—"}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 tabular-nums">
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 tabular-nums">
                             {log.turbidity_ntu !== null ? `${log.turbidity_ntu} NTU` : "—"}
                           </td>
                           <td className="px-4 py-3 text-xs">
@@ -240,14 +240,14 @@ export default async function AguaPotablePage() {
                               ? <span className="text-green-600 font-bold">Ausente</span>
                               : log.coliform_result === "present"
                               ? <span className="text-red-600 font-bold">PRESENTE</span>
-                              : <span className="text-slate-500 dark:text-slate-300">—</span>}
+                              : <span className="text-slate-600 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3 text-xs">
                             {log.e_coli_result === "absent"
                               ? <span className="text-green-600 font-bold">Ausente</span>
                               : log.e_coli_result === "present"
                               ? <span className="text-red-600 font-bold">PRESENTE</span>
-                              : <span className="text-slate-500 dark:text-slate-300">—</span>}
+                              : <span className="text-slate-600 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3">
                             {log.result === "fail"

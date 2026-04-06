@@ -84,7 +84,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
       <form onSubmit={saveProfile}>
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <User className="w-4 h-4 text-slate-400" />
+            <User className="w-4 h-4  text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Mi Perfil</span>
           </div>
           <div className="p-5 space-y-4">
@@ -100,10 +100,10 @@ export function ProfileForm({ profile }: { profile: Profile }) {
                     {ROLE_LABELS[profile.role] ?? profile.role}
                   </span>
                   {profile.employee_id && (
-                    <span className="text-xs text-slate-400 font-mono">ID: {profile.employee_id}</span>
+                    <span className="text-xs text-slate-600 dark:text-slate-300 font-mono">ID: {profile.employee_id}</span>
                   )}
                 </div>
-                <p className="text-xs text-slate-400 mt-1">{profile.email}</p>
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">{profile.email}</p>
               </div>
             </div>
 
@@ -160,9 +160,9 @@ export function ProfileForm({ profile }: { profile: Profile }) {
           </div>
 
           <div className={`px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between transition-colors ${
-            dirtyProfile ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50/60 dark:bg-white/[0.02]"
+            dirtyProfile ? "bg-white dark:bg-[#111827]" : "bg-slate-50/60 dark:bg-white/[0.02]"
           }`}>
-            <p className={`text-xs font-medium ${dirtyProfile ? "text-amber-700 dark:text-amber-300" : "text-slate-400"}`}>
+            <p className={`text-xs font-medium ${dirtyProfile ? "text-slate-900 dark:text-slate-100" : "text-slate-400"}`}>
               {dirtyProfile ? "Cambios sin guardar" : "Perfil guardado"}
             </p>
             <button
@@ -182,7 +182,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
       <form onSubmit={savePassword}>
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <KeyRound className="w-4 h-4 text-slate-400" />
+            <KeyRound className="w-4 h-4  text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Cambiar Contraseña</span>
           </div>
           <div className="p-5 space-y-4">
@@ -240,7 +240,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
                     }`} />
                   ))}
                 </div>
-                <p className="text-[10px] text-slate-400 mt-1">
+                <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-1">
                   {pwd.next.length < 8 ? "Muy corta" : pwd.next.length < 12 ? "Básica" : pwd.next.length < 16 ? "Buena" : "Fuerte ✓"}
                 </p>
               </div>

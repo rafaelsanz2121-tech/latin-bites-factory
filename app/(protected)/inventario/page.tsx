@@ -69,7 +69,7 @@ export default async function InventarioPage({
             </span>
             Control de Inventario
           </h1>
-          <p className="text-sm text-slate-400 mt-1">Materia prima · Empaque · Producto terminado — en tiempo real</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Materia prima · Empaque · Producto terminado — en tiempo real</p>
         </div>
         <Link
           href="/inventario/nuevo"
@@ -130,7 +130,7 @@ export default async function InventarioPage({
         {allItems.length === 0 ? (
           <div className="flex flex-col items-center py-16 text-slate-300">
             <Package className="w-10 h-10 mb-3" />
-            <p className="text-sm font-medium text-slate-400">Sin artículos en inventario</p>
+            <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin artículos en inventario</p>
             <Link href="/inventario/nuevo" className="mt-3 text-sm text-blue-500 hover:underline font-semibold">
               Agregar primer artículo →
             </Link>
@@ -139,7 +139,7 @@ export default async function InventarioPage({
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Artículo</th>
                   <th className="text-left px-4 py-3">Categoría</th>
                   <th className="text-left px-4 py-3">Ubicación</th>
@@ -163,8 +163,8 @@ export default async function InventarioPage({
                     <tr key={item.id} className="hover:bg-slate-50/60 transition-colors">
                       <td className="px-5 py-3">
                         <p className="text-[12.5px] font-bold text-slate-700">{item.name}</p>
-                        {item.sku && <p className="text-[10.5px] text-slate-400 font-mono">{item.sku}</p>}
-                        {item.supplier && <p className="text-[10.5px] text-slate-400">{item.supplier}</p>}
+                        {item.sku && <p className="text-[10.5px] text-slate-600 dark:text-slate-300 font-mono">{item.sku}</p>}
+                        {item.supplier && <p className="text-[10.5px]  text-slate-600 dark:text-slate-300">{item.supplier}</p>}
                       </td>
                       <td className="px-4 py-3">
                         <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border ${CATEGORY_COLOR[item.category] ?? "bg-slate-100 text-slate-600 border-slate-200"}`}>
@@ -174,7 +174,7 @@ export default async function InventarioPage({
                       <td className="px-4 py-3 text-[12px] text-slate-500">{item.location || "—"}</td>
                       <td className="px-4 py-3 text-right">
                         <p className="text-[13px] font-black text-slate-700 tabular-nums">{current.toLocaleString()}</p>
-                        <p className="text-[10px] text-slate-400">{item.unit}</p>
+                        <p className="text-[10px]  text-slate-600 dark:text-slate-300">{item.unit}</p>
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ export default async function InventarioPage({
                             {status.label}
                           </span>
                         </div>
-                        <p className="text-[10px] text-slate-400 mt-0.5">Mín: {min.toLocaleString()} {item.unit}</p>
+                        <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">Mín: {min.toLocaleString()} {item.unit}</p>
                       </td>
                       <td className="px-4 py-3 text-right text-[12px] tabular-nums text-slate-500">
                         {item.cost_per_unit ? `$${Number(item.cost_per_unit).toFixed(4)}` : "—"}

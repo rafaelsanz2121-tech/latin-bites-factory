@@ -67,7 +67,7 @@ export default async function PlagasPage() {
             </span>
             Control de Plagas
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 416.2(a) · Programa de control de roedores e insectos</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 416.2(a) · Programa de control de roedores e insectos</p>
         </div>
         <Link
           href="/plagas/nuevo"
@@ -80,7 +80,7 @@ export default async function PlagasPage() {
 
       {/* Days since alert */}
       {daysSinceLast !== null && daysSinceLast > 30 && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
+        <div className="bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-800 rounded-xl px-5 py-4 flex items-center gap-3">
           <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
           <p className="text-sm text-amber-800 dark:text-amber-200">
             <strong>Última inspección hace {daysSinceLast} días.</strong> Se recomienda inspección mensual (9 CFR 416.2(a)).
@@ -90,9 +90,9 @@ export default async function PlagasPage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">015_allergen_pest_recall.sql</code> en Supabase para activar este módulo.
           </p>
         </div>
@@ -104,21 +104,21 @@ export default async function PlagasPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Inspecciones (90d)", value: totalInspections,                                     icon: Search,   color: "text-lime-600",   bg: "bg-lime-50 dark:bg-lime-900/20"       },
-              { label: "Con hallazgos",      value: withFindings,                                          icon: AlertTriangle, color: withFindings > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: withFindings > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "Infestaciones",      value: infestations,                                          icon: Bug,      color: infestations > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: infestations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
-              { label: "Días sin inspección",value: daysSinceLast !== null ? `${daysSinceLast}d` : "—",   icon: Calendar, color: (daysSinceLast ?? 0) > 30 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: (daysSinceLast ?? 0) > 30 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Con hallazgos",      value: withFindings,                                          icon: AlertTriangle, color: withFindings > 0 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: withFindings > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Infestaciones",      value: infestations,                                          icon: Bug,      color: infestations > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300", bg: infestations > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Días sin inspección",value: daysSinceLast !== null ? `${daysSinceLast}d` : "—",   icon: Calendar, color: (daysSinceLast ?? 0) > 30 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: (daysSinceLast ?? 0) > 30 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
 
           {/* Recent activity alerts */}
           {recentActivity.length > 0 && (
-            <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-5 space-y-3">
+            <div className="bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-800 rounded-xl p-5 space-y-3">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
                 <p className="text-sm font-bold text-amber-800 dark:text-amber-200">
@@ -130,7 +130,7 @@ export default async function PlagasPage() {
                 return (
                   <div key={l.id} className="bg-white dark:bg-amber-900/10 rounded-lg px-4 py-3 text-sm space-y-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-bold text-amber-700 dark:text-amber-300">{fmtDate(l.inspection_date)}</span>
+                      <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(l.inspection_date)}</span>
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${fc?.color}`}>{fc?.label}</span>
                       {l.pest_types && l.pest_types.length > 0 && (
                         <span className="text-xs text-slate-600 dark:text-slate-300">{l.pest_types.join(", ")}</span>
@@ -156,12 +156,12 @@ export default async function PlagasPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{totalInspections} inspecciones</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{totalInspections} inspecciones</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Bug className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin inspecciones registradas.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin inspecciones registradas.</p>
                 <Link href="/plagas/nuevo" className="text-sm text-lime-600 font-semibold hover:underline">+ Registrar primera inspección</Link>
               </div>
             ) : (
@@ -170,7 +170,7 @@ export default async function PlagasPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Tipo", "Inspector", "Trampas", "Actividad", "Hallazgos", "Tratamiento", "Próxima insp."].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -186,7 +186,7 @@ export default async function PlagasPage() {
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 text-xs">
                             <p>{log.exterminator_name || "—"}</p>
-                            <p className="text-slate-500 dark:text-slate-300">{log.inspector_type === "external" ? "Externo" : "Interno"}</p>
+                            <p className="text-slate-600 dark:text-slate-300">{log.inspector_type === "external" ? "Externo" : "Interno"}</p>
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 tabular-nums text-center">
                             <p className="font-medium">{log.traps_checked}</p>
@@ -194,7 +194,7 @@ export default async function PlagasPage() {
                               <p className="text-xs text-amber-600 font-bold">{log.traps_with_activity} con activ.</p>
                             )}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 max-w-[120px]">
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 max-w-[120px]">
                             {log.pest_types?.length > 0 ? log.pest_types.join(", ") : "—"}
                           </td>
                           <td className="px-4 py-3">
@@ -205,7 +205,7 @@ export default async function PlagasPage() {
                               ? <CheckCircle2 className="w-4 h-4 text-green-500 mx-auto" />
                               : <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 whitespace-nowrap">
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 whitespace-nowrap">
                             {log.next_inspection_date ? fmtDate(log.next_inspection_date) : "—"}
                           </td>
                         </tr>

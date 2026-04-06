@@ -114,7 +114,7 @@ export default function NuevoRecall() {
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">
           {form.recall_type === "mock" ? "Simulacro registrado" : "Retiro registrado"}
         </p>
-        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -136,7 +136,7 @@ export default function NuevoRecall() {
             </span>
             Nuevo Recall / Simulacro
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">FSMA · 9 CFR 320 · Trazabilidad de producto</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">FSMA · 9 CFR 320 · Trazabilidad de producto</p>
         </div>
       </div>
 
@@ -145,18 +145,18 @@ export default function NuevoRecall() {
         {/* Type + date */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Target className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <Target className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Tipo de evento</span>
           </div>
           <div className="p-5 space-y-4">
             <div className="flex gap-3">
               {[
-                { value: "mock",   label: "🎯 Simulacro",  desc: "Ejercicio de práctica anual",     color: "border-rose-300 bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300" },
-                { value: "actual", label: "🚨 Retiro real", desc: "Retiro efectivo de mercado",      color: "border-red-400 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300" },
+                { value: "mock",   label: "🎯 Simulacro",  desc: "Ejercicio de práctica anual",     color: "border-rose-300 bg-white dark:bg-[#111827] text-rose-700 dark:text-rose-300" },
+                { value: "actual", label: "🚨 Retiro real", desc: "Retiro efectivo de mercado",      color: "border-red-400 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
               ].map((t) => (
                 <button key={t.value} type="button" onClick={() => setF("recall_type", t.value)}
                   className={`flex-1 text-left px-4 py-3 rounded-xl border-2 text-sm transition-all ${
-                    form.recall_type === t.value ? t.color + " font-semibold shadow-sm" : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
+                    form.recall_type === t.value ? t.color + " font-semibold shadow-sm" : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
                   }`}>
                   <span className="block font-bold">{t.label}</span>
                   <span className="text-[11px] opacity-70">{t.desc}</span>
@@ -165,17 +165,17 @@ export default function NuevoRecall() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha del evento *</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha del evento *</label>
                 <input type="date" value={form.recall_date} max={today} onChange={(e) => setF("recall_date", e.target.value)} required className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Motivo del trigger *</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Motivo del trigger *</label>
                 <select value={form.trigger_reason} onChange={(e) => setF("trigger_reason", e.target.value)} className={inputCls}>
                   {TRIGGER_REASONS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
                 </select>
               </div>
               <div className="col-span-2">
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Detalle del escenario</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Detalle del escenario</label>
                 <input type="text" value={form.trigger_detail} onChange={(e) => setF("trigger_detail", e.target.value)} placeholder="Describe el escenario del simulacro o motivo del retiro…" className={inputCls} />
               </div>
             </div>
@@ -185,28 +185,28 @@ export default function NuevoRecall() {
         {/* Product scope */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Package className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <Package className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Alcance del producto</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
               <input type="text" value={form.product_name} onChange={(e) => setF("product_name", e.target.value)} required placeholder="Ej. Pork Belly 5lb" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Número(s) de lote *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Número(s) de lote *</label>
               <input type="text" value={form.lot_numbers} onChange={(e) => setF("lot_numbers", e.target.value)} required placeholder="L2024-001, L2024-002…" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades producidas</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades producidas</label>
               <input type="number" min={0} value={form.total_units_produced} onChange={(e) => setF("total_units_produced", e.target.value)} placeholder="Total producido" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha producción — inicio</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha producción — inicio</label>
               <input type="date" value={form.production_date_start} onChange={(e) => setF("production_date_start", e.target.value)} className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha producción — fin</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha producción — fin</label>
               <input type="date" value={form.production_date_end} onChange={(e) => setF("production_date_end", e.target.value)} className={inputCls} />
             </div>
           </div>
@@ -215,25 +215,25 @@ export default function NuevoRecall() {
         {/* Traceability metrics */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <TrendingUp className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Métricas de trazabilidad</span>
           </div>
           <div className="p-5 space-y-4">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">En planta</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">En planta</label>
                 <input type="number" min={0} value={form.units_at_facility} onChange={(e) => setF("units_at_facility", e.target.value)} className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Despachados</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Despachados</label>
                 <input type="number" min={0} value={form.units_dispatched} onChange={(e) => setF("units_dispatched", e.target.value)} className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Recuperados</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Recuperados</label>
                 <input type="number" min={0} value={form.units_recovered} onChange={(e) => setF("units_recovered", e.target.value)} className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Clientes notif.</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Clientes notif.</label>
                 <input type="number" min={0} value={form.customers_notified} onChange={(e) => setF("customers_notified", e.target.value)} className={inputCls} />
               </div>
             </div>
@@ -242,18 +242,18 @@ export default function NuevoRecall() {
             {recoveryPct !== null && (
               <div className={`flex items-center gap-3 px-4 py-3 rounded-xl ${
                 Number(recoveryPct) >= 90
-                  ? "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
-                  : "bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800"
+                  ? "bg-white dark:bg-[#111827] border border-green-200 dark:border-green-800"
+                  : "bg-white dark:bg-[#111827] border border-amber-200 dark:border-amber-800"
               }`}>
                 {Number(recoveryPct) >= 90
                   ? <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
                   : <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
                 }
                 <div>
-                  <p className={`font-black text-lg tabular-nums ${Number(recoveryPct) >= 90 ? "text-green-700 dark:text-green-300" : "text-amber-700 dark:text-amber-300"}`}>
+                  <p className={`font-black text-lg tabular-nums ${Number(recoveryPct) >= 90 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100"}`}>
                     {recoveryPct}% recuperado
                   </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-300">
+                  <p className="text-xs text-slate-600 dark:text-slate-300">
                     {Number(recoveryPct) >= 90 ? "Trazabilidad efectiva (≥90%)" : "Por debajo del umbral recomendado de 90%"}
                   </p>
                 </div>
@@ -262,11 +262,11 @@ export default function NuevoRecall() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tiempo identificar lote (min)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tiempo identificar lote (min)</label>
                 <input type="number" min={0} value={form.time_to_identify_min} onChange={(e) => setF("time_to_identify_min", e.target.value)} placeholder="Minutos" className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tiempo notificar clientes (min)</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tiempo notificar clientes (min)</label>
                 <input type="number" min={0} value={form.time_to_notify_min} onChange={(e) => setF("time_to_notify_min", e.target.value)} placeholder="Minutos" className={inputCls} />
               </div>
             </div>
@@ -275,7 +275,7 @@ export default function NuevoRecall() {
 
         {/* USDA notification (actual recalls only) */}
         {form.recall_type === "actual" && (
-          <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl overflow-hidden">
+          <div className="bg-white dark:bg-[#111827] border-2 border-red-200 dark:border-red-800 rounded-xl overflow-hidden">
             <div className="px-5 py-3.5 border-b border-red-200 dark:border-red-800">
               <label className="flex items-center gap-3 cursor-pointer">
                 <input type="checkbox" checked={form.usda_notified} onChange={(e) => setF("usda_notified", e.target.checked)} className="w-4 h-4 accent-red-600" />
@@ -284,7 +284,7 @@ export default function NuevoRecall() {
             </div>
             {form.usda_notified && (
               <div className="p-5">
-                <label className="block text-xs font-semibold text-red-700 dark:text-red-300 mb-1.5 uppercase tracking-wide">Fecha y hora de notificación</label>
+                <label className="block text-xs font-semibold text-slate-900 dark:text-slate-100 mb-1.5 uppercase tracking-wide">Fecha y hora de notificación</label>
                 <input type="datetime-local" value={form.usda_notified_at} onChange={(e) => setF("usda_notified_at", e.target.value)} className="w-full border border-red-200 dark:border-red-700 rounded-lg px-3 py-2.5 text-sm bg-white dark:bg-[#0f172a] text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-red-400/40" />
               </div>
             )}
@@ -298,12 +298,12 @@ export default function NuevoRecall() {
           </div>
           <div className="p-5 space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-2 uppercase tracking-wide">Estado del evento</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2 uppercase tracking-wide">Estado del evento</label>
               <div className="flex gap-2 flex-wrap">
                 {OUTCOMES.map((o) => (
                   <button key={o.value} type="button" onClick={() => setF("outcome", o.value)}
                     className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${
-                      form.outcome === o.value ? o.color : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                      form.outcome === o.value ? o.color : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                     }`}>
                     {o.label}
                   </button>
@@ -311,15 +311,15 @@ export default function NuevoRecall() {
               </div>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Causa raíz</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Causa raíz</label>
               <textarea value={form.root_cause} onChange={(e) => setF("root_cause", e.target.value)} rows={2} placeholder="¿Por qué ocurrió o se simuló este escenario?" className={inputCls + " resize-none"} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Acción correctiva / mejora</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Acción correctiva / mejora</label>
               <textarea value={form.corrective_action} onChange={(e) => setF("corrective_action", e.target.value)} rows={2} placeholder="¿Qué se mejoró o se implementará para prevenir recurrencia?" className={inputCls + " resize-none"} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Brechas del sistema identificadas</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Brechas del sistema identificadas</label>
               <textarea value={form.system_gaps_identified} onChange={(e) => setF("system_gaps_identified", e.target.value)} rows={2} placeholder="Fallas en procedimientos, documentación, comunicación, etc." className={inputCls + " resize-none"} />
             </div>
           </div>
@@ -328,7 +328,7 @@ export default function NuevoRecall() {
         {/* Notes */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <FileText className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas adicionales</span>
           </div>
           <div className="p-5">
@@ -337,9 +337,9 @@ export default function NuevoRecall() {
         </div>
 
         {error && (
-          <div className="flex items-center gap-2.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
+          <div className="flex items-center gap-2.5 bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
             <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-            <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+            <p className="text-sm text-slate-900 dark:text-slate-100">{error}</p>
           </div>
         )}
 

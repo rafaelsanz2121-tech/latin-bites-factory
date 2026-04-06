@@ -77,7 +77,7 @@ export default async function HorasPage({
             </span>
             Control de Horas de Producción
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">
             Complementa ADP — asigna horas a órdenes de producción para calcular costo MOD real
           </p>
         </div>
@@ -144,7 +144,7 @@ export default async function HorasPage({
             <h2 className="text-sm font-bold text-slate-800">Resumen por Empleado</h2>
           </div>
           {Object.values(byEmployee).length === 0 ? (
-            <p className="text-sm text-slate-400 text-center py-8">Sin registros esta semana</p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin registros esta semana</p>
           ) : (
             <div className="divide-y divide-slate-50">
               {Object.values(byEmployee)
@@ -153,7 +153,7 @@ export default async function HorasPage({
                 <div key={emp.name} className="px-5 py-3">
                   <div className="flex items-center justify-between">
                     <p className="text-[12.5px] font-semibold text-slate-700">{emp.name}</p>
-                    <span className="text-[11px] text-slate-400">{emp.entries} registro{emp.entries !== 1 ? "s" : ""}</span>
+                    <span className="text-[11px]  text-slate-600 dark:text-slate-300">{emp.entries} registro{emp.entries !== 1 ? "s" : ""}</span>
                   </div>
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-[12px] text-green-600 font-bold">{emp.hours.toFixed(1)} hrs</span>
@@ -169,12 +169,12 @@ export default async function HorasPage({
         <div className="lg:col-span-2 bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
             <h2 className="text-sm font-bold text-slate-800">Registros de la semana</h2>
-            <span className="text-[11px] text-slate-400">{allEntries.length} entradas</span>
+            <span className="text-[11px]  text-slate-600 dark:text-slate-300">{allEntries.length} entradas</span>
           </div>
           {allEntries.length === 0 ? (
             <div className="flex flex-col items-center py-12 text-slate-300">
               <Timer className="w-8 h-8 mb-2" />
-              <p className="text-sm font-medium text-slate-400">Sin registros esta semana</p>
+              <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin registros esta semana</p>
               <Link href="/horas/nuevo" className="mt-3 text-sm text-green-500 hover:underline font-semibold">
                 Registrar primeras horas →
               </Link>
@@ -183,7 +183,7 @@ export default async function HorasPage({
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                  <tr className="border-b border-slate-50 text-[10.5px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                     <th className="text-left px-5 py-3">Empleado</th>
                     <th className="text-left px-4 py-3">Orden</th>
                     <th className="text-left px-4 py-3">Fecha</th>
@@ -204,7 +204,7 @@ export default async function HorasPage({
                       </td>
                       <td className="px-4 py-3">
                         <p className="text-[11.5px] font-mono text-slate-600">{entry.production_orders?.order_number ?? "Sin orden"}</p>
-                        <p className="text-[10.5px] text-slate-400">{entry.production_orders?.products?.name}</p>
+                        <p className="text-[10.5px]  text-slate-600 dark:text-slate-300">{entry.production_orders?.products?.name}</p>
                       </td>
                       <td className="px-4 py-3 text-[12px] text-slate-500">{formatDate(entry.work_date)}</td>
                       <td className="px-4 py-3 text-right font-bold text-[13px] text-green-700 tabular-nums">
@@ -216,7 +216,7 @@ export default async function HorasPage({
                       <td className="px-4 py-3 text-right font-bold text-[13px] text-amber-700 tabular-nums">
                         {fmt$(Number(entry.total_pay))}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-400">{entry.area || "—"}</td>
+                      <td className="px-4 py-3 text-[11.5px]  text-slate-600 dark:text-slate-300">{entry.area || "—"}</td>
                     </tr>
                   ))}
                 </tbody>

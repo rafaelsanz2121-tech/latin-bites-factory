@@ -87,7 +87,7 @@ export default async function AdminSettingsPage() {
             </span>
             Configuración
           </h1>
-          <p className="text-sm text-slate-400 mt-1">Perfil personal · Establecimiento · Sistema</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Perfil personal · Establecimiento · Sistema</p>
         </div>
       </div>
 
@@ -98,9 +98,9 @@ export default async function AdminSettingsPage() {
       {isAdmin && org ? (
         <OrgSettingsForm org={org} />
       ) : isAdmin && !org ? (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">011_multi_tenant.sql</code> en
             Supabase para habilitar la edición del establecimiento.
           </p>
@@ -110,16 +110,16 @@ export default async function AdminSettingsPage() {
       {/* ── System stats ── */}
       <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-          <Database className="w-4 h-4 text-slate-400" />
+          <Database className="w-4 h-4  text-slate-600 dark:text-slate-300" />
           <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Estadísticas del Sistema</span>
         </div>
         <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
-            { label: "Usuarios activos",         value: userCount        ?? "—", icon: Users,        color: "text-blue-600",   bg: "bg-blue-50 dark:bg-blue-900/20"    },
-            { label: "Órdenes en proceso",        value: activeOrderCount ?? "—", icon: ClipboardList, color: "text-amber-600",  bg: "bg-amber-50 dark:bg-amber-900/20"  },
-            { label: "Desviaciones abiertas",     value: openDeviations   ?? "—", icon: AlertTriangle, color: "text-red-600",    bg: "bg-red-50 dark:bg-red-900/20"      },
-            { label: "CAPAs abiertas",            value: openCAPAs        ?? "—", icon: Shield,        color: "text-orange-600", bg: "bg-orange-50 dark:bg-orange-900/20"},
-            { label: "Registros de recepción",    value: logCount         ?? "—", icon: CheckCircle2,  color: "text-green-600",  bg: "bg-green-50 dark:bg-green-900/20"  },
+            { label: "Usuarios activos",         value: userCount        ?? "—", icon: Users,        color: "text-blue-600",   bg: "bg-white dark:bg-[#111827]"    },
+            { label: "Órdenes en proceso",        value: activeOrderCount ?? "—", icon: ClipboardList, color: "text-amber-600",  bg: "bg-white dark:bg-[#111827]"  },
+            { label: "Desviaciones abiertas",     value: openDeviations   ?? "—", icon: AlertTriangle, color: "text-red-600",    bg: "bg-white dark:bg-[#111827]"      },
+            { label: "CAPAs abiertas",            value: openCAPAs        ?? "—", icon: Shield,        color: "text-orange-600", bg: "bg-white dark:bg-[#111827]"},
+            { label: "Registros de recepción",    value: logCount         ?? "—", icon: CheckCircle2,  color: "text-green-600",  bg: "bg-white dark:bg-[#111827]"  },
           ].map((s) => (
             <div key={s.label} className={`rounded-xl p-4 ${s.bg}`}>
               <s.icon className={`w-4 h-4 ${s.color} mb-2`} />
@@ -133,7 +133,7 @@ export default async function AdminSettingsPage() {
       {/* ── Roles & Permissions ── */}
       <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-          <Shield className="w-4 h-4 text-slate-400" />
+          <Shield className="w-4 h-4  text-slate-600 dark:text-slate-300" />
           <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Roles y Permisos</span>
         </div>
         <div className="divide-y divide-slate-50 dark:divide-slate-700/50">

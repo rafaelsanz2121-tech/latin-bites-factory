@@ -9,10 +9,10 @@ import {
 } from "lucide-react"
 
 const CHECK_TYPES = [
-  { value: "pre_op",           label: "Pre-Op",          desc: "Antes de iniciar producción",     color: "border-purple-300 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300" },
-  { value: "hourly",           label: "Por hora",         desc: "Verificación periódica",          color: "border-blue-300 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300" },
-  { value: "product_change",   label: "Cambio producto",  desc: "Al cambiar tipo de producto",     color: "border-amber-300 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300" },
-  { value: "post_maintenance", label: "Post-mant.",       desc: "Después de mantenimiento",        color: "border-orange-300 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300" },
+  { value: "pre_op",           label: "Pre-Op",          desc: "Antes de iniciar producción",     color: "border-purple-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
+  { value: "hourly",           label: "Por hora",         desc: "Verificación periódica",          color: "border-blue-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
+  { value: "product_change",   label: "Cambio producto",  desc: "Al cambiar tipo de producto",     color: "border-amber-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
+  { value: "post_maintenance", label: "Post-mant.",       desc: "Después de mantenimiento",        color: "border-orange-300 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100" },
   { value: "end_of_day",       label: "Fin de día",       desc: "Cierre de turno",                 color: "border-slate-300 bg-slate-50 dark:bg-slate-700/30 text-slate-600 dark:text-slate-300" },
 ]
 
@@ -115,7 +115,7 @@ export default function NuevoMetalDetectorPage() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Chequeo registrado</p>
-        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
+        <p className="text-sm text-slate-600 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -141,7 +141,7 @@ export default function NuevoMetalDetectorPage() {
             </span>
             Nuevo Chequeo — Detector de Metales
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">CCP · 9 CFR 417.3</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">CCP · 9 CFR 417.3</p>
         </div>
       </div>
 
@@ -154,31 +154,31 @@ export default function NuevoMetalDetectorPage() {
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" value={form.check_date} max={today} onChange={(e) => setField("check_date", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
               <input type="time" value={form.check_time} onChange={(e) => setField("check_time", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Equipo ID</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Equipo ID</label>
               <input type="text" value={form.equipment_id} onChange={(e) => setField("equipment_id", e.target.value)} placeholder="Ej. MD-01" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Producto</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Producto</label>
               <input type="text" value={form.product_name} onChange={(e) => setField("product_name", e.target.value)} placeholder="Nombre del producto" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. de lote</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. de lote</label>
               <input type="text" value={form.lot_number} onChange={(e) => setField("lot_number", e.target.value)} placeholder="Lote" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades inspeccionadas</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades inspeccionadas</label>
               <input type="number" min={0} value={form.units_inspected} onChange={(e) => setField("units_inspected", e.target.value)} placeholder="0" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades rechazadas</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades rechazadas</label>
               <input type="number" min={0} value={form.units_rejected} onChange={(e) => setField("units_rejected", e.target.value)} placeholder="0" className={inputCls} />
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function NuevoMetalDetectorPage() {
                 className={`text-left px-4 py-3 rounded-xl border-2 text-sm transition-all ${
                   form.check_type === ct.value
                     ? ct.color + " font-semibold shadow-sm"
-                    : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
+                    : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
                 }`}
               >
                 <span className="block font-medium">{ct.label}</span>
@@ -211,7 +211,7 @@ export default function NuevoMetalDetectorPage() {
         {/* ── Test pieces ── */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Zap className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <Zap className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Piezas de prueba de sensibilidad</span>
           </div>
           <div className="p-5 space-y-3">
@@ -267,14 +267,14 @@ export default function NuevoMetalDetectorPage() {
 
         {/* ── Corrective action (conditional) ── */}
         {needsCorrectiveAction && (
-          <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800 rounded-xl overflow-hidden">
+          <div className="bg-white dark:bg-[#111827] border-2 border-red-200 dark:border-red-800 rounded-xl overflow-hidden">
             <div className="px-5 py-3.5 border-b border-red-200 dark:border-red-800 flex items-center gap-2">
               <Wrench className="w-4 h-4 text-red-500" />
               <span className="text-sm font-bold text-red-800 dark:text-red-200">Acción Correctiva — Requerida</span>
             </div>
             <div className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-red-700 dark:text-red-300 mb-1.5 uppercase tracking-wide">
+                <label className="block text-xs font-semibold text-slate-900 dark:text-slate-100 mb-1.5 uppercase tracking-wide">
                   Acción tomada *
                 </label>
                 <textarea
@@ -294,12 +294,12 @@ export default function NuevoMetalDetectorPage() {
                     onChange={(e) => setField("product_on_hold", e.target.checked)}
                     className="w-4 h-4 accent-red-600"
                   />
-                  <span className="text-sm font-semibold text-red-700 dark:text-red-300">Producto en cuarentena</span>
+                  <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">Producto en cuarentena</span>
                 </label>
               </div>
               {form.product_on_hold && (
                 <div>
-                  <label className="block text-xs font-semibold text-red-700 dark:text-red-300 mb-1.5 uppercase tracking-wide">
+                  <label className="block text-xs font-semibold text-slate-900 dark:text-slate-100 mb-1.5 uppercase tracking-wide">
                     Disposición del producto
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -311,7 +311,7 @@ export default function NuevoMetalDetectorPage() {
                         className={`px-4 py-2 rounded-lg text-sm font-semibold border transition-all ${
                           form.product_disposition === d.value
                             ? "bg-red-600 border-red-600 text-white"
-                            : "border-red-200 dark:border-red-700 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/20"
+                            : "border-red-200 dark:border-red-700 text-slate-900 dark:text-slate-100 hover:bg-red-100 dark:hover:bg-red-900/20"
                         }`}
                       >
                         {d.label}
@@ -327,7 +327,7 @@ export default function NuevoMetalDetectorPage() {
         {/* ── Notes ── */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
+            <FileText className="w-4 h-4 text-slate-600 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">
@@ -343,9 +343,9 @@ export default function NuevoMetalDetectorPage() {
 
         {/* ── Error ── */}
         {error && (
-          <div className="flex items-center gap-2.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
+          <div className="flex items-center gap-2.5 bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl px-4 py-3">
             <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
-            <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+            <p className="text-sm text-slate-900 dark:text-slate-100">{error}</p>
           </div>
         )}
 

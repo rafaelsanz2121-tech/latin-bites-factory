@@ -68,7 +68,7 @@ export default async function CostosPage() {
             </span>
             Costos de Producción
           </h1>
-          <p className="text-sm text-slate-400 mt-1">Costo real por lote · Compatible con ADP y QuickBooks</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Costo real por lote · Compatible con ADP y QuickBooks</p>
         </div>
         <ExportCostosButton label="Exportar Costos" />
       </div>
@@ -109,13 +109,13 @@ export default async function CostosPage() {
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-800">Órdenes de Producción — Costos</h2>
-          <span className="text-[11px] text-slate-400">{allOrders.length} órdenes</span>
+          <span className="text-[11px]  text-slate-600 dark:text-slate-300">{allOrders.length} órdenes</span>
         </div>
 
         {allOrders.length === 0 ? (
           <div className="flex flex-col items-center py-16 text-slate-300">
             <Package className="w-10 h-10 mb-3" />
-            <p className="text-sm font-medium text-slate-400">Sin órdenes de producción</p>
+            <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin órdenes de producción</p>
             <Link href="/production/new" className="mt-3 text-sm text-red-500 hover:underline font-semibold">
               Crear primera orden →
             </Link>
@@ -124,7 +124,7 @@ export default async function CostosPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-100 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-100 text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Orden</th>
                   <th className="text-left px-4 py-3">Cliente</th>
                   <th className="text-left px-4 py-3">Producto</th>
@@ -146,7 +146,7 @@ export default async function CostosPage() {
                     <tr key={order.id} className="hover:bg-slate-50/60 transition-colors">
                       <td className="px-5 py-3">
                         <p className="text-[12.5px] font-mono font-bold text-slate-700">{order.order_number}</p>
-                        <p className="text-[10.5px] text-slate-400">{formatDate(order.order_date)}</p>
+                        <p className="text-[10.5px]  text-slate-600 dark:text-slate-300">{formatDate(order.order_date)}</p>
                       </td>
                       <td className="px-4 py-3 text-[12.5px] text-slate-600">{order.clients?.company_name || "—"}</td>
                       <td className="px-4 py-3">

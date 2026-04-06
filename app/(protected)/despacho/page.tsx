@@ -62,7 +62,7 @@ export default async function DespachoPage() {
             </span>
             Registro de Despacho
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 320 · Trazabilidad de envíos · Bills of Lading</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">9 CFR 320 · Trazabilidad de envíos · Bills of Lading</p>
         </div>
         <Link
           href="/despacho/nuevo"
@@ -75,9 +75,9 @@ export default async function DespachoPage() {
 
       {/* Migration notice */}
       {!tableExists && (
-        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5">
+        <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800 rounded-xl p-5">
           <p className="text-sm font-bold text-blue-800 dark:text-blue-200">Migración requerida</p>
-          <p className="text-sm text-blue-700 dark:text-blue-300 mt-1">
+          <p className="text-sm text-slate-900 dark:text-slate-100 mt-1">
             Ejecuta{" "}
             <code className="bg-blue-100 dark:bg-blue-800 px-1 rounded">014_metal_supplier_dispatch.sql</code>{" "}
             en Supabase para activar este módulo.
@@ -90,22 +90,22 @@ export default async function DespachoPage() {
           {/* KPIs */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { label: "Despachos (90d)",   value: totalDispatches,                    icon: Truck,        color: "text-sky-600",    bg: "bg-sky-50 dark:bg-sky-900/20"       },
+              { label: "Despachos (90d)",   value: totalDispatches,                    icon: Truck,        color: "text-sky-600",    bg: "bg-white dark:bg-[#111827]"       },
               { label: "Total enviado",      value: `${totalLbs.toLocaleString()} lbs`, icon: Package,      color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
-              { label: "Esta semana",        value: thisWeek,                           icon: Calendar,     color: "text-blue-600",   bg: "bg-blue-50 dark:bg-blue-900/20"     },
-              { label: "Violaciones de temp", value: tempViolations,                   icon: Thermometer,  color: tempViolations > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: tempViolations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Esta semana",        value: thisWeek,                           icon: Calendar,     color: "text-blue-600",   bg: "bg-white dark:bg-[#111827]"     },
+              { label: "Violaciones de temp", value: tempViolations,                   icon: Thermometer,  color: tempViolations > 0 ? "text-red-600" : "text-slate-600 dark:text-slate-300", bg: tempViolations > 0 ? "bg-white dark:bg-[#111827]" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
 
           {/* Temp violation alerts */}
           {recentTempFails.length > 0 && (
-            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
+            <div className="bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800 rounded-xl p-5 space-y-3">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0" />
                 <p className="text-sm font-bold text-red-800 dark:text-red-200">
@@ -114,12 +114,12 @@ export default async function DespachoPage() {
               </div>
               {recentTempFails.map((d) => (
                 <div key={d.id} className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-3 text-sm flex flex-wrap items-center gap-3">
-                  <span className="font-bold text-red-700 dark:text-red-300">{fmtDate(d.dispatch_date)}</span>
+                  <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(d.dispatch_date)}</span>
                   <span className="text-slate-600 dark:text-slate-300 font-medium">{d.product_name}</span>
                   {d.temp_at_loading_f != null && (
                     <span className="text-red-600 font-bold">{d.temp_at_loading_f}°F al despachar</span>
                   )}
-                  <span className="text-slate-500 dark:text-slate-300">→ {d.destination_name}</span>
+                  <span className="text-slate-600 dark:text-slate-300">→ {d.destination_name}</span>
                 </div>
               ))}
             </div>
@@ -129,13 +129,13 @@ export default async function DespachoPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-500 dark:text-slate-300">{totalDispatches} despachos</span>
+              <span className="text-xs text-slate-600 dark:text-slate-300">{totalDispatches} despachos</span>
             </div>
 
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Truck className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-500 dark:text-slate-300">Sin despachos registrados.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Sin despachos registrados.</p>
                 <Link href="/despacho/nuevo" className="text-sm text-sky-600 font-semibold hover:underline">
                   + Registrar primer despacho
                 </Link>
@@ -146,7 +146,7 @@ export default async function DespachoPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Bill of Lading", "Producto / Lotes", "Cantidad", "Destino", "Transportista", "Temp", "Sello", "Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -161,12 +161,12 @@ export default async function DespachoPage() {
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
                             {fmtDate(log.dispatch_date)}
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 font-mono text-xs">
+                          <td className="px-4 py-3 text-slate-600 dark:text-slate-300 font-mono text-xs">
                             {log.bill_of_lading || <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 max-w-[160px]">
                             <p className="font-medium truncate">{log.product_name}</p>
-                            {log.lot_numbers && <p className="text-xs text-slate-400 truncate">{log.lot_numbers}</p>}
+                            {log.lot_numbers && <p className="text-xs text-slate-600 dark:text-slate-300 truncate">{log.lot_numbers}</p>}
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 tabular-nums whitespace-nowrap">
                             {Number(log.quantity).toLocaleString()} {log.unit}
@@ -174,9 +174,9 @@ export default async function DespachoPage() {
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 max-w-[140px]">
                             <p className="truncate">{log.destination_name}</p>
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 max-w-[120px]">
+                          <td className="px-4 py-3 text-slate-600 dark:text-slate-300 max-w-[120px]">
                             <p className="truncate">{log.carrier_name || "—"}</p>
-                            {log.truck_plate && <p className="text-xs text-slate-500 dark:text-slate-300">{log.truck_plate}</p>}
+                            {log.truck_plate && <p className="text-xs text-slate-600 dark:text-slate-300">{log.truck_plate}</p>}
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             {log.temp_at_loading_f == null ? (
@@ -193,7 +193,7 @@ export default async function DespachoPage() {
                               </div>
                             )}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 font-mono">
+                          <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 font-mono">
                             {log.seal_number || <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
                           <td className="px-4 py-3">
