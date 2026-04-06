@@ -92,8 +92,8 @@
   --surface-3: #1a2235;
   --border-subtle: #1e293b;
   --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #475569;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
   --topbar-bg: rgba(11,15,26,0.98);
   --topbar-border: #1e293b;
 }
@@ -122,12 +122,14 @@ body {
 }
 
 /* ── Dark mode overrides for common patterns ─────────────── */
+/* NOTE: We use Tailwind dark: classes for most text — these overrides
+   only apply to legacy elements that don't have explicit dark: variants */
+
 .dark .bg-white {
   background-color: var(--surface-1) !important;
 }
 
-.dark .bg-slate-50,
-.dark .hover\:bg-slate-50:hover {
+.dark .bg-slate-50 {
   background-color: var(--surface-3) !important;
 }
 
@@ -139,19 +141,14 @@ body {
   border-color: var(--border-subtle) !important;
 }
 
-.dark .text-slate-800,
-.dark .text-slate-700 {
-  color: var(--text-primary) !important;
-}
-
-.dark .text-slate-600,
-.dark .text-slate-500 {
-  color: var(--text-secondary) !important;
-}
-
-.dark .text-slate-400 {
-  color: var(--text-muted) !important;
-}
+/* Text color overrides — lighter values for dark mode readability */
+.dark .text-slate-900 { color: #f1f5f9 !important; }
+.dark .text-slate-800 { color: #e2e8f0 !important; }
+.dark .text-slate-700 { color: #cbd5e1 !important; }
+.dark .text-slate-600 { color: #94a3b8 !important; }
+.dark .text-slate-500 { color: #94a3b8 !important; }
+/* text-slate-400 gets a BRIGHT value in dark mode so it's actually readable */
+.dark .text-slate-400 { color: #94a3b8 !important; }
 
 /* Dropdown menus */
 .dark [data-radix-popper-content-wrapper] .bg-white {

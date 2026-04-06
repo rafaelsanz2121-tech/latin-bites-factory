@@ -15,29 +15,42 @@ import { useEffect, useState } from "react"
 
 /* ── Breadcrumb mapping ─────────────────────────────────── */
 const ROUTE_LABELS: Record<string, string> = {
-  dashboard:          "Dashboard",
-  receiving:          "Recepción",
-  thawing:            "Descongelado",
-  cooking:            "Cocción / CCP",
-  calibration:        "Calibración",
-  sanitation:         "Sanitación",
-  operational:        "Operacional",
-  preop:              "Pre-Op",
-  preshipment:        "Pre-Embarque",
-  deviations:         "Desviaciones",
+  dashboard:            "Dashboard",
+  receiving:            "Recepción",
+  thawing:              "Descongelado",
+  cooking:              "Cocción / CCP",
+  calibration:          "Calibración",
+  sanitation:           "Sanitación",
+  operational:          "Operacional",
+  preop:                "Pre-Op",
+  preshipment:          "Pre-Embarque",
+  deviations:           "Desviaciones",
   "corrective-actions": "Acciones CAPA",
-  reports:            "Reportes",
-  production:         "Producción",
-  lots:               "Lotes MP",
-  clients:            "Clientes",
-  admin:              "Admin",
-  users:              "Usuarios",
-  settings:           "Configuración",
-  new:                "Nuevo",
-  costos:             "Costos",
-  inventario:         "Inventario",
-  horas:              "Control de Horas",
-  finanzas:           "Finanzas",
+  reports:              "Reportes",
+  production:           "Producción",
+  lots:                 "Lotes MP",
+  clients:              "Clientes",
+  admin:                "Admin",
+  users:                "Usuarios",
+  settings:             "Configuración",
+  new:                  "Nuevo",
+  nuevo:                "Nuevo",
+  costos:               "Costos",
+  inventario:           "Inventario",
+  horas:                "Control de Horas",
+  finanzas:             "Finanzas",
+  listeria:             "Listeria",
+  capacitacion:         "Capacitación",
+  "metal-detector":     "Det. de Metales",
+  proveedores:          "Proveedores",
+  despacho:             "Despacho",
+  alergenos:            "Alérgenos",
+  plagas:               "Control de Plagas",
+  recall:               "Mock Recall",
+  "agua-retenida":      "Agua Retenida",
+  "agua-potable":       "Agua Potable",
+  "auditoria-interna":  "Auditoría HACCP",
+  "salud-personal":     "Salud Personal",
 }
 
 const ROLE_DOT: Record<string, string> = {
@@ -81,7 +94,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
       {/* ── Mobile menu toggle ────────────────────────── */}
       <button
         onClick={onMenuToggle}
-        className="p-2 rounded-lg hover:bg-slate-100 transition-colors lg:hidden text-slate-500"
+        className="p-2 rounded-lg hover:bg-slate-100 transition-colors lg:hidden text-slate-600 dark:text-slate-400"
         aria-label="Menu"
       >
         <Menu className="w-4 h-4" />
@@ -89,7 +102,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
 
       {/* ── Breadcrumb ───────────────────────────────── */}
       <nav className="flex items-center gap-1 flex-1 min-w-0">
-        <Link href="/dashboard" className="flex items-center gap-1.5 text-slate-400 hover:text-slate-700 transition-colors flex-shrink-0">
+        <Link href="/dashboard" className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-700 transition-colors flex-shrink-0">
           <Zap className="w-3.5 h-3.5 text-red-500" />
           <span className="text-[12px] font-semibold text-red-500 hidden sm:block">FactorOS</span>
         </Link>
@@ -98,7 +111,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
             <ChevronRight className="w-3 h-3 text-slate-300 flex-shrink-0" />
             <span className={cn(
               "text-[12.5px] font-medium truncate",
-              i === segments.length - 1 ? "text-slate-700" : "text-slate-400"
+              i === segments.length - 1 ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"
             )}>
               {seg.label}
             </span>
@@ -110,9 +123,9 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
       <div className="flex items-center gap-1.5 flex-shrink-0">
 
         {/* Live indicator */}
-        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-green-50 rounded-full border border-green-100 mr-2">
+        <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 rounded-full border border-green-100 dark:border-green-800/40 mr-2">
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[10.5px] font-semibold text-green-700">Sistema activo</span>
+          <span className="text-[10.5px] font-semibold text-green-700 dark:text-green-400">En línea</span>
         </div>
 
         {/* Theme toggle */}
@@ -125,7 +138,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
           >
             {theme === "dark"
               ? <Sun className="w-4 h-4 text-amber-400" />
-              : <Moon className="w-4 h-4 text-slate-400" />
+              : <Moon className="w-4 h-4 text-slate-600 dark:text-slate-400" />
             }
           </button>
         )}
@@ -149,7 +162,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
               </div>
               {/* Name + role */}
               <div className="hidden sm:block text-left">
-                <p className="text-[12px] font-semibold text-slate-700 leading-tight">{profile.full_name}</p>
+                <p className="text-[12px] font-semibold text-slate-900 dark:text-slate-100 leading-tight">{profile.full_name}</p>
                 <p className={cn("text-[10px] font-medium leading-tight mt-0.5", ROLE_COLORS[profile.role])}>
                   {ROLE_LABELS[profile.role]}
                 </p>
@@ -181,7 +194,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
                   href="/admin/settings"
                   className="flex items-center gap-2.5 px-3 py-2 text-[13px] text-[var(--text-secondary)] rounded-lg hover:bg-[var(--surface-3)] cursor-pointer outline-none transition-colors"
                 >
-                  <Settings className="w-3.5 h-3.5 text-slate-400" />
+                  <Settings className="w-3.5 h-3.5 text-slate-600 dark:text-slate-400" />
                   Mi Perfil
                 </Link>
               </DropdownMenu.Item>
