@@ -31,12 +31,12 @@ export function AppShell({ profile, children }: Props) {
   }, [])
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-[#0a0f1e]">
 
       {/* ── Mobile backdrop ────────────────────────────── */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-20 lg:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-[2px] z-20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
           aria-hidden="true"
         />
@@ -57,12 +57,16 @@ export function AppShell({ profile, children }: Props) {
 
       {/* ── Main area ─────────────────────────────────── */}
       <div className="flex flex-col flex-1 overflow-hidden min-w-0">
+        {/* Sticky top bar */}
         <Topbar
           profile={profile}
           onMenuToggle={() => setSidebarOpen((prev) => !prev)}
         />
-        <main className="flex-1 overflow-y-auto bg-[var(--background)] p-4 md:p-6">
-          {children}
+        {/* Scrollable content area */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="px-4 md:px-6 py-6 max-w-[1400px] mx-auto">
+            {children}
+          </div>
         </main>
       </div>
     </div>
