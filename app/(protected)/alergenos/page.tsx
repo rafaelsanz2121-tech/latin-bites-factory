@@ -106,9 +106,9 @@ export default async function AlergenosPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Chequeos (90d)",    value: totalChecks, icon: Beaker,     color: "text-orange-600",  bg: "bg-orange-50 dark:bg-orange-900/20"  },
-              { label: "No habilitados",    value: notCleared,  icon: XCircle,    color: notCleared > 0 ? "text-red-600" : "text-slate-400", bg: notCleared > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "No habilitados",    value: notCleared,  icon: XCircle,    color: notCleared > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: notCleared > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
               { label: "Habilitados",       value: totalChecks - notCleared, icon: CheckCircle2, color: "text-green-600", bg: "bg-green-50 dark:bg-green-900/20" },
-              { label: "Último chequeo",    value: lastCheck ? fmtDate(lastCheck.check_date) : "—", icon: Calendar, color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Último chequeo",    value: lastCheck ? fmtDate(lastCheck.check_date) : "—", icon: Calendar, color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
@@ -166,7 +166,7 @@ export default async function AlergenosPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Tipo", "Área", "Antes", "Después", "Alérgenos detectados", "Limpieza", "Etiqueta", "Estado"].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

@@ -118,12 +118,12 @@ export default async function SaludPersonalPage() {
               Resumen de hoy — {new Date().toLocaleDateString("es-MX", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
             </p>
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-center">
+              <div className="bg-slate-100 dark:bg-slate-800 rounded-xl p-4 text-center">
                 <p className="text-2xl font-black text-slate-700 dark:text-slate-200 tabular-nums">{totalToday}</p>
                 <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Declaraciones hoy</p>
               </div>
-              <div className={`rounded-xl p-4 text-center ${symptomsToday > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50"}`}>
-                <p className={`text-2xl font-black tabular-nums ${symptomsToday > 0 ? "text-amber-600" : "text-slate-400"}`}>{symptomsToday}</p>
+              <div className={`rounded-xl p-4 text-center ${symptomsToday > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800"}`}>
+                <p className={`text-2xl font-black tabular-nums ${symptomsToday > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300"}`}>{symptomsToday}</p>
                 <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Con síntomas</p>
               </div>
               <div className={`rounded-xl p-4 text-center ${notClearedToday > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-green-50 dark:bg-green-900/20"}`}>
@@ -137,8 +137,8 @@ export default async function SaludPersonalPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Declaraciones (30d)",  value: total30,       icon: Users,       color: "text-rose-600",   bg: "bg-rose-50 dark:bg-rose-900/20" },
-              { label: "Exclusiones (30d)",    value: notCleared30,  icon: XCircle,     color: notCleared30 > 0 ? "text-red-600" : "text-slate-400",  bg: notCleared30 > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Con síntomas (30d)",   value: declarations.filter((d) => !d.symptom_free).length, icon: AlertTriangle, color: declarations.filter((d) => !d.symptom_free).length > 0 ? "text-amber-600" : "text-slate-400", bg: declarations.filter((d) => !d.symptom_free).length > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Exclusiones (30d)",    value: notCleared30,  icon: XCircle,     color: notCleared30 > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",  bg: notCleared30 > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Con síntomas (30d)",   value: declarations.filter((d) => !d.symptom_free).length, icon: AlertTriangle, color: declarations.filter((d) => !d.symptom_free).length > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: declarations.filter((d) => !d.symptom_free).length > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
               { label: "Hoy habilitados",      value: totalToday - notClearedToday, icon: ShieldCheck, color: "text-green-600",  bg: "bg-green-50 dark:bg-green-900/20" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
@@ -184,7 +184,7 @@ export default async function SaludPersonalPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Turno","Hora","Síntoma libre","Síntomas","Habilitado","Nota restricción"].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

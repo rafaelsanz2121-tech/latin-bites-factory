@@ -112,9 +112,9 @@ export default async function RecallPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Simulacros realizados", value: mockDrills,                                              icon: Target,    color: "text-rose-600",   bg: "bg-rose-50 dark:bg-rose-900/20"         },
-              { label: "Retiros reales",         value: actualRecalls,                                           icon: AlertTriangle, color: actualRecalls > 0 ? "text-red-600" : "text-slate-400", bg: actualRecalls > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Retiros reales",         value: actualRecalls,                                           icon: AlertTriangle, color: actualRecalls > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: actualRecalls > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
               { label: "% recuperación prom.",   value: avgRecovery !== null ? `${avgRecovery}%` : "—",          icon: TrendingUp, color: (avgRecovery ?? 0) >= 90 ? "text-green-600" : "text-amber-600", bg: (avgRecovery ?? 0) >= 90 ? "bg-green-50 dark:bg-green-900/20" : "bg-amber-50 dark:bg-amber-900/20" },
-              { label: "Tiempo prom. identificar",value: avgTimeMin !== null ? `${avgTimeMin}min` : "—",         icon: Clock,     color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Tiempo prom. identificar",value: avgTimeMin !== null ? `${avgTimeMin}min` : "—",         icon: Clock,     color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />

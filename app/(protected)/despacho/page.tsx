@@ -91,9 +91,9 @@ export default async function DespachoPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Despachos (90d)",   value: totalDispatches,                    icon: Truck,        color: "text-sky-600",    bg: "bg-sky-50 dark:bg-sky-900/20"       },
-              { label: "Total enviado",      value: `${totalLbs.toLocaleString()} lbs`, icon: Package,      color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Total enviado",      value: `${totalLbs.toLocaleString()} lbs`, icon: Package,      color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
               { label: "Esta semana",        value: thisWeek,                           icon: Calendar,     color: "text-blue-600",   bg: "bg-blue-50 dark:bg-blue-900/20"     },
-              { label: "Violaciones de temp", value: tempViolations,                   icon: Thermometer,  color: tempViolations > 0 ? "text-red-600" : "text-slate-400", bg: tempViolations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Violaciones de temp", value: tempViolations,                   icon: Thermometer,  color: tempViolations > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: tempViolations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
@@ -143,7 +143,7 @@ export default async function DespachoPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Bill of Lading", "Producto / Lotes", "Cantidad", "Destino", "Transportista", "Temp", "Sello", "Estado"].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

@@ -137,9 +137,9 @@ export default async function AuditoriaInternaPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Auditorías (12m)",     value: total,          icon: ClipboardCheck, color: "text-indigo-600",  bg: "bg-indigo-50 dark:bg-indigo-900/20" },
-              { label: "No satisfactorias",    value: unsatisfactory, icon: XCircle,        color: unsatisfactory > 0 ? "text-red-600" : "text-slate-400",   bg: unsatisfactory > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Condicionales",        value: conditional,    icon: AlertTriangle,  color: conditional > 0 ? "text-amber-600" : "text-slate-400",    bg: conditional > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Seguimientos vencidos",value: overdueFollowUp,icon: Clock,          color: overdueFollowUp > 0 ? "text-red-600" : "text-slate-400",  bg: overdueFollowUp > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "No satisfactorias",    value: unsatisfactory, icon: XCircle,        color: unsatisfactory > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",   bg: unsatisfactory > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Condicionales",        value: conditional,    icon: AlertTriangle,  color: conditional > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300",    bg: conditional > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Seguimientos vencidos",value: overdueFollowUp,icon: Clock,          color: overdueFollowUp > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",  bg: overdueFollowUp > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
@@ -185,7 +185,7 @@ export default async function AuditoriaInternaPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Tipo","Auditor","Items ✓","Items ✗","Hallazgos críticos","Seguimiento","Resultado"].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

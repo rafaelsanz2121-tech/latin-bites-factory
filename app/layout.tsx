@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Latin Bites Factory – Operations",
-  description: "Food safety and operational compliance management system",
+  title: "FactorOS — El sistema operativo de tu planta de carnes",
+  description: "Plataforma HACCP digital para plantas USDA inspeccionadas. 24 módulos de compliance, trazabilidad y auditoría. 9 CFR 417 compliant.",
 }
 
 export default function RootLayout({

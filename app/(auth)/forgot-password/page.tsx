@@ -36,7 +36,7 @@ export default function ForgotPasswordPage() {
         <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center mb-4 shadow-lg">
           <Factory className="w-6 h-6 text-white" />
         </div>
-        <h1 className="text-xl font-bold text-white">Latin Bites Factory</h1>
+        <h1 className="text-xl font-bold text-white">FactorOS</h1>
         <p className="text-slate-400 text-sm mt-1">EST No. M/P2643</p>
       </div>
 

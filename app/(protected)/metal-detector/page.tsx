@@ -113,22 +113,22 @@ export default async function MetalDetectorPage() {
                 label: "Fallas",
                 value: failedChecks,
                 icon:  XCircle,
-                color: failedChecks > 0 ? "text-red-600" : "text-slate-400",
-                bg:    failedChecks > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50",
+                color: failedChecks > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300",
+                bg:    failedChecks > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800",
               },
               {
                 label: "Unidades rechazadas",
                 value: totalRejected,
                 icon:  Package,
-                color: totalRejected > 0 ? "text-orange-600" : "text-slate-400",
-                bg:    totalRejected > 0 ? "bg-orange-50 dark:bg-orange-900/20" : "bg-slate-50 dark:bg-slate-800/50",
+                color: totalRejected > 0 ? "text-orange-600" : "text-slate-500 dark:text-slate-300",
+                bg:    totalRejected > 0 ? "bg-orange-50 dark:bg-orange-900/20" : "bg-slate-100 dark:bg-slate-800",
               },
               {
                 label: "Último chequeo",
                 value: lastCheck ? fmtDate(lastCheck.check_date) : "—",
                 icon:  Calendar,
                 color: "text-slate-600 dark:text-slate-300",
-                bg:    "bg-slate-50 dark:bg-slate-800/50",
+                bg:    "bg-slate-100 dark:bg-slate-800",
               },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
@@ -209,7 +209,7 @@ export default async function MetalDetectorPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Hora", "Tipo", "Producto / Lote", "Fe", "No-Fe", "Inox", "Estado", "Rechazados"].map((h) => (
                         <th

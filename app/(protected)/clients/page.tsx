@@ -31,7 +31,7 @@ export default async function ClientsPage() {
         <div>
           <h1 className="text-2xl font-bold">Clients</h1>
           <p className="text-sm text-[var(--muted-foreground)] mt-0.5">
-            Companies Latin Bites Factory produces food for
+            Clientes a quienes tu planta produce alimentos
           </p>
         </div>
         {canCreate && (

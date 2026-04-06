@@ -90,7 +90,7 @@ export default async function AguaRetenidaPage() {
             ⚠ Deadline regulatorio: 1 de julio de 2026 — {daysToDeadline} días restantes
           </p>
           <p className={`text-xs mt-0.5 ${daysToDeadline <= 60 ? "text-red-700 dark:text-red-300" : "text-amber-700 dark:text-amber-300"}`}>
-            9 CFR 441 requiere que todo procesador de carne documente y controle el agua retenida durante el proceso de enfriamiento. Latin Bites (EST M/P2643) debe tener registros activos antes de esta fecha.
+            9 CFR 441 requiere que todo procesador de carne documente y controle el agua retenida durante el proceso de enfriamiento. Tu planta debe tener registros activos antes de esta fecha.
           </p>
         </div>
       </div>
@@ -111,9 +111,9 @@ export default async function AguaRetenidaPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Pruebas (90d)",      value: total,                                               icon: FlaskConical, color: "text-cyan-600",   bg: "bg-cyan-50 dark:bg-cyan-900/20"       },
-              { label: "Fuera de límite",    value: fails,                                               icon: XCircle,     color: fails > 0 ? "text-red-600" : "text-slate-400", bg: fails > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Producto retenido",  value: onHold,                                             icon: AlertTriangle,color: onHold > 0 ? "text-amber-600" : "text-slate-400", bg: onHold > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "% agua prom.",       value: avgRetained !== null ? `${avgRetained}%` : "—",     icon: Droplets,    color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Fuera de límite",    value: fails,                                               icon: XCircle,     color: fails > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: fails > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Producto retenido",  value: onHold,                                             icon: AlertTriangle,color: onHold > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: onHold > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "% agua prom.",       value: avgRetained !== null ? `${avgRetained}%` : "—",     icon: Droplets,    color: "text-slate-600 dark:text-slate-300", bg: "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
@@ -186,7 +186,7 @@ export default async function AguaRetenidaPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Producto","Lote","Tipo","Método enfriamiento","Peso crudo","Peso procesado","Agua ret.","Límite","Estado"].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

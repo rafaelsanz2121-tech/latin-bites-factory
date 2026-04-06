@@ -104,9 +104,9 @@ export default async function PlagasPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: "Inspecciones (90d)", value: totalInspections,                                     icon: Search,   color: "text-lime-600",   bg: "bg-lime-50 dark:bg-lime-900/20"       },
-              { label: "Con hallazgos",      value: withFindings,                                          icon: AlertTriangle, color: withFindings > 0 ? "text-amber-600" : "text-slate-400", bg: withFindings > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Infestaciones",      value: infestations,                                          icon: Bug,      color: infestations > 0 ? "text-red-600" : "text-slate-400", bg: infestations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Días sin inspección",value: daysSinceLast !== null ? `${daysSinceLast}d` : "—",   icon: Calendar, color: (daysSinceLast ?? 0) > 30 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: (daysSinceLast ?? 0) > 30 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Con hallazgos",      value: withFindings,                                          icon: AlertTriangle, color: withFindings > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: withFindings > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Infestaciones",      value: infestations,                                          icon: Bug,      color: infestations > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: infestations > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Días sin inspección",value: daysSinceLast !== null ? `${daysSinceLast}d` : "—",   icon: Calendar, color: (daysSinceLast ?? 0) > 30 ? "text-amber-600" : "text-slate-600 dark:text-slate-300", bg: (daysSinceLast ?? 0) > 30 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
@@ -167,7 +167,7 @@ export default async function PlagasPage() {
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-slate-50 dark:bg-slate-800/50">
+                  <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Tipo", "Inspector", "Trampas", "Actividad", "Hallazgos", "Tratamiento", "Próxima insp."].map((h) => (
                         <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>

@@ -57,7 +57,7 @@ export default function NewClientPage() {
       <div>
         <h1 className="text-2xl font-bold">New Client</h1>
         <p className="text-sm text-[var(--muted-foreground)] mt-0.5">
-          Add a company that Latin Bites Factory produces food for
+          Agrega una empresa cliente de tu planta
         </p>
       </div>
 

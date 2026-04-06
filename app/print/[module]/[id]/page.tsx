@@ -55,7 +55,7 @@ function fieldValue(v: unknown): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { module } = await params
-  return { title: `${MODULE_LABELS[module] ?? "Record"} — Latin Bites Factory` }
+  return { title: `${MODULE_LABELS[module] ?? "Record"} — FactorOS` }
 }
 
 export default async function PrintPage({ params }: Props) {
@@ -100,8 +100,8 @@ export default async function PrintPage({ params }: Props) {
       {/* ── Header ── */}
       <div className="pb-header">
         <div className="pb-header-left">
-          <h1>Latin Bites Factory</h1>
-          <p>EST No. M/P2643 · USDA Inspected · M/P2643</p>
+          <h1>FactorOS</h1>
+          <p>USDA Inspected · HACCP Compliant</p>
         </div>
         <div className="pb-header-right">
           <strong>{title}</strong>
@@ -189,7 +189,7 @@ export default async function PrintPage({ params }: Props) {
 
       {/* ── Footer ── */}
       <div className="pb-footer">
-        <span>Latin Bites Factory · EST No. M/P2643</span>
+        <span>FactorOS · HACCP Compliance Platform</span>
         <span>HACCP Record-Keeping System</span>
         <span>{new Date().toISOString().split("T")[0]}</span>
       </div>

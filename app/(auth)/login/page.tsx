@@ -81,30 +81,36 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#080e1c] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Back to landing */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-600 mb-4 shadow-xl">
-            <Factory className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold text-white">Latin Bites Factory</h1>
-          <p className="text-blue-300 text-sm mt-1">Operations & Quality Management</p>
+          <a href="/" className="inline-flex items-center gap-2.5 mb-6 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg shadow-red-900/40">
+              <Factory className="w-5 h-5 text-white" />
+            </div>
+            <span className="font-black text-xl text-white tracking-tight">
+              Factor<span className="text-red-500">OS</span>
+            </span>
+          </a>
+          <h1 className="text-2xl font-black text-white">Bienvenido de vuelta</h1>
+          <p className="text-slate-400 text-sm mt-1">Ingresa tus credenciales para continuar</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-2xl p-8">
+        <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
           <div className="mb-6">
-            <h2 className="text-xl font-semibold text-[var(--foreground)]">Sign In</h2>
-            <p className="text-sm text-[var(--muted-foreground)] mt-1">
-              Use your employee credentials to access the system
+            <h2 className="text-lg font-bold text-white">Iniciar sesión</h2>
+            <p className="text-sm text-slate-400 mt-1">
+              Usa tus credenciales de empleado para acceder al sistema
             </p>
           </div>
 
-          <Suspense fallback={<div className="space-y-4 animate-pulse"><div className="h-9 bg-slate-100 rounded" /><div className="h-9 bg-slate-100 rounded" /><div className="h-9 bg-slate-100 rounded" /></div>}>
+          <Suspense fallback={<div className="space-y-4 animate-pulse"><div className="h-9 bg-white/10 rounded" /><div className="h-9 bg-white/10 rounded" /><div className="h-9 bg-white/10 rounded" /></div>}>
             <LoginForm />
           </Suspense>
 
-          <p className="text-center text-xs text-[var(--muted-foreground)] mt-6">
-            EST No. M/P2643 · USDA-regulated facility
+          <p className="text-center text-xs text-slate-600 mt-6">
+            FactorOS · HACCP Compliance Platform · USDA Ready
           </p>
         </div>
       </div>

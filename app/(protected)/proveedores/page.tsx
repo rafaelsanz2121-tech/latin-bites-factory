@@ -122,8 +122,8 @@ export default async function ProveedoresPage() {
             {[
               { label: "Total proveedores", value: suppliers.length, icon: Building2,    color: "text-teal-600",   bg: "bg-teal-50 dark:bg-teal-900/20"       },
               { label: "Aprobados",         value: totalApproved,    icon: ShieldCheck,  color: "text-green-600",  bg: "bg-green-50 dark:bg-green-900/20"     },
-              { label: "Riesgo alto",       value: highRisk,         icon: AlertTriangle,color: highRisk > 0 ? "text-red-600" : "text-slate-400", bg: highRisk > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
-              { label: "Pendientes revisión",value: pendingReview,   icon: Clock,        color: pendingReview > 0 ? "text-amber-600" : "text-slate-400", bg: pendingReview > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-50 dark:bg-slate-800/50" },
+              { label: "Riesgo alto",       value: highRisk,         icon: AlertTriangle,color: highRisk > 0 ? "text-red-600" : "text-slate-500 dark:text-slate-300", bg: highRisk > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-slate-100 dark:bg-slate-800" },
+              { label: "Pendientes revisión",value: pendingReview,   icon: Clock,        color: pendingReview > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300", bg: pendingReview > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800" },
             ].map((k) => (
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
