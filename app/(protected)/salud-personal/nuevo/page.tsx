@@ -127,7 +127,7 @@ export default function NuevaSaludPersonalPage() {
     <div className="max-w-xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Link href="/salud-personal" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+        <Link href="/salud-personal" className="text-slate-500 dark:text-slate-300 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
           <ChevronLeft className="w-5 h-5" />
         </Link>
         <div>
@@ -135,7 +135,7 @@ export default function NuevaSaludPersonalPage() {
             <Heart className="w-5 h-5 text-rose-600" />
             Declaración de Salud
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">9 CFR 416.8 · Verificación antes de ingresar al área de proceso</p>
+          <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">9 CFR 416.8 · Verificación antes de ingresar al área de proceso</p>
         </div>
       </div>
 
@@ -146,18 +146,18 @@ export default function NuevaSaludPersonalPage() {
           <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Información del turno</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" required value={form.declaration_date} onChange={(e) => set("declaration_date", e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-rose-500 outline-none" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Hora *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
               <input type="time" required value={form.declaration_time} onChange={(e) => set("declaration_time", e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-rose-500 outline-none" />
             </div>
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Turno *</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-2 uppercase tracking-wide">Turno *</label>
             <div className="grid grid-cols-2 gap-2">
               {SHIFTS.map((s) => (
                 <label
@@ -170,7 +170,7 @@ export default function NuevaSaludPersonalPage() {
                 >
                   <input type="radio" className="sr-only" value={s.value} checked={form.shift === s.value} onChange={(e) => set("shift", e.target.value)} />
                   <span className={`text-sm font-semibold ${form.shift === s.value ? "text-rose-700 dark:text-rose-300" : "text-slate-700 dark:text-slate-200"}`}>{s.label}</span>
-                  <span className="text-[10px] text-slate-400">{s.time}</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-300">{s.time}</span>
                 </label>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function NuevaSaludPersonalPage() {
               <ShieldCheck className="w-4 h-4 text-rose-500" />
               Verificación de síntomas
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 dark:text-slate-300 mt-1">
               Marca cualquier síntoma presente. La presencia de <strong>cualquiera</strong> de estos síntomas requiere exclusión del área de proceso (9 CFR 416.8).
             </p>
           </div>
@@ -206,7 +206,7 @@ export default function NuevaSaludPersonalPage() {
                   <span className="text-2xl leading-none flex-shrink-0">{sym.emoji}</span>
                   <div className="flex-1">
                     <p className={`text-sm font-bold ${active ? "text-red-700 dark:text-red-300" : "text-slate-700 dark:text-slate-200"}`}>{sym.label}</p>
-                    <p className="text-xs text-slate-400 mt-0.5">{sym.desc}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">{sym.desc}</p>
                   </div>
                   <div className={`w-6 h-6 rounded-full flex-shrink-0 border-2 flex items-center justify-center transition-all ${
                     active ? "border-red-500 bg-red-500" : "border-slate-200 dark:border-slate-600"
@@ -307,7 +307,7 @@ export default function NuevaSaludPersonalPage() {
                 ? "EXCLUIDO — No puede ingresar al área de proceso"
                 : "HABILITADO CON RESTRICCIÓN — Solo áreas no-contacto"}
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">
               {!hasAnySymptom
                 ? "El empleado puede ingresar al área de proceso normalmente."
                 : !form.cleared_to_work

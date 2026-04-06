@@ -125,7 +125,7 @@ export default async function CapacitacionPage() {
             </span>
             Capacitación de Personal
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
             Registros de entrenamiento HACCP · 9 CFR 417.7
           </p>
         </div>
@@ -167,7 +167,7 @@ export default async function CapacitacionPage() {
           <div key={k.label} className={`rounded-xl border border-transparent p-4 ${k.bg}`}>
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
             <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
-            <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+            <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}
       </div>
@@ -176,13 +176,13 @@ export default async function CapacitacionPage() {
       <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
           <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Estado por Empleado</h2>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-[11px] text-slate-500 dark:text-slate-300 mt-0.5">
             Entrenamientos requeridos según 9 CFR 417.7 por rol
           </p>
         </div>
 
         {(employees || []).length === 0 ? (
-          <p className="text-sm text-slate-400 text-center py-8">Sin empleados activos</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 text-center py-8">Sin empleados activos</p>
         ) : (
           <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
             {(employees || []).map((emp) => {
@@ -203,7 +203,7 @@ export default async function CapacitacionPage() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-700 dark:text-slate-200">{emp.full_name}</p>
-                        <p className="text-[10.5px] text-slate-400">
+                        <p className="text-[10.5px] text-slate-500 dark:text-slate-300">
                           {ROLE_ES[emp.role] ?? emp.role}
                           {emp.employee_id && ` · ID: ${emp.employee_id}`}
                         </p>
@@ -259,7 +259,7 @@ export default async function CapacitacionPage() {
                         const stat = getStatus(r)
                         const s = STATUS_STYLE[stat]
                         return (
-                          <div key={r.id} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 dark:bg-slate-700/40 border border-transparent text-[11px] text-slate-400">
+                          <div key={r.id} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 dark:bg-slate-700/40 border border-transparent text-[11px] text-slate-500 dark:text-slate-300">
                             <s.icon className="w-3 h-3 text-slate-300" />
                             {r.training_type}
                           </div>
@@ -279,12 +279,12 @@ export default async function CapacitacionPage() {
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
             <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Registro de Capacitaciones</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">{records.length} registros · Retención: 2 años</p>
+            <p className="text-[11px] text-slate-500 dark:text-slate-300 mt-0.5">{records.length} registros · Retención: 2 años</p>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Empleado</th>
                   <th className="text-left px-4 py-3">Capacitación</th>
                   <th className="text-left px-4 py-3">Fecha</th>
@@ -318,7 +318,7 @@ export default async function CapacitacionPage() {
                           {r.result === "passed" ? "Aprobado" : r.result === "failed" ? "Reprobado" : "Pendiente"}
                         </span>
                         {r.score != null && (
-                          <span className="ml-1.5 text-[10.5px] text-slate-400">{r.score}%</span>
+                          <span className="ml-1.5 text-[10.5px] text-slate-500 dark:text-slate-300">{r.score}%</span>
                         )}
                       </td>
                       <td className="px-4 py-3">

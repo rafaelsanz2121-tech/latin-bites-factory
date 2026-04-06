@@ -70,7 +70,7 @@ export default async function MetalDetectorPage() {
             </span>
             Detector de Metales
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
             CCP — 9 CFR 417.3 · Verificación de sensibilidad y registros de producción
           </p>
         </div>
@@ -134,7 +134,7 @@ export default async function MetalDetectorPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -164,7 +164,7 @@ export default async function MetalDetectorPage() {
                     )}
                   </div>
                   {f.corrective_action && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                    <p className="text-xs text-slate-600 dark:text-slate-300">
                       <span className="font-semibold">Acción:</span> {f.corrective_action}
                     </p>
                   )}
@@ -192,13 +192,13 @@ export default async function MetalDetectorPage() {
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">
                 Registros — últimos 90 días
               </span>
-              <span className="text-xs text-slate-400">{totalChecks} chequeos</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{totalChecks} chequeos</span>
             </div>
 
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Zap className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin registros todavía.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin registros todavía.</p>
                 <Link
                   href="/metal-detector/nuevo"
                   className="text-sm text-violet-600 font-semibold hover:underline"
@@ -214,7 +214,7 @@ export default async function MetalDetectorPage() {
                       {["Fecha", "Hora", "Tipo", "Producto / Lote", "Fe", "No-Fe", "Inox", "Estado", "Rechazados"].map((h) => (
                         <th
                           key={h}
-                          className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap"
+                          className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap"
                         >
                           {h}
                         </th>
@@ -231,7 +231,7 @@ export default async function MetalDetectorPage() {
                             : <CheckCircle2 className="w-4 h-4 text-green-500" />
                           }
                           {mm != null && (
-                            <span className="text-[10px] text-slate-400">{mm}mm</span>
+                            <span className="text-[10px] text-slate-500 dark:text-slate-300">{mm}mm</span>
                           )}
                         </div>
                       )
@@ -245,7 +245,7 @@ export default async function MetalDetectorPage() {
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
                             {fmtDate(log.check_date)}
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 tabular-nums">
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 tabular-nums">
                             {log.check_time?.slice(0, 5) ?? "—"}
                           </td>
                           <td className="px-4 py-3">
@@ -256,7 +256,7 @@ export default async function MetalDetectorPage() {
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                             <p className="font-medium">{log.product_name || "—"}</p>
                             {log.lot_number && (
-                              <p className="text-xs text-slate-400">{log.lot_number}</p>
+                              <p className="text-xs text-slate-500 dark:text-slate-300">{log.lot_number}</p>
                             )}
                           </td>
                           <td className="px-4 py-3">

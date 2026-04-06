@@ -62,7 +62,7 @@ export default async function DespachoPage() {
             </span>
             Registro de Despacho
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 320 · Trazabilidad de envíos · Bills of Lading</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 320 · Trazabilidad de envíos · Bills of Lading</p>
         </div>
         <Link
           href="/despacho/nuevo"
@@ -98,7 +98,7 @@ export default async function DespachoPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -119,7 +119,7 @@ export default async function DespachoPage() {
                   {d.temp_at_loading_f != null && (
                     <span className="text-red-600 font-bold">{d.temp_at_loading_f}°F al despachar</span>
                   )}
-                  <span className="text-slate-400">→ {d.destination_name}</span>
+                  <span className="text-slate-500 dark:text-slate-300">→ {d.destination_name}</span>
                 </div>
               ))}
             </div>
@@ -129,13 +129,13 @@ export default async function DespachoPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-400">{totalDispatches} despachos</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{totalDispatches} despachos</span>
             </div>
 
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Truck className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin despachos registrados.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin despachos registrados.</p>
                 <Link href="/despacho/nuevo" className="text-sm text-sky-600 font-semibold hover:underline">
                   + Registrar primer despacho
                 </Link>
@@ -146,7 +146,7 @@ export default async function DespachoPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Bill of Lading", "Producto / Lotes", "Cantidad", "Destino", "Transportista", "Temp", "Sello", "Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -161,7 +161,7 @@ export default async function DespachoPage() {
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">
                             {fmtDate(log.dispatch_date)}
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 font-mono text-xs">
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 font-mono text-xs">
                             {log.bill_of_lading || <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 max-w-[160px]">
@@ -174,9 +174,9 @@ export default async function DespachoPage() {
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 max-w-[140px]">
                             <p className="truncate">{log.destination_name}</p>
                           </td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 max-w-[120px]">
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 max-w-[120px]">
                             <p className="truncate">{log.carrier_name || "—"}</p>
-                            {log.truck_plate && <p className="text-xs text-slate-400">{log.truck_plate}</p>}
+                            {log.truck_plate && <p className="text-xs text-slate-500 dark:text-slate-300">{log.truck_plate}</p>}
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             {log.temp_at_loading_f == null ? (
@@ -193,7 +193,7 @@ export default async function DespachoPage() {
                               </div>
                             )}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 font-mono">
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 font-mono">
                             {log.seal_number || <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
                           <td className="px-4 py-3">

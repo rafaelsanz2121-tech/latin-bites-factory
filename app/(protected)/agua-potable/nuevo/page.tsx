@@ -142,7 +142,7 @@ export default function NuevaAguaPotablePage() {
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Link href="/agua-potable" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+        <Link href="/agua-potable" className="text-slate-500 dark:text-slate-300 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
           <ChevronLeft className="w-5 h-5" />
         </Link>
         <div>
@@ -150,7 +150,7 @@ export default function NuevaAguaPotablePage() {
             <Droplets className="w-5 h-5 text-blue-600" />
             Nueva Prueba de Agua
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">9 CFR 416.4 · Potabilidad del agua de proceso</p>
+          <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">9 CFR 416.4 · Potabilidad del agua de proceso</p>
         </div>
       </div>
 
@@ -185,25 +185,25 @@ export default function NuevaAguaPotablePage() {
           <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Información general</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" required value={form.test_date} onChange={(e) => set("test_date", e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Hora *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
               <input type="time" required value={form.test_time} onChange={(e) => set("test_time", e.target.value)}
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" />
             </div>
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fuente de agua *</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fuente de agua *</label>
             <select value={form.water_source} onChange={(e) => set("water_source", e.target.value)}
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none">
               {WATER_SOURCES.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Punto de muestreo *</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Punto de muestreo *</label>
             <select value={form.sample_location} onChange={(e) => set("sample_location", e.target.value)}
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none">
               <option value="">Seleccionar...</option>
@@ -212,7 +212,7 @@ export default function NuevaAguaPotablePage() {
           </div>
           {form.sample_location === "Otro" && (
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Especificar ubicación *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Especificar ubicación *</label>
               <input type="text" value={form.custom_location} onChange={(e) => set("custom_location", e.target.value)}
                 placeholder="Ej. Línea 3 — grifo de proceso"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
@@ -229,7 +229,7 @@ export default function NuevaAguaPotablePage() {
 
           {/* Chlorine */}
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
               Cloro residual (ppm) {form.test_type === "daily_chlorine" && <span className="text-red-500">*</span>}
             </label>
             <div className="flex items-center gap-3">
@@ -254,13 +254,13 @@ export default function NuevaAguaPotablePage() {
                 </div>
               )}
             </div>
-            <p className="text-[10px] text-slate-400 mt-1">Rango potable: 0.2 – 4.0 ppm (EPA/FSIS)</p>
+            <p className="text-[10px] text-slate-500 dark:text-slate-300 mt-1">Rango potable: 0.2 – 4.0 ppm (EPA/FSIS)</p>
           </div>
 
           <div className="grid grid-cols-3 gap-4">
             {/* pH */}
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">pH</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">pH</label>
               <input
                 type="number" step="0.01" min="0" max="14"
                 value={form.ph} onChange={(e) => set("ph", e.target.value)}
@@ -269,19 +269,19 @@ export default function NuevaAguaPotablePage() {
                   phStatus === "fuera" ? "border-red-400 dark:border-red-500" : phStatus === "ok" ? "border-green-400 dark:border-green-500" : "border-slate-200 dark:border-slate-600"
                 }`}
               />
-              <p className="text-[10px] text-slate-400 mt-1">6.5 – 8.5</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-300 mt-1">6.5 – 8.5</p>
             </div>
             {/* Turbidity */}
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Turbidez (NTU)</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Turbidez (NTU)</label>
               <input type="number" step="0.001" min="0" value={form.turbidity_ntu} onChange={(e) => set("turbidity_ntu", e.target.value)}
                 placeholder="0.000"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
-              <p className="text-[10px] text-slate-400 mt-1">{"< 0.3 NTU"}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-300 mt-1">{"< 0.3 NTU"}</p>
             </div>
             {/* Temp */}
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Temp (°F)</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Temp (°F)</label>
               <input type="number" step="0.1" value={form.water_temp_f} onChange={(e) => set("water_temp_f", e.target.value)}
                 placeholder="50.0"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
@@ -290,11 +290,11 @@ export default function NuevaAguaPotablePage() {
 
           {/* Pressure */}
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Presión (PSI)</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Presión (PSI)</label>
             <input type="number" step="0.1" min="0" value={form.water_pressure_psi} onChange={(e) => set("water_pressure_psi", e.target.value)}
               placeholder="40.0"
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
-            <p className="text-[10px] text-slate-400 mt-1">Mínimo recomendado: 20 PSI</p>
+            <p className="text-[10px] text-slate-500 dark:text-slate-300 mt-1">Mínimo recomendado: 20 PSI</p>
           </div>
         </div>
 
@@ -311,7 +311,7 @@ export default function NuevaAguaPotablePage() {
                 { key: "e_coli_result",   label: "E. coli" },
               ].map(({ key, label }) => (
                 <div key={key}>
-                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">{label}</label>
+                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-2 uppercase tracking-wide">{label}</label>
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
                       { value: "absent",  label: "Ausente",   color: "green" },
@@ -348,13 +348,13 @@ export default function NuevaAguaPotablePage() {
               </div>
             )}
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Laboratorio</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Laboratorio</label>
               <input type="text" value={form.lab_name} onChange={(e) => set("lab_name", e.target.value)}
                 placeholder="Nombre del laboratorio acreditado"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">URL del informe de laboratorio</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">URL del informe de laboratorio</label>
               <input type="url" value={form.lab_report_url} onChange={(e) => set("lab_report_url", e.target.value)}
                 placeholder="https://..."
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
@@ -385,7 +385,7 @@ export default function NuevaAguaPotablePage() {
                : computedResult === "fail" ? "FUERA DE RANGO — FALLA"
                : "RESULTADO PENDIENTE"}
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">
               {computedResult === "pending" ? "Resultado se actualizará al recibir resultados de laboratorio." : "Calculado automáticamente a partir de los parámetros ingresados."}
             </p>
           </div>
@@ -412,13 +412,13 @@ export default function NuevaAguaPotablePage() {
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 space-y-4">
           <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Firma y observaciones</h2>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del inspector</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del inspector</label>
             <input type="text" value={form.tested_by_name} onChange={(e) => set("tested_by_name", e.target.value)}
               placeholder="Nombre completo"
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none" />
           </div>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Observaciones</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Observaciones</label>
             <textarea rows={2} value={form.notes} onChange={(e) => set("notes", e.target.value)}
               placeholder="Condiciones del día, equipo usado, etc."
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 outline-none resize-none" />

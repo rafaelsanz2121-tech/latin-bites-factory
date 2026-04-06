@@ -59,7 +59,7 @@ export default async function SaludPersonalPage() {
             </span>
             Declaraciones de Salud
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 416.8 · Control de salud del personal de proceso</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 416.8 · Control de salud del personal de proceso</p>
         </div>
         <Link
           href="/salud-personal/nuevo"
@@ -114,21 +114,21 @@ export default async function SaludPersonalPage() {
         <>
           {/* Today's summary */}
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5">
-            <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3">
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide mb-3">
               Resumen de hoy — {new Date().toLocaleDateString("es-MX", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
             </p>
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-slate-100 dark:bg-slate-800 rounded-xl p-4 text-center">
                 <p className="text-2xl font-black text-slate-700 dark:text-slate-200 tabular-nums">{totalToday}</p>
-                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Declaraciones hoy</p>
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-300 mt-1">Declaraciones hoy</p>
               </div>
               <div className={`rounded-xl p-4 text-center ${symptomsToday > 0 ? "bg-amber-50 dark:bg-amber-900/20" : "bg-slate-100 dark:bg-slate-800"}`}>
                 <p className={`text-2xl font-black tabular-nums ${symptomsToday > 0 ? "text-amber-600" : "text-slate-500 dark:text-slate-300"}`}>{symptomsToday}</p>
-                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Con síntomas</p>
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-300 mt-1">Con síntomas</p>
               </div>
               <div className={`rounded-xl p-4 text-center ${notClearedToday > 0 ? "bg-red-50 dark:bg-red-900/20" : "bg-green-50 dark:bg-green-900/20"}`}>
                 <p className={`text-2xl font-black tabular-nums ${notClearedToday > 0 ? "text-red-600" : "text-green-600"}`}>{notClearedToday}</p>
-                <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Excluidos hoy</p>
+                <p className="text-xs font-medium text-slate-500 dark:text-slate-300 mt-1">Excluidos hoy</p>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default async function SaludPersonalPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -172,12 +172,12 @@ export default async function SaludPersonalPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Declaraciones — últimos 30 días</span>
-              <span className="text-xs text-slate-400">{total30} registros</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{total30} registros</span>
             </div>
             {declarations.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Heart className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin declaraciones registradas.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin declaraciones registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 416.8 requiere documentar el estado de salud del personal antes de iniciar operaciones.</p>
                 <Link href="/salud-personal/nuevo" className="text-sm text-rose-600 font-semibold hover:underline">+ Primera declaración</Link>
               </div>
@@ -187,7 +187,7 @@ export default async function SaludPersonalPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Turno","Hora","Síntoma libre","Síntomas","Habilitado","Nota restricción"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -195,8 +195,8 @@ export default async function SaludPersonalPage() {
                     {declarations.map((d) => (
                       <tr key={d.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${!d.cleared_to_work ? "bg-red-50/20 dark:bg-red-900/5" : ""}`}>
                         <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(d.declaration_date)}</td>
-                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{SHIFT[d.shift] ?? d.shift}</td>
-                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 tabular-nums">{d.declaration_time?.slice(0, 5) ?? "—"}</td>
+                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{SHIFT[d.shift] ?? d.shift}</td>
+                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 tabular-nums">{d.declaration_time?.slice(0, 5) ?? "—"}</td>
                         <td className="px-4 py-3">
                           {d.symptom_free
                             ? <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -209,7 +209,7 @@ export default async function SaludPersonalPage() {
                             {d.has_jaundice      && <span className="text-[10px] px-1.5 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded font-bold">Ictericia</span>}
                             {d.has_sore_throat_fever && <span className="text-[10px] px-1.5 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded font-bold">Garganta/Fiebre</span>}
                             {d.has_infected_wound && <span className="text-[10px] px-1.5 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded font-bold">Herida</span>}
-                            {d.symptom_free && <span className="text-[10px] text-slate-400">Ninguno</span>}
+                            {d.symptom_free && <span className="text-[10px] text-slate-500 dark:text-slate-300">Ninguno</span>}
                           </div>
                         </td>
                         <td className="px-4 py-3">
@@ -217,7 +217,7 @@ export default async function SaludPersonalPage() {
                             ? <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">HABILITADO</span>
                             : <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">EXCLUIDO</span>}
                         </td>
-                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 max-w-[180px] truncate">{d.restriction_note || "—"}</td>
+                        <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 max-w-[180px] truncate">{d.restriction_note || "—"}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -132,7 +132,7 @@ export default function NuevaListeriaMuestraPage() {
           </span>
           Registrar Muestra Ambiental
         </h1>
-        <p className="text-sm text-slate-400 mt-1">9 CFR 430.4 — Listeria monocytogenes Environmental Monitoring</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 430.4 — Listeria monocytogenes Environmental Monitoring</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">

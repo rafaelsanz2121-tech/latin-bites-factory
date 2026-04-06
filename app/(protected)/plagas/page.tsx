@@ -67,7 +67,7 @@ export default async function PlagasPage() {
             </span>
             Control de Plagas
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 416.2(a) · Programa de control de roedores e insectos</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 416.2(a) · Programa de control de roedores e insectos</p>
         </div>
         <Link
           href="/plagas/nuevo"
@@ -111,7 +111,7 @@ export default async function PlagasPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -133,16 +133,16 @@ export default async function PlagasPage() {
                       <span className="font-bold text-amber-700 dark:text-amber-300">{fmtDate(l.inspection_date)}</span>
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${fc?.color}`}>{fc?.label}</span>
                       {l.pest_types && l.pest_types.length > 0 && (
-                        <span className="text-xs text-slate-600 dark:text-slate-400">{l.pest_types.join(", ")}</span>
+                        <span className="text-xs text-slate-600 dark:text-slate-300">{l.pest_types.join(", ")}</span>
                       )}
                     </div>
                     {l.activity_locations && (
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
+                      <p className="text-xs text-slate-600 dark:text-slate-300">
                         <span className="font-semibold">Ubicación:</span> {l.activity_locations}
                       </p>
                     )}
                     {l.corrective_action && (
-                      <p className="text-xs text-slate-600 dark:text-slate-400">
+                      <p className="text-xs text-slate-600 dark:text-slate-300">
                         <span className="font-semibold">Acción:</span> {l.corrective_action}
                       </p>
                     )}
@@ -156,12 +156,12 @@ export default async function PlagasPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-400">{totalInspections} inspecciones</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{totalInspections} inspecciones</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Bug className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin inspecciones registradas.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin inspecciones registradas.</p>
                 <Link href="/plagas/nuevo" className="text-sm text-lime-600 font-semibold hover:underline">+ Registrar primera inspección</Link>
               </div>
             ) : (
@@ -170,7 +170,7 @@ export default async function PlagasPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Tipo", "Inspector", "Trampas", "Actividad", "Hallazgos", "Tratamiento", "Próxima insp."].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -186,7 +186,7 @@ export default async function PlagasPage() {
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 text-xs">
                             <p>{log.exterminator_name || "—"}</p>
-                            <p className="text-slate-400">{log.inspector_type === "external" ? "Externo" : "Interno"}</p>
+                            <p className="text-slate-500 dark:text-slate-300">{log.inspector_type === "external" ? "Externo" : "Interno"}</p>
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300 tabular-nums text-center">
                             <p className="font-medium">{log.traps_checked}</p>
@@ -194,7 +194,7 @@ export default async function PlagasPage() {
                               <p className="text-xs text-amber-600 font-bold">{log.traps_with_activity} con activ.</p>
                             )}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 max-w-[120px]">
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 max-w-[120px]">
                             {log.pest_types?.length > 0 ? log.pest_types.join(", ") : "—"}
                           </td>
                           <td className="px-4 py-3">
@@ -205,7 +205,7 @@ export default async function PlagasPage() {
                               ? <CheckCircle2 className="w-4 h-4 text-green-500 mx-auto" />
                               : <span className="text-slate-300 dark:text-slate-600">—</span>}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 whitespace-nowrap">
                             {log.next_inspection_date ? fmtDate(log.next_inspection_date) : "—"}
                           </td>
                         </tr>

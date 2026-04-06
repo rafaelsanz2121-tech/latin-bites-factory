@@ -115,7 +115,7 @@ export default function NuevoMetalDetectorPage() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Chequeo registrado</p>
-        <p className="text-sm text-slate-400">Redirigiendo…</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -141,7 +141,7 @@ export default function NuevoMetalDetectorPage() {
             </span>
             Nuevo Chequeo — Detector de Metales
           </h1>
-          <p className="text-sm text-slate-400 mt-1">CCP · 9 CFR 417.3</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">CCP · 9 CFR 417.3</p>
         </div>
       </div>
 
@@ -154,31 +154,31 @@ export default function NuevoMetalDetectorPage() {
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" value={form.check_date} max={today} onChange={(e) => setField("check_date", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Hora *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
               <input type="time" value={form.check_time} onChange={(e) => setField("check_time", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Equipo ID</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Equipo ID</label>
               <input type="text" value={form.equipment_id} onChange={(e) => setField("equipment_id", e.target.value)} placeholder="Ej. MD-01" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Producto</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Producto</label>
               <input type="text" value={form.product_name} onChange={(e) => setField("product_name", e.target.value)} placeholder="Nombre del producto" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. de lote</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. de lote</label>
               <input type="text" value={form.lot_number} onChange={(e) => setField("lot_number", e.target.value)} placeholder="Lote" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Unidades inspeccionadas</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades inspeccionadas</label>
               <input type="number" min={0} value={form.units_inspected} onChange={(e) => setField("units_inspected", e.target.value)} placeholder="0" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Unidades rechazadas</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidades rechazadas</label>
               <input type="number" min={0} value={form.units_rejected} onChange={(e) => setField("units_rejected", e.target.value)} placeholder="0" className={inputCls} />
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function NuevoMetalDetectorPage() {
                 className={`text-left px-4 py-3 rounded-xl border-2 text-sm transition-all ${
                   form.check_type === ct.value
                     ? ct.color + " font-semibold shadow-sm"
-                    : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600"
+                    : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
                 }`}
               >
                 <span className="block font-medium">{ct.label}</span>
@@ -211,7 +211,7 @@ export default function NuevoMetalDetectorPage() {
         {/* ── Test pieces ── */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Zap className="w-4 h-4 text-slate-400" />
+            <Zap className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Piezas de prueba de sensibilidad</span>
           </div>
           <div className="p-5 space-y-3">
@@ -223,7 +223,7 @@ export default function NuevoMetalDetectorPage() {
               const t = tests[row.key]
               return (
                 <div key={row.key} className={`flex items-center gap-4 px-4 py-3 rounded-xl border-2 transition-colors ${
-                  !t.pass ? "border-red-200 bg-red-50/50 dark:bg-red-900/10 dark:border-red-800" : "border-transparent bg-slate-50 dark:bg-slate-800/40"
+                  !t.pass ? "border-red-200 bg-red-50/50 dark:bg-red-900/10 dark:border-red-800" : "border-transparent bg-slate-100 dark:bg-slate-800/40"
                 }`}>
                   <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 w-36 flex-shrink-0">{row.label}</span>
                   <input
@@ -327,7 +327,7 @@ export default function NuevoMetalDetectorPage() {
         {/* ── Notes ── */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">

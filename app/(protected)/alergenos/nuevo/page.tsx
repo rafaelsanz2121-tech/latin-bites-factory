@@ -111,7 +111,7 @@ export default function NuevoAlergenos() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Chequeo registrado</p>
-        <p className="text-sm text-slate-400">Redirigiendo…</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -134,7 +134,7 @@ export default function NuevoAlergenos() {
             </span>
             Nuevo Chequeo de Alérgenos
           </h1>
-          <p className="text-sm text-slate-400 mt-1">FALCPA 2004 · Sesame 2023</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">FALCPA 2004 · Sesame 2023</p>
         </div>
       </div>
 
@@ -147,23 +147,23 @@ export default function NuevoAlergenos() {
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" value={form.check_date} max={today} onChange={(e) => setF("check_date", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Hora *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora *</label>
               <input type="time" value={form.check_time} onChange={(e) => setF("check_time", e.target.value)} required className={inputCls} />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Área *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Área *</label>
               <input type="text" value={form.area} onChange={(e) => setF("area", e.target.value)} required placeholder="Ej. Línea 1 — Empaque" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Producto anterior</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Producto anterior</label>
               <input type="text" value={form.product_before} onChange={(e) => setF("product_before", e.target.value)} placeholder="Producto previo" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Producto siguiente</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Producto siguiente</label>
               <input type="text" value={form.product_after} onChange={(e) => setF("product_after", e.target.value)} placeholder="Producto a correr" className={inputCls} />
             </div>
           </div>
@@ -180,7 +180,7 @@ export default function NuevoAlergenos() {
                 className={`text-left px-4 py-3 rounded-xl border-2 text-sm transition-all ${
                   form.check_type === ct.value
                     ? "border-orange-400 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 font-semibold shadow-sm"
-                    : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600"
+                    : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
                 }`}>
                 <span className="block font-medium">{ct.label}</span>
                 <span className="text-[11px] opacity-70">{ct.desc}</span>
@@ -200,7 +200,7 @@ export default function NuevoAlergenos() {
             )}
           </div>
           <div className="p-5">
-            <p className="text-xs text-slate-400 mb-3">Marca los alérgenos que están o estuvieron presentes en el equipo/área antes de este chequeo.</p>
+            <p className="text-xs text-slate-500 dark:text-slate-300 mb-3">Marca los alérgenos que están o estuvieron presentes en el equipo/área antes de este chequeo.</p>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {ALLERGENS.map((a) => (
                 <button
@@ -210,7 +210,7 @@ export default function NuevoAlergenos() {
                   className={`flex flex-col items-center gap-1 px-3 py-3 rounded-xl border-2 text-xs font-semibold transition-all ${
                     allergens[a.key]
                       ? "border-orange-400 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 shadow-sm"
-                      : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600"
+                      : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600"
                   }`}
                 >
                   <span className="text-lg">{a.emoji}</span>
@@ -251,12 +251,12 @@ export default function NuevoAlergenos() {
 
             {form.rinsate_sample_taken && (
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wide">Resultado de rinsate</label>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-2 uppercase tracking-wide">Resultado de rinsate</label>
                 <div className="flex gap-2 flex-wrap">
                   {RINSATE.map((r) => (
                     <button key={r.value} type="button" onClick={() => setF("rinsate_result", r.value)}
                       className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition-all ${
-                        form.rinsate_result === r.value ? r.color : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
+                        form.rinsate_result === r.value ? r.color : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                       }`}>
                       {r.label}
                     </button>
@@ -276,14 +276,14 @@ export default function NuevoAlergenos() {
           <div className="px-5 py-4 flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-bold text-slate-700 dark:text-slate-200">¿Línea habilitada para correr?</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Confirma que el área está libre de contaminación cruzada de alérgenos</p>
+              <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">Confirma que el área está libre de contaminación cruzada de alérgenos</p>
             </div>
             <div className="flex gap-2 flex-shrink-0">
               <button type="button" onClick={() => setF("cleared_for_run", true)}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all ${
                   form.cleared_for_run
                     ? "bg-green-500 border-green-500 text-white shadow-sm"
-                    : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-green-400"
+                    : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-300 hover:border-green-400"
                 }`}>
                 <CheckCircle2 className="w-4 h-4" /> Sí
               </button>
@@ -291,7 +291,7 @@ export default function NuevoAlergenos() {
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all ${
                   !form.cleared_for_run
                     ? "bg-red-500 border-red-500 text-white shadow-sm"
-                    : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-red-400"
+                    : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-300 hover:border-red-400"
                 }`}>
                 <XCircle className="w-4 h-4" /> No — Retener
               </button>
@@ -314,7 +314,7 @@ export default function NuevoAlergenos() {
         {/* Notes */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">

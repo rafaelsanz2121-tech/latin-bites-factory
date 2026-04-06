@@ -114,7 +114,7 @@ export default function NuevoDespachoPage() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Despacho registrado</p>
-        <p className="text-sm text-slate-400">Redirigiendo…</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -137,7 +137,7 @@ export default function NuevoDespachoPage() {
             </span>
             Nuevo Despacho
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 320 · Registro de envío</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 320 · Registro de envío</p>
         </div>
       </div>
 
@@ -146,24 +146,24 @@ export default function NuevoDespachoPage() {
         {/* Despacho */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Truck className="w-4 h-4 text-slate-400" />
+            <Truck className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Información del despacho</span>
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" value={form.dispatch_date} max={today} onChange={(e) => setF("dispatch_date", e.target.value)} required className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Hora</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Hora</label>
               <input type="time" value={form.dispatch_time} onChange={(e) => setF("dispatch_time", e.target.value)} className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Bill of Lading</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Bill of Lading</label>
               <input type="text" value={form.bill_of_lading} onChange={(e) => setF("bill_of_lading", e.target.value)} placeholder="No. de conocimiento" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Estado</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Estado</label>
               <select value={form.status} onChange={(e) => setF("status", e.target.value)} className={inputCls}>
                 {STATUS_OPTIONS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
               </select>
@@ -174,24 +174,24 @@ export default function NuevoDespachoPage() {
         {/* Producto */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Package className="w-4 h-4 text-slate-400" />
+            <Package className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Producto</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
               <input type="text" value={form.product_name} onChange={(e) => setF("product_name", e.target.value)} required placeholder="Ej. Pork Belly, Chicharrón…" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No(s). de lote</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No(s). de lote</label>
               <input type="text" value={form.lot_numbers} onChange={(e) => setF("lot_numbers", e.target.value)} placeholder="L001, L002…" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Cantidad *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Cantidad *</label>
               <input type="number" min={0} step="0.01" value={form.quantity} onChange={(e) => setF("quantity", e.target.value)} required placeholder="0.00" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Unidad</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Unidad</label>
               <select value={form.unit} onChange={(e) => setF("unit", e.target.value)} className={inputCls}>
                 {UNITS.map((u) => <option key={u} value={u}>{u}</option>)}
               </select>
@@ -202,16 +202,16 @@ export default function NuevoDespachoPage() {
         {/* Destino */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-slate-400" />
+            <MapPin className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Destino</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del destino *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del destino *</label>
               <input type="text" value={form.destination_name} onChange={(e) => setF("destination_name", e.target.value)} required placeholder="Empresa o restaurante" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Dirección</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Dirección</label>
               <input type="text" value={form.destination_address} onChange={(e) => setF("destination_address", e.target.value)} placeholder="Ciudad, Estado" className={inputCls} />
             </div>
           </div>
@@ -220,28 +220,28 @@ export default function NuevoDespachoPage() {
         {/* Transportista */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <User className="w-4 h-4 text-slate-400" />
+            <User className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Transportista</span>
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Empresa transportista</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Empresa transportista</label>
               <input type="text" value={form.carrier_name} onChange={(e) => setF("carrier_name", e.target.value)} placeholder="Nombre de la empresa" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Placa del camión</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Placa del camión</label>
               <input type="text" value={form.truck_plate} onChange={(e) => setF("truck_plate", e.target.value)} placeholder="ABC-1234" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. de sello</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. de sello</label>
               <input type="text" value={form.seal_number} onChange={(e) => setF("seal_number", e.target.value)} placeholder="Sello de seguridad" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del conductor</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del conductor</label>
               <input type="text" value={form.driver_name} onChange={(e) => setF("driver_name", e.target.value)} placeholder="Nombre completo" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Licencia de conducir</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Licencia de conducir</label>
               <input type="text" value={form.driver_license} onChange={(e) => setF("driver_license", e.target.value)} placeholder="No. de licencia" className={inputCls} />
             </div>
           </div>
@@ -250,13 +250,13 @@ export default function NuevoDespachoPage() {
         {/* Temperatura */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Thermometer className="w-4 h-4 text-slate-400" />
+            <Thermometer className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Temperatura al despachar</span>
           </div>
           <div className="p-5 space-y-3">
             <div className="flex items-start gap-4">
               <div className="w-48">
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Temperatura (°F)</label>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Temperatura (°F)</label>
                 <input
                   type="number"
                   step="0.1"
@@ -275,7 +275,7 @@ export default function NuevoDespachoPage() {
                 </div>
               )}
             </div>
-            <p className="text-xs text-slate-400">USDA requiere ≤41°F para productos RTE al momento del despacho.</p>
+            <p className="text-xs text-slate-500 dark:text-slate-300">USDA requiere ≤41°F para productos RTE al momento del despacho.</p>
             {tempTooHigh && (
               <div className="flex items-start gap-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-3 py-2.5 text-xs text-red-700 dark:text-red-300">
                 <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-red-500" />
@@ -302,7 +302,7 @@ export default function NuevoDespachoPage() {
           </div>
           {form.usda_inspector_present && (
             <div className="p-5">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del inspector</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del inspector</label>
               <input type="text" value={form.inspector_name} onChange={(e) => setF("inspector_name", e.target.value)} placeholder="Nombre del inspector USDA" className={inputCls} />
             </div>
           )}
@@ -311,7 +311,7 @@ export default function NuevoDespachoPage() {
         {/* Notes */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">

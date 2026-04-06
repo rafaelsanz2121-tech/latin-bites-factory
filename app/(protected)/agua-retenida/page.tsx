@@ -67,7 +67,7 @@ export default async function AguaRetenidaPage() {
             </span>
             Agua Retenida
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 441 · Protocolo de Control de Agua Retenida en Carnes</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 441 · Protocolo de Control de Agua Retenida en Carnes</p>
         </div>
         <Link
           href="/agua-retenida/nuevo"
@@ -118,7 +118,7 @@ export default async function AguaRetenidaPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -174,12 +174,12 @@ export default async function AguaRetenidaPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-400">{total} pruebas</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{total} pruebas</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Droplets className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin pruebas registradas.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin pruebas registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">Comienza a documentar antes del <strong>1 julio 2026</strong> para cumplir con 9 CFR 441.</p>
                 <Link href="/agua-retenida/nuevo" className="text-sm text-cyan-600 font-semibold hover:underline">+ Primera prueba</Link>
               </div>
@@ -189,7 +189,7 @@ export default async function AguaRetenidaPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Producto","Lote","Tipo","Método enfriamiento","Peso crudo","Peso procesado","Agua ret.","Límite","Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -202,15 +202,15 @@ export default async function AguaRetenidaPage() {
                         <tr key={log.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${overLimit ? "bg-red-50/30 dark:bg-red-900/10" : ""}`}>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(log.test_date)}</td>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200">{log.product_name}</td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 text-xs font-mono">{log.lot_number || "—"}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{PRODUCT_TYPE[log.product_type] ?? log.product_type}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{CHILLING[log.chilling_method] ?? log.chilling_method}</td>
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 text-xs font-mono">{log.lot_number || "—"}</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{PRODUCT_TYPE[log.product_type] ?? log.product_type}</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{CHILLING[log.chilling_method] ?? log.chilling_method}</td>
                           <td className="px-4 py-3 tabular-nums text-slate-600 dark:text-slate-300">{Number(log.raw_weight_g).toLocaleString()}g</td>
                           <td className="px-4 py-3 tabular-nums text-slate-600 dark:text-slate-300">{Number(log.processed_weight_g).toLocaleString()}g</td>
                           <td className={`px-4 py-3 font-black tabular-nums ${overLimit ? "text-red-600" : "text-green-600"}`}>
                             {pct.toFixed(3)}%
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 tabular-nums">{limit}%</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 tabular-nums">{limit}%</td>
                           <td className="px-4 py-3">
                             {log.result === "fail"
                               ? <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300">FALLA</span>

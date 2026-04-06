@@ -114,7 +114,7 @@ export default function NuevoAguaRetenida() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Prueba registrada</p>
-        <p className="text-sm text-slate-400">Redirigiendo…</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -136,7 +136,7 @@ export default function NuevoAguaRetenida() {
             </span>
             Nueva Prueba — Agua Retenida
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 441 · Protocolo de agua retenida</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 441 · Protocolo de agua retenida</p>
         </div>
       </div>
 
@@ -149,25 +149,25 @@ export default function NuevoAguaRetenida() {
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
               <input type="date" value={form.test_date} max={today} onChange={(e) => setF("test_date", e.target.value)} required className={inputCls} />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Nombre del producto *</label>
               <input type="text" value={form.product_name} onChange={(e) => setF("product_name", e.target.value)} required placeholder="Ej. Pork Belly" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Tipo de producto</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tipo de producto</label>
               <select value={form.product_type} onChange={(e) => setF("product_type", e.target.value)} className={inputCls}>
                 {PRODUCT_TYPES.map((pt) => <option key={pt.value} value={pt.value}>{pt.label}</option>)}
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">No. de lote</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">No. de lote</label>
               <input type="text" value={form.lot_number} onChange={(e) => setF("lot_number", e.target.value)} placeholder="Lote" className={inputCls} />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Límite regulatorio (%)</label>
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Límite regulatorio (%)</label>
               <div className="space-y-1">
                 <input type="number" step="0.001" min={0} value={form.regulatory_limit_pct} onChange={(e) => setF("regulatory_limit_pct", e.target.value)} className={inputCls} />
                 <div className="flex flex-wrap gap-1">
@@ -195,7 +195,7 @@ export default function NuevoAguaRetenida() {
                   className={`text-left px-3 py-3 rounded-xl border-2 text-xs transition-all ${
                     form.chilling_method === cm.value
                       ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-700 dark:text-cyan-300 font-semibold shadow-sm"
-                      : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:border-slate-300"
+                      : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:border-slate-300"
                   }`}>
                   <span className="block font-semibold">{cm.label}</span>
                   <span className="opacity-70 text-[10px]">{cm.desc}</span>
@@ -205,11 +205,11 @@ export default function NuevoAguaRetenida() {
             {form.chilling_method !== "air_chilling" && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Temperatura del chiller (°F)</label>
+                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Temperatura del chiller (°F)</label>
                   <input type="number" step="0.1" value={form.chiller_temp_f} onChange={(e) => setF("chiller_temp_f", e.target.value)} placeholder="28–34°F" className={inputCls} />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Tiempo en chiller (min)</label>
+                  <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Tiempo en chiller (min)</label>
                   <input type="number" min={0} value={form.chiller_time_min} onChange={(e) => setF("chiller_time_min", e.target.value)} placeholder="Minutos" className={inputCls} />
                 </div>
               </div>
@@ -220,17 +220,17 @@ export default function NuevoAguaRetenida() {
         {/* Weight measurements */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FlaskConical className="w-4 h-4 text-slate-400" />
+            <FlaskConical className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Mediciones de peso</span>
           </div>
           <div className="p-5 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Peso ANTES del proceso (g) *</label>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Peso ANTES del proceso (g) *</label>
                 <input type="number" step="0.01" min={0} value={form.raw_weight_g} onChange={(e) => setF("raw_weight_g", e.target.value)} required placeholder="gramos" className={inputCls} />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Peso DESPUÉS del proceso (g) *</label>
+                <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Peso DESPUÉS del proceso (g) *</label>
                 <input type="number" step="0.01" min={0} value={form.processed_weight_g} onChange={(e) => setF("processed_weight_g", e.target.value)} required placeholder="gramos" className={inputCls} />
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function NuevoAguaRetenida() {
               }`}>
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <div>
-                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Agua retenida calculada</p>
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-300 uppercase tracking-wide mb-1">Agua retenida calculada</p>
                     <p className={`text-3xl font-black tabular-nums ${autoResult === "fail" ? "text-red-600" : "text-green-600"}`}>
                       {waterPct.toFixed(3)}%
                     </p>
@@ -305,7 +305,7 @@ export default function NuevoAguaRetenida() {
         {/* Notes */}
         <div className={cardCls}>
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">

@@ -4,6 +4,7 @@ import {
   AlertTriangle, CheckSquare, ClipboardList, Factory,
   ShieldAlert, Truck, Wrench, CheckCircle2, Circle,
   TrendingUp, Package, DollarSign, Boxes, Timer, ArrowUpRight,
+  Play, Thermometer, FlaskConical, Shield, Bug, RotateCcw,
 } from "lucide-react"
 import { LogStatusBadge } from "@/components/logs/LogStatusBadge"
 import { formatDate } from "@/lib/utils"
@@ -119,7 +120,7 @@ export default async function DashboardPage() {
           <h1 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">
             {greeting}{firstName ? `, ${firstName}` : ""} 👋
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             {now.toLocaleDateString("es-US", { weekday:"long", year:"numeric", month:"long", day:"numeric" })}
           </p>
         </div>
@@ -137,6 +138,40 @@ export default async function DashboardPage() {
           }`} />
           Cobertura hoy: {compliancePct}%
         </div>
+      </div>
+
+      {/* ── Quick Actions ────────────────────────────────────── */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        <Link href="/production/new"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white shadow-sm transition-all hover:shadow-md col-span-2 sm:col-span-1">
+          <Play className="w-5 h-5 fill-white" />
+          <span className="text-xs font-bold tracking-tight text-center leading-tight">Iniciar Producción</span>
+        </Link>
+        <Link href="/receiving/new"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-slate-700 transition-all">
+          <Truck className="w-5 h-5 text-blue-500" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Registrar Recepción</span>
+        </Link>
+        <Link href="/sanitation/preop/new"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-green-400 dark:hover:border-green-500 hover:bg-green-50 dark:hover:bg-slate-700 transition-all">
+          <Shield className="w-5 h-5 text-green-500" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Pre-Op Sanitación</span>
+        </Link>
+        <Link href="/metal-detector/nuevo"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-slate-700 transition-all">
+          <FlaskConical className="w-5 h-5 text-purple-500" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Det. de Metales</span>
+        </Link>
+        <Link href="/deviations/new"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-amber-400 dark:hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-slate-700 transition-all">
+          <AlertTriangle className="w-5 h-5 text-amber-500" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Reportar Desviación</span>
+        </Link>
+        <Link href="/salud-personal/nuevo"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-rose-400 dark:hover:border-rose-500 hover:bg-rose-50 dark:hover:bg-slate-700 transition-all">
+          <Thermometer className="w-5 h-5 text-rose-500" />
+          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 text-center leading-tight">Declaración de Salud</span>
+        </Link>
       </div>
 
       {/* ── KPI Cards ────────────────────────────────────────── */}

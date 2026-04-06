@@ -63,7 +63,7 @@ export default async function AlergenosPage() {
             </span>
             Control de Alérgenos
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
             FALCPA 2004 · Sesame Allergen Act 2023 · 9 CFR 417 · 9 Big Allergens
           </p>
         </div>
@@ -113,7 +113,7 @@ export default async function AlergenosPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -137,12 +137,12 @@ export default async function AlergenosPage() {
                     <span className="text-slate-600 dark:text-slate-300">{f.area}</span>
                   </div>
                   {f.hold_reason && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                    <p className="text-xs text-slate-600 dark:text-slate-300">
                       <span className="font-semibold">Motivo de retención:</span> {f.hold_reason}
                     </p>
                   )}
                   {f.corrective_action && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                    <p className="text-xs text-slate-600 dark:text-slate-300">
                       <span className="font-semibold">Acción:</span> {f.corrective_action}
                     </p>
                   )}
@@ -155,12 +155,12 @@ export default async function AlergenosPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-400">{totalChecks} chequeos</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{totalChecks} chequeos</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <ShieldAlert className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin registros todavía.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin registros todavía.</p>
                 <Link href="/alergenos/nuevo" className="text-sm text-orange-600 font-semibold hover:underline">+ Agregar primer chequeo</Link>
               </div>
             ) : (
@@ -169,7 +169,7 @@ export default async function AlergenosPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha", "Tipo", "Área", "Antes", "Después", "Alérgenos detectados", "Limpieza", "Etiqueta", "Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -184,8 +184,8 @@ export default async function AlergenosPage() {
                             <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${ct.color}`}>{ct.label}</span>
                           </td>
                           <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{log.area}</td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 text-xs">{log.product_before || "—"}</td>
-                          <td className="px-4 py-3 text-slate-500 dark:text-slate-400 text-xs">{log.product_after || "—"}</td>
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 text-xs">{log.product_before || "—"}</td>
+                          <td className="px-4 py-3 text-slate-500 dark:text-slate-300 text-xs">{log.product_after || "—"}</td>
                           <td className="px-4 py-3">
                             {presentAllergens.length === 0 ? (
                               <span className="text-slate-300 dark:text-slate-600 text-xs">Ninguno</span>

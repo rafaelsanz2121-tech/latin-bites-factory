@@ -91,7 +91,7 @@ export default async function ListeriaPage() {
             </span>
             Monitoreo de Listeria
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">
             Programa ambiental · 9 CFR Part 430 · Zonas 1–4
           </p>
         </div>
@@ -136,7 +136,7 @@ export default async function ListeriaPage() {
           <div key={k.label} className={`rounded-xl border p-4 ${k.bg} ${k.border}`}>
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
             <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
-            <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+            <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}
       </div>
@@ -162,25 +162,25 @@ export default async function ListeriaPage() {
                   : <CheckCircle2 className="w-4 h-4 text-green-500" />
                 }
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-2">{z.desc}</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-300 mb-2">{z.desc}</p>
               <div className="space-y-1.5">
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-400">Frecuencia:</span>
+                  <span className="text-slate-500 dark:text-slate-300">Frecuencia:</span>
                   <span className="font-semibold text-slate-600 dark:text-slate-300 capitalize">{z.freq}</span>
                 </div>
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-400">Último muestreo:</span>
+                  <span className="text-slate-500 dark:text-slate-300">Último muestreo:</span>
                   <span className={`font-semibold ${z.overdue ? "text-red-600 dark:text-red-400" : "text-green-600 dark:text-green-400"}`}>
                     {z.last ? `hace ${z.daysSinceLast}d` : "Nunca"}
                   </span>
                 </div>
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-slate-400">Total muestras:</span>
+                  <span className="text-slate-500 dark:text-slate-300">Total muestras:</span>
                   <span className="font-semibold text-slate-600 dark:text-slate-300">{z.total}</span>
                 </div>
                 {z.positives > 0 && (
                   <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-400">Positivos:</span>
+                    <span className="text-slate-500 dark:text-slate-300">Positivos:</span>
                     <span className="font-bold text-red-600 dark:text-red-400">{z.positives}</span>
                   </div>
                 )}
@@ -239,15 +239,15 @@ export default async function ListeriaPage() {
         <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
           <div>
             <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Historial de Muestras</h2>
-            <p className="text-[11px] text-slate-400 mt-0.5">Últimos 90 días · {samples.length} registros</p>
+            <p className="text-[11px] text-slate-500 dark:text-slate-300 mt-0.5">Últimos 90 días · {samples.length} registros</p>
           </div>
-          <span className="text-[10.5px] text-slate-400">Retención requerida: 1 año (9 CFR 417.5)</span>
+          <span className="text-[10.5px] text-slate-500 dark:text-slate-300">Retención requerida: 1 año (9 CFR 417.5)</span>
         </div>
 
         {samples.length === 0 ? (
           <div className="flex flex-col items-center py-12">
             <Microscope className="w-8 h-8 text-slate-200 mb-2" />
-            <p className="text-sm font-medium text-slate-400">Sin muestras registradas</p>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-300">Sin muestras registradas</p>
             <Link href="/listeria/nuevo" className="mt-3 text-sm text-purple-500 hover:underline font-semibold">
               Registrar primera muestra →
             </Link>
@@ -256,7 +256,7 @@ export default async function ListeriaPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-400 uppercase tracking-wider">
+                <tr className="border-b border-slate-50 dark:border-slate-700 text-[10.5px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wider">
                   <th className="text-left px-5 py-3">Fecha</th>
                   <th className="text-left px-4 py-3">Zona</th>
                   <th className="text-left px-4 py-3">Ubicación</th>
@@ -287,7 +287,7 @@ export default async function ListeriaPage() {
                       <td className="px-4 py-3 text-[11.5px] text-slate-500">
                         {SURFACE_ES[s.surface_type] ?? s.surface_type}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-400 font-mono">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-500 dark:text-slate-300 font-mono">
                         {s.test_method || "—"}
                       </td>
                       <td className="px-4 py-3">
@@ -302,7 +302,7 @@ export default async function ListeriaPage() {
                       <td className="px-4 py-3 text-[11.5px] text-slate-500 max-w-[200px] truncate">
                         {s.action_taken || "—"}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-400">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-500 dark:text-slate-300">
                         {s.profiles?.full_name ?? "—"}
                       </td>
                     </tr>

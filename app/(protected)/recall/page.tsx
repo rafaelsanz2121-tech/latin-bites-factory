@@ -67,7 +67,7 @@ export default async function RecallPage() {
             </span>
             Recall / Trazabilidad
           </h1>
-          <p className="text-sm text-slate-400 mt-1">FSMA · 9 CFR 320 · Simulacros y retiros efectivos de mercado</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">FSMA · 9 CFR 320 · Simulacros y retiros efectivos de mercado</p>
         </div>
         <Link
           href="/recall/nuevo"
@@ -119,7 +119,7 @@ export default async function RecallPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -128,12 +128,12 @@ export default async function RecallPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Historial de simulacros y retiros</span>
-              <span className="text-xs text-slate-400">{totalRecalls} registros</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{totalRecalls} registros</span>
             </div>
             {recalls.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <RotateCcw className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin simulacros registrados.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin simulacros registrados.</p>
                 <Link href="/recall/nuevo" className="text-sm text-rose-600 font-semibold hover:underline">+ Registrar primer simulacro</Link>
               </div>
             ) : (
@@ -154,7 +154,7 @@ export default async function RecallPage() {
                             <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${oc.color}`}>{oc.label}</span>
                           </div>
                           <p className="font-bold text-slate-800 dark:text-slate-100 text-[15px]">{r.product_name}</p>
-                          <p className="text-xs text-slate-400 mt-0.5">Lotes: {r.lot_numbers} · {fmtDate(r.recall_date)}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">Lotes: {r.lot_numbers} · {fmtDate(r.recall_date)}</p>
                         </div>
                         <div className="text-right flex-shrink-0">
                           {recovPct > 0 && (
@@ -162,10 +162,10 @@ export default async function RecallPage() {
                               {recovPct.toFixed(1)}%
                             </p>
                           )}
-                          <p className="text-[10px] text-slate-400">recuperado</p>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-300">recuperado</p>
                         </div>
                       </div>
-                      <div className="flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="flex flex-wrap gap-4 text-xs text-slate-500 dark:text-slate-300">
                         {r.time_to_identify_min && (
                           <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Identificado en {r.time_to_identify_min}min</span>
                         )}
@@ -177,7 +177,7 @@ export default async function RecallPage() {
                         )}
                       </div>
                       {r.corrective_action && (
-                        <p className="text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 rounded-lg px-3 py-2">
+                        <p className="text-xs text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2">
                           <span className="font-semibold">Mejora identificada:</span> {r.corrective_action}
                         </p>
                       )}

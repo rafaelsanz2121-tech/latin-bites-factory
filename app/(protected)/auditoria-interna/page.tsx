@@ -70,7 +70,7 @@ export default async function AuditoriaInternaPage() {
             </span>
             Auditoría Interna HACCP
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 417.8 · Verificación y auditoría del sistema HACCP</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 417.8 · Verificación y auditoría del sistema HACCP</p>
         </div>
         <Link
           href="/auditoria-interna/nuevo"
@@ -114,7 +114,7 @@ export default async function AuditoriaInternaPage() {
           {criticalOpen.map((a) => (
             <div key={a.id} className="bg-white dark:bg-red-900/10 rounded-lg px-4 py-2 text-xs">
               <span className="font-bold text-red-700 dark:text-red-300">{fmtDate(a.audit_date)}</span>
-              <span className="text-slate-500 dark:text-slate-400 ml-2">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</span>
+              <span className="text-slate-500 dark:text-slate-300 ml-2">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</span>
               <p className="text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">{a.critical_findings}</p>
             </div>
           ))}
@@ -144,7 +144,7 @@ export default async function AuditoriaInternaPage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -173,12 +173,12 @@ export default async function AuditoriaInternaPage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Auditorías — últimos 12 meses</span>
-              <span className="text-xs text-slate-400">{total} registros</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{total} registros</span>
             </div>
             {audits.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <ClipboardCheck className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin auditorías registradas.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin auditorías registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 417.8 requiere al menos una revisión anual del Plan HACCP.</p>
                 <Link href="/auditoria-interna/nuevo" className="text-sm text-indigo-600 font-semibold hover:underline">+ Primera auditoría</Link>
               </div>
@@ -188,7 +188,7 @@ export default async function AuditoriaInternaPage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Tipo","Auditor","Items ✓","Items ✗","Hallazgos críticos","Seguimiento","Resultado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -201,13 +201,13 @@ export default async function AuditoriaInternaPage() {
                         <tr key={a.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${a.overall_result === "unsatisfactory" ? "bg-red-50/20 dark:bg-red-900/5" : ""}`}>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(a.audit_date)}</td>
                           <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300">{AUDIT_TYPE[a.audit_type] ?? a.audit_type}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{a.auditor_name}</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{a.auditor_name}</td>
                           <td className="px-4 py-3 text-xs text-green-600 font-bold tabular-nums">{a.items_passed}</td>
-                          <td className="px-4 py-3 text-xs font-bold tabular-nums">{a.items_failed > 0 ? <span className="text-red-600">{a.items_failed}</span> : <span className="text-slate-400">0</span>}</td>
+                          <td className="px-4 py-3 text-xs font-bold tabular-nums">{a.items_failed > 0 ? <span className="text-red-600">{a.items_failed}</span> : <span className="text-slate-500 dark:text-slate-300">0</span>}</td>
                           <td className="px-4 py-3 max-w-[200px]">
                             {a.critical_findings
                               ? <span className="text-xs text-red-600 dark:text-red-400 line-clamp-2 font-medium">{a.critical_findings}</span>
-                              : <span className="text-xs text-slate-400">—</span>}
+                              : <span className="text-xs text-slate-500 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3 text-xs">
                             {a.corrective_actions_required
@@ -216,7 +216,7 @@ export default async function AuditoriaInternaPage() {
                                 : followUpOverdue
                                 ? <span className="text-red-600 font-bold flex items-center gap-1"><AlertTriangle className="w-3 h-3" />Vencido</span>
                                 : <span className="text-amber-600 font-bold">Pendiente</span>
-                              : <span className="text-slate-400">N/A</span>}
+                              : <span className="text-slate-500 dark:text-slate-300">N/A</span>}
                           </td>
                           <td className="px-4 py-3">
                             {rc && (

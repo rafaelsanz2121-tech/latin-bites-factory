@@ -143,7 +143,7 @@ export default function NuevoRegistroCapacitacion() {
           <CheckCircle2 className="w-8 h-8 text-green-600" />
         </div>
         <p className="text-lg font-bold text-slate-800 dark:text-slate-100">Capacitación registrada</p>
-        <p className="text-sm text-slate-400">Redirigiendo…</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">Redirigiendo…</p>
       </div>
     )
   }
@@ -166,7 +166,7 @@ export default function NuevoRegistroCapacitacion() {
             </span>
             Nuevo Registro de Capacitación
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 417.7 — Documentación de entrenamiento HACCP</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 417.7 — Documentación de entrenamiento HACCP</p>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Employee ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <User className="w-4 h-4 text-slate-400" />
+            <User className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Empleado</span>
           </div>
           <div className="p-5">
@@ -201,7 +201,7 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Training Type ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-slate-400" />
+            <BookOpen className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Tipo de Capacitación</span>
           </div>
           <div className="p-5 space-y-3">
@@ -214,12 +214,12 @@ export default function NuevoRegistroCapacitacion() {
                   className={`text-left px-4 py-3 rounded-xl border text-sm transition-all ${
                     form.training_type === t.value
                       ? "border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 dark:border-indigo-600 text-indigo-700 dark:text-indigo-300 font-semibold shadow-sm"
-                      : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                      : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   }`}
                 >
                   <span className="block font-medium">{t.label}</span>
                   {t.hours > 0 && (
-                    <span className="text-[11px] text-slate-400 dark:text-slate-500">{t.hours}h recomendadas</span>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-300">{t.hours}h recomendadas</span>
                   )}
                 </button>
               ))}
@@ -252,12 +252,12 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Dates + Score ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-slate-400" />
+            <Calendar className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Fechas y Puntaje</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 Fecha de capacitación *
               </label>
               <input
@@ -270,7 +270,7 @@ export default function NuevoRegistroCapacitacion() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 Fecha de vencimiento
               </label>
               <input
@@ -280,14 +280,14 @@ export default function NuevoRegistroCapacitacion() {
                 min={form.training_date}
                 className="w-full border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2.5 text-sm bg-white dark:bg-[#0f172a] text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-400"
               />
-              <p className="text-[10.5px] text-slate-400 mt-1">Auto-calculado al seleccionar tipo</p>
+              <p className="text-[10.5px] text-slate-500 dark:text-slate-300 mt-1">Auto-calculado al seleccionar tipo</p>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 Puntaje (0–100)
               </label>
               <div className="relative">
-                <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
+                <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 dark:text-slate-300" />
                 <input
                   type="number"
                   value={form.score}
@@ -305,7 +305,7 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Result ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <Award className="w-4 h-4 text-slate-400" />
+            <Award className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Resultado</span>
           </div>
           <div className="p-5 flex flex-wrap gap-3">
@@ -318,7 +318,7 @@ export default function NuevoRegistroCapacitacion() {
                   type="button"
                   onClick={() => set("result", r.value)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all ${
-                    selected ? `${r.bg} ${r.color} shadow-sm` : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                    selected ? `${r.bg} ${r.color} shadow-sm` : "border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${selected ? r.color : "text-slate-400"}`} />
@@ -332,12 +332,12 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Trainer info ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <User className="w-4 h-4 text-slate-400" />
+            <User className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Información del Instructor</span>
           </div>
           <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 Nombre del instructor
               </label>
               <input
@@ -349,7 +349,7 @@ export default function NuevoRegistroCapacitacion() {
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 No. de certificación
               </label>
               <input
@@ -361,7 +361,7 @@ export default function NuevoRegistroCapacitacion() {
               />
             </div>
             <div className="sm:col-span-2">
-              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">
+              <label className="block text-xs font-semibold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">
                 URL del certificado
               </label>
               <input
@@ -378,7 +378,7 @@ export default function NuevoRegistroCapacitacion() {
         {/* ── Notes ── */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-5 py-3.5 border-b border-slate-100 dark:border-slate-700 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-4 h-4 text-slate-500 dark:text-slate-300" />
             <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Notas</span>
           </div>
           <div className="p-5">

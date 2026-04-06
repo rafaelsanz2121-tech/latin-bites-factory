@@ -120,7 +120,7 @@ export default function NuevaAuditoriaInternaPage() {
     <div className="max-w-2xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <Link href="/auditoria-interna" className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+        <Link href="/auditoria-interna" className="text-slate-500 dark:text-slate-300 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
           <ChevronLeft className="w-5 h-5" />
         </Link>
         <div>
@@ -128,7 +128,7 @@ export default function NuevaAuditoriaInternaPage() {
             <ClipboardCheck className="w-5 h-5 text-indigo-600" />
             Nueva Auditoría Interna HACCP
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">9 CFR 417.8 · Registro de verificación del sistema</p>
+          <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">9 CFR 417.8 · Registro de verificación del sistema</p>
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export default function NuevaAuditoriaInternaPage() {
                 <input type="radio" className="sr-only" value={t.value} checked={form.audit_type === t.value} onChange={(e) => set("audit_type", e.target.value)} />
                 <div className="flex-1">
                   <p className={`text-sm font-semibold ${form.audit_type === t.value ? "text-indigo-700 dark:text-indigo-300" : "text-slate-700 dark:text-slate-200"}`}>{t.label}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{t.desc}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-300 mt-0.5">{t.desc}</p>
                 </div>
               </label>
             ))}
@@ -164,19 +164,19 @@ export default function NuevaAuditoriaInternaPage() {
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 space-y-4">
           <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200">Información general</h2>
           <div>
-            <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha *</label>
+            <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha *</label>
             <input type="date" required value={form.audit_date} onChange={(e) => set("audit_date", e.target.value)}
               className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Auditor *</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Auditor *</label>
               <input type="text" required value={form.auditor_name} onChange={(e) => set("auditor_name", e.target.value)}
                 placeholder="Nombre completo"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none" />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Cargo / Rol</label>
+              <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Cargo / Rol</label>
               <input type="text" value={form.auditor_role} onChange={(e) => set("auditor_role", e.target.value)}
                 placeholder="Ej. Coordinador QA"
                 className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none" />
@@ -196,7 +196,7 @@ export default function NuevaAuditoriaInternaPage() {
                 className={`px-3 py-1.5 text-xs font-semibold rounded-full border-2 transition-all ${
                   form.areas_audited.includes(area)
                     ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-700 dark:text-indigo-300"
-                    : "border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-indigo-300"
+                    : "border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-300 hover:border-indigo-300"
                 }`}
               >
                 {form.areas_audited.includes(area) ? "✓ " : ""}{area}
@@ -232,7 +232,7 @@ export default function NuevaAuditoriaInternaPage() {
             <AlertTriangle className="w-4 h-4 text-amber-500" />
             Hallazgos
           </h2>
-          <p className="text-xs text-slate-400">Documenta solo los hallazgos observados. Dejar en blanco si no aplica.</p>
+          <p className="text-xs text-slate-500 dark:text-slate-300">Documenta solo los hallazgos observados. Dejar en blanco si no aplica.</p>
 
           {[
             { key: "critical_findings", label: "Hallazgos críticos", color: "red",    desc: "Riesgo inmediato para la inocuidad alimentaria — acción inmediata requerida" },
@@ -241,9 +241,9 @@ export default function NuevaAuditoriaInternaPage() {
           ].map(({ key, label, color, desc }) => (
             <div key={key}>
               <label className={`block text-xs font-bold mb-1 uppercase tracking-wide ${
-                color === "red" ? "text-red-600" : color === "amber" ? "text-amber-600" : "text-slate-500 dark:text-slate-400"
+                color === "red" ? "text-red-600" : color === "amber" ? "text-amber-600" : "text-slate-500 dark:text-slate-300"
               }`}>{label}</label>
-              <p className="text-[10px] text-slate-400 mb-1.5">{desc}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-300 mb-1.5">{desc}</p>
               <textarea rows={2} value={(form as any)[key]} onChange={(e) => set(key, e.target.value)}
                 placeholder="Describe el hallazgo..."
                 className={`w-full px-3 py-2 text-sm rounded-lg border focus:ring-2 outline-none resize-none bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 ${
@@ -282,7 +282,7 @@ export default function NuevaAuditoriaInternaPage() {
               Acciones correctivas
             </h2>
             <label className="flex items-center gap-2 cursor-pointer">
-              <span className="text-xs text-slate-500 dark:text-slate-400">¿Se requieren?</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">¿Se requieren?</span>
               <div
                 onClick={() => set("corrective_actions_required", !form.corrective_actions_required)}
                 className={`w-10 h-5 rounded-full transition-colors cursor-pointer ${form.corrective_actions_required ? "bg-indigo-500" : "bg-slate-200 dark:bg-slate-700"}`}
@@ -294,19 +294,19 @@ export default function NuevaAuditoriaInternaPage() {
           {form.corrective_actions_required && (
             <>
               <div>
-                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Detalle de acciones *</label>
+                <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Detalle de acciones *</label>
                 <textarea rows={3} value={form.corrective_action_detail} onChange={(e) => set("corrective_action_detail", e.target.value)}
                   placeholder="Describe las acciones correctivas y responsables..."
                   className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none resize-none" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha límite</label>
+                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha límite</label>
                   <input type="date" value={form.corrective_action_deadline} onChange={(e) => set("corrective_action_deadline", e.target.value)}
                     className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wide">Fecha de seguimiento</label>
+                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-300 mb-1.5 uppercase tracking-wide">Fecha de seguimiento</label>
                   <input type="date" value={form.follow_up_date} onChange={(e) => set("follow_up_date", e.target.value)}
                     className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 outline-none" />
                 </div>

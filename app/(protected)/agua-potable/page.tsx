@@ -72,7 +72,7 @@ export default async function AguaPotablePage() {
             </span>
             Agua Potable
           </h1>
-          <p className="text-sm text-slate-400 mt-1">9 CFR 416.4 · Control de Calidad del Agua de Proceso</p>
+          <p className="text-sm text-slate-500 dark:text-slate-300 mt-1">9 CFR 416.4 · Control de Calidad del Agua de Proceso</p>
         </div>
         <Link
           href="/agua-potable/nuevo"
@@ -134,7 +134,7 @@ export default async function AguaPotablePage() {
               <div key={k.label} className={`rounded-xl p-4 ${k.bg}`}>
                 <k.icon className={`w-4 h-4 ${k.color} mb-2`} />
                 <p className={`text-2xl font-black ${k.color} tabular-nums`}>{k.value}</p>
-                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-400 mt-1">{k.label}</p>
+                <p className="text-[10.5px] font-medium text-slate-500 dark:text-slate-300 mt-1">{k.label}</p>
               </div>
             ))}
           </div>
@@ -196,12 +196,12 @@ export default async function AguaPotablePage() {
           <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
               <span className="text-sm font-bold text-slate-700 dark:text-slate-200">Registros — últimos 90 días</span>
-              <span className="text-xs text-slate-400">{total} pruebas</span>
+              <span className="text-xs text-slate-500 dark:text-slate-300">{total} pruebas</span>
             </div>
             {logs.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Droplets className="w-8 h-8 text-slate-200 dark:text-slate-700" />
-                <p className="text-sm text-slate-400">Sin pruebas registradas.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-300">Sin pruebas registradas.</p>
                 <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 416.4 requiere documentación de la potabilidad del agua de proceso.</p>
                 <Link href="/agua-potable/nuevo" className="text-sm text-blue-600 font-semibold hover:underline">+ Primera prueba</Link>
               </div>
@@ -211,7 +211,7 @@ export default async function AguaPotablePage() {
                   <thead className="bg-slate-100 dark:bg-slate-800">
                     <tr>
                       {["Fecha","Tipo","Fuente","Ubicación","Cl₂ (ppm)","pH","Turbidez","Coliformes","E. coli","Estado"].map((h) => (
-                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                        <th key={h} className="px-4 py-2.5 text-left text-[11px] font-bold text-slate-500 dark:text-slate-300 uppercase tracking-wide whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -224,15 +224,15 @@ export default async function AguaPotablePage() {
                         <tr key={log.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors ${rowFail ? "bg-red-50/30 dark:bg-red-900/10" : ""}`}>
                           <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-200 whitespace-nowrap">{fmtDate(log.test_date)}</td>
                           <td className="px-4 py-3 text-xs text-slate-600 dark:text-slate-300 whitespace-nowrap">{TEST_TYPE[log.test_type] ?? log.test_type}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{WATER_SOURCE[log.water_source] ?? log.water_source}</td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">{log.sample_location}</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{WATER_SOURCE[log.water_source] ?? log.water_source}</td>
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300">{log.sample_location}</td>
                           <td className={`px-4 py-3 font-bold tabular-nums text-xs ${clFail ? "text-red-600" : "text-slate-600 dark:text-slate-300"}`}>
                             {log.chlorine_residual_ppm !== null ? `${log.chlorine_residual_ppm}` : "—"}
                           </td>
                           <td className={`px-4 py-3 font-bold tabular-nums text-xs ${phFail ? "text-red-600" : "text-slate-600 dark:text-slate-300"}`}>
                             {log.ph !== null ? `${log.ph}` : "—"}
                           </td>
-                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 tabular-nums">
+                          <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-300 tabular-nums">
                             {log.turbidity_ntu !== null ? `${log.turbidity_ntu} NTU` : "—"}
                           </td>
                           <td className="px-4 py-3 text-xs">
@@ -240,14 +240,14 @@ export default async function AguaPotablePage() {
                               ? <span className="text-green-600 font-bold">Ausente</span>
                               : log.coliform_result === "present"
                               ? <span className="text-red-600 font-bold">PRESENTE</span>
-                              : <span className="text-slate-400">—</span>}
+                              : <span className="text-slate-500 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3 text-xs">
                             {log.e_coli_result === "absent"
                               ? <span className="text-green-600 font-bold">Ausente</span>
                               : log.e_coli_result === "present"
                               ? <span className="text-red-600 font-bold">PRESENTE</span>
-                              : <span className="text-slate-400">—</span>}
+                              : <span className="text-slate-500 dark:text-slate-300">—</span>}
                           </td>
                           <td className="px-4 py-3">
                             {log.result === "fail"
