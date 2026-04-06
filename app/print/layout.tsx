@@ -78,6 +78,7 @@ const PRINT_STYLES = `
   @media print {
     body { padding: 0 !important; }
     @page { margin: 1.5cm; size: letter; }
+    .no-print { display: none !important; }
   }
 `
 

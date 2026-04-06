@@ -81,7 +81,7 @@ export default async function ThawingListPage({
               <tbody>
                 {!logs?.length ? (
                   <tr>
-                    <td colSpan={9} className="text-center py-12 text-[var(--muted-foreground)]">
+                    <td colSpan={10} className="text-center py-12 text-[var(--muted-foreground)]">
                       No thawing logs yet. Create the first one!
                     </td>
                   </tr>

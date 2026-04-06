@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { notFound } from "next/navigation"
 import { formatDate, formatDateTime } from "@/lib/utils"
 import type { Metadata } from "next"
+import { PrintNowButton } from "@/app/print/PrintNowButton"
 
 interface Props { params: Promise<{ module: string; id: string }> }
 
@@ -109,6 +110,9 @@ export default async function PrintPage({ params }: Props) {
           <span>Printed: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
         </div>
       </div>
+
+      {/* Screen-only print button */}
+      <PrintNowButton />
 
       {/* ── Meta pills ── */}
       <div className="pb-meta">
