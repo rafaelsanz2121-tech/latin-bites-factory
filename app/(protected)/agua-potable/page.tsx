@@ -176,7 +176,7 @@ export default async function AguaPotablePage() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(f.test_date)}</span>
                     <span className="text-slate-600 dark:text-slate-300">{TEST_TYPE[f.test_type] ?? f.test_type}</span>
-                    <span className="text-xs text-slate-500">{f.sample_location}</span>
+                    <span className="text-xs text-slate-600 dark:text-slate-400">{f.sample_location}</span>
                     {f.chlorine_residual_ppm && (
                       <span className="font-bold text-red-600">Cl₂: {f.chlorine_residual_ppm} ppm</span>
                     )}
@@ -185,7 +185,7 @@ export default async function AguaPotablePage() {
                     )}
                   </div>
                   {f.corrective_action && (
-                    <p className="text-xs text-slate-500"><span className="font-semibold">Acción:</span> {f.corrective_action}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400"><span className="font-semibold">Acción:</span> {f.corrective_action}</p>
                   )}
                 </div>
               ))}
@@ -202,7 +202,7 @@ export default async function AguaPotablePage() {
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Droplets className="w-8 h-8 text-slate-200 dark:text-slate-700" />
                 <p className="text-sm text-slate-600 dark:text-slate-300">Sin pruebas registradas.</p>
-                <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 416.4 requiere documentación de la potabilidad del agua de proceso.</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xs text-center">9 CFR 416.4 requiere documentación de la potabilidad del agua de proceso.</p>
                 <Link href="/agua-potable/nuevo" className="text-sm text-blue-600 font-semibold hover:underline">+ Primera prueba</Link>
               </div>
             ) : (

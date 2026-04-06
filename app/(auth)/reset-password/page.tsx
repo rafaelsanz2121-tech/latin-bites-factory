@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
         <h1 className="text-xl font-black text-white tracking-tight">
           Factor<span className="text-red-500">OS</span>
         </h1>
-        <p className="text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
       </div>
 
       <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
@@ -66,14 +66,14 @@ export default function ResetPasswordPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-white">Contraseña actualizada</h2>
-              <p className="text-sm text-slate-400 mt-1">Redirigiendo al dashboard…</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Redirigiendo al dashboard…</p>
             </div>
           </div>
         ) : (
           <>
             <div className="mb-6">
               <h2 className="text-lg font-bold text-white">Nueva contraseña</h2>
-              <p className="text-sm text-slate-400 mt-1">Elige una contraseña segura para tu cuenta.</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Elige una contraseña segura para tu cuenta.</p>
             </div>
 
             {!ready && (
@@ -96,7 +96,7 @@ export default function ResetPasswordPage() {
                   <button
                     type="button"
                     onClick={() => setShowPw(!showPw)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-300"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-slate-300"
                   >
                     {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>

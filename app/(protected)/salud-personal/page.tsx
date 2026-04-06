@@ -178,7 +178,7 @@ export default async function SaludPersonalPage() {
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Heart className="w-8 h-8 text-slate-200 dark:text-slate-700" />
                 <p className="text-sm text-slate-600 dark:text-slate-300">Sin declaraciones registradas.</p>
-                <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 416.8 requiere documentar el estado de salud del personal antes de iniciar operaciones.</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xs text-center">9 CFR 416.8 requiere documentar el estado de salud del personal antes de iniciar operaciones.</p>
                 <Link href="/salud-personal/nuevo" className="text-sm text-rose-600 font-semibold hover:underline">+ Primera declaración</Link>
               </div>
             ) : (

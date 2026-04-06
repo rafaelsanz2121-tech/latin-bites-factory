@@ -179,7 +179,7 @@ export default async function AuditoriaInternaPage() {
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <ClipboardCheck className="w-8 h-8 text-slate-200 dark:text-slate-700" />
                 <p className="text-sm text-slate-600 dark:text-slate-300">Sin auditorías registradas.</p>
-                <p className="text-xs text-slate-400 max-w-xs text-center">9 CFR 417.8 requiere al menos una revisión anual del Plan HACCP.</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xs text-center">9 CFR 417.8 requiere al menos una revisión anual del Plan HACCP.</p>
                 <Link href="/auditoria-interna/nuevo" className="text-sm text-indigo-600 font-semibold hover:underline">+ Primera auditoría</Link>
               </div>
             ) : (

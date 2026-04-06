@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
         <h1 className="text-xl font-black text-white tracking-tight">
           Factor<span className="text-red-500">OS</span>
         </h1>
-        <p className="text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
       </div>
 
       <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
@@ -52,7 +52,7 @@ export default function ForgotPasswordPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-white">Email enviado</h2>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Revisa <strong className="text-white">{email}</strong> para el enlace de restablecimiento. Expira en 1 hora.
               </p>
             </div>
@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
           <>
             <div className="mb-6">
               <h2 className="text-lg font-bold text-white">Restablecer contraseña</h2>
-              <p className="text-sm text-slate-400 mt-1">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Ingresa tu email y te enviaremos un enlace de restablecimiento.
               </p>
             </div>
@@ -91,7 +91,7 @@ export default function ForgotPasswordPage() {
             </form>
 
             <div className="mt-5 text-center">
-              <Link href="/login" className="text-sm text-slate-500 hover:text-slate-300 flex items-center justify-center gap-1">
+              <Link href="/login" className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-300 flex items-center justify-center gap-1">
                 <ArrowLeft className="w-3.5 h-3.5" /> Volver al inicio de sesión
               </Link>
             </div>

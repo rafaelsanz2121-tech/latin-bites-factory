@@ -172,7 +172,7 @@ export default async function FinanzasPage({
         <div className="flex items-center gap-2">
           <a
             href={`/finanzas?m=${monthsBack + 1}`}
-            className="px-3 py-1.5 text-xs font-semibold border border-slate-200 rounded-lg text-slate-500 hover:border-slate-400 transition-colors"
+            className="px-3 py-1.5 text-xs font-semibold border border-slate-200 rounded-lg text-slate-600 dark:text-slate-400 hover:border-slate-400 transition-colors"
           >
             ← Mes anterior
           </a>
@@ -182,7 +182,7 @@ export default async function FinanzasPage({
           {monthsBack > 0 && (
             <a
               href="/finanzas"
-              className="px-3 py-1.5 text-xs font-semibold border border-slate-200 rounded-lg text-slate-500 hover:border-slate-400 transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold border border-slate-200 rounded-lg text-slate-600 dark:text-slate-400 hover:border-slate-400 transition-colors"
             >
               Mes actual →
             </a>
@@ -248,7 +248,7 @@ export default async function FinanzasPage({
                 <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
               </div>
               {k.trend !== null && (
-                <span className={`flex items-center gap-0.5 text-[11px] font-bold ${k.trend > 5 ? "text-red-500" : k.trend < -5 ? "text-green-600" : "text-slate-400"}`}>
+                <span className={`flex items-center gap-0.5 text-[11px] font-bold ${k.trend > 5 ? "text-red-500" : k.trend < -5 ? "text-green-600" : "text-slate-600 dark:text-slate-400"}`}>
                   {k.trend > 2 ? <ArrowUpRight className="w-3 h-3" /> : k.trend < -2 ? <ArrowDownRight className="w-3 h-3" /> : <Minus className="w-3 h-3" />}
                   {Math.abs(k.trend).toFixed(1)}%
                 </span>
@@ -297,7 +297,7 @@ export default async function FinanzasPage({
                 )
               })}
               <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-500">TOTAL COGS</span>
+                <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">TOTAL COGS</span>
                 <span className="text-base font-black text-slate-800">{fmt$(totalCOGS)}</span>
               </div>
             </div>
@@ -321,13 +321,13 @@ export default async function FinanzasPage({
                   <div key={p.name} className="px-5 py-3">
                     <div className="flex items-center justify-between">
                       <p className="text-[12.5px] font-semibold text-slate-700 truncate max-w-[160px]">{p.name}</p>
-                      <span className="text-[12.5px] font-black text-amber-700">{fmt$(p.cost)}</span>
+                      <span className="text-[12.5px] font-black text-slate-900 dark:text-slate-100">{fmt$(p.cost)}</span>
                     </div>
                     <div className="flex items-center justify-between mt-1">
                       <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden mr-2">
                         <div className="h-full bg-amber-400 rounded-full" style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="text-[10.5px] text-slate-400 whitespace-nowrap">
+                      <span className="text-[10.5px] text-slate-600 dark:text-slate-400 whitespace-nowrap">
                         {cpLb > 0 ? `${fmt$2(cpLb)}/lb` : "sin lbs"} · {p.orders} orden{p.orders !== 1 ? "es" : ""}
                       </span>
                     </div>
@@ -354,13 +354,13 @@ export default async function FinanzasPage({
                   <div key={emp.name} className="px-5 py-3">
                     <div className="flex items-center justify-between">
                       <p className="text-[12.5px] font-semibold text-slate-700 truncate max-w-[160px]">{emp.name}</p>
-                      <span className="text-[12.5px] font-black text-green-700">{fmt$(emp.pay)}</span>
+                      <span className="text-[12.5px] font-black text-slate-900 dark:text-slate-100">{fmt$(emp.pay)}</span>
                     </div>
                     <div className="flex items-center justify-between mt-1">
                       <div className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden mr-2">
                         <div className="h-full bg-green-400 rounded-full" style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="text-[10.5px] text-slate-400 whitespace-nowrap">
+                      <span className="text-[10.5px] text-slate-600 dark:text-slate-400 whitespace-nowrap">
                         {emp.hours.toFixed(1)} hrs
                       </span>
                     </div>
@@ -426,16 +426,16 @@ export default async function FinanzasPage({
                           {COST_TYPE_ES[item.cost_type] ?? item.cost_type}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] font-mono text-slate-500">
+                      <td className="px-4 py-3 text-[11.5px] font-mono text-slate-600 dark:text-slate-400">
                         {item.production_orders?.order_number ?? "—"}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-500">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-400">
                         {item.production_orders?.products?.name ?? "—"}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] text-slate-500 tabular-nums">
+                      <td className="px-4 py-3 text-right text-[12px] text-slate-600 dark:text-slate-400 tabular-nums">
                         {Number(item.quantity).toLocaleString()}
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] text-slate-500 tabular-nums">
+                      <td className="px-4 py-3 text-right text-[12px] text-slate-600 dark:text-slate-400 tabular-nums">
                         {fmt$2(Number(item.unit_cost))}
                       </td>
                       <td className="px-4 py-3 text-right font-black text-[13px] text-amber-700 tabular-nums">
@@ -487,7 +487,7 @@ export default async function FinanzasPage({
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                   {catEntries.map(([cat, { value, count }]) => (
                     <div key={cat} className="bg-slate-50 rounded-lg p-3 border border-slate-100">
-                      <p className="text-[10.5px] font-semibold text-slate-500 mb-1">{CAT_ES[cat] ?? cat}</p>
+                      <p className="text-[10.5px] font-semibold text-slate-600 dark:text-slate-400 mb-1">{CAT_ES[cat] ?? cat}</p>
                       <p className="text-[15px] font-black text-slate-800">{value > 0 ? fmt$(value) : "—"}</p>
                       <p className="text-[10px] text-slate-600 dark:text-slate-300 mt-0.5">{count} artículo{count !== 1 ? "s" : ""}</p>
                     </div>

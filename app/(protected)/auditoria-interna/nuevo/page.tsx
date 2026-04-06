@@ -335,7 +335,7 @@ export default function NuevaAuditoriaInternaPage() {
                       : opt.color === "amber"
                       ? "border-amber-400 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100"
                       : "border-red-500 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100"
-                    : "border-slate-100 dark:border-slate-700 text-slate-500 hover:border-slate-300"
+                    : "border-slate-100 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300"
                 }`}
               >
                 <opt.icon className="w-5 h-5" />

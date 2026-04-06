@@ -103,7 +103,7 @@ export default async function CostosPage() {
               <k.icon className={`w-4 h-4 ${k.iconText}`} />
             </div>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
-            <p className="text-[11px] font-medium text-slate-500 mt-1.5">{k.label}</p>
+            <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
           </div>
         ))}
       </div>
@@ -171,7 +171,7 @@ export default async function CostosPage() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         {hasCost ? (
-                          <span className="text-[13px] font-black text-amber-700">{fmt$(cost.total_cost)}</span>
+                          <span className="text-[13px] font-black text-slate-900 dark:text-slate-100">{fmt$(cost.total_cost)}</span>
                         ) : (
                           <span className="text-[10.5px] text-red-400 font-semibold bg-red-50 px-2 py-0.5 rounded-full">Sin costo</span>
                         )}
@@ -180,7 +180,7 @@ export default async function CostosPage() {
                         {hasCost && cost.cost_per_lb ? `$${Number(cost.cost_per_lb).toFixed(3)}` : "—"}
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`text-[10.5px] font-semibold px-2 py-0.5 rounded-full ${STATUS_COLOR[order.status] ?? "bg-slate-50 text-slate-500"}`}>
+                        <span className={`text-[10.5px] font-semibold px-2 py-0.5 rounded-full ${STATUS_COLOR[order.status] ?? "bg-slate-50 text-slate-600 dark:text-slate-400"}`}>
                           {STATUS_ES[order.status] ?? order.status}
                         </span>
                       </td>

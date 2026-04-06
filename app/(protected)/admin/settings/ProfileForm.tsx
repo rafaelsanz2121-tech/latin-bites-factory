@@ -110,7 +110,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
             {/* Full name + Initials */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="sm:col-span-2">
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Nombre completo
                 </label>
                 <input
@@ -121,7 +121,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Iniciales (2)
                 </label>
                 <input
@@ -137,23 +137,23 @@ export function ProfileForm({ profile }: { profile: Profile }) {
             {/* Read-only fields */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Email (no editable)
                 </label>
                 <input
                   value={profile.email}
                   disabled
-                  className="w-full px-3 py-2.5 border border-slate-100 dark:border-slate-700 rounded-lg text-sm bg-slate-50 dark:bg-slate-800/50 text-slate-400 cursor-not-allowed"
+                  className="w-full px-3 py-2.5 border border-slate-100 dark:border-slate-700 rounded-lg text-sm bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 cursor-not-allowed"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Rol (asignado por admin)
                 </label>
                 <input
                   value={ROLE_LABELS[profile.role] ?? profile.role}
                   disabled
-                  className="w-full px-3 py-2.5 border border-slate-100 dark:border-slate-700 rounded-lg text-sm bg-slate-50 dark:bg-slate-800/50 text-slate-400 cursor-not-allowed"
+                  className="w-full px-3 py-2.5 border border-slate-100 dark:border-slate-700 rounded-lg text-sm bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 cursor-not-allowed"
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
           <div className={`px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between transition-colors ${
             dirtyProfile ? "bg-white dark:bg-[#111827]" : "bg-slate-50/60 dark:bg-white/[0.02]"
           }`}>
-            <p className={`text-xs font-medium ${dirtyProfile ? "text-slate-900 dark:text-slate-100" : "text-slate-400"}`}>
+            <p className={`text-xs font-medium ${dirtyProfile ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"}`}>
               {dirtyProfile ? "Cambios sin guardar" : "Perfil guardado"}
             </p>
             <button
@@ -188,7 +188,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
           <div className="p-5 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Nueva contraseña
                 </label>
                 <div className="relative">
@@ -201,14 +201,14 @@ export function ProfileForm({ profile }: { profile: Profile }) {
                     className="w-full px-3 py-2.5 pr-10 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 placeholder-slate-300 focus:outline-none focus:border-blue-400 transition-colors"
                   />
                   <button type="button" onClick={() => setShowPwd((v) => !v)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-slate-600 transition-colors"
                   >
                     {showPwd ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                   </button>
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                   Confirmar contraseña
                 </label>
                 <input

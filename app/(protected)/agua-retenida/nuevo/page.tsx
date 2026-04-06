@@ -126,7 +126,7 @@ export default function NuevoAguaRetenida() {
     <div className="max-w-[760px] space-y-6">
 
       <div className="flex items-start gap-4">
-        <button onClick={() => router.back()} className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 transition-colors">
+        <button onClick={() => router.back()} className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-600 transition-colors">
           <ChevronLeft className="w-4 h-4" />
         </button>
         <div>
@@ -248,7 +248,7 @@ export default function NuevoAguaRetenida() {
                     <p className={`text-3xl font-black tabular-nums ${autoResult === "fail" ? "text-red-600" : "text-green-600"}`}>
                       {waterPct.toFixed(3)}%
                     </p>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                       {waterAbsorbed! >= 0 ? `+${waterAbsorbed!.toFixed(1)}g absorbida` : `${waterAbsorbed!.toFixed(1)}g perdida`} · Límite: {limit}%
                     </p>
                   </div>

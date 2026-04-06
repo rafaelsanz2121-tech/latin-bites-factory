@@ -123,7 +123,7 @@ export default function NuevaListeriaMuestraPage() {
   return (
     <div className="max-w-[720px] space-y-5">
       <div>
-        <Link href="/listeria" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 mb-3 transition-colors">
+        <Link href="/listeria" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-600 mb-3 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" /> Volver
         </Link>
         <h1 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight flex items-center gap-2">
@@ -139,7 +139,7 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Zone selector */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Zona de muestreo *</p>
+          <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-3">Zona de muestreo *</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {ZONES.map((z) => (
               <button
@@ -158,11 +158,11 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Date + Location + Surface */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm space-y-4">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Detalles de la muestra</p>
+          <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Detalles de la muestra</p>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Fecha de muestreo *
               </label>
               <input
@@ -175,7 +175,7 @@ export default function NuevaListeriaMuestraPage() {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Método de prueba *
               </label>
               <select
@@ -189,7 +189,7 @@ export default function NuevaListeriaMuestraPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
               Ubicación específica *
             </label>
             <select
@@ -213,7 +213,7 @@ export default function NuevaListeriaMuestraPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
               Tipo de superficie *
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -225,7 +225,7 @@ export default function NuevaListeriaMuestraPage() {
                   className={`px-3 py-2 rounded-lg border text-[11.5px] font-semibold transition-all text-left ${
                     form.surface_type === st.value
                       ? "border-purple-500 bg-purple-50 dark:bg-purple-900/30 text-slate-900 dark:text-slate-100"
-                      : "border-slate-200 dark:border-slate-600 text-slate-500 hover:border-slate-300"
+                      : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-300"
                   }`}
                 >
                   {st.label}
@@ -237,7 +237,7 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Result */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm space-y-4">
-          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Resultado de laboratorio</p>
+          <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Resultado de laboratorio</p>
 
           <div className="grid grid-cols-3 gap-3">
             {[
@@ -250,7 +250,7 @@ export default function NuevaListeriaMuestraPage() {
                 type="button"
                 onClick={() => set("result", r.value)}
                 className={`py-3 rounded-xl border-2 font-bold text-sm transition-all ${
-                  form.result === r.value ? r.color : "border-slate-200 dark:border-slate-600 text-slate-400 hover:border-slate-300"
+                  form.result === r.value ? r.color : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:border-slate-300"
                 }`}
               >
                 {r.label}
@@ -331,7 +331,7 @@ export default function NuevaListeriaMuestraPage() {
               </label>
               {form.retest_required && (
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Fecha de re-muestreo</label>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">Fecha de re-muestreo</label>
                   <input
                     type="date"
                     value={form.retest_date}
@@ -346,7 +346,7 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Notes */}
         <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 p-5 shadow-sm">
-          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">
             Notas adicionales
           </label>
           <textarea
@@ -360,7 +360,7 @@ export default function NuevaListeriaMuestraPage() {
 
         {/* Submit */}
         <div className="flex items-center justify-between gap-3 pt-1">
-          <Link href="/listeria" className="px-5 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors">
+          <Link href="/listeria" className="px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-700 transition-colors">
             Cancelar
           </Link>
           <button

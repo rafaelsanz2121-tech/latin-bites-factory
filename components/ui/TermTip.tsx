@@ -67,7 +67,7 @@ export function TermTip({ term, label, side = "top" }: TermTipProps) {
             </p>
             <p className="leading-relaxed text-slate-200">{entry.definition}</p>
             {entry.example && (
-              <p className="text-slate-400 italic text-[11px]">Ej: {entry.example}</p>
+              <p className="text-slate-600 dark:text-slate-400 italic text-[11px]">Ej: {entry.example}</p>
             )}
           </div>
         </div>

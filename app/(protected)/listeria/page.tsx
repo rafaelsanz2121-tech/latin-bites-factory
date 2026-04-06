@@ -284,7 +284,7 @@ export default async function ListeriaPage() {
                       <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-300 max-w-[160px] truncate">
                         {s.location}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-500">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-400">
                         {SURFACE_ES[s.surface_type] ?? s.surface_type}
                       </td>
                       <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-300 font-mono">
@@ -299,7 +299,7 @@ export default async function ListeriaPage() {
                           <span className="ml-1 text-[9px] font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded-full">HOLD</span>
                         )}
                       </td>
-                      <td className="px-4 py-3 text-[11.5px] text-slate-500 max-w-[200px] truncate">
+                      <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-400 max-w-[200px] truncate">
                         {s.action_taken || "—"}
                       </td>
                       <td className="px-4 py-3 text-[11.5px] text-slate-600 dark:text-slate-300">

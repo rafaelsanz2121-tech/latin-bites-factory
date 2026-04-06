@@ -93,8 +93,8 @@ export default async function InventarioPage({
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {[
           { label: "Total artículos",    value: String(totalItems), icon: Boxes,        bg: "bg-blue-50",   text: "text-blue-700",   border: "border-blue-100" },
-          { label: "Stock bajo",          value: String(lowStock.length), icon: TrendingDown, bg: lowStock.length > 0 ? "bg-orange-50" : "bg-slate-50", text: lowStock.length > 0 ? "text-orange-700" : "text-slate-400", border: lowStock.length > 0 ? "border-orange-100" : "border-slate-100" },
-          { label: "Agotados",            value: String(outOfStock.length), icon: AlertTriangle, bg: outOfStock.length > 0 ? "bg-red-50" : "bg-slate-50", text: outOfStock.length > 0 ? "text-red-700" : "text-slate-400", border: outOfStock.length > 0 ? "border-red-100" : "border-slate-100" },
+          { label: "Stock bajo",          value: String(lowStock.length), icon: TrendingDown, bg: lowStock.length > 0 ? "bg-orange-50" : "bg-slate-50", text: lowStock.length > 0 ? "text-orange-700" : "text-slate-600 dark:text-slate-400", border: lowStock.length > 0 ? "border-orange-100" : "border-slate-100" },
+          { label: "Agotados",            value: String(outOfStock.length), icon: AlertTriangle, bg: outOfStock.length > 0 ? "bg-red-50" : "bg-slate-50", text: outOfStock.length > 0 ? "text-red-700" : "text-slate-600 dark:text-slate-400", border: outOfStock.length > 0 ? "border-red-100" : "border-slate-100" },
           { label: "Valor total stock",   value: totalValue > 0 ? totalValue.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }) : "—", icon: CheckCircle2, bg: "bg-green-50", text: "text-green-700", border: "border-green-100" },
         ].map((k) => (
           <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
@@ -102,7 +102,7 @@ export default async function InventarioPage({
               <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
             </div>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
-            <p className="text-[11px] font-medium text-slate-500 mt-1.5">{k.label}</p>
+            <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
           </div>
         ))}
       </div>
@@ -110,11 +110,11 @@ export default async function InventarioPage({
       {/* Category filter pills */}
       {categories.length > 1 && (
         <div className="flex flex-wrap gap-2">
-          <Link href="/inventario" className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${!cat || cat === "all" ? "bg-slate-800 text-white border-slate-800" : "border-slate-200 text-slate-500 hover:border-slate-400"}`}>
+          <Link href="/inventario" className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${!cat || cat === "all" ? "bg-slate-800 text-white border-slate-800" : "border-slate-200 text-slate-600 dark:text-slate-400 hover:border-slate-400"}`}>
             Todos ({allItems.length})
           </Link>
           {categories.map((c) => (
-            <Link key={c} href={`/inventario?cat=${c}`} className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${cat === c ? "bg-slate-800 text-white border-slate-800" : `${CATEGORY_COLOR[c] ?? "border-slate-200 text-slate-500"} hover:opacity-80`}`}>
+            <Link key={c} href={`/inventario?cat=${c}`} className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors ${cat === c ? "bg-slate-800 text-white border-slate-800" : `${CATEGORY_COLOR[c] ?? "border-slate-200 text-slate-600 dark:text-slate-400"} hover:opacity-80`}`}>
               {CATEGORY_ES[c] ?? c} ({allItems.filter((i: any) => i.category === c).length})
             </Link>
           ))}
@@ -171,7 +171,7 @@ export default async function InventarioPage({
                           {CATEGORY_ES[item.category] ?? item.category}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-[12px] text-slate-500">{item.location || "—"}</td>
+                      <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-400">{item.location || "—"}</td>
                       <td className="px-4 py-3 text-right">
                         <p className="text-[13px] font-black text-slate-700 tabular-nums">{current.toLocaleString()}</p>
                         <p className="text-[10px]  text-slate-600 dark:text-slate-300">{item.unit}</p>

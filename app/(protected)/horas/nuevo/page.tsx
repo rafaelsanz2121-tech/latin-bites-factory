@@ -95,7 +95,7 @@ export default function NuevaHoraPage() {
   return (
     <div className="max-w-2xl space-y-6">
       <div>
-        <Link href="/horas" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 mb-3 transition-colors">
+        <Link href="/horas" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-600 mb-3 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" /> Volver a Control de Horas
         </Link>
         <h1 className="text-2xl font-black text-slate-800 flex items-center gap-2 tracking-tight">
@@ -208,7 +208,7 @@ export default function NuevaHoraPage() {
         {totalPay !== null && (
           <div className="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
             <span className="text-sm font-semibold text-amber-800">Costo de este registro:</span>
-            <span className="text-lg font-black text-amber-700">
+            <span className="text-lg font-black text-slate-900 dark:text-slate-100">
               {totalPay.toLocaleString("en-US", { style: "currency", currency: "USD" })}
             </span>
           </div>
@@ -220,7 +220,7 @@ export default function NuevaHoraPage() {
             className="px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-colors disabled:opacity-60">
             {saving ? "Guardando..." : "Registrar horas"}
           </button>
-          <Link href="/horas" className="px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700">Cancelar</Link>
+          <Link href="/horas" className="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-700">Cancelar</Link>
         </div>
       </form>
     </div>

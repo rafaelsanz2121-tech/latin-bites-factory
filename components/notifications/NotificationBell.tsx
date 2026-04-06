@@ -150,7 +150,7 @@ export function NotificationBell() {
       >
         <Bell className={cn(
           "w-4 h-4 transition-colors",
-          hasCrit ? "text-red-500" : count > 0 ? "text-amber-500" : "text-slate-400"
+          hasCrit ? "text-red-500" : count > 0 ? "text-amber-500" : "text-slate-600 dark:text-slate-400"
         )} />
 
         {/* Badge */}
@@ -171,7 +171,7 @@ export function NotificationBell() {
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-subtle)] flex-shrink-0">
             <div className="flex items-center gap-2">
-              <Bell className="w-4 h-4 text-slate-500" />
+              <Bell className="w-4 h-4 text-slate-600 dark:text-slate-400" />
               <span className="text-[13px] font-bold text-[var(--text-primary)]">Notificaciones</span>
               {count > 0 && (
                 <span className={cn(
@@ -188,12 +188,12 @@ export function NotificationBell() {
                 className="p-1.5 rounded-lg hover:bg-[var(--surface-3)] transition-colors"
                 title="Actualizar"
               >
-                <RefreshCw className={cn("w-3.5 h-3.5 text-slate-400", loading && "animate-spin")} />
+                <RefreshCw className={cn("w-3.5 h-3.5 text-slate-600 dark:text-slate-400", loading && "animate-spin")} />
               </button>
               {count > 0 && (
                 <button
                   onClick={dismissAll}
-                  className="px-2 py-1 text-[10.5px] font-semibold text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-[var(--surface-3)] rounded-lg transition-colors"
+                  className="px-2 py-1 text-[10.5px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-[var(--surface-3)] rounded-lg transition-colors"
                 >
                   Limpiar todo
                 </button>
@@ -204,7 +204,7 @@ export function NotificationBell() {
           {/* Body */}
           <div className="overflow-y-auto flex-1">
             {loading && notifications.length === 0 ? (
-              <div className="flex items-center justify-center py-10 gap-2 text-slate-400">
+              <div className="flex items-center justify-center py-10 gap-2 text-slate-600 dark:text-slate-400">
                 <Loader2 className="w-4 h-4 animate-spin" />
                 <span className="text-sm">Cargando…</span>
               </div>
@@ -262,7 +262,7 @@ export function NotificationBell() {
                             className="opacity-0 group-hover:opacity-100 p-1 rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-all flex-shrink-0"
                             title="Descartar"
                           >
-                            <X className="w-3 h-3 text-slate-400" />
+                            <X className="w-3 h-3 text-slate-600 dark:text-slate-400" />
                           </button>
                         </div>
                       )

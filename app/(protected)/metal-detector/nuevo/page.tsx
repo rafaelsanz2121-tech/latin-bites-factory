@@ -130,7 +130,7 @@ export default function NuevoMetalDetectorPage() {
       <div className="flex items-start gap-4">
         <button
           onClick={() => router.back()}
-          className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 transition-colors"
+          className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-600 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -242,7 +242,7 @@ export default function NuevoMetalDetectorPage() {
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
                         t.pass
                           ? "bg-green-100 border-green-300 text-green-700 dark:bg-green-900/30 dark:border-green-700 dark:text-green-300"
-                          : "border-slate-200 dark:border-slate-600 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
+                          : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                       }`}
                     >
                       <CheckCircle2 className="w-3.5 h-3.5" /> PASA
@@ -253,7 +253,7 @@ export default function NuevoMetalDetectorPage() {
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
                         !t.pass
                           ? "bg-red-100 border-red-300 text-red-700 dark:bg-red-900/30 dark:border-red-700 dark:text-red-300"
-                          : "border-slate-200 dark:border-slate-600 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
+                          : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                       }`}
                     >
                       <XCircle className="w-3.5 h-3.5" /> FALLA

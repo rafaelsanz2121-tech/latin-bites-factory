@@ -211,8 +211,8 @@ export default async function CapacitacionPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       {allGood
-                        ? <span className="flex items-center gap-1 text-[10.5px] font-bold text-green-700 bg-green-100 dark:bg-green-900/40 px-2.5 py-0.5 rounded-full"><CheckCircle2 className="w-3 h-3" /> Al día</span>
-                        : <span className="flex items-center gap-1 text-[10.5px] font-bold text-red-700 bg-red-100 dark:bg-red-900/40 px-2.5 py-0.5 rounded-full"><AlertTriangle className="w-3 h-3" /> Requiere atención</span>
+                        ? <span className="flex items-center gap-1 text-[10.5px] font-bold text-slate-900 dark:text-slate-100 bg-green-100 dark:bg-green-900/40 px-2.5 py-0.5 rounded-full"><CheckCircle2 className="w-3 h-3" /> Al día</span>
+                        : <span className="flex items-center gap-1 text-[10.5px] font-bold text-slate-900 dark:text-slate-100 bg-red-100 dark:bg-red-900/40 px-2.5 py-0.5 rounded-full"><AlertTriangle className="w-3 h-3" /> Requiere atención</span>
                       }
                       <Link
                         href={`/capacitacion/nuevo?emp=${emp.id}`}
@@ -304,9 +304,9 @@ export default async function CapacitacionPage() {
                         {r.profiles?.full_name ?? "—"}
                       </td>
                       <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-300">{r.training_type}</td>
-                      <td className="px-4 py-3 text-[12px] text-slate-500 whitespace-nowrap">{fmtDate(r.training_date)}</td>
-                      <td className="px-4 py-3 text-[12px] text-slate-500">{r.trainer_name ?? "—"}</td>
-                      <td className="px-4 py-3 text-[12px] text-slate-500 whitespace-nowrap">
+                      <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-400 whitespace-nowrap">{fmtDate(r.training_date)}</td>
+                      <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-400">{r.trainer_name ?? "—"}</td>
+                      <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-400 whitespace-nowrap">
                         {r.expiry_date ? fmtDate(r.expiry_date) : "Sin vencimiento"}
                       </td>
                       <td className="px-4 py-3">

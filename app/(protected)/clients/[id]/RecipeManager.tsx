@@ -81,7 +81,7 @@ function RecipeCard({ recipe, canManage, onToggle }: {
                 <span className="text-xs text-orange-600 font-medium">🌡 {recipe.oven_temp_f}°F</span>
               )}
               {recipe.oven_duration_minutes && (
-                <span className="text-xs text-slate-500 flex items-center gap-0.5">
+                <span className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-0.5">
                   <Clock className="w-3 h-3" />
                   {recipe.oven_duration_minutes >= 60
                     ? `${Math.floor(recipe.oven_duration_minutes / 60)}h ${recipe.oven_duration_minutes % 60}min`

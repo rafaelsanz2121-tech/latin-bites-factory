@@ -189,7 +189,7 @@ export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/
           <p className="font-black text-sm text-white leading-none tracking-tight">
             Factor<span className="text-red-500">OS</span>
           </p>
-          <p className="text-[10px] text-slate-500 mt-0.5 font-medium">EST {estNumber}</p>
+          <p className="text-[10px] text-slate-600 dark:text-slate-400 mt-0.5 font-medium">EST {estNumber}</p>
         </div>
       </div>
 
@@ -223,10 +223,10 @@ export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/
                           "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150",
                           active
                             ? "text-white bg-white/[0.06] border-l-2 border-red-500 pl-[10px]"
-                            : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                            : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                         )}
                       >
-                        <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0", active ? "text-red-400" : "text-slate-500")} />
+                        <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0", active ? "text-red-400" : "text-slate-600 dark:text-slate-400")} />
                         <span className="flex-1 text-left">{item.label}</span>
                         <ChevronDown
                           className={cn(
@@ -246,7 +246,7 @@ export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/
                                 "flex items-center px-3 py-1.5 rounded-md text-[12.5px] transition-all duration-150",
                                 isActive(child.href)
                                   ? "text-white font-semibold bg-red-500/10 border-l-2 border-red-500 pl-2.5"
-                                  : "text-slate-500 hover:text-slate-200 hover:bg-white/[0.04]"
+                                  : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                               )}
                             >
                               {child.label}
@@ -268,10 +268,10 @@ export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/
                       "flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 group",
                       active
                         ? "text-white bg-white/[0.07] border-l-2 border-red-500 pl-[10px]"
-                        : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                     )}
                   >
-                    <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0 transition-colors", active ? "text-red-400" : "text-slate-500 group-hover:text-slate-400")} />
+                    <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0 transition-colors", active ? "text-red-400" : "text-slate-600 dark:text-slate-400 group-hover:text-slate-400")} />
                     <span className="flex-1">{item.label}</span>
                     {item.badge && (
                       <span className={cn(

@@ -155,7 +155,7 @@ export default function NuevoRegistroCapacitacion() {
       <div className="flex items-start gap-4">
         <button
           onClick={() => router.back()}
-          className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 transition-colors"
+          className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-600 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -321,7 +321,7 @@ export default function NuevoRegistroCapacitacion() {
                     selected ? `${r.bg} ${r.color} shadow-sm` : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${selected ? r.color : "text-slate-400"}`} />
+                  <Icon className={`w-4 h-4 ${selected ? r.color : "text-slate-600 dark:text-slate-400"}`} />
                   {r.label}
                 </button>
               )

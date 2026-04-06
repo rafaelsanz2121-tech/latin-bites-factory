@@ -65,7 +65,7 @@ export default function NuevoInventarioPage() {
   return (
     <div className="max-w-2xl space-y-6">
       <div>
-        <Link href="/inventario" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 mb-3 transition-colors">
+        <Link href="/inventario" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-600 mb-3 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" /> Volver a Inventario
         </Link>
         <h1 className="text-2xl font-black text-slate-800 flex items-center gap-2 tracking-tight">
@@ -122,7 +122,7 @@ export default function NuevoInventarioPage() {
               { k: "max_stock",     label: "Máximo (opcional)", placeholder: "—" },
             ].map((f) => (
               <div key={f.k}>
-                <label className="block text-[10.5px] font-semibold text-slate-500 mb-1">{f.label}</label>
+                <label className="block text-[10.5px] font-semibold text-slate-600 dark:text-slate-400 mb-1">{f.label}</label>
                 <input type="number" min="0" step="0.001" value={(form as any)[f.k]}
                   onChange={(e) => set(f.k, e.target.value)} placeholder={f.placeholder}
                   className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
@@ -169,7 +169,7 @@ export default function NuevoInventarioPage() {
             className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-colors disabled:opacity-60">
             {saving ? "Guardando..." : "Crear artículo"}
           </button>
-          <Link href="/inventario" className="px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700">
+          <Link href="/inventario" className="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-700">
             Cancelar
           </Link>
         </div>

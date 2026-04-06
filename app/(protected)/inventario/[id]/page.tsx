@@ -91,7 +91,7 @@ export default async function InventarioDetailPage({
 
       {/* Back + header */}
       <div>
-        <Link href="/inventario" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 mb-3 transition-colors">
+        <Link href="/inventario" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-600 mb-3 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" /> Volver a Inventario
         </Link>
         <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -159,7 +159,7 @@ export default async function InventarioDetailPage({
               <k.icon className={`w-3.5 h-3.5 ${k.iconText ?? k.text}`} />
             </div>
             <p className={`text-xl font-black leading-none ${k.iconText ?? k.text}`}>{k.value}</p>
-            <p className="text-[10.5px] font-medium text-slate-500 mt-1.5">{k.label}</p>
+            <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
           </div>
         ))}
       </div>

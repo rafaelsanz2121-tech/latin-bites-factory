@@ -73,7 +73,7 @@ export function SignatureBlock({
     <div className={cn("space-y-2", className)}>
       <div className="flex items-center gap-1.5 mb-3">
         {status === "locked" ? (
-          <Lock className="w-4 h-4 text-slate-500" />
+          <Lock className="w-4 h-4 text-slate-600 dark:text-slate-400" />
         ) : (
           <CheckCircle2 className="w-4 h-4 text-[var(--muted-foreground)]" />
         )}

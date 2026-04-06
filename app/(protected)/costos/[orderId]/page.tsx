@@ -75,7 +75,7 @@ export default async function CostoDetailPage({
 
       {/* Back link + Header */}
       <div>
-        <Link href="/costos" className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-600 mb-3 transition-colors">
+        <Link href="/costos" className="inline-flex items-center gap-1.5 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-600 mb-3 transition-colors">
           <ArrowLeft className="w-3.5 h-3.5" /> Volver a Costos
         </Link>
         <div className="flex items-start justify-between gap-4">
@@ -89,7 +89,7 @@ export default async function CostoDetailPage({
           </div>
           <div className="flex items-start gap-3">
             <div className="text-right">
-              <p className="text-[11px] text-slate-400 font-medium">Cantidad</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium">Cantidad</p>
               <p className="text-xl font-black text-slate-700 tabular-nums">
                 {order.quantity_lbs ? `${Number(order.quantity_lbs).toLocaleString()} lbs` : "—"}
               </p>
@@ -109,7 +109,7 @@ export default async function CostoDetailPage({
         ].map((c) => (
           <div key={c.label} className={`rounded-xl border p-4 ${c.bg} ${c.border}`}>
             <p className={`text-lg font-black ${c.color} leading-none`}>{c.value}</p>
-            <p className="text-[11px] font-medium text-slate-500 mt-1.5">{c.label}</p>
+            <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{c.label}</p>
           </div>
         ))}
       </div>
@@ -177,7 +177,7 @@ export default async function CostoDetailPage({
                         {fmt$(item.unit_cost)}
                       </td>
                       <td className="px-4 py-3 text-right">
-                        <span className="text-[13px] font-bold text-amber-700">{fmt$(item.total_cost)}</span>
+                        <span className="text-[13px] font-bold text-slate-900 dark:text-slate-100">{fmt$(item.total_cost)}</span>
                       </td>
                       <td className="px-4 py-3 text-[11.5px]  text-slate-600 dark:text-slate-300">
                         {item.profiles?.full_name ?? "—"}

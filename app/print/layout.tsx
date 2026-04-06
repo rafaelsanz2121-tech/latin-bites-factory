@@ -3,77 +3,123 @@ const PRINT_STYLES = `
   * { box-sizing: border-box; }
   body {
     margin: 0 !important;
-    padding: 32px !important;
+    padding: 40px !important;
     background: white !important;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-size: 11px;
-    color: #111;
+    color: #0f172a;
+    line-height: 1.5;
   }
-  /* Hide anything injected by root layout */
   [data-sonner-toaster] { display: none !important; }
 
-  /* ── Print-specific classes ───────────────────── */
+  /* ── Header ───────────────────────────────────────── */
   .pb-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 2px solid #111;
-    padding-bottom: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #0f172a;
   }
-  .pb-header-left h1 { font-size: 18px; font-weight: 700; margin: 0; }
-  .pb-header-left p  { font-size: 11px; color: #555; margin: 2px 0 0; }
-  .pb-header-right   { text-align: right; font-size: 10px; color: #555; }
-  .pb-header-right strong { display: block; font-size: 12px; color: #111; }
-  .pb-header-right span   { display: block; margin-top: 2px; }
+  .pb-logo-row { display: flex; align-items: center; gap: 10px; }
+  .pb-logo-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pb-logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .pb-logo-text { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+  .pb-logo-text span { color: #dc2626; }
+  .pb-logo-sub { font-size: 9px; color: #64748b; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-top: 1px; }
 
-  .pb-meta { display: flex; gap: 32px; margin-bottom: 20px; }
+  .pb-header-right { text-align: right; }
+  .pb-doc-title { font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+  .pb-doc-meta { font-size: 9.5px; color: #64748b; line-height: 1.6; }
+  .pb-doc-id {
+    display: inline-block; background: #f1f5f9; border: 1px solid #e2e8f0;
+    border-radius: 4px; padding: 2px 8px; font-size: 9px; font-weight: 700;
+    font-family: monospace; color: #334155; margin-top: 4px;
+    letter-spacing: .06em;
+  }
+
+  /* ── Meta pills row ───────────────────────────────── */
+  .pb-meta {
+    display: flex; gap: 0; margin-bottom: 24px;
+    border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;
+  }
+  .pb-meta-item {
+    flex: 1; padding: 10px 14px;
+    border-right: 1px solid #e2e8f0;
+    background: #f8fafc;
+  }
+  .pb-meta-item:last-child { border-right: none; }
   .pb-meta-item label {
-    font-size: 9px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .05em; color: #666; display: block;
+    font-size: 8.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .08em; color: #94a3b8; display: block; margin-bottom: 3px;
   }
-  .pb-meta-item span { font-size: 12px; font-weight: 600; }
+  .pb-meta-item span { font-size: 12px; font-weight: 700; color: #0f172a; }
 
-  .pb-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  /* ── Data table ───────────────────────────────────── */
+  .pb-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; }
+  .pb-table thead tr { background: #0f172a; }
   .pb-table th {
-    background: #f3f4f6; font-size: 9px; text-transform: uppercase;
-    letter-spacing: .05em; font-weight: 700; color: #444;
-    padding: 6px 10px; text-align: left; border: 1px solid #e5e7eb;
+    font-size: 8.5px; text-transform: uppercase; letter-spacing: .08em;
+    font-weight: 700; color: #94a3b8; padding: 8px 12px; text-align: left;
   }
-  .pb-table td { padding: 6px 10px; border: 1px solid #e5e7eb; vertical-align: top; }
+  .pb-table tbody tr:nth-child(even) td { background: #f8fafc; }
+  .pb-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
   .pb-table td:first-child {
-    font-weight: 600; width: 35%; background: #fafafa; color: #555;
-    font-size: 10px; text-transform: uppercase; letter-spacing: .04em;
+    font-weight: 600; width: 32%; color: #475569;
+    font-size: 9.5px; text-transform: uppercase; letter-spacing: .04em;
   }
+  .pb-table td:last-child { font-size: 11px; font-weight: 500; color: #0f172a; }
   .pb-table pre {
-    font-family: monospace; font-size: 10px; white-space: pre-wrap; margin: 0;
+    font-family: monospace; font-size: 10px; white-space: pre-wrap;
+    margin: 0; background: #f1f5f9; padding: 6px 8px; border-radius: 4px;
   }
 
+  /* ── Signature block ──────────────────────────────── */
   .pb-sigs {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
-    margin-top: 24px; border-top: 1px solid #e5e7eb; padding-top: 16px;
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+    margin-top: 32px; padding-top: 20px; border-top: 2px solid #e2e8f0;
+  }
+  .pb-sig-block {
+    border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px;
+    background: #f8fafc;
   }
   .pb-sig-block label {
-    font-size: 9px; font-weight: 700; text-transform: uppercase;
-    color: #666; display: block; margin-bottom: 4px;
+    font-size: 8.5px; font-weight: 700; text-transform: uppercase;
+    color: #94a3b8; display: block; margin-bottom: 6px; letter-spacing: .08em;
   }
-  .pb-sig-name  { font-size: 11px; font-weight: 600; }
-  .pb-sig-line  { border-bottom: 1px solid #999; margin-top: 20px; }
+  .pb-sig-name  { font-size: 12px; font-weight: 700; color: #0f172a; min-height: 18px; }
+  .pb-sig-line  { border-bottom: 1.5px solid #cbd5e1; margin-top: 28px; }
+  .pb-sig-date  { font-size: 9px; color: #94a3b8; margin-top: 4px; }
 
+  /* ── Footer ───────────────────────────────────────── */
   .pb-footer {
-    margin-top: 24px; padding-top: 10px;
-    border-top: 1px solid #e5e7eb;
-    display: flex; justify-content: space-between;
-    font-size: 9px; color: #888;
+    margin-top: 24px; padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8.5px; color: #94a3b8;
   }
+  .pb-footer-center { text-align: center; color: #cbd5e1; font-size: 8px; }
 
+  /* ── Alert banners ────────────────────────────────── */
   .pb-alert {
-    padding: 8px 12px; border-radius: 4px; margin-bottom: 12px;
-    font-size: 10px; font-weight: 600; border: 1px solid;
+    padding: 10px 14px; border-radius: 6px; margin-bottom: 14px;
+    font-size: 11px; font-weight: 700; border-left: 4px solid; display: flex; gap: 8px;
   }
-  .pb-alert-red    { background: #fef2f2; color: #991b1b; border-color: #fca5a5; }
-  .pb-alert-amber  { background: #fffbeb; color: #92400e; border-color: #fcd34d; }
-  .pb-alert-green  { background: #f0fdf4; color: #166534; border-color: #86efac; }
+  .pb-alert-red    { background: #fef2f2; color: #991b1b; border-color: #dc2626; }
+  .pb-alert-amber  { background: #fffbeb; color: #92400e; border-color: #f59e0b; }
+  .pb-alert-green  { background: #f0fdf4; color: #166534; border-color: #22c55e; }
+
+  /* ── Screen-only styles (print button area) ───────── */
+  .no-print {
+    background: #0f172a; color: white; border-radius: 12px;
+    padding: 16px 20px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
 
   @media print {
     body { padding: 0 !important; }

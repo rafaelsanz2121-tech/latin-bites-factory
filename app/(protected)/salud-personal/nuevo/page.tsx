@@ -248,7 +248,7 @@ export default function NuevaSaludPersonalPage() {
                 className={`flex flex-col items-center gap-2 py-4 rounded-xl border-2 font-bold text-sm transition-all ${
                   !form.cleared_to_work
                     ? "border-red-500 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100"
-                    : "border-slate-100 dark:border-slate-700 text-slate-500 hover:border-red-200"
+                    : "border-slate-100 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-red-200"
                 }`}
               >
                 <AlertCircle className="w-5 h-5" />
@@ -260,7 +260,7 @@ export default function NuevaSaludPersonalPage() {
                 className={`flex flex-col items-center gap-2 py-4 rounded-xl border-2 font-bold text-sm transition-all ${
                   form.cleared_to_work
                     ? "border-amber-400 bg-white dark:bg-[#111827] text-slate-900 dark:text-slate-100"
-                    : "border-slate-100 dark:border-slate-700 text-slate-500 hover:border-amber-200"
+                    : "border-slate-100 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-amber-200"
                 }`}
               >
                 <ShieldCheck className="w-5 h-5" />

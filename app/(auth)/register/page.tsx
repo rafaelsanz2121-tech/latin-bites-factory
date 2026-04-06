@@ -99,7 +99,7 @@ export default function RegisterPage() {
           {step < 3 && (
             <>
               <h1 className="text-2xl font-black text-white">Crear cuenta</h1>
-              <p className="text-slate-400 text-sm mt-1">
+              <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
                 Paso {step} de 2 — {step === 1 ? "Tu cuenta" : "Tu planta"}
               </p>
             </>
@@ -119,7 +119,7 @@ export default function RegisterPage() {
           <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
             <div className="mb-6">
               <h2 className="text-lg font-bold text-white">Tu cuenta</h2>
-              <p className="text-sm text-slate-400 mt-1">Información de acceso personal</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Información de acceso personal</p>
             </div>
 
             <div className="space-y-4">
@@ -188,7 +188,7 @@ export default function RegisterPage() {
 
             <p className="text-center text-xs text-slate-600 mt-6">
               ¿Ya tienes cuenta?{" "}
-              <Link href="/login" className="text-slate-400 hover:text-white hover:underline">
+              <Link href="/login" className="text-slate-600 dark:text-slate-400 hover:text-white hover:underline">
                 Inicia sesión
               </Link>
             </p>
@@ -201,7 +201,7 @@ export default function RegisterPage() {
             <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
               <div className="mb-6">
                 <h2 className="text-lg font-bold text-white">Tu planta</h2>
-                <p className="text-sm text-slate-400 mt-1">Información de tu operación</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Información de tu operación</p>
               </div>
 
               <div className="space-y-4">
@@ -269,8 +269,8 @@ export default function RegisterPage() {
                       }`}
                     >
                       <p className="text-sm font-bold text-white">Starter</p>
-                      <p className="text-xs text-slate-400 mt-0.5">Para empezar</p>
-                      <p className="text-lg font-black text-white mt-2">$199<span className="text-xs font-normal text-slate-400">/mes</span></p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Para empezar</p>
+                      <p className="text-lg font-black text-white mt-2">$199<span className="text-xs font-normal text-slate-600 dark:text-slate-400">/mes</span></p>
                       {plan === "starter" && (
                         <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
                           <Check className="w-2.5 h-2.5 text-white" />
@@ -292,8 +292,8 @@ export default function RegisterPage() {
                         <p className="text-sm font-bold text-white">Professional</p>
                         <span className="text-[10px] font-bold bg-red-600 text-white px-1.5 py-0.5 rounded-full">Popular</span>
                       </div>
-                      <p className="text-xs text-slate-400">Escala tu planta</p>
-                      <p className="text-lg font-black text-white mt-2">$399<span className="text-xs font-normal text-slate-400">/mes</span></p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400">Escala tu planta</p>
+                      <p className="text-lg font-black text-white mt-2">$399<span className="text-xs font-normal text-slate-600 dark:text-slate-400">/mes</span></p>
                       {plan === "professional" && (
                         <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
                           <Check className="w-2.5 h-2.5 text-white" />
@@ -313,7 +313,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => { setStep(1); setError(null) }}
-                    className="flex items-center gap-1.5 text-slate-400 hover:text-white text-sm font-medium px-4 py-2.5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
+                    className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-white text-sm font-medium px-4 py-2.5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Atrás
@@ -342,10 +342,10 @@ export default function RegisterPage() {
             </div>
 
             <h2 className="text-xl font-black text-white mb-1">¡Cuenta creada!</h2>
-            <p className="text-slate-400 text-sm mb-6">Bienvenido a FactorOS</p>
+            <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">Bienvenido a FactorOS</p>
 
             <div className="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-left mb-6 space-y-3">
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Próximos pasos</p>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Próximos pasos</p>
 
               {[
                 "Configura tu primer módulo HACCP",

@@ -2,9 +2,10 @@ import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import {
   AlertTriangle, CheckSquare, ClipboardList, Factory,
-  ShieldAlert, Truck, Wrench, CheckCircle2, Circle,
-  TrendingUp, Package, DollarSign, Boxes, Timer, ArrowUpRight,
-  Play, Thermometer, FlaskConical, Shield, Bug, RotateCcw,
+  ShieldAlert, Truck, Wrench, CheckCircle2, Clock,
+  TrendingUp, DollarSign, Boxes, Timer, ArrowUpRight,
+  Play, Thermometer, FlaskConical, Shield,
+  Package2, ChevronRight,
 } from "lucide-react"
 import { LogStatusBadge } from "@/components/logs/LogStatusBadge"
 import { formatDate } from "@/lib/utils"
@@ -117,7 +118,7 @@ export default async function DashboardPage() {
       {/* ── Welcome Header ──────────────────────────────────── */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">
+          <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
             {greeting}{firstName ? `, ${firstName}` : ""} 👋
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -314,64 +315,139 @@ export default async function DashboardPage() {
       })()}
 
       {/* ── Today's Coverage ──────────────────────────────── */}
-      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-700">
+      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-700">
           <div>
-            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Cobertura de Logs — Hoy</h2>
-            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">Módulos que deben tener al menos un registro diario</p>
+            <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">Cobertura de Logs — Hoy</h2>
+            <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Módulos que deben tener al menos un registro diario</p>
           </div>
-          <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-            coveredCount === stats.coverage.length
-              ? "bg-green-100 text-green-700"
-              : coveredCount === 0
-              ? "bg-red-100 text-red-700"
-              : "bg-amber-100 text-amber-700"
-          }`}>
-            {coveredCount} / {stats.coverage.length} módulos
-          </span>
+          <div className="flex items-center gap-3">
+            <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+              coveredCount === stats.coverage.length
+                ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                : coveredCount === 0
+                ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                : "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
+            }`}>
+              {coveredCount} / {stats.coverage.length} módulos
+            </span>
+            <Link href="/thawing" className="text-xs text-red-600 hover:text-red-700 font-semibold">
+              Ver todos →
+            </Link>
+          </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-0 divide-x divide-y divide-slate-100">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-y divide-slate-100 dark:divide-slate-700/60">
           {stats.coverage.map((mod) => (
             <Link
               key={mod.table}
               href={mod.count > 0 ? mod.href.replace("/new","") : mod.href}
-              className={`flex flex-col items-center gap-2 p-4 text-center transition-colors hover:bg-slate-50 ${
-                mod.count > 0 ? "bg-green-50/50" : "bg-white"
+              className={`group flex flex-col items-center gap-2.5 p-5 text-center transition-all hover:bg-slate-50 dark:hover:bg-slate-800/40 ${
+                mod.count > 0
+                  ? "dark:bg-green-900/10"
+                  : "dark:bg-[#111827]"
               }`}
             >
-              {mod.count > 0
-                ? <CheckCircle2 className="w-5 h-5 text-green-500" />
-                : <Circle className="w-5 h-5 text-slate-200" />
-              }
-              <span className="text-[11.5px] font-semibold text-slate-600 leading-tight">{mod.label}</span>
-              {mod.count > 0
-                ? <span className="text-[10px] text-green-600 font-bold">{mod.count} log{mod.count!==1?"s":""}</span>
-                : <span className="text-[10px] text-slate-300 font-medium">Pendiente</span>
-              }
+              {mod.count > 0 ? (
+                <CheckCircle2 className="w-8 h-8 text-green-500 drop-shadow-sm" />
+              ) : (
+                <Clock className="w-8 h-8 text-slate-300 dark:text-slate-600" />
+              )}
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 leading-tight">{mod.label}</span>
+              {mod.count > 0 ? (
+                <span className="text-[10px] font-semibold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
+                  registrado hoy
+                </span>
+              ) : (
+                <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded-full">
+                  pendiente
+                </span>
+              )}
             </Link>
           ))}
         </div>
       </div>
 
-      {/* ── Quick Actions ──────────────────────────────────── */}
-      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm p-5">
-        <h2 className="text-sm font-bold text-slate-800 mb-4">Acciones Rápidas</h2>
+      {/* ── Checklist de hoy ─────────────────────────────── */}
+      {(() => {
+        const checklistItems = [
+          { label: "Recepción",   table: "receiving_logs" },
+          { label: "Pre-Op",      table: "preop_sanitation_reports" },
+          { label: "Descongelado",table: "thawing_logs" },
+          { label: "Calibración", table: "calibration_logs" },
+        ]
+        return (
+          <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-5">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">Checklist de hoy</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Tareas críticas de cumplimiento diario</p>
+              </div>
+              <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+                checklistItems.every(item => (stats.coverage.find(m => m.table === item.table)?.count ?? 0) > 0)
+                  ? "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300"
+                  : "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
+              }`}>
+                {checklistItems.filter(item => (stats.coverage.find(m => m.table === item.table)?.count ?? 0) > 0).length} / {checklistItems.length} completados
+              </span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {checklistItems.map((item) => {
+                const covered = (stats.coverage.find(m => m.table === item.table)?.count ?? 0) > 0
+                return (
+                  <div
+                    key={item.table}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border transition-all ${
+                      covered
+                        ? "border-green-200 bg-green-50 dark:border-green-800/50 dark:bg-green-900/10"
+                        : "border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-800/40"
+                    }`}
+                  >
+                    <span className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-black ${
+                      covered
+                        ? "bg-green-500 text-white"
+                        : "bg-slate-200 dark:bg-slate-600 text-slate-400 dark:text-slate-300"
+                    }`}>
+                      {covered ? "✓" : "✗"}
+                    </span>
+                    <span className={`text-xs font-semibold ${
+                      covered
+                        ? "text-green-700 dark:text-green-300"
+                        : "text-slate-500 dark:text-slate-400"
+                    }`}>
+                      {item.label}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )
+      })()}
+
+      {/* ── Quick Actions (secondary) ──────────────────────── */}
+      <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-5">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">Acciones Rápidas</h2>
+            <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Registrar un log nuevo</p>
+          </div>
+        </div>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {[
-            { label: "Descongelado",  href: "/thawing/new",              emoji: "🧊", color: "hover:bg-cyan-50    hover:border-cyan-200" },
-            { label: "Recepción",     href: "/receiving/new",            emoji: "📦", color: "hover:bg-blue-50   hover:border-blue-200" },
-            { label: "Cocción CCP",   href: "/cooking/new",              emoji: "🔥", color: "hover:bg-red-50    hover:border-red-200" },
-            { label: "Calibración",   href: "/calibration/new",          emoji: "🌡️", color: "hover:bg-amber-50  hover:border-amber-200" },
-            { label: "Desviación",    href: "/deviations/new",           emoji: "⚠️", color: "hover:bg-orange-50 hover:border-orange-200" },
-            { label: "Nueva Orden",   href: "/production/new",           emoji: "🏭", color: "hover:bg-indigo-50 hover:border-indigo-200" },
+            { label: "Descongelado",  href: "/thawing/new",     emoji: "🧊", color: "hover:bg-cyan-50    hover:border-cyan-200 dark:hover:border-cyan-700" },
+            { label: "Recepción",     href: "/receiving/new",   emoji: "📦", color: "hover:bg-blue-50   hover:border-blue-200 dark:hover:border-blue-700" },
+            { label: "Cocción CCP",   href: "/cooking/new",     emoji: "🔥", color: "hover:bg-red-50    hover:border-red-200 dark:hover:border-red-700" },
+            { label: "Calibración",   href: "/calibration/new", emoji: "🌡️", color: "hover:bg-amber-50  hover:border-amber-200 dark:hover:border-amber-700" },
+            { label: "Desviación",    href: "/deviations/new",  emoji: "⚠️", color: "hover:bg-orange-50 hover:border-orange-200 dark:hover:border-orange-700" },
+            { label: "Nueva Orden",   href: "/production/new",  emoji: "🏭", color: "hover:bg-indigo-50 hover:border-indigo-200 dark:hover:border-indigo-700" },
           ].map((action) => (
             <Link
               key={action.href}
               href={action.href}
-              className={`flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-100 dark:border-slate-700 transition-all duration-150 text-center ${action.color}`}
+              className={`flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-700 transition-all duration-150 text-center ${action.color}`}
             >
               <span className="text-2xl leading-none">{action.emoji}</span>
-              <span className="text-[11px] font-semibold text-slate-600 leading-tight">{action.label}</span>
+              <span className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">{action.label}</span>
             </Link>
           ))}
         </div>
@@ -380,63 +456,90 @@ export default async function DashboardPage() {
       {/* ── Recent Activity ────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-        {/* Recent Logs */}
-        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
-            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Últimos Registros</h2>
-            <Link href="/thawing" className="text-[11.5px] text-red-500 hover:text-red-600 font-semibold flex items-center gap-0.5">
-              Ver todos <ArrowUpRight className="w-3 h-3" />
+        {/* Recent Thawing Logs — activity feed */}
+        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-700">
+            <div>
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">Últimos Registros</h2>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Actividad reciente de descongelado</p>
+            </div>
+            <Link href="/thawing" className="text-xs text-red-600 hover:text-red-700 font-semibold">
+              Ver todos →
             </Link>
           </div>
-          <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
+          <div className="divide-y divide-slate-100 dark:divide-slate-700/50">
             {stats.recentThawing.length === 0 ? (
-              <p className="text-sm text-slate-600 dark:text-slate-300 text-center py-8">Sin registros hoy</p>
-            ) : stats.recentThawing.map((log: any) => (
-              <Link
-                key={log.id}
-                href={`/thawing/${log.id}`}
-                className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
-              >
-                <div>
-                  <p className="text-[13px] font-semibold text-slate-700">{log.products?.name || "—"}</p>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">{log.lot_batch_number || "Sin lote"} · {formatDate(log.date)}</p>
-                </div>
-                <LogStatusBadge status={log.status as LogStatus} />
-              </Link>
-            ))}
+              <div className="flex flex-col items-center py-10 text-slate-300 dark:text-slate-600">
+                <Package2 className="w-8 h-8 mb-2" />
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Sin registros recientes</p>
+              </div>
+            ) : stats.recentThawing.map((log: any) => {
+              const dotColor = log.status === "approved" ? "bg-green-500" :
+                               log.status === "submitted" ? "bg-amber-400" :
+                               log.status === "rejected"  ? "bg-red-500" : "bg-slate-300"
+              return (
+                <Link
+                  key={log.id}
+                  href={`/thawing/${log.id}`}
+                  className="flex items-center gap-4 px-5 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors group"
+                >
+                  {/* status dot */}
+                  <span className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${dotColor}`} />
+                  {/* info */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 truncate">{log.products?.name || "—"}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5">
+                      <span className="font-mono">{log.lot_batch_number || "Sin lote"}</span>
+                      <span className="text-slate-300 dark:text-slate-600">·</span>
+                      <span>{formatDate(log.date)}</span>
+                    </p>
+                  </div>
+                  {/* status badge */}
+                  <LogStatusBadge status={log.status as LogStatus} />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                </Link>
+              )
+            })}
           </div>
         </div>
 
         {/* Recent Deviations */}
-        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
-            <h2 className="text-sm font-bold text-slate-800 dark:text-slate-100">Desviaciones Recientes</h2>
-            <Link href="/deviations" className="text-[11.5px] text-red-500 hover:text-red-600 font-semibold flex items-center gap-0.5">
-              Ver todas <ArrowUpRight className="w-3 h-3" />
+        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-700">
+            <div>
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">Desviaciones Recientes</h2>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Eventos abiertos o bajo revisión</p>
+            </div>
+            <Link href="/deviations" className="text-xs text-red-600 hover:text-red-700 font-semibold">
+              Ver todas →
             </Link>
           </div>
-          <div className="divide-y divide-slate-50 dark:divide-slate-700/50">
+          <div className="divide-y divide-slate-100 dark:divide-slate-700/50">
             {stats.recentDeviations.length === 0 ? (
-              <div className="flex flex-col items-center py-8 text-slate-300">
+              <div className="flex flex-col items-center py-10 text-slate-300 dark:text-slate-600">
                 <ShieldAlert className="w-8 h-8 mb-2" />
-                <p className="text-sm font-medium  text-slate-600 dark:text-slate-300">Sin desviaciones abiertas</p>
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">Sin desviaciones abiertas</p>
               </div>
             ) : stats.recentDeviations.map((dev: any) => (
               <Link
                 key={dev.id}
                 href={`/deviations/${dev.id}`}
-                className="flex items-start gap-3 px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
+                className="flex items-start gap-4 px-5 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors group"
               >
-                <span className={`mt-1.5 w-2 h-2 rounded-full flex-shrink-0 ${
+                <span className={`mt-1 flex-shrink-0 w-2.5 h-2.5 rounded-full ${
                   dev.severity==="critical" ? "bg-red-500" :
                   dev.severity==="major"    ? "bg-amber-500" : "bg-yellow-400"
                 }`} />
                 <div className="min-w-0 flex-1">
-                  <p className="text-[13px] font-semibold text-slate-700 truncate">{dev.description}</p>
-                  <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5">{formatDate(dev.date_identified)} · <span className="capitalize">{dev.severity}</span></p>
+                  <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 truncate">{dev.description}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    {formatDate(dev.date_identified)} · <span className="capitalize">{dev.severity}</span>
+                  </p>
                 </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${
-                  dev.status==="open" ? "bg-red-100 text-red-700" : "bg-amber-100 text-amber-700"
+                <span className={`flex-shrink-0 text-[10px] font-bold px-2.5 py-1 rounded-full ${
+                  dev.status==="open"
+                    ? "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300"
+                    : "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300"
                 }`}>{dev.status}</span>
               </Link>
             ))}
@@ -444,48 +547,82 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* ── Active Production Orders ────────────────────────── */}
-      {stats.recentOrders.length > 0 && (
-        <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
-          <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 dark:border-slate-700">
-            <h2 className="text-sm font-bold text-slate-800 flex items-center gap-2">
-              <Factory className="w-4 h-4 text-indigo-500" />
-              Órdenes de Producción Activas
-            </h2>
-            <Link href="/production" className="text-[11.5px] text-red-500 hover:text-red-600 font-semibold flex items-center gap-0.5">
-              Ver todas <ArrowUpRight className="w-3 h-3" />
-            </Link>
+      {/* ── Active Production Orders — Kanban pipeline ─────── */}
+      {stats.recentOrders.length > 0 && (() => {
+        const PIPELINE: Array<{ key: string; label: string; bar: string; badge: string; badgeText: string }> = [
+          { key: "planned",       label: "Planificado",   bar: "bg-blue-400",    badge: "bg-blue-100 dark:bg-blue-900/40",    badgeText: "text-blue-700 dark:text-blue-300" },
+          { key: "in_production", label: "En Producción", bar: "bg-orange-400",  badge: "bg-orange-100 dark:bg-orange-900/40", badgeText: "text-orange-700 dark:text-orange-300" },
+          { key: "cooking",       label: "Cocción",       bar: "bg-red-500",     badge: "bg-red-100 dark:bg-red-900/40",      badgeText: "text-red-700 dark:text-red-300" },
+          { key: "chilling",      label: "Enfriando",     bar: "bg-cyan-400",    badge: "bg-cyan-100 dark:bg-cyan-900/40",    badgeText: "text-cyan-700 dark:text-cyan-300" },
+          { key: "packaging",     label: "Empacando",     bar: "bg-purple-400",  badge: "bg-purple-100 dark:bg-purple-900/40", badgeText: "text-purple-700 dark:text-purple-300" },
+          { key: "refrigerating", label: "Refrigerando",  bar: "bg-indigo-400",  badge: "bg-indigo-100 dark:bg-indigo-900/40", badgeText: "text-indigo-700 dark:text-indigo-300" },
+          { key: "ready",         label: "Listo",         bar: "bg-emerald-500", badge: "bg-emerald-100 dark:bg-emerald-900/40", badgeText: "text-emerald-700 dark:text-emerald-300" },
+        ]
+        // group orders by status key
+        const grouped: Record<string, any[]> = {}
+        stats.recentOrders.forEach((o: any) => {
+          if (!grouped[o.status]) grouped[o.status] = []
+          grouped[o.status].push(o)
+        })
+        // only show pipeline stages that have orders
+        const activeStages = PIPELINE.filter(stage => (grouped[stage.key]?.length ?? 0) > 0)
+
+        return (
+          <div className="bg-white dark:bg-[#111827] rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-700">
+              <div>
+                <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <Factory className="w-4 h-4 text-indigo-500" />
+                  Órdenes de Producción Activas
+                </h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Pipeline de producción — {stats.activeOrders} en proceso</p>
+              </div>
+              <Link href="/production" className="text-xs text-red-600 hover:text-red-700 font-semibold">
+                Ver todas →
+              </Link>
+            </div>
+            {/* Pipeline stage headers */}
+            <div className="overflow-x-auto">
+              <div className="min-w-max">
+                {/* Stage header row */}
+                <div className={`grid gap-px bg-slate-100 dark:bg-slate-700/50`} style={{ gridTemplateColumns: `repeat(${activeStages.length}, minmax(180px, 1fr))` }}>
+                  {activeStages.map((stage) => (
+                    <div key={stage.key} className="bg-slate-50 dark:bg-slate-800/60 px-4 py-2 flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${stage.bar}`} />
+                      <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{stage.label}</span>
+                      <span className="ml-auto text-[10px] font-bold text-slate-400 dark:text-slate-500">{grouped[stage.key]?.length ?? 0}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Cards row */}
+                <div className={`grid gap-px bg-slate-100 dark:bg-slate-700/50`} style={{ gridTemplateColumns: `repeat(${activeStages.length}, minmax(180px, 1fr))` }}>
+                  {activeStages.map((stage) => (
+                    <div key={stage.key} className="bg-white dark:bg-[#111827] p-3 flex flex-col gap-2">
+                      {(grouped[stage.key] || []).map((order: any) => (
+                        <Link
+                          key={order.id}
+                          href={`/production/${order.id}`}
+                          className="group block rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 p-3 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-sm transition-all"
+                        >
+                          {/* top bar accent */}
+                          <div className={`h-0.5 rounded-full ${stage.bar} mb-2.5`} />
+                          <div className="flex items-start justify-between gap-1 mb-1.5">
+                            <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">{order.order_number}</span>
+                            <ChevronRight className="w-3 h-3 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" />
+                          </div>
+                          <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate leading-tight">{order.clients?.company_name || "—"}</p>
+                          <p className="text-[10.5px] text-slate-500 dark:text-slate-400 mt-1 truncate">{order.products?.name}</p>
+                          <p className="text-[10px] font-semibold text-slate-400 dark:text-slate-500 mt-1">{Number(order.quantity_lbs||0).toLocaleString()} lbs</p>
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-slate-50 dark:divide-slate-700/50">
-            {stats.recentOrders.map((order: any) => {
-              const statusConfig: Record<string,{label:string,bg:string,text:string}> = {
-                planned:       { label:"Planificado", bg:"bg-blue-100",    text:"text-blue-700" },
-                in_production: { label:"En Producción",bg:"bg-orange-100", text:"text-orange-700" },
-                cooking:       { label:"Cocción",     bg:"bg-red-100",     text:"text-red-700" },
-                chilling:      { label:"Enfriando",   bg:"bg-cyan-100",    text:"text-cyan-700" },
-                packaging:     { label:"Empacando",   bg:"bg-purple-100",  text:"text-purple-700" },
-                refrigerating: { label:"Refrigerando",bg:"bg-indigo-100",  text:"text-indigo-700" },
-                ready:         { label:"Listo",        bg:"bg-emerald-100", text:"text-emerald-700" },
-              }
-              const sc = statusConfig[order.status] ?? { label:order.status, bg:"bg-slate-100", text:"text-slate-600" }
-              return (
-                <Link
-                  key={order.id}
-                  href={`/production/${order.id}`}
-                  className="flex flex-col gap-2 p-4 hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10.5px] font-mono  text-slate-600 dark:text-slate-300">{order.order_number}</span>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${sc.bg} ${sc.text}`}>{sc.label}</span>
-                  </div>
-                  <p className="text-[13px] font-bold text-slate-800 truncate">{order.clients?.company_name || "—"}</p>
-                  <p className="text-[11px]  text-slate-600 dark:text-slate-300">{order.products?.name} · {Number(order.quantity_lbs||0).toLocaleString()} lbs</p>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      )}
+        )
+      })()}
     </div>
   )
 }

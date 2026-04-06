@@ -51,7 +51,7 @@ export default async function ClientDetailPage({ params }: Props) {
         </Link>
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
-            <Briefcase className="w-6 h-6 text-slate-500" />
+            <Briefcase className="w-6 h-6 text-slate-600 dark:text-slate-400" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap">

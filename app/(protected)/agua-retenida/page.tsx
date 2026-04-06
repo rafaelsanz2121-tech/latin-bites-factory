@@ -160,10 +160,10 @@ export default async function AguaRetenidaPage() {
                     <span className="font-bold text-slate-900 dark:text-slate-100">{fmtDate(f.test_date)}</span>
                     <span className="text-slate-600 dark:text-slate-300">{f.product_name}</span>
                     <span className="font-black text-red-600">{Number(f.water_retained_pct).toFixed(2)}% retenida</span>
-                    <span className="text-xs text-slate-500">(límite: {f.regulatory_limit_pct}%)</span>
+                    <span className="text-xs text-slate-600 dark:text-slate-400">(límite: {f.regulatory_limit_pct}%)</span>
                   </div>
                   {f.corrective_action && (
-                    <p className="text-xs text-slate-500"><span className="font-semibold">Acción:</span> {f.corrective_action}</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-400"><span className="font-semibold">Acción:</span> {f.corrective_action}</p>
                   )}
                 </div>
               ))}
@@ -180,7 +180,7 @@ export default async function AguaRetenidaPage() {
               <div className="flex flex-col items-center justify-center py-16 gap-3">
                 <Droplets className="w-8 h-8 text-slate-200 dark:text-slate-700" />
                 <p className="text-sm text-slate-600 dark:text-slate-300">Sin pruebas registradas.</p>
-                <p className="text-xs text-slate-400 max-w-xs text-center">Comienza a documentar antes del <strong>1 julio 2026</strong> para cumplir con 9 CFR 441.</p>
+                <p className="text-xs text-slate-600 dark:text-slate-400 max-w-xs text-center">Comienza a documentar antes del <strong>1 julio 2026</strong> para cumplir con 9 CFR 441.</p>
                 <Link href="/agua-retenida/nuevo" className="text-sm text-cyan-600 font-semibold hover:underline">+ Primera prueba</Link>
               </div>
             ) : (

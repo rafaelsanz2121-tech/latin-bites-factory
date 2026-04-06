@@ -94,13 +94,13 @@ export default function LoginPage() {
             </span>
           </a>
           <h1 className="text-2xl font-black text-white">Bienvenido de vuelta</h1>
-          <p className="text-slate-400 text-sm mt-1">Ingresa tus credenciales para continuar</p>
+          <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Ingresa tus credenciales para continuar</p>
         </div>
 
         <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
           <div className="mb-6">
             <h2 className="text-lg font-bold text-white">Iniciar sesión</h2>
-            <p className="text-sm text-slate-400 mt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
               Usa tus credenciales de empleado para acceder al sistema
             </p>
           </div>

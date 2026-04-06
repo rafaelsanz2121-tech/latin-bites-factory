@@ -150,7 +150,7 @@ export default function NuevoProveedorPage() {
     <div className="max-w-[760px] space-y-6">
 
       <div className="flex items-start gap-4">
-        <button onClick={() => router.back()} className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 transition-colors">
+        <button onClick={() => router.back()} className="mt-0.5 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-600 transition-colors">
           <ChevronLeft className="w-4 h-4" />
         </button>
         <div>

@@ -153,7 +153,7 @@ export default async function ProductionOrderDetailPage({ params }: Props) {
       {/* Header */}
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
-          <ClipboardList className="w-6 h-6 text-slate-500" />
+          <ClipboardList className="w-6 h-6 text-slate-600 dark:text-slate-400" />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 flex-wrap">

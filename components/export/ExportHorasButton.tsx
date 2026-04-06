@@ -404,7 +404,7 @@ export function ExportHorasButton({ dateFrom, dateTo, label = "Exportar" }: Prop
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-1.5 w-48 bg-white dark:bg-[#1a2235] rounded-xl border border-slate-100 dark:border-slate-700 shadow-xl z-20 overflow-hidden">
-            <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+            <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
               Formato de exportación
             </p>
             <button

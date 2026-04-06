@@ -75,7 +75,7 @@ export function AddCostItemForm({ orderId }: { orderId: string }) {
           </div>
           <span className="text-sm font-bold text-slate-700">Agregar partida de costo</span>
         </div>
-        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-colors ${open ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-500"}`}>
+        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full transition-colors ${open ? "bg-amber-100 text-amber-700" : "bg-slate-100 text-slate-600 dark:text-slate-400"}`}>
           {open ? "Cerrar" : "Abrir"}
         </span>
       </button>
@@ -182,7 +182,7 @@ export function AddCostItemForm({ orderId }: { orderId: string }) {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-700 transition-colors"
+                className="px-4 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-700 transition-colors"
               >
                 Cancelar
               </button>

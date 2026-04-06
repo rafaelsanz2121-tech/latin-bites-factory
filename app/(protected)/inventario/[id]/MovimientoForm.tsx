@@ -102,7 +102,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
 
           {/* Movement type selector */}
           <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Tipo de movimiento</p>
+            <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Tipo de movimiento</p>
             <div className="grid grid-cols-4 gap-2">
               {MOVEMENT_TYPES.map((mt) => (
                 <button
@@ -115,7 +115,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
                       : "border-slate-100 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-500"
                   }`}
                 >
-                  <mt.icon className={`w-4 h-4 ${type === mt.value ? mt.color : "text-slate-400"}`} />
+                  <mt.icon className={`w-4 h-4 ${type === mt.value ? mt.color : "text-slate-600 dark:text-slate-400"}`} />
                   <span className={`text-[11px] font-bold ${type === mt.value ? mt.color : "text-slate-600 dark:text-slate-400"}`}>
                     {mt.label}
                   </span>
@@ -127,7 +127,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
           {/* Quantity + Reference row */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 {isAdjustment ? "Nuevo stock total" : "Cantidad"} ({unit})
               </label>
               <div className="relative">
@@ -147,7 +147,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
               </div>
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Referencia (opcional)
               </label>
               <input
@@ -162,7 +162,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
 
           {/* Notes */}
           <div>
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
               Notas internas
             </label>
             <textarea

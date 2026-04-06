@@ -113,7 +113,7 @@ export default async function HorasPage({
       )}
 
       {/* Week indicator */}
-      <div className="flex items-center gap-2 text-sm text-slate-500">
+      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
         <Clock className="w-4 h-4" />
         <span>Semana actual: <strong className="text-slate-700">{formatDate(start)}</strong> → <strong className="text-slate-700">{formatDate(end)}</strong></span>
       </div>
@@ -124,14 +124,14 @@ export default async function HorasPage({
           { label: "Horas esta semana", value: `${totalHours.toFixed(1)} hrs`, icon: Clock,       bg: "bg-green-50",  text: "text-green-700",  border: "border-green-100" },
           { label: "Costo MOD total",   value: fmt$(totalLabor),               icon: DollarSign,  bg: "bg-amber-50",  text: "text-amber-700",  border: "border-amber-100" },
           { label: "Empleados",          value: String(uniqueEmps),             icon: Users,       bg: "bg-blue-50",   text: "text-blue-700",   border: "border-blue-100" },
-          { label: "Horas overtime",    value: `${overtimeHours.toFixed(1)} hrs`, icon: Timer,     bg: overtimeHours > 0 ? "bg-orange-50" : "bg-slate-50", text: overtimeHours > 0 ? "text-orange-700" : "text-slate-400", border: overtimeHours > 0 ? "border-orange-100" : "border-slate-100" },
+          { label: "Horas overtime",    value: `${overtimeHours.toFixed(1)} hrs`, icon: Timer,     bg: overtimeHours > 0 ? "bg-orange-50" : "bg-slate-50", text: overtimeHours > 0 ? "text-orange-700" : "text-slate-600 dark:text-slate-400", border: overtimeHours > 0 ? "border-orange-100" : "border-slate-100" },
         ].map((k) => (
           <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
             <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700/60 flex items-center justify-center mb-3">
               <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
             </div>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
-            <p className="text-[11px] font-medium text-slate-500 mt-1.5">{k.label}</p>
+            <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
           </div>
         ))}
       </div>
@@ -206,11 +206,11 @@ export default async function HorasPage({
                         <p className="text-[11.5px] font-mono text-slate-600">{entry.production_orders?.order_number ?? "Sin orden"}</p>
                         <p className="text-[10.5px]  text-slate-600 dark:text-slate-300">{entry.production_orders?.products?.name}</p>
                       </td>
-                      <td className="px-4 py-3 text-[12px] text-slate-500">{formatDate(entry.work_date)}</td>
+                      <td className="px-4 py-3 text-[12px] text-slate-600 dark:text-slate-400">{formatDate(entry.work_date)}</td>
                       <td className="px-4 py-3 text-right font-bold text-[13px] text-green-700 tabular-nums">
                         {Number(entry.hours_worked).toFixed(2)}h
                       </td>
-                      <td className="px-4 py-3 text-right text-[12px] text-slate-500 tabular-nums">
+                      <td className="px-4 py-3 text-right text-[12px] text-slate-600 dark:text-slate-400 tabular-nums">
                         ${Number(entry.hourly_rate).toFixed(2)}
                       </td>
                       <td className="px-4 py-3 text-right font-bold text-[13px] text-amber-700 tabular-nums">

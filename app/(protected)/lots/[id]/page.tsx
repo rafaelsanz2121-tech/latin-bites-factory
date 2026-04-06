@@ -35,7 +35,7 @@ export default async function LotDetailPage({ params }: Props) {
         </Link>
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center">
-            <Package className="w-6 h-6 text-slate-500" />
+            <Package className="w-6 h-6 text-slate-600 dark:text-slate-400" />
           </div>
           <div>
             <h1 className="text-2xl font-bold font-mono">{lot.lot_number}</h1>

@@ -174,7 +174,7 @@ export default function NuevaAguaPotablePage() {
               >
                 <input type="radio" className="sr-only" value={t.value} checked={form.test_type === t.value} onChange={(e) => set("test_type", e.target.value)} />
                 <span className={`text-sm font-semibold ${form.test_type === t.value ? "text-slate-900 dark:text-slate-100" : "text-slate-700 dark:text-slate-200"}`}>{t.label}</span>
-                <span className="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">{t.freq}</span>
+                <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">{t.freq}</span>
               </label>
             ))}
           </div>
@@ -329,7 +329,7 @@ export default function NuevaAguaPotablePage() {
                               : opt.color === "red"
                               ? "border-red-500 bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300"
                               : "border-amber-400 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300"
-                            : "border-slate-100 dark:border-slate-700 text-slate-500 hover:border-slate-300"
+                            : "border-slate-100 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300"
                         }`}
                       >
                         {opt.label}

@@ -50,7 +50,7 @@ export default function LandingPage() {
             </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
             <a href="#modulos" className="hover:text-white transition-colors">Módulos</a>
             <a href="#caracteristicas" className="hover:text-white transition-colors">Características</a>
             <a href="#precios" className="hover:text-white transition-colors">Precios</a>
@@ -89,7 +89,7 @@ export default function LandingPage() {
             <span className="text-red-500">de tu planta de carnes</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
             FactorOS digitaliza toda tu operación HACCP en una sola plataforma.
             Registros, trazabilidad, auditorías y alertas — listos para la inspección del día 1.
           </p>
@@ -105,7 +105,7 @@ export default function LandingPage() {
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600 dark:text-slate-400">
             {["Sin tarjeta de crédito", "Setup en 5 minutos", "FSIS ready"].map((t) => (
               <span key={t} className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-green-500" />{t}
@@ -124,7 +124,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap justify-center gap-3">
             {["EST M/P2643", "EST M/P1847", "EST P/3201", "EST M/2985", "EST P/4417"].map((est) => (
               <span key={est}
-                className="px-4 py-2 rounded-lg border border-white/10 bg-white/[0.04] text-slate-400 text-xs font-bold font-mono tracking-wide">
+                className="px-4 py-2 rounded-lg border border-white/10 bg-white/[0.04] text-slate-600 dark:text-slate-400 text-xs font-bold font-mono tracking-wide">
                 {est}
               </span>
             ))}
@@ -140,7 +140,7 @@ export default function LandingPage() {
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
               24 módulos. Una plataforma.
             </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
               Cada módulo cumple con una regulación federal específica. Sin parches, sin hojas de cálculo.
             </p>
           </div>
@@ -181,7 +181,7 @@ export default function LandingPage() {
                   <f.icon className={`w-6 h-6 ${f.color}`} />
                 </div>
                 <h3 className="text-xl font-black text-white mb-3">{f.title}</h3>
-                <p className="text-slate-400 leading-relaxed">{f.desc}</p>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -194,7 +194,7 @@ export default function LandingPage() {
           <p className="text-xs font-bold tracking-[2px] text-slate-600 uppercase mb-8">Regulaciones cubiertas</p>
           <div className="flex flex-wrap justify-center gap-3">
             {["9 CFR 417 — HACCP","9 CFR 416 — SSOP","9 CFR 430 — Listeria","9 CFR 441 — Agua Retenida","9 CFR 381 — Aves","9 CFR 418 — Recall","FALCPA — Alérgenos","9 CFR 416.8 — Salud","9 CFR 416.4 — Agua","9 CFR 417.8 — Auditoría"].map((r) => (
-              <span key={r} className="px-3 py-1.5 text-xs font-bold rounded-lg border border-white/10 bg-white/[0.04] text-slate-400">{r}</span>
+              <span key={r} className="px-3 py-1.5 text-xs font-bold rounded-lg border border-white/10 bg-white/[0.04] text-slate-600 dark:text-slate-400">{r}</span>
             ))}
           </div>
         </div>
@@ -206,15 +206,15 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <p className="text-red-500 text-sm font-bold tracking-widest uppercase mb-3">Precios</p>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">Simple y transparente</h2>
-            <p className="text-slate-400">Ahorra 20% con plan anual · Sin costos ocultos · Cancela cuando quieras</p>
+            <p className="text-slate-600 dark:text-slate-400">Ahorra 20% con plan anual · Sin costos ocultos · Cancela cuando quieras</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {/* Starter */}
             <div className="p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
-              <p className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-widest">Starter</p>
+              <p className="text-xs font-bold text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-widest">Starter</p>
               <div className="flex items-end gap-2 mb-6">
                 <span className="text-5xl font-black">$199</span>
-                <span className="text-slate-400 mb-2 text-sm">/mes</span>
+                <span className="text-slate-600 dark:text-slate-400 mb-2 text-sm">/mes</span>
               </div>
               <ul className="space-y-3 mb-8">
                 {["Hasta 10 usuarios","18 módulos HACCP completos","Alertas en tiempo real","Dashboard de compliance","Soporte por email"].map((f) => (
@@ -235,7 +235,7 @@ export default function LandingPage() {
               <p className="text-xs font-bold text-red-400 mb-2 uppercase tracking-widest">Professional</p>
               <div className="flex items-end gap-2 mb-6">
                 <span className="text-5xl font-black">$399</span>
-                <span className="text-slate-400 mb-2 text-sm">/mes</span>
+                <span className="text-slate-600 dark:text-slate-400 mb-2 text-sm">/mes</span>
               </div>
               <ul className="space-y-3 mb-8">
                 {["Usuarios ilimitados","24 módulos (HACCP + Empresariales)","Costos, Inventario, Finanzas","Exportación PDF ilimitada","Soporte prioritario 24/7","Onboarding dedicado","Multi-planta"].map((f) => (
@@ -279,17 +279,17 @@ export default function LandingPage() {
                 </div>
                 <span className="font-black">Factor<span className="text-red-500">OS</span></span>
               </div>
-              <p className="text-sm text-slate-500 max-w-xs">El sistema operativo de las plantas de carne inspeccionadas por USDA.</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xs">El sistema operativo de las plantas de carne inspeccionadas por USDA.</p>
             </div>
-            <div className="flex flex-wrap gap-8 text-sm text-slate-500">
+            <div className="flex flex-wrap gap-8 text-sm text-slate-600 dark:text-slate-400">
               <div className="space-y-2">
-                <p className="font-bold text-slate-400 text-xs uppercase tracking-wide">Producto</p>
+                <p className="font-bold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wide">Producto</p>
                 <a href="#modulos" className="block hover:text-white transition-colors">Módulos</a>
                 <a href="#precios" className="block hover:text-white transition-colors">Precios</a>
                 <a href="#caracteristicas" className="block hover:text-white transition-colors">Características</a>
               </div>
               <div className="space-y-2">
-                <p className="font-bold text-slate-400 text-xs uppercase tracking-wide">Cuenta</p>
+                <p className="font-bold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wide">Cuenta</p>
                 <Link href="/auth/login" className="block hover:text-white transition-colors">Iniciar sesión</Link>
                 <Link href="/auth/login" className="block hover:text-white transition-colors">Registrarse</Link>
               </div>

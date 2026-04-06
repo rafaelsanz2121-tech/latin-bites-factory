@@ -68,7 +68,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
   }
   const STATUS_COLOR: Record<string, string> = {
     trial: "bg-amber-100 text-amber-700", active: "bg-green-100 text-green-700",
-    past_due: "bg-red-100 text-red-700",  canceled: "bg-slate-100 text-slate-500",
+    past_due: "bg-red-100 text-red-700",  canceled: "bg-slate-100 text-slate-600 dark:text-slate-400",
   }
   const STATUS_ES: Record<string, string> = {
     trial: "Período de prueba", active: "Activo", past_due: "Pago vencido", canceled: "Cancelado",
@@ -118,7 +118,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
           {/* Name + EST row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Nombre de la empresa <span className="text-red-400">*</span>
               </label>
               <input
@@ -130,7 +130,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 EST No. (USDA)
               </label>
               <input
@@ -145,7 +145,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
           {/* Phone + Address */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Teléfono
               </label>
               <input
@@ -157,7 +157,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Dirección
               </label>
               <input
@@ -172,7 +172,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
           {/* City + State + ZIP */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div className="col-span-2 sm:col-span-1">
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Ciudad
               </label>
               <input
@@ -183,7 +183,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 Estado
               </label>
               <input
@@ -195,7 +195,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
                 ZIP
               </label>
               <input
@@ -212,7 +212,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
         <div className={`px-5 py-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between transition-colors ${
           dirty ? "bg-white dark:bg-[#111827]" : "bg-slate-50/60 dark:bg-white/[0.02]"
         }`}>
-          <p className={`text-xs font-medium ${dirty ? "text-slate-900 dark:text-slate-100" : "text-slate-400"}`}>
+          <p className={`text-xs font-medium ${dirty ? "text-slate-900 dark:text-slate-100" : "text-slate-600 dark:text-slate-400"}`}>
             {dirty ? "Tienes cambios sin guardar" : "Información guardada"}
           </p>
           <button
