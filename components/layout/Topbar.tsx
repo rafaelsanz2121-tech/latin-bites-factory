@@ -51,6 +51,7 @@ const ROUTE_LABELS: Record<string, string> = {
   "agua-potable":       "Agua Potable",
   "auditoria-interna":  "Auditoría HACCP",
   "salud-personal":     "Salud Personal",
+  "box-tracker":        "Control de Cajas",
 }
 
 const ROLE_DOT: Record<string, string> = {

@@ -22,6 +22,7 @@ import {
   Microscope,
   Package,
   RotateCcw,
+  Scale,
   Send,
   Settings,
   ShieldAlert,
@@ -100,6 +101,7 @@ const navSections: NavSection[] = [
   {
     label: "OPERACIONES",
     items: [
+      { label: "Control de Cajas", href: "/box-tracker", icon: Scale, badge: "NEW", badgeColor: "gold" },
       {
         label: "Producción",
         icon: Factory,

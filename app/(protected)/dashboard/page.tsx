@@ -4,7 +4,7 @@ import {
   AlertTriangle, CheckSquare, ClipboardList, Factory,
   ShieldAlert, Truck, Wrench, CheckCircle2, Clock,
   TrendingUp, DollarSign, Boxes, Timer, ArrowUpRight,
-  Play, Thermometer, FlaskConical, Shield,
+  Play, Thermometer, FlaskConical, Shield, Scale,
   Package2, ChevronRight,
 } from "lucide-react"
 import { LogStatusBadge } from "@/components/logs/LogStatusBadge"
@@ -142,7 +142,12 @@ export default async function DashboardPage() {
       </div>
 
       {/* ── Quick Actions ────────────────────────────────────── */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+        <Link href="/box-tracker/new"
+          className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all hover:shadow-md col-span-2 sm:col-span-1">
+          <Scale className="w-5 h-5 text-white" />
+          <span className="text-xs font-bold tracking-tight text-center leading-tight">Control de Cajas</span>
+        </Link>
         <Link href="/production/new"
           className="group flex flex-col items-center gap-2 px-3 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white shadow-sm transition-all hover:shadow-md col-span-2 sm:col-span-1">
           <Play className="w-5 h-5 fill-white" />
