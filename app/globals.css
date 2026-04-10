@@ -141,14 +141,13 @@ body {
   border-color: var(--border-subtle) !important;
 }
 
-/* Text color overrides — lighter values for dark mode readability */
-.dark .text-slate-900 { color: #f1f5f9 !important; }
-.dark .text-slate-800 { color: #e2e8f0 !important; }
-.dark .text-slate-700 { color: #cbd5e1 !important; }
-.dark .text-slate-600 { color: #94a3b8 !important; }
-.dark .text-slate-500 { color: #94a3b8 !important; }
-/* text-slate-400 gets a BRIGHT value in dark mode so it's actually readable */
-.dark .text-slate-400 { color: #94a3b8 !important; }
+/* Text color overrides — all must be clearly readable on dark bg (#0b0f1a / #111827) */
+.dark .text-slate-900 { color: #f8fafc !important; }   /* white-ish   — titles */
+.dark .text-slate-800 { color: #f1f5f9 !important; }   /* near-white  — headers */
+.dark .text-slate-700 { color: #e2e8f0 !important; }   /* light grey  — body */
+.dark .text-slate-600 { color: #cbd5e1 !important; }   /* med grey    — labels (was #94a3b8 — too dark) */
+.dark .text-slate-500 { color: #94a3b8 !important; }   /* soft grey   — captions */
+.dark .text-slate-400 { color: #94a3b8 !important; }   /* soft grey   — placeholders */
 
 /* Dropdown menus */
 .dark [data-radix-popper-content-wrapper] .bg-white {
