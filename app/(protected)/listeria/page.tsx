@@ -135,7 +135,7 @@ export default async function ListeriaPage() {
         ].map((k) => (
           <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
-            <p className={`text-3xl font-black tabular-nums ${k.iconText ?? k.text}`}>{k.value}</p>
+            <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}

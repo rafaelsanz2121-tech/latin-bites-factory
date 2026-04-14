@@ -57,6 +57,7 @@ export default async function BoxSessionPage({
   const pctWeight = session.target_weight_lbs ? Math.min(100, Math.round((totalW / parseFloat(session.target_weight_lbs)) * 100)) : null
 
   const isActive = session.status === "active"
+  const startedByName = Array.isArray(session.started_by) ? (session.started_by as any)[0]?.full_name : (session.started_by as any)?.full_name
 
   const kpis = [
     { label: "Total Cajas",      value: count,                icon: Box,        bar: "bg-blue-500",    iconBg: "bg-blue-100 dark:bg-blue-900/40",     iconText: "text-blue-600 dark:text-blue-300",    sub: session.target_boxes ? `meta: ${session.target_boxes}` : "registradas" },
@@ -95,7 +96,7 @@ export default async function BoxSessionPage({
               </div>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 {new Date(session.shift_date + "T12:00:00").toLocaleDateString("es-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-                {session.started_by?.full_name && ` · Inició: ${session.started_by.full_name}`}
+                {startedByName && ` · Inició: ${startedByName}`}
               </p>
             </div>
           </div>
@@ -211,7 +212,7 @@ export default async function BoxSessionPage({
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className="text-sm text-slate-600 dark:text-slate-400">{b.logged_by?.full_name ?? "—"}</span>
+                        <span className="text-sm text-slate-600 dark:text-slate-400">{(b.logged_by as any)?.[0]?.full_name ?? (b.logged_by as any)?.full_name ?? "—"}</span>
                       </td>
                       <td className="px-4 py-3 text-right">
                         {isActive && (

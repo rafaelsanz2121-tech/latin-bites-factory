@@ -57,11 +57,11 @@ export default function LandingPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/auth/login"
+            <Link href="/login"
               className="hidden sm:block text-sm font-semibold text-slate-300 hover:text-white transition-colors px-4 py-2">
               Iniciar sesión
             </Link>
-            <Link href="/auth/login"
+            <Link href="/login"
               className="text-sm font-bold px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl transition-colors shadow-lg shadow-red-900/30">
               Comenzar gratis
             </Link>
@@ -95,7 +95,7 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <Link href="/auth/login"
+            <Link href="/login"
               className="flex items-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-500 text-white font-black text-base rounded-2xl transition-all shadow-2xl shadow-red-900/40 hover:-translate-y-0.5">
               Comenzar gratis <ArrowRight className="w-5 h-5" />
             </Link>
@@ -202,28 +202,29 @@ export default function LandingPage() {
 
       {/* ── PRICING ─────────────────────────────────────── */}
       <section id="precios" className="py-24 px-6 border-t border-white/[0.06]">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-red-500 text-sm font-bold tracking-widest uppercase mb-3">Precios</p>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">Simple y transparente</h2>
             <p className="text-slate-600 dark:text-slate-400">Ahorra 20% con plan anual · Sin costos ocultos · Cancela cuando quieras</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {/* Starter */}
             <div className="p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
-              <p className="text-xs font-bold text-slate-600 dark:text-slate-400 mb-2 uppercase tracking-widest">Starter</p>
+              <p className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">Starter</p>
               <div className="flex items-end gap-2 mb-6">
-                <span className="text-5xl font-black">$199</span>
-                <span className="text-slate-600 dark:text-slate-400 mb-2 text-sm">/mes</span>
+                <span className="text-5xl font-black">$99</span>
+                <span className="text-slate-400 mb-2 text-sm">/mes</span>
               </div>
+              <p className="text-sm text-slate-400 mb-6">Para plantas pequeñas iniciando su digitalización HACCP.</p>
               <ul className="space-y-3 mb-8">
-                {["Hasta 10 usuarios","18 módulos HACCP completos","Alertas en tiempo real","Dashboard de compliance","Soporte por email"].map((f) => (
+                {["Hasta 5 usuarios","12 módulos HACCP core","Dashboard de compliance","Alertas básicas","Soporte por email"].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-green-500 flex-shrink-0" />{f}
                   </li>
                 ))}
               </ul>
-              <Link href="/auth/login" className="block text-center py-3 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
+              <Link href="/register" className="block text-center py-3 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
                 Comenzar gratis
               </Link>
             </div>
@@ -235,16 +236,36 @@ export default function LandingPage() {
               <p className="text-xs font-bold text-red-400 mb-2 uppercase tracking-widest">Professional</p>
               <div className="flex items-end gap-2 mb-6">
                 <span className="text-5xl font-black">$399</span>
-                <span className="text-slate-600 dark:text-slate-400 mb-2 text-sm">/mes</span>
+                <span className="text-slate-400 mb-2 text-sm">/mes</span>
               </div>
+              <p className="text-sm text-slate-400 mb-6">Para plantas en crecimiento que necesitan cobertura total.</p>
               <ul className="space-y-3 mb-8">
-                {["Usuarios ilimitados","24 módulos (HACCP + Empresariales)","Costos, Inventario, Finanzas","Exportación PDF ilimitada","Soporte prioritario 24/7","Onboarding dedicado","Multi-planta"].map((f) => (
+                {["Hasta 25 usuarios","24 módulos completos","Costos, Inventario, Finanzas","Producción inteligente + IA","Exportación PDF ilimitada","Soporte prioritario 24/7","Onboarding dedicado"].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-red-400 flex-shrink-0" />{f}
                   </li>
                 ))}
               </ul>
-              <Link href="/auth/login" className="block text-center py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/30">
+              <Link href="/register" className="block text-center py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/30">
+                Comenzar ahora
+              </Link>
+            </div>
+            {/* Enterprise */}
+            <div className="p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
+              <p className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">Enterprise</p>
+              <div className="flex items-end gap-2 mb-6">
+                <span className="text-5xl font-black">$699</span>
+                <span className="text-slate-400 mb-2 text-sm">/mes</span>
+              </div>
+              <p className="text-sm text-slate-400 mb-6">Para operaciones multi-planta con necesidades avanzadas.</p>
+              <ul className="space-y-3 mb-8">
+                {["Usuarios ilimitados","Todo en Professional","Multi-planta ilimitado","API personalizada","Integraciones ERP/SAP","Gerente de cuenta dedicado","SLA garantizado 99.9%"].map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
+                    <Check className="w-4 h-4 text-purple-400 flex-shrink-0" />{f}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/register" className="block text-center py-3 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
                 Hablar con ventas
               </Link>
             </div>
@@ -261,7 +282,7 @@ export default function LandingPage() {
           <p className="text-slate-300 text-lg mb-10 max-w-xl mx-auto">
             Configura FactorOS en 5 minutos y llega a tu próxima inspección USDA con todo en orden.
           </p>
-          <Link href="/auth/login"
+          <Link href="/login"
             className="inline-flex items-center gap-2 px-10 py-4 bg-red-600 hover:bg-red-500 text-white font-black text-lg rounded-2xl transition-all shadow-2xl shadow-red-900/50 hover:-translate-y-0.5">
             Crear cuenta gratis <ArrowRight className="w-5 h-5" />
           </Link>
@@ -290,8 +311,8 @@ export default function LandingPage() {
               </div>
               <div className="space-y-2">
                 <p className="font-bold text-slate-600 dark:text-slate-400 text-xs uppercase tracking-wide">Cuenta</p>
-                <Link href="/auth/login" className="block hover:text-white transition-colors">Iniciar sesión</Link>
-                <Link href="/auth/login" className="block hover:text-white transition-colors">Registrarse</Link>
+                <Link href="/login" className="block hover:text-white transition-colors">Iniciar sesión</Link>
+                <Link href="/login" className="block hover:text-white transition-colors">Registrarse</Link>
               </div>
             </div>
           </div>

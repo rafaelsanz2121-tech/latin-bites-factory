@@ -245,7 +245,7 @@ export default async function FinanzasPage({
             <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
             <div className="flex items-start justify-between mb-3 mt-1">
               <div className={`w-8 h-8 rounded-lg ${k.iconBg ?? "bg-slate-100"} flex items-center justify-center`}>
-                <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
+                <k.icon className={`w-4 h-4 ${k.iconText}`} />
               </div>
               {k.trend !== null && (
                 <span className={`flex items-center gap-0.5 text-[11px] font-bold ${k.trend > 5 ? "text-red-500" : k.trend < -5 ? "text-green-600" : "text-slate-600 dark:text-slate-400"}`}>

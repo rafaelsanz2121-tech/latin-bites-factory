@@ -99,7 +99,7 @@ export default async function InventarioPage({
         ].map((k) => (
           <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
             <div className={`w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700/60 flex items-center justify-center mb-3`}>
-              <k.icon className={`w-4 h-4 ${k.iconText ?? k.text}`} />
+              <k.icon className={`w-4 h-4 ${k.text}`} />
             </div>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
             <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>

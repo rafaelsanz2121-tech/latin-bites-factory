@@ -156,9 +156,9 @@ export default async function InventarioDetailPage({
         ].map((k) => (
           <div key={k.label} className={`rounded-xl border p-4 ${k.bg} border-transparent`}>
             <div className={`w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-700/60 flex items-center justify-center mb-3`}>
-              <k.icon className={`w-3.5 h-3.5 ${k.iconText ?? k.text}`} />
+              <k.icon className={`w-3.5 h-3.5 ${k.text}`} />
             </div>
-            <p className={`text-xl font-black leading-none ${k.iconText ?? k.text}`}>{k.value}</p>
+            <p className={`text-xl font-black leading-none ${k.text}`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
           </div>
         ))}

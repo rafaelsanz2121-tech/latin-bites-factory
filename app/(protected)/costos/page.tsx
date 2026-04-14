@@ -98,12 +98,12 @@ export default async function CostosPage() {
           <div key={k.label} className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden">
             <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
             <div>
-              <div className={`absolute top-0 left-0 right-0 h-1 ${k.bar}`} />
               <div className={`w-8 h-8 rounded-lg ${k.iconBg} flex items-center justify-center mb-3 mt-1`}>
               <k.icon className={`w-4 h-4 ${k.iconText}`} />
             </div>
             <p className="text-xl font-black text-slate-900 dark:text-slate-100 leading-none">{k.value}</p>
             <p className="text-[11px] font-medium text-slate-600 dark:text-slate-400 mt-1.5">{k.label}</p>
+          </div>
           </div>
         ))}
       </div>

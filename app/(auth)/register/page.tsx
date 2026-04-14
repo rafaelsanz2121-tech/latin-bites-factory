@@ -1,13 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { createClient } from "@/lib/supabase/client"
 import { Zap, Check, ChevronRight, ChevronLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 const US_STATES = ["TX", "CA", "FL", "NY", "IL", "GA", "NC", "PA", "OH", "MI", "TN", "Otro"]
 
-type Plan = "starter" | "professional"
+type Plan = "starter" | "pro" | "enterprise"
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
@@ -47,40 +46,36 @@ export default function RegisterPage() {
 
     setLoading(true)
 
-    const supabase = createClient()
-
-    // 1. Sign up
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { full_name: fullName },
-      },
-    })
-
-    if (signUpError) {
-      setError(signUpError.message)
-      setLoading(false)
-      return
-    }
-
-    // 2. Insert organization (wrap in try/catch in case table not migrated)
     try {
-      const slug = plantName.toLowerCase().replace(/\s+/g, "-")
-      await supabase.from("organizations").insert({
-        name: plantName,
-        est_number: estNumber,
-        city,
-        state,
-        plan,
-        slug,
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          fullName,
+          plantName,
+          estNumber,
+          city,
+          state,
+          plan,
+        }),
       })
-    } catch {
-      // Non-fatal — table may not exist yet
-    }
 
-    setLoading(false)
-    setStep(3)
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error || "Error creando la cuenta")
+        setLoading(false)
+        return
+      }
+
+      setLoading(false)
+      setStep(3)
+    } catch {
+      setError("Error de conexión. Intenta de nuevo.")
+      setLoading(false)
+    }
   }
 
   return (
@@ -99,7 +94,7 @@ export default function RegisterPage() {
           {step < 3 && (
             <>
               <h1 className="text-2xl font-black text-white">Crear cuenta</h1>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
+              <p className="text-slate-400 text-sm mt-1">
                 Paso {step} de 2 — {step === 1 ? "Tu cuenta" : "Tu planta"}
               </p>
             </>
@@ -119,7 +114,7 @@ export default function RegisterPage() {
           <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
             <div className="mb-6">
               <h2 className="text-lg font-bold text-white">Tu cuenta</h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Información de acceso personal</p>
+              <p className="text-sm text-slate-400 mt-1">Información de acceso personal</p>
             </div>
 
             <div className="space-y-4">
@@ -132,6 +127,7 @@ export default function RegisterPage() {
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full bg-white/[0.06] border border-white/10 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
                   autoComplete="name"
+                  autoFocus
                 />
               </div>
 
@@ -186,9 +182,9 @@ export default function RegisterPage() {
               </button>
             </div>
 
-            <p className="text-center text-xs text-slate-600 mt-6">
+            <p className="text-center text-xs text-slate-500 mt-6">
               ¿Ya tienes cuenta?{" "}
-              <Link href="/login" className="text-slate-600 dark:text-slate-400 hover:text-white hover:underline">
+              <Link href="/login" className="text-slate-400 hover:text-white hover:underline">
                 Inicia sesión
               </Link>
             </p>
@@ -201,7 +197,7 @@ export default function RegisterPage() {
             <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
               <div className="mb-6">
                 <h2 className="text-lg font-bold text-white">Tu planta</h2>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Información de tu operación</p>
+                <p className="text-sm text-slate-400 mt-1">Información de tu operación</p>
               </div>
 
               <div className="space-y-4">
@@ -209,10 +205,11 @@ export default function RegisterPage() {
                   <label className="text-sm font-medium text-slate-300">Nombre de la planta</label>
                   <input
                     type="text"
-                    placeholder="Latin Bites Factory"
+                    placeholder="Mi Planta de Carnes"
                     value={plantName}
                     onChange={(e) => setPlantName(e.target.value)}
                     className="w-full bg-white/[0.06] border border-white/10 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
+                    autoFocus
                   />
                 </div>
 
@@ -257,50 +254,37 @@ export default function RegisterPage() {
                 {/* Plan selector */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-300">Plan</label>
-                  <div className="grid grid-cols-2 gap-3">
-                    {/* Starter */}
-                    <button
-                      type="button"
-                      onClick={() => setPlan("starter")}
-                      className={`relative border rounded-xl p-4 text-left transition-all ${
-                        plan === "starter"
-                          ? "border-red-500/70 bg-red-500/10"
-                          : "border-white/10 bg-white/[0.03] hover:border-white/20"
-                      }`}
-                    >
-                      <p className="text-sm font-bold text-white">Starter</p>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Para empezar</p>
-                      <p className="text-lg font-black text-white mt-2">$199<span className="text-xs font-normal text-slate-600 dark:text-slate-400">/mes</span></p>
-                      {plan === "starter" && (
-                        <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
-                          <Check className="w-2.5 h-2.5 text-white" />
+                  <div className="grid grid-cols-3 gap-2">
+                    {([
+                      { key: "starter" as Plan, name: "Starter", price: "$99", desc: "Para empezar" },
+                      { key: "pro" as Plan, name: "Professional", price: "$399", desc: "Más popular", badge: true },
+                      { key: "enterprise" as Plan, name: "Enterprise", price: "$699", desc: "Multi-planta" },
+                    ]).map((p) => (
+                      <button
+                        key={p.key}
+                        type="button"
+                        onClick={() => setPlan(p.key)}
+                        className={`relative border rounded-xl p-3 text-left transition-all ${
+                          plan === p.key
+                            ? "border-red-500/70 bg-red-500/10"
+                            : "border-white/10 bg-white/[0.03] hover:border-white/20"
+                        }`}
+                      >
+                        <div className="flex items-center gap-1 mb-0.5">
+                          <p className="text-xs font-bold text-white">{p.name}</p>
+                          {p.badge && <span className="text-[9px] font-bold bg-red-600 text-white px-1 py-0.5 rounded-full leading-none">Top</span>}
                         </div>
-                      )}
-                    </button>
-
-                    {/* Professional */}
-                    <button
-                      type="button"
-                      onClick={() => setPlan("professional")}
-                      className={`relative border rounded-xl p-4 text-left transition-all ${
-                        plan === "professional"
-                          ? "border-red-500/70 bg-red-500/10"
-                          : "border-white/10 bg-white/[0.03] hover:border-white/20"
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5 mb-0.5">
-                        <p className="text-sm font-bold text-white">Professional</p>
-                        <span className="text-[10px] font-bold bg-red-600 text-white px-1.5 py-0.5 rounded-full">Popular</span>
-                      </div>
-                      <p className="text-xs text-slate-600 dark:text-slate-400">Escala tu planta</p>
-                      <p className="text-lg font-black text-white mt-2">$399<span className="text-xs font-normal text-slate-600 dark:text-slate-400">/mes</span></p>
-                      {plan === "professional" && (
-                        <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
-                          <Check className="w-2.5 h-2.5 text-white" />
-                        </div>
-                      )}
-                    </button>
+                        <p className="text-[10px] text-slate-400">{p.desc}</p>
+                        <p className="text-sm font-black text-white mt-1.5">{p.price}<span className="text-[10px] font-normal text-slate-500">/mes</span></p>
+                        {plan === p.key && (
+                          <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
+                            <Check className="w-2.5 h-2.5 text-white" />
+                          </div>
+                        )}
+                      </button>
+                    ))}
                   </div>
+                  <p className="text-[10px] text-slate-500">14 días de prueba gratis en todos los planes</p>
                 </div>
 
                 {error && (
@@ -313,7 +297,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={() => { setStep(1); setError(null) }}
-                    className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 hover:text-white text-sm font-medium px-4 py-2.5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
+                    className="flex items-center gap-1.5 text-slate-400 hover:text-white text-sm font-medium px-4 py-2.5 border border-white/10 rounded-lg hover:border-white/20 transition-colors"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Atrás
@@ -342,15 +326,15 @@ export default function RegisterPage() {
             </div>
 
             <h2 className="text-xl font-black text-white mb-1">¡Cuenta creada!</h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm mb-6">Bienvenido a FactorOS</p>
+            <p className="text-slate-400 text-sm mb-6">Tu planta ya está lista. Inicia sesión para empezar.</p>
 
             <div className="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-left mb-6 space-y-3">
-              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Próximos pasos</p>
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Próximos pasos</p>
 
               {[
-                "Configura tu primer módulo HACCP",
-                "Invita a tu equipo",
-                "Ejecuta las migraciones de base de datos",
+                "Inicia sesión con tus credenciales",
+                "Registra tu primer módulo HACCP",
+                "Invita a tu equipo de operaciones",
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-red-600/20 border border-red-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -361,13 +345,13 @@ export default function RegisterPage() {
               ))}
             </div>
 
-            <a
-              href="/dashboard"
+            <Link
+              href="/login"
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg px-4 py-2.5 flex items-center justify-center gap-2 transition-colors text-sm"
             >
-              Ir al dashboard
+              Iniciar sesión
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
 
             <p className="text-xs text-slate-600 mt-4">
               FactorOS · HACCP Compliance Platform · USDA Ready

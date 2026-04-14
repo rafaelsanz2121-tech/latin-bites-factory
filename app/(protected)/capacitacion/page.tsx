@@ -166,7 +166,7 @@ export default async function CapacitacionPage() {
         ].map((k) => (
           <div key={k.label} className={`rounded-xl border border-transparent p-4 ${k.bg}`}>
             <k.icon className={`w-4 h-4 ${k.text} mb-2`} />
-            <p className={`text-3xl font-black tabular-nums ${k.iconText ?? k.text}`}>{k.value}</p>
+            <p className={`text-3xl font-black tabular-nums ${k.text}`}>{k.value}</p>
             <p className="text-[10.5px] font-medium text-slate-600 dark:text-slate-300 mt-1">{k.label}</p>
           </div>
         ))}
