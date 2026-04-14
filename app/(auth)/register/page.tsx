@@ -283,7 +283,7 @@ export default function RegisterPage() {
                       </button>
                     ))}
                   </div>
-                  <p className="text-[10px] text-slate-500">14 días de prueba gratis · Sin tarjeta de crédito</p>
+                  <p className="text-[10px] text-slate-500">14 días gratis · Después se activa la suscripción de tu plan</p>
                 </div>
 
                 {error && (

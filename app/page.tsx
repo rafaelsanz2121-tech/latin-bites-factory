@@ -106,7 +106,7 @@ export default function LandingPage() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600 dark:text-slate-400">
-            {["Sin tarjeta de crédito", "Setup en 5 minutos", "FSIS ready"].map((t) => (
+            {["14 días de prueba gratis", "Setup en 5 minutos", "FSIS ready"].map((t) => (
               <span key={t} className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-green-500" />{t}
               </span>
@@ -206,7 +206,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <p className="text-red-500 text-sm font-bold tracking-widest uppercase mb-3">Precios</p>
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">Simple y transparente</h2>
-            <p className="text-slate-600 dark:text-slate-400">Ahorra 20% con plan anual · Sin costos ocultos · Cancela cuando quieras</p>
+            <p className="text-slate-400">14 días de prueba gratis · Luego se activa tu plan · Cancela cuando quieras</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Professional */}
@@ -229,9 +229,9 @@ export default function LandingPage() {
                   "Costos, Inventario y Finanzas",
                   "Exportación PDF ilimitada",
                   "Alertas automáticas (Listeria, CAPAs, temperaturas)",
+                  "Trazabilidad lote a lote completa",
                   "Soporte prioritario por email y chat",
                   "Onboarding guiado",
-                  "14 días de prueba gratis",
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-red-400 flex-shrink-0" />{f}
@@ -239,8 +239,9 @@ export default function LandingPage() {
                 ))}
               </ul>
               <Link href="/register" className="block text-center py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/30">
-                Comenzar prueba gratis
+                Probar 14 días gratis →
               </Link>
+              <p className="text-[11px] text-slate-500 text-center mt-3">Después del trial: $399/mes · Cancela cuando quieras</p>
             </div>
             {/* Enterprise */}
             <div className="relative p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
@@ -264,7 +265,6 @@ export default function LandingPage() {
                   "Onboarding personalizado con tu equipo",
                   "SLA garantizado 99.9% uptime",
                   "Soporte telefónico 24/7",
-                  "14 días de prueba gratis",
                 ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-purple-400 flex-shrink-0" />{f}
@@ -272,8 +272,9 @@ export default function LandingPage() {
                 ))}
               </ul>
               <Link href="/register" className="block text-center py-3.5 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
-                Hablar con ventas
+                Probar 14 días gratis →
               </Link>
+              <p className="text-[11px] text-slate-500 text-center mt-3">Después del trial: $699/mes · Cancela cuando quieras</p>
             </div>
           </div>
         </div>
