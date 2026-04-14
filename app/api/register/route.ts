@@ -20,8 +20,8 @@ export async function POST(request: Request) {
     }
 
     // Validate plan
-    const validPlans = ["starter", "pro", "enterprise"]
-    const safePlan = validPlans.includes(plan) ? plan : "starter"
+    const validPlans = ["pro", "enterprise"]
+    const safePlan = validPlans.includes(plan) ? plan : "pro"
 
     const supabase = getServiceClient()
 

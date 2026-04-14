@@ -6,7 +6,7 @@ import Link from "next/link"
 
 const US_STATES = ["TX", "CA", "FL", "NY", "IL", "GA", "NC", "PA", "OH", "MI", "TN", "Otro"]
 
-type Plan = "starter" | "pro" | "enterprise"
+type Plan = "pro" | "enterprise"
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const [estNumber, setEstNumber] = useState("")
   const [city, setCity] = useState("")
   const [state, setState] = useState("")
-  const [plan, setPlan] = useState<Plan>("starter")
+  const [plan, setPlan] = useState<Plan>("pro")
 
   const handleStep1Next = () => {
     setError(null)
@@ -254,37 +254,36 @@ export default function RegisterPage() {
                 {/* Plan selector */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-300">Plan</label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-3">
                     {([
-                      { key: "starter" as Plan, name: "Starter", price: "$99", desc: "Para empezar" },
-                      { key: "pro" as Plan, name: "Professional", price: "$399", desc: "Más popular", badge: true },
-                      { key: "enterprise" as Plan, name: "Enterprise", price: "$699", desc: "Multi-planta" },
+                      { key: "pro" as Plan, name: "Professional", price: "$399", desc: "24 módulos + IA", badge: true },
+                      { key: "enterprise" as Plan, name: "Enterprise", price: "$699", desc: "Multi-planta + API" },
                     ]).map((p) => (
                       <button
                         key={p.key}
                         type="button"
                         onClick={() => setPlan(p.key)}
-                        className={`relative border rounded-xl p-3 text-left transition-all ${
+                        className={`relative border rounded-xl p-4 text-left transition-all ${
                           plan === p.key
                             ? "border-red-500/70 bg-red-500/10"
                             : "border-white/10 bg-white/[0.03] hover:border-white/20"
                         }`}
                       >
-                        <div className="flex items-center gap-1 mb-0.5">
-                          <p className="text-xs font-bold text-white">{p.name}</p>
-                          {p.badge && <span className="text-[9px] font-bold bg-red-600 text-white px-1 py-0.5 rounded-full leading-none">Top</span>}
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <p className="text-sm font-bold text-white">{p.name}</p>
+                          {p.badge && <span className="text-[9px] font-bold bg-red-600 text-white px-1.5 py-0.5 rounded-full leading-none">Popular</span>}
                         </div>
-                        <p className="text-[10px] text-slate-400">{p.desc}</p>
-                        <p className="text-sm font-black text-white mt-1.5">{p.price}<span className="text-[10px] font-normal text-slate-500">/mes</span></p>
+                        <p className="text-[11px] text-slate-400">{p.desc}</p>
+                        <p className="text-lg font-black text-white mt-2">{p.price}<span className="text-xs font-normal text-slate-500">/mes</span></p>
                         {plan === p.key && (
-                          <div className="absolute top-2 right-2 w-4 h-4 rounded-full bg-red-600 flex items-center justify-center">
-                            <Check className="w-2.5 h-2.5 text-white" />
+                          <div className="absolute top-2 right-2 w-5 h-5 rounded-full bg-red-600 flex items-center justify-center">
+                            <Check className="w-3 h-3 text-white" />
                           </div>
                         )}
                       </button>
                     ))}
                   </div>
-                  <p className="text-[10px] text-slate-500">14 días de prueba gratis en todos los planes</p>
+                  <p className="text-[10px] text-slate-500">14 días de prueba gratis · Sin tarjeta de crédito</p>
                 </div>
 
                 {error && (

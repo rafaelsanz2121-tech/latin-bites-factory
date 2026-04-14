@@ -208,64 +208,70 @@ export default function LandingPage() {
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">Simple y transparente</h2>
             <p className="text-slate-600 dark:text-slate-400">Ahorra 20% con plan anual · Sin costos ocultos · Cancela cuando quieras</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Starter */}
-            <div className="p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
-              <p className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">Starter</p>
-              <div className="flex items-end gap-2 mb-6">
-                <span className="text-5xl font-black">$99</span>
-                <span className="text-slate-400 mb-2 text-sm">/mes</span>
-              </div>
-              <p className="text-sm text-slate-400 mb-6">Para plantas pequeñas iniciando su digitalización HACCP.</p>
-              <ul className="space-y-3 mb-8">
-                {["Hasta 5 usuarios","12 módulos HACCP core","Dashboard de compliance","Alertas básicas","Soporte por email"].map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
-                    <Check className="w-4 h-4 text-green-500 flex-shrink-0" />{f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/register" className="block text-center py-3 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
-                Comenzar gratis
-              </Link>
-            </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Professional */}
             <div className="relative p-8 rounded-2xl border border-red-500/40 bg-red-500/5">
               <div className="absolute -top-3 left-8">
                 <span className="px-3 py-1 bg-red-600 text-white text-xs font-black rounded-full uppercase tracking-wide">Más popular</span>
               </div>
               <p className="text-xs font-bold text-red-400 mb-2 uppercase tracking-widest">Professional</p>
-              <div className="flex items-end gap-2 mb-6">
+              <div className="flex items-end gap-2 mb-2">
                 <span className="text-5xl font-black">$399</span>
                 <span className="text-slate-400 mb-2 text-sm">/mes</span>
               </div>
-              <p className="text-sm text-slate-400 mb-6">Para plantas en crecimiento que necesitan cobertura total.</p>
+              <p className="text-sm text-slate-400 mb-8">Todo lo que necesitas para digitalizar tu planta y pasar cualquier inspección USDA.</p>
               <ul className="space-y-3 mb-8">
-                {["Hasta 25 usuarios","24 módulos completos","Costos, Inventario, Finanzas","Producción inteligente + IA","Exportación PDF ilimitada","Soporte prioritario 24/7","Onboarding dedicado"].map((f) => (
+                {[
+                  "Hasta 25 usuarios",
+                  "24 módulos HACCP + Empresariales",
+                  "Dashboard de compliance en tiempo real",
+                  "Producción inteligente con IA",
+                  "Costos, Inventario y Finanzas",
+                  "Exportación PDF ilimitada",
+                  "Alertas automáticas (Listeria, CAPAs, temperaturas)",
+                  "Soporte prioritario por email y chat",
+                  "Onboarding guiado",
+                  "14 días de prueba gratis",
+                ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-red-400 flex-shrink-0" />{f}
                   </li>
                 ))}
               </ul>
-              <Link href="/register" className="block text-center py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/30">
-                Comenzar ahora
+              <Link href="/register" className="block text-center py-3.5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-900/30">
+                Comenzar prueba gratis
               </Link>
             </div>
             {/* Enterprise */}
-            <div className="p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
-              <p className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">Enterprise</p>
-              <div className="flex items-end gap-2 mb-6">
+            <div className="relative p-8 rounded-2xl border border-white/[0.07] bg-white/[0.03]">
+              <div className="absolute -top-3 left-8">
+                <span className="px-3 py-1 bg-purple-600 text-white text-xs font-black rounded-full uppercase tracking-wide">Multi-planta</span>
+              </div>
+              <p className="text-xs font-bold text-purple-400 mb-2 uppercase tracking-widest">Enterprise</p>
+              <div className="flex items-end gap-2 mb-2">
                 <span className="text-5xl font-black">$699</span>
                 <span className="text-slate-400 mb-2 text-sm">/mes</span>
               </div>
-              <p className="text-sm text-slate-400 mb-6">Para operaciones multi-planta con necesidades avanzadas.</p>
+              <p className="text-sm text-slate-400 mb-8">Para operaciones con múltiples plantas que necesitan control centralizado y compliance unificado.</p>
               <ul className="space-y-3 mb-8">
-                {["Usuarios ilimitados","Todo en Professional","Multi-planta ilimitado","API personalizada","Integraciones ERP/SAP","Gerente de cuenta dedicado","SLA garantizado 99.9%"].map((f) => (
+                {[
+                  "Usuarios ilimitados",
+                  "Todo lo de Professional incluido",
+                  "Multi-planta ilimitado (1 dashboard, N plantas)",
+                  "Reportes consolidados entre plantas",
+                  "API para integraciones con ERP/SAP",
+                  "Gerente de cuenta dedicado",
+                  "Onboarding personalizado con tu equipo",
+                  "SLA garantizado 99.9% uptime",
+                  "Soporte telefónico 24/7",
+                  "14 días de prueba gratis",
+                ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-slate-300">
                     <Check className="w-4 h-4 text-purple-400 flex-shrink-0" />{f}
                   </li>
                 ))}
               </ul>
-              <Link href="/register" className="block text-center py-3 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
+              <Link href="/register" className="block text-center py-3.5 border border-white/20 hover:border-white/40 text-white font-bold rounded-xl transition-all">
                 Hablar con ventas
               </Link>
             </div>
