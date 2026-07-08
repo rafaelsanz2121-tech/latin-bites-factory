@@ -46,7 +46,7 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!quantity || qty <= 0) { toast.error("Ingresa una cantidad válida"); return }
-    if (type === "out" && qty > currentStock) {
+    if ((type === "out" || type === "waste") && qty > currentStock) {
       toast.error(`No hay suficiente stock. Disponible: ${currentStock} ${unit}`)
       return
     }

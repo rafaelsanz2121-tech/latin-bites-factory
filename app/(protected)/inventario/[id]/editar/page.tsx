@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
 import Link from "next/link"
-import { ArrowLeft, Boxes, Loader2 } from "lucide-react"
+import { ArrowLeft, Boxes, Loader2, Trash2 } from "lucide-react"
 
 const CATEGORIES = [
   { value: "raw_material",  label: "Materia Prima" },
@@ -30,6 +30,8 @@ export default function EditarInventarioPage({
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [isActive, setIsActive] = useState(true)
+  const [confirmDelete, setConfirmDelete] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   const [form, setForm] = useState({
     name: "", sku: "", category: "raw_material", unit: "lbs",
@@ -99,6 +101,26 @@ export default function EditarInventarioPage({
     if (error) { toast.error("Error: " + error.message); return }
     toast.success("Artículo actualizado")
     router.push(`/inventario/${id}`)
+    router.refresh()
+  }
+
+  const handleDelete = async () => {
+    setDeleting(true)
+    // .select() lets us detect an RLS-blocked delete (returns 0 rows, no error)
+    const { data, error } = await supabase
+      .from("inventory_items")
+      .delete()
+      .eq("id", id)
+      .select("id")
+
+    setDeleting(false)
+    if (error) { toast.error("Error: " + error.message); return }
+    if (!data || data.length === 0) {
+      toast.error("No se pudo eliminar. Ejecuta la migración 020_inventory_delete_policy.sql en Supabase.")
+      return
+    }
+    toast.success("Artículo eliminado junto con su historial")
+    router.push("/inventario")
     router.refresh()
   }
 
@@ -236,6 +258,47 @@ export default function EditarInventarioPage({
           </Link>
         </div>
       </form>
+
+      {/* Danger zone */}
+      <div className="rounded-xl border border-red-200 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/20 p-5">
+        <h3 className="text-sm font-bold text-red-700 dark:text-red-400 flex items-center gap-2 mb-1">
+          <Trash2 className="w-4 h-4" /> Eliminar artículo
+        </h3>
+        <p className="text-xs text-red-600/80 dark:text-red-400/70 mb-4">
+          Se borra el artículo <strong>y todo su historial de movimientos</strong> de forma permanente.
+          Si solo quieres ocultarlo del inventario, usa &quot;Artículo activo&quot; arriba.
+        </p>
+        {confirmDelete ? (
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={handleDelete}
+              disabled={deleting}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-lg transition-colors disabled:opacity-60"
+            >
+              {deleting
+                ? <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Eliminando…</>
+                : <><Trash2 className="w-3.5 h-3.5" /> Sí, eliminar definitivamente</>
+              }
+            </button>
+            <button
+              type="button"
+              onClick={() => setConfirmDelete(false)}
+              className="px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/[0.06] rounded-lg transition-colors"
+            >
+              Cancelar
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setConfirmDelete(true)}
+            className="px-4 py-2 border border-red-300 dark:border-red-800 text-red-600 dark:text-red-400 text-sm font-semibold rounded-lg hover:bg-red-100 dark:hover:bg-red-950/40 transition-colors"
+          >
+            Eliminar artículo…
+          </button>
+        )}
+      </div>
     </div>
   )
 }
