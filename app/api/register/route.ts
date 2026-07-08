@@ -12,16 +12,12 @@ function getServiceClient() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { email, password, fullName, plantName, estNumber, city, state, plan } = body
+    const { email, password, fullName, plantName } = body
 
     // Validate required fields
-    if (!email || !password || !fullName || !plantName || !estNumber || !city || !state) {
+    if (!email || !password || !fullName || !plantName) {
       return NextResponse.json({ error: "Todos los campos son requeridos" }, { status: 400 })
     }
-
-    // Validate plan
-    const validPlans = ["pro", "enterprise"]
-    const safePlan = validPlans.includes(plan) ? plan : "pro"
 
     const supabase = getServiceClient()
 
@@ -53,11 +49,6 @@ export async function POST(request: Request) {
       .insert({
         name: plantName,
         slug: `${slug}-${Date.now()}`, // Ensure unique slug
-        plan: safePlan,
-        subscription_status: "trial",
-        est_number: estNumber,
-        city,
-        state,
       })
       .select("id")
       .single()

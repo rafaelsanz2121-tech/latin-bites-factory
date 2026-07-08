@@ -32,7 +32,7 @@ export async function proxy(request: NextRequest) {
   // Public routes — accessible without authentication. The landing page ("/") is
   // always public; auth-related pages are public so users can sign in/up; the
   // auth callback is public so Supabase can complete code exchange.
-  const publicPathPrefixes = ["/login", "/register", "/forgot-password", "/reset-password", "/auth/callback"]
+  const publicPathPrefixes = ["/login", "/register", "/api/register", "/forgot-password", "/reset-password", "/auth/callback"]
   const isPublic = pathname === "/" || publicPathPrefixes.some((p) => pathname.startsWith(p))
 
   // Authenticated users shouldn't re-enter the login page — send them to dashboard.
