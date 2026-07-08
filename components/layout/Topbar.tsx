@@ -159,7 +159,7 @@ export function Topbar({ profile, onMenuToggle }: TopbarProps) {
         {/* Org name pill — desktop only */}
         <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-white/[0.07] bg-slate-50 dark:bg-white/[0.03] mr-1">
           <Building2 className="w-3 h-3 text-slate-400 dark:text-slate-500 flex-shrink-0" />
-          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">Latin Bites Factory</span>
+          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">FactorOS</span>
         </div>
 
         {/* Live indicator — large screens */}

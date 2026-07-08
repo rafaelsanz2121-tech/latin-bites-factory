@@ -158,7 +158,7 @@ interface SidebarProps {
   estNumber?: string
 }
 
-export function Sidebar({ role, orgName = "Latin Bites Factory", estNumber = "M/P2643" }: SidebarProps) {
+export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: SidebarProps) {
   const pathname = usePathname()
   const STORAGE_KEY = "fo_sidebar_groups"
 

@@ -54,14 +54,22 @@ export function MovimientoForm({ itemId, itemName, unit, currentStock }: Props) 
     setLoading(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("organization_id")
+        .eq("id", user?.id)
+        .single()
 
+      // Quantity is always stored positive — the DB trigger applies the
+      // direction based on movement_type (out/waste subtract, adjustment sets).
       const { error } = await supabase.from("inventory_movements").insert({
-        inventory_item_id: itemId,
-        movement_type:     type,
-        quantity:          isAdjustment ? qty : (type === "in" ? qty : -qty),
-        reference:         reference || null,
-        notes:             notes || null,
-        created_by:        user?.id,
+        organization_id: profile?.organization_id,
+        item_id:         itemId,
+        movement_type:   type,
+        quantity:        qty,
+        reference:       reference || null,
+        notes:           notes || null,
+        created_by:      user?.id,
       })
 
       if (error) throw error

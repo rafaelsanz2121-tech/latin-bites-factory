@@ -125,7 +125,7 @@ export function OrgSettingsForm({ org }: { org: Org }) {
                 value={form.name}
                 onChange={(e) => set("name", e.target.value)}
                 required
-                placeholder="Latin Bites Factory"
+                placeholder="FactorOS"
                 className="w-full px-3 py-2.5 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 placeholder-slate-300 focus:outline-none focus:border-blue-400 transition-colors"
               />
             </div>

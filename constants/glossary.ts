@@ -172,7 +172,7 @@ export const GLOSSARY: Record<string, GlossaryEntry> = {
   },
   pork_belly: {
     title: "Pork Belly (Panceta de Cerdo)",
-    definition: "Corte de cerdo del vientre del animal, alto en grasa. Requiere cocción controlada y enfriamiento rápido post-cocción. Producto principal de Latin Bites Factory.",
+    definition: "Corte de cerdo del vientre del animal, alto en grasa. Requiere cocción controlada y enfriamiento rápido post-cocción.",
   },
   bunuelos: {
     title: "Buñuelos",

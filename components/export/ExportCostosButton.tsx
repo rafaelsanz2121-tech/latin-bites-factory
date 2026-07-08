@@ -19,7 +19,7 @@ function paintPDFHeader(
   doc: InstanceType<typeof import("jspdf")["default"]>,
   title: string,
   subtitle: string,
-  orgName = "Latin Bites Factory",
+  orgName = "FactorOS",
   estNum  = "M/P2643",
 ) {
   const W = doc.internal.pageSize.getWidth()

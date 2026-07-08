@@ -13,7 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params
   return {
-    title: `Reporte de Producción — ${id.slice(0, 8).toUpperCase()} — Latin Bites Factory`,
+    title: `Reporte de Producción — ${id.slice(0, 8).toUpperCase()} — FactorOS`,
   }
 }
 
@@ -337,7 +337,7 @@ export default async function ReportePage({
                 </svg>
               </div>
               <div>
-                <div className="pb-logo-text">Latin Bites <span>Factory</span></div>
+                <div className="pb-logo-text">Factor<span>OS</span></div>
                 <div className="pb-logo-sub">Reporte de Producción</div>
               </div>
             </div>
@@ -574,7 +574,7 @@ export default async function ReportePage({
 
         {/* ── Footer ── */}
         <div className="pb-footer">
-          <span>Latin Bites Factory · Sistema de Control de Producción</span>
+          <span>FactorOS · Sistema de Control de Producción</span>
           <span style={{ textAlign: "center" }}>
             USDA Inspected · Registro generado automáticamente
             <br />

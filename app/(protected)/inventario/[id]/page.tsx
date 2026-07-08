@@ -34,6 +34,7 @@ const MOV_TYPE: Record<string, { label: string; icon: React.ElementType; color: 
   out:        { label: "Salida",   icon: ArrowDownRight, color: "text-red-700",    bg: "bg-red-50"    },
   adjustment: { label: "Ajuste",   icon: RefreshCw,      color: "text-blue-700",   bg: "bg-blue-50"   },
   waste:      { label: "Merma",    icon: Trash2,         color: "text-amber-700",  bg: "bg-amber-50"  },
+  return:     { label: "Devolución", icon: ArrowUpRight, color: "text-teal-700",   bg: "bg-teal-50"   },
 }
 
 const CATEGORY_ES: Record<string, string> = {
@@ -70,7 +71,7 @@ export default async function InventarioDetailPage({
     const { data, error } = await supabase
       .from("inventory_movements")
       .select("id, movement_type, quantity, reference, notes, created_at, profiles!created_by(full_name)")
-      .eq("inventory_item_id", id)
+      .eq("item_id", id)
       .order("created_at", { ascending: false })
       .limit(60)
 
@@ -79,8 +80,9 @@ export default async function InventarioDetailPage({
   } catch { movError = true }
 
   /* ── Aggregates from movements ── */
-  const totalIn    = movements.filter((m) => m.quantity > 0).reduce((s, m) => s + Number(m.quantity), 0)
-  const totalOut   = movements.filter((m) => m.quantity < 0).reduce((s, m) => s + Math.abs(Number(m.quantity)), 0)
+  // Quantities are stored positive; direction comes from movement_type
+  const totalIn    = movements.filter((m) => m.movement_type === "in" || m.movement_type === "return").reduce((s, m) => s + Number(m.quantity), 0)
+  const totalOut   = movements.filter((m) => m.movement_type === "out" || m.movement_type === "waste").reduce((s, m) => s + Number(m.quantity), 0)
 
   const status     = stockStatus(item.current_stock, item.min_stock ?? 0, item.max_stock ?? (item.min_stock ? item.min_stock * 3 : 100))
   const totalValue = Number(item.current_stock) * Number(item.cost_per_unit ?? 0)
@@ -280,7 +282,8 @@ export default async function InventarioDetailPage({
                 {movements.map((mov) => {
                   const mt   = MOV_TYPE[mov.movement_type] ?? MOV_TYPE.in
                   const qty  = Math.abs(Number(mov.quantity))
-                  const sign = Number(mov.quantity) > 0 ? "+" : "-"
+                  const isIncoming = mov.movement_type === "in" || mov.movement_type === "return"
+                  const sign = mov.movement_type === "adjustment" ? "=" : isIncoming ? "+" : "-"
                   return (
                     <div key={mov.id} className="px-5 py-3 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
                       <div className={`w-8 h-8 rounded-lg ${mt.bg} flex items-center justify-center flex-shrink-0`}>
@@ -305,7 +308,7 @@ export default async function InventarioDetailPage({
                       </div>
                       <div className="text-right flex-shrink-0">
                         <span className={`text-[15px] font-black tabular-nums ${
-                          Number(mov.quantity) > 0 ? "text-green-600" : "text-red-500"
+                          mov.movement_type === "adjustment" ? "text-blue-600" : isIncoming ? "text-green-600" : "text-red-500"
                         }`}>
                           {sign}{qty.toLocaleString()}
                         </span>

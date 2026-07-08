@@ -32,7 +32,7 @@ function paintPDFHeader(
   doc.setFont("helvetica", "normal")
   doc.setFontSize(8)
   doc.setTextColor(148, 163, 184)
-  doc.text("Latin Bites Factory", W - 12, 9,  { align: "right" })
+  doc.text("FactorOS", W - 12, 9,  { align: "right" })
   doc.text("EST No. M/P2643 · USDA Inspeccionado", W - 12, 15, { align: "right" })
 
   doc.setFillColor(239, 68, 68)
