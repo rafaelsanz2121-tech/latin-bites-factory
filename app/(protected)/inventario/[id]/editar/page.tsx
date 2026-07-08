@@ -33,6 +33,8 @@ export default function EditarInventarioPage({
   const [isActive, setIsActive] = useState(true)
   const [confirmDelete, setConfirmDelete] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [customCats, setCustomCats] = useState<string[]>([])
+  const [newCat, setNewCat] = useState("")
 
   const [form, setForm] = useState({
     name: "", sku: "", category: "raw_material", unit: "lbs",
@@ -41,6 +43,12 @@ export default function EditarInventarioPage({
   })
 
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }))
+
+  useEffect(() => {
+    supabase.from("inventory_categories").select("name").order("name")
+      .then(({ data }) => { if (data) setCustomCats(data.map((c: any) => c.name)) })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     async function load() {
@@ -79,13 +87,27 @@ export default function EditarInventarioPage({
     e.preventDefault()
     if (!form.name.trim()) { toast.error("El nombre es requerido"); return }
 
+    let category = form.category
+    if (category === "__new__") {
+      category = newCat.trim()
+      if (!category) { toast.error("Escribe el nombre de la nueva categoría"); return }
+    }
+
     setSaving(true)
+
+    // Save the new category so it shows in the dropdown from now on
+    if (form.category === "__new__" && !customCats.some((c) => c.toLowerCase() === category.toLowerCase())) {
+      const { data: { user } } = await supabase.auth.getUser()
+      const { data: profile } = await supabase.from("profiles").select("organization_id").eq("id", user?.id).single()
+      await supabase.from("inventory_categories").insert({ organization_id: profile?.organization_id, name: category })
+    }
+
     const { error } = await supabase
       .from("inventory_items")
       .update({
         name:          form.name.trim(),
         sku:           form.sku.trim() || null,
-        category:      form.category,
+        category,
         unit:          form.unit,
         min_stock:     parseFloat(form.min_stock) || 0,
         max_stock:     form.max_stock ? parseFloat(form.max_stock) : null,
@@ -99,7 +121,12 @@ export default function EditarInventarioPage({
       .eq("id", id)
 
     setSaving(false)
-    if (error) { toast.error("Error: " + error.message); return }
+    if (error) {
+      toast.error(error.message.includes("category_check")
+        ? "Para usar categorías nuevas ejecuta la migración 021_custom_categories.sql en Supabase"
+        : "Error: " + error.message)
+      return
+    }
     toast.success("Artículo actualizado")
     router.push(`/inventario/${id}`)
     router.refresh()
@@ -175,7 +202,18 @@ export default function EditarInventarioPage({
             <select value={form.category} onChange={(e) => set("category", e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
               {CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+              {customCats.map((c) => <option key={c} value={c}>{c}</option>)}
+              {/* keep an unknown stored category selectable */}
+              {form.category !== "__new__" && !CATEGORIES.some((c) => c.value === form.category) && !customCats.includes(form.category) && (
+                <option value={form.category}>{form.category}</option>
+              )}
+              <option value="__new__">➕ Añadir nueva categoría…</option>
             </select>
+            {form.category === "__new__" && (
+              <input type="text" value={newCat} onChange={(e) => setNewCat(e.target.value)} autoFocus
+                placeholder="Ej: Especias, Congelados, Repostería…"
+                className="w-full mt-2 px-3 py-2 rounded-lg border border-blue-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            )}
           </div>
           <div>
             <label className="block text-[11.5px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wide mb-1.5">Unidad *</label>

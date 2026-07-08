@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
@@ -24,6 +24,14 @@ export default function NuevoInventarioPage() {
   const router = useRouter()
   const supabase = createClient()
   const [saving, setSaving] = useState(false)
+  const [customCats, setCustomCats] = useState<string[]>([])
+  const [newCat, setNewCat] = useState("")
+
+  useEffect(() => {
+    supabase.from("inventory_categories").select("name").order("name")
+      .then(({ data }) => { if (data) setCustomCats(data.map((c: any) => c.name)) })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const [form, setForm] = useState({
     name: "", sku: "", category: "raw_material", unit: "lbs",
@@ -37,16 +45,27 @@ export default function NuevoInventarioPage() {
     e.preventDefault()
     if (!form.name.trim()) { toast.error("El nombre es requerido"); return }
 
+    let category = form.category
+    if (category === "__new__") {
+      category = newCat.trim()
+      if (!category) { toast.error("Escribe el nombre de la nueva categoría"); return }
+    }
+
     setSaving(true)
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) { router.push("/login"); return }
     const { data: profile } = await supabase.from("profiles").select("organization_id").eq("id", user.id).single()
 
+    // Save the new category so it shows in the dropdown from now on
+    if (form.category === "__new__" && !customCats.some((c) => c.toLowerCase() === category.toLowerCase())) {
+      await supabase.from("inventory_categories").insert({ organization_id: profile?.organization_id, name: category })
+    }
+
     const { error } = await supabase.from("inventory_items").insert({
       organization_id: profile?.organization_id,
       name:          form.name.trim(),
       sku:           form.sku.trim() || null,
-      category:      form.category,
+      category,
       unit:          form.unit,
       current_stock: parseFloat(form.current_stock) || 0,
       min_stock:     parseFloat(form.min_stock) || 0,
@@ -58,7 +77,12 @@ export default function NuevoInventarioPage() {
     })
 
     setSaving(false)
-    if (error) { toast.error("Error: " + error.message); return }
+    if (error) {
+      toast.error(error.message.includes("category_check")
+        ? "Para usar categorías nuevas ejecuta la migración 021_custom_categories.sql en Supabase"
+        : "Error: " + error.message)
+      return
+    }
     toast.success("Artículo creado correctamente")
     router.push("/inventario")
   }
@@ -102,7 +126,14 @@ export default function NuevoInventarioPage() {
             <select value={form.category} onChange={(e) => set("category", e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
               {CATEGORIES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+              {customCats.map((c) => <option key={c} value={c}>{c}</option>)}
+              <option value="__new__">➕ Añadir nueva categoría…</option>
             </select>
+            {form.category === "__new__" && (
+              <input type="text" value={newCat} onChange={(e) => setNewCat(e.target.value)} autoFocus
+                placeholder="Ej: Especias, Congelados, Repostería…"
+                className="w-full mt-2 px-3 py-2 rounded-lg border border-blue-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            )}
           </div>
           <div>
             <label className="block text-[11.5px] font-bold text-slate-600 uppercase tracking-wide mb-1.5">Unidad *</label>
