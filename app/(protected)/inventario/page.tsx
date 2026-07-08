@@ -69,7 +69,7 @@ export default async function InventarioPage({
             </span>
             Control de Inventario
           </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Materia prima · Empaque · Producto terminado — en tiempo real</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Ingredientes · Empaque · Insumos · Químicos · Producto terminado — todo lo de tu planta en tiempo real</p>
         </div>
         <Link
           href="/inventario/nuevo"

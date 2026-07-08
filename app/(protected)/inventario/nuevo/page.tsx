@@ -8,16 +8,17 @@ import Link from "next/link"
 import { ArrowLeft, Boxes } from "lucide-react"
 
 const CATEGORIES = [
-  { value: "raw_material",  label: "Materia Prima" },
-  { value: "packaging",     label: "Empaque" },
+  { value: "raw_material",  label: "Materia Prima / Ingredientes (carne, aceite, azúcar, harina…)" },
+  { value: "packaging",     label: "Empaque (cajas, bolsas, etiquetas…)" },
   { value: "finished_good", label: "Producto Terminado" },
-  { value: "supply",        label: "Insumos Generales" },
+  { value: "supply",        label: "Insumos Generales (guantes, utensilios…)" },
   { value: "chemical",      label: "Químicos / Sanitizantes" },
 ]
 
 const UNITS = ["lbs", "kg", "oz", "gal", "L", "units", "boxes", "bags", "rolls", "cases"]
 
-const LOCATIONS = ["Dry Storage", "Walk-in Cooler 1", "Walk-in Cooler 2", "Walk-in Freezer 1", "Walk-in Freezer 2", "Packing Area", "Kitchen", "Shipping/Receiving"]
+// Suggestions only — the field accepts any location typed by the user
+const LOCATIONS = ["Dry Storage", "Walk-in Cooler 1", "Walk-in Cooler 2", "Walk-in Freezer 1", "Walk-in Freezer 2", "Packing Area", "Kitchen", "Área de Fritura", "Shipping/Receiving"]
 
 export default function NuevoInventarioPage() {
   const router = useRouter()
@@ -83,7 +84,7 @@ export default function NuevoInventarioPage() {
           <div className="col-span-2 sm:col-span-1">
             <label className="block text-[11.5px] font-bold text-slate-600 uppercase tracking-wide mb-1.5">Nombre *</label>
             <input type="text" value={form.name} onChange={(e) => set("name", e.target.value)}
-              placeholder="Ej: Pork Belly 80/20" required
+              placeholder="Ej: Aceite vegetal, Azúcar, Pork Belly 80/20…" required
               className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
           <div>
@@ -147,11 +148,12 @@ export default function NuevoInventarioPage() {
           </div>
           <div>
             <label className="block text-[11.5px] font-bold text-slate-600 uppercase tracking-wide mb-1.5">Ubicación en planta</label>
-            <select value={form.location} onChange={(e) => set("location", e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
-              <option value="">Seleccionar...</option>
-              {LOCATIONS.map((l) => <option key={l} value={l}>{l}</option>)}
-            </select>
+            <input type="text" list="locations-list" value={form.location} onChange={(e) => set("location", e.target.value)}
+              placeholder="Escribe o elige…"
+              className="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <datalist id="locations-list">
+              {LOCATIONS.map((l) => <option key={l} value={l} />)}
+            </datalist>
           </div>
         </div>
 
