@@ -44,7 +44,7 @@ export function VerificationBar({
       await onVerify(logId)
       toast.success("Record verified successfully")
     } catch {
-      toast.error("Failed to verify record")
+      toast.error("No se pudo verificar el registro")
     } finally {
       setVerifyLoading(false)
     }
@@ -57,7 +57,7 @@ export function VerificationBar({
       await onApprove(logId)
       toast.success("Record approved and locked")
     } catch {
-      toast.error("Failed to approve record")
+      toast.error("No se pudo aprobar el registro")
     } finally {
       setApproveLoading(false)
     }
@@ -70,7 +70,7 @@ export function VerificationBar({
       await onReopen(logId)
       toast.success("Record reopened for editing")
     } catch {
-      toast.error("Failed to reopen record")
+      toast.error("No se pudo reabrir el registro")
     } finally {
       setReopenLoading(false)
     }

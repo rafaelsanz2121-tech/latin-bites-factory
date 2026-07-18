@@ -47,7 +47,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
 
   const handleCreate = async () => {
     if (!newUser.email || !newUser.password || !newUser.full_name || !newUser.initials) {
-      toast.error("Email, password, name, and initials are required")
+      toast.error("Email, contraseña, nombre e iniciales son requeridos")
       return
     }
     setCreating(true)
@@ -60,7 +60,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
     const result = await res.json()
 
     setCreating(false)
-    if (!res.ok) { toast.error(result.error || "Failed to create user"); return }
+    if (!res.ok) { toast.error(result.error || "No se pudo crear el usuario"); return }
 
     toast.success(`User ${newUser.full_name} created`)
     setShowCreateForm(false)
@@ -83,7 +83,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
     setLoadingId(null)
     if (error) { toast.error(error.message); return }
     setUsers((prev) => prev.map((u) => u.id === userId ? { ...u, role: newRole } : u))
-    toast.success("Role updated")
+    toast.success("Rol actualizado")
   }
 
   return (

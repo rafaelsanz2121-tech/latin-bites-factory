@@ -99,7 +99,7 @@ export function ReportsClient() {
   const escapeCSV = (val: string) => `"${String(val).replace(/"/g, '""')}"`
 
   const handleExportCSV = () => {
-    if (!totalCount) { toast.error("No data to export"); return }
+    if (!totalCount) { toast.error("No hay datos para exportar"); return }
 
     const rows: string[] = ["Module,Date,Status,ID"]
     for (const [moduleKey, moduleRows] of Object.entries(results)) {

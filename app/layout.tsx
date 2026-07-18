@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className="h-full bg-[var(--background)] text-[var(--foreground)] antialiased">
         <ThemeProvider>
           {children}
-          <Toaster richColors position="top-right" />
+          <Toaster richColors position="top-center" />
         </ThemeProvider>
       </body>
     </html>

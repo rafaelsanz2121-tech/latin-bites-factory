@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
 import Link from "next/link"
+import { translateAuthError } from "@/lib/auth-errors"
 
 function LoginForm() {
   const router = useRouter()
@@ -30,12 +31,12 @@ function LoginForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      toast.error(error.message || "Invalid credentials")
+      toast.error(translateAuthError(error.message))
       setLoading(false)
       return
     }
 
-    toast.success("Welcome back!")
+    toast.success("¡Bienvenido de vuelta!")
     router.push(redirect)
     router.refresh()
   }

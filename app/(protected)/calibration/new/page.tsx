@@ -33,17 +33,17 @@ export default function NewCalibrationPage() {
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }))
 
   const handleSave = async (status: "draft" | "submitted") => {
-    if (!form.thermometer_id) { toast.error("Thermometer ID required"); return }
-    if (!form.ice_water_reading_f) { toast.error("Reading required"); return }
+    if (!form.thermometer_id) { toast.error("El ID del termómetro es requerido"); return }
+    if (!form.ice_water_reading_f) { toast.error("La lectura es requerida"); return }
     if (outOfRange && !form.corrective_action_taken && status === "submitted") {
-      toast.error("Corrective action is required when reading is out of tolerance")
+      toast.error("La acción correctiva es requerida cuando la lectura está fuera de tolerancia")
       return
     }
 
     setLoading(true)
     const supabaseClient = createClient()
     const { data: { user } } = await supabaseClient.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); setLoading(false); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); setLoading(false); return }
 
     const { data, error } = await supabase
       .from("calibration_logs")

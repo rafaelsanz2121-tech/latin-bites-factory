@@ -70,7 +70,7 @@ export function ThawingLogForm({ userId, userInitials, products, defaultValues }
 
   const handleSave = async (status: "draft" | "submitted") => {
     if (!form.product_id) {
-      toast.error("Please select a product")
+      toast.error("Selecciona un producto")
       return
     }
     if (!form.start_temp_f) {
@@ -125,7 +125,7 @@ export function ThawingLogForm({ userId, userInitials, products, defaultValues }
     setLoading(false)
 
     if (error) {
-      toast.error(error.message || "Failed to save log")
+      toast.error(error.message || "No se pudo guardar el registro")
       return
     }
 

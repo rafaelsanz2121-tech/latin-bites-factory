@@ -47,7 +47,7 @@ export default function NewReceivingPage() {
 
     const supabaseClient = createClient()
     const { data: { user } } = await supabaseClient.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     setLoading(true)
 

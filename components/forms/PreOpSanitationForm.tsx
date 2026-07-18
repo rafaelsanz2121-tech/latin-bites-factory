@@ -162,12 +162,12 @@ export function PreOpSanitationForm() {
 
   const handleSubmit = async (submitForVerification: boolean) => {
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     const { pass, fail, na, total } = getTotals()
     const filled = pass + fail + na
     if (filled < total * 0.5) {
-      toast.error("Please complete at least half the checklist before submitting")
+      toast.error("Completa al menos la mitad del checklist antes de enviar")
       return
     }
 
@@ -191,7 +191,7 @@ export function PreOpSanitationForm() {
       .select("id")
       .single()
 
-    if (error || !report) { toast.error(error?.message || "Failed to create report"); setLoading(false); return }
+    if (error || !report) { toast.error(error?.message || "No se pudo crear el reporte"); setLoading(false); return }
 
     // Insert all items
     const itemRows: any[] = []

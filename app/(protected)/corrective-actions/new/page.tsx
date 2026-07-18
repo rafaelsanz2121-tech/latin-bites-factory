@@ -38,12 +38,12 @@ export default function NewCorrectiveActionPage() {
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }))
 
   const handleSubmit = async () => {
-    if (!form.assigned_to) { toast.error("Assign to someone"); return }
+    if (!form.assigned_to) { toast.error("Asigna a un responsable"); return }
     if (!form.root_cause.trim()) { toast.error("Root cause required"); return }
     if (!form.action_description.trim()) { toast.error("Action description required"); return }
 
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     setLoading(true)
     const { data, error } = await supabase.from("corrective_actions").insert({

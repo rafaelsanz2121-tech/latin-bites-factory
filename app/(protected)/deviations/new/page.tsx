@@ -33,7 +33,7 @@ export default function NewDeviationPage() {
     if (!form.description.trim()) { toast.error("Description required"); return }
 
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     setLoading(true)
     const { data, error } = await supabase.from("deviations").insert({

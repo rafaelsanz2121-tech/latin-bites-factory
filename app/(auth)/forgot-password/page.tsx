@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Factory, ArrowLeft, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import { translateAuthError } from "@/lib/auth-errors"
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
@@ -18,14 +19,14 @@ export default function ForgotPasswordPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email) { toast.error("Enter your email"); return }
+    if (!email) { toast.error("Ingresa tu email"); return }
     setLoading(true)
     const supabase = createClient()
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     })
     setLoading(false)
-    if (error) { toast.error(error.message); return }
+    if (error) { toast.error(translateAuthError(error.message)); return }
     setSent(true)
   }
 

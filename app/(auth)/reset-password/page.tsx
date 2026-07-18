@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Factory, Eye, EyeOff, CheckCircle2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { translateAuthError } from "@/lib/auth-errors"
 
 export default function ResetPasswordPage() {
   const router = useRouter()
@@ -31,15 +32,15 @@ export default function ResetPasswordPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password.length < 8) { toast.error("Password must be at least 8 characters"); return }
-    if (password !== confirm) { toast.error("Passwords do not match"); return }
+    if (password.length < 8) { toast.error("La contraseña debe tener al menos 8 caracteres"); return }
+    if (password !== confirm) { toast.error("Las contraseñas no coinciden"); return }
 
     setLoading(true)
     const supabase = createClient()
     const { error } = await supabase.auth.updateUser({ password })
     setLoading(false)
 
-    if (error) { toast.error(error.message); return }
+    if (error) { toast.error(translateAuthError(error.message)); return }
     setDone(true)
     setTimeout(() => router.push("/dashboard"), 2500)
   }

@@ -41,7 +41,7 @@ export function CapaActionButtons({ capa, currentUserId, currentUserRole }: Capa
   }
 
   const handleComplete = async () => {
-    if (!completionNotes.trim()) { toast.error("Please describe what was done"); return }
+    if (!completionNotes.trim()) { toast.error("Describe qué se hizo"); return }
     setLoading(true)
     const { error } = await supabase
       .from("corrective_actions")
@@ -59,7 +59,7 @@ export function CapaActionButtons({ capa, currentUserId, currentUserRole }: Capa
   }
 
   const handleVerifyEffective = async () => {
-    if (!verificationNotes.trim()) { toast.error("Please describe how effectiveness was verified"); return }
+    if (!verificationNotes.trim()) { toast.error("Describe cómo se verificó la efectividad"); return }
     setLoading(true)
     const { error } = await supabase
       .from("corrective_actions")

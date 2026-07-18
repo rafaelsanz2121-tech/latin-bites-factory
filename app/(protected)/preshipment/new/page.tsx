@@ -60,11 +60,11 @@ export default function NewPreshipmentPage() {
   const hasFailedChecks = Object.values(checks).some((v) => v === false)
 
   const handleSubmit = async (submitForVerification: boolean) => {
-    if (!form.lot_id) { toast.error("Select a lot"); return }
-    if (!form.disposition) { toast.error("Select a disposition"); return }
+    if (!form.lot_id) { toast.error("Selecciona un lote"); return }
+    if (!form.disposition) { toast.error("Selecciona una disposición"); return }
 
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     setLoading(true)
     const { data, error } = await supabase.from("preshipment_reviews").insert({

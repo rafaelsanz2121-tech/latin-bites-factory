@@ -55,7 +55,7 @@ export default function NewOperationalSanitationPage() {
     }
 
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) { toast.error("Not authenticated"); return }
+    if (!user) { toast.error("No autenticado. Vuelve a iniciar sesión."); return }
 
     setLoading(true)
 
