@@ -76,8 +76,8 @@ export default async function CorrectiveActionsPage({
             <Wrench className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Corrective Actions</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">CAPA — 21 CFR Part 120 / HACCP corrective action tracking</p>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Acciones Correctivas</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">CAPA — Seguimiento de acciones correctivas HACCP</p>
           </div>
         </div>
         <Link
@@ -85,7 +85,7 @@ export default async function CorrectiveActionsPage({
           className="inline-flex items-center gap-2 px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm shrink-0"
         >
           <Plus className="w-4 h-4" />
-          New CAPA
+          Nueva CAPA
         </Link>
       </div>
 
@@ -101,46 +101,46 @@ export default async function CorrectiveActionsPage({
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{count ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">all time</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">histórico</p>
         </div>
 
         {/* Open */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Open</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Abiertas</span>
             <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
               <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{openCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">pending resolution</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">pendientes de resolución</p>
         </div>
 
         {/* Overdue */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Overdue</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Vencidas</span>
             <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
               <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{overdueCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">past due date</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">pasadas de fecha</p>
         </div>
 
         {/* Closed */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Closed</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cerradas</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{closedCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">completed</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">completadas</p>
         </div>
       </div>
 
@@ -150,11 +150,11 @@ export default async function CorrectiveActionsPage({
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Type</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Action</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Assigned To</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Due Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tipo</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Acción</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Asignado a</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha límite</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -166,8 +166,8 @@ export default async function CorrectiveActionsPage({
                       <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                       </div>
-                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">No corrective actions yet</p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500">Create one when a deviation requires follow-up</p>
+                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Sin acciones correctivas aún</p>
+                      <p className="text-xs text-slate-400 dark:text-slate-500">Crea una cuando una desviación requiera seguimiento</p>
                     </div>
                   </td>
                 </tr>
@@ -205,7 +205,7 @@ export default async function CorrectiveActionsPage({
                         href={`/corrective-actions/${capa.id}`}
                         className="inline-flex items-center gap-1 text-xs font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors"
                       >
-                        View →
+                        Ver →
                       </Link>
                     </td>
                   </tr>

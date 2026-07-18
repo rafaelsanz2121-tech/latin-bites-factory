@@ -46,8 +46,8 @@ export default async function CalibrationListPage({
             <Thermometer className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Thermometer Calibration</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 417.2 — Daily ice water verification (±2°F from 32°F)</p>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Calibración de Termómetros</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 417.2 — Verificación diaria en agua con hielo (±2°F de 32°F)</p>
           </div>
         </div>
         <Link
@@ -65,39 +65,39 @@ export default async function CalibrationListPage({
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Records</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total registros</span>
             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
               <ClipboardList className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{totalLogs}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Calibration logs on file</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Registros de calibración en archivo</p>
         </div>
 
         {/* In Tolerance */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">In Tolerance</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">En tolerancia</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <BadgeCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{inToleranceCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">This page — passed verification</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Esta página — verificación aprobada</p>
         </div>
 
         {/* Out of Range */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Out of Range</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fuera de rango</span>
             <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
               <AlertTriangle className="w-4 h-4 text-red-600 dark:text-red-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{outOfRangeCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">This page — failed tolerance</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Esta página — fuera de tolerancia</p>
         </div>
       </div>
 
@@ -107,13 +107,13 @@ export default async function CalibrationListPage({
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-800/50">
               <tr>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Thermometer</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Type</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Reading</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tolerance</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Operator</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Termómetro</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tipo</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Lectura</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Tolerancia</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Operador</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -122,8 +122,8 @@ export default async function CalibrationListPage({
                 <tr>
                   <td colSpan={8} className="text-center py-16 text-slate-500 dark:text-slate-400">
                     <Thermometer className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                    <p className="text-sm font-medium">No calibration logs yet.</p>
-                    <p className="text-xs mt-1">Create the first record to get started.</p>
+                    <p className="text-sm font-medium">Sin registros de calibración aún.</p>
+                    <p className="text-xs mt-1">Crea el primer registro para comenzar.</p>
                   </td>
                 </tr>
               ) : logs.map((log: any) => (
@@ -137,11 +137,11 @@ export default async function CalibrationListPage({
                   <td className="px-4 py-3">
                     {log.is_in_tolerance ? (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                        <CheckCircle2 className="w-3.5 h-3.5" />In Tolerance
+                        <CheckCircle2 className="w-3.5 h-3.5" />En tolerancia
                       </span>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">
-                        <XCircle className="w-3.5 h-3.5" />OUT OF RANGE
+                        <XCircle className="w-3.5 h-3.5" />FUERA DE RANGO
                       </span>
                     )}
                   </td>

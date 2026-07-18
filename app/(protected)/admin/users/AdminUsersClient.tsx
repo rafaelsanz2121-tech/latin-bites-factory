@@ -90,11 +90,11 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">User Management</h1>
+          <h1 className="text-2xl font-bold">Gestión de Usuarios</h1>
           <p className="text-sm text-[var(--muted-foreground)] mt-0.5">{users.length} users · {users.filter((u) => u.is_active).length} active</p>
         </div>
         <Button onClick={() => setShowCreateForm(true)}>
-          <UserPlus className="w-4 h-4" />Create User
+          <UserPlus className="w-4 h-4" />Crear Usuario
         </Button>
       </div>
 
@@ -141,7 +141,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
               </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={handleCreate} loading={creating}>Create User</Button>
+              <Button onClick={handleCreate} loading={creating}>Crear Usuario</Button>
               <Button variant="outline" onClick={() => setShowCreateForm(false)}>Cancel</Button>
             </div>
           </CardContent>
@@ -155,10 +155,10 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
             <table className="w-full">
               <thead>
                 <tr className="border-b border-[var(--border)] text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wide">
-                  <th className="text-left px-4 py-3">User</th>
-                  <th className="text-left px-4 py-3">Employee ID</th>
-                  <th className="text-left px-4 py-3">Role</th>
-                  <th className="text-left px-4 py-3">Status</th>
+                  <th className="text-left px-4 py-3">Usuario</th>
+                  <th className="text-left px-4 py-3">ID Empleado</th>
+                  <th className="text-left px-4 py-3">Rol</th>
+                  <th className="text-left px-4 py-3">Estado</th>
                   <th className="px-4 py-3" />
                 </tr>
               </thead>
@@ -194,8 +194,8 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
                       </td>
                       <td className="px-4 py-3">
                         {u.is_active
-                          ? <Badge variant="success" className="text-xs">Active</Badge>
-                          : <Badge variant="secondary" className="text-xs">Inactive</Badge>
+                          ? <Badge variant="success" className="text-xs">Activo</Badge>
+                          : <Badge variant="secondary" className="text-xs">Inactivo</Badge>
                         }
                       </td>
                       <td className="px-4 py-3 flex items-center gap-1">
@@ -214,7 +214,7 @@ export function AdminUsersClient({ users: initialUsers, currentUserId }: { users
                           loading={loadingId === u.id}
                           className={u.is_active ? "text-red-600 hover:text-red-700 hover:bg-red-50" : "text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"}
                         >
-                          {u.is_active ? <><Ban className="w-3.5 h-3.5" />Deactivate</> : <><CheckCircle className="w-3.5 h-3.5" />Reactivate</>}
+                          {u.is_active ? <><Ban className="w-3.5 h-3.5" />Desactivar</> : <><CheckCircle className="w-3.5 h-3.5" />Reactivate</>}
                         </Button>
                       </td>
                     </tr>

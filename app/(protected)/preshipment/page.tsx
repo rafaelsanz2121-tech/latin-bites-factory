@@ -50,8 +50,8 @@ export default async function PreshipmentPage({
             <PackageCheck className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Pre-Shipment Reviews</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 417.5(c) — Final product disposition review prior to shipment</p>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Revisión Pre-Embarque</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 417.5(c) — Revisión final de disposición del producto antes del envío</p>
           </div>
         </div>
         <Link
@@ -75,46 +75,46 @@ export default async function PreshipmentPage({
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{totalReviews}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Reviews on file</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Revisiones en archivo</p>
         </div>
 
         {/* Approved */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Approved</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Aprobados</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{approvedCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Cleared for shipment</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Autorizados para envío</p>
         </div>
 
         {/* On Hold */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">On Hold</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">En espera</span>
             <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
               <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{holdCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pending disposition</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Disposición pendiente</p>
         </div>
 
         {/* Rejected */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Rejected</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Rechazados</span>
             <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
               <Ban className="w-4 h-4 text-red-600 dark:text-red-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{rejectedCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Not cleared for shipment</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">No autorizados para envío</p>
         </div>
       </div>
 
@@ -124,12 +124,12 @@ export default async function PreshipmentPage({
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-800/50">
               <tr>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Lot</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Product</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Disposition</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Reviewer</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Lote</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Producto</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Disposición</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Revisor</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -138,8 +138,8 @@ export default async function PreshipmentPage({
                 <tr>
                   <td colSpan={7} className="text-center py-16 text-slate-500 dark:text-slate-400">
                     <PackageCheck className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                    <p className="text-sm font-medium">No pre-shipment reviews yet.</p>
-                    <p className="text-xs mt-1">Create the first review to get started.</p>
+                    <p className="text-sm font-medium">Sin revisiones pre-embarque aún.</p>
+                    <p className="text-xs mt-1">Crea la primera revisión para comenzar.</p>
                   </td>
                 </tr>
               ) : reviews.map((r: any) => (

@@ -87,7 +87,7 @@ export default async function AguaRetenidaPage() {
         <Clock className={`w-5 h-5 flex-shrink-0 mt-0.5 ${daysToDeadline <= 60 ? "text-red-500" : "text-amber-500"}`} />
         <div>
           <p className={`text-sm font-black ${daysToDeadline <= 60 ? "text-red-800 dark:text-red-200" : "text-amber-800 dark:text-amber-200"}`}>
-            ⚠ Deadline regulatorio: 1 de julio de 2026 — {daysToDeadline} días restantes
+            ⚠ Deadline regulatorio: 1 de julio de 2026 — {daysToDeadline >= 0 ? `${daysToDeadline} días restantes` : `venció hace ${Math.abs(daysToDeadline)} días`}
           </p>
           <p className={`text-xs mt-0.5 ${daysToDeadline <= 60 ? "text-slate-900 dark:text-slate-100" : "text-slate-900 dark:text-slate-100"}`}>
             9 CFR 441 requiere que todo procesador de carne documente y controle el agua retenida durante el proceso de enfriamiento. Tu planta debe tener registros activos antes de esta fecha.

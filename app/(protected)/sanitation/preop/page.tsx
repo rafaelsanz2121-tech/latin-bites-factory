@@ -32,8 +32,8 @@ export default async function PreOpSanitationPage() {
             <ClipboardCheck className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Daily Pre-Op Sanitation</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 416.11-12 — Pre-operation facility inspection, Sections A–K</p>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Sanitación Pre-Operacional</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 416.11-12 — Inspección pre-operativa de instalaciones, Secciones A–K</p>
           </div>
         </div>
         <Link
@@ -51,39 +51,39 @@ export default async function PreOpSanitationPage() {
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-teal-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Reports</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total reportes</span>
             <div className="w-8 h-8 rounded-lg bg-teal-100 dark:bg-teal-900/40 flex items-center justify-center">
               <BarChart3 className="w-4 h-4 text-teal-600 dark:text-teal-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{totalReports}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Pre-op inspections on file</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Inspecciones pre-op en archivo</p>
         </div>
 
         {/* Clean Inspections */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">All Pass</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Todo aprobado</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{cleanReports}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Reports with zero failures</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Reportes sin fallas</p>
         </div>
 
         {/* Total Failures */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Failures</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total fallas</span>
             <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
               <ShieldAlert className="w-4 h-4 text-red-600 dark:text-red-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{totalFailures}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Failed items across all reports</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Ítems fallidos en todos los reportes</p>
         </div>
       </div>
 
@@ -93,11 +93,11 @@ export default async function PreOpSanitationPage() {
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-800/50">
               <tr>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Time</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Hora</th>
                 <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Inspector</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Results</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Resultados</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -106,8 +106,8 @@ export default async function PreOpSanitationPage() {
                 <tr>
                   <td colSpan={6} className="text-center py-16 text-slate-500 dark:text-slate-400">
                     <ClipboardCheck className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                    <p className="text-sm font-medium">No pre-op reports yet.</p>
-                    <p className="text-xs mt-1">Create the first inspection to get started.</p>
+                    <p className="text-sm font-medium">Sin reportes pre-op aún.</p>
+                    <p className="text-xs mt-1">Crea la primera inspección para comenzar.</p>
                   </td>
                 </tr>
               ) : reports.map((r: any) => (

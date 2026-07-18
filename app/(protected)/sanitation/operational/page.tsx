@@ -32,7 +32,7 @@ export default async function OperationalSanitationPage() {
             <ShieldCheck className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Operational Sanitation</h1>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Sanitación Operacional</h1>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">9 CFR 416.13 — Daily sanitation monitoring &amp; sanitizer PPM verification</p>
           </div>
         </div>
@@ -51,39 +51,39 @@ export default async function OperationalSanitationPage() {
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-violet-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Logs</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total registros</span>
             <div className="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center">
               <ClipboardList className="w-4 h-4 text-violet-600 dark:text-violet-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{totalLogs}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Sanitation logs on record</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Registros de sanitación en archivo</p>
         </div>
 
         {/* Sanitizer Pass */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Sanitizer Pass</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Sanitizante OK</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <Droplets className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{sanitizerPassCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">PPM within acceptable range</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">PPM dentro del rango aceptable</p>
         </div>
 
         {/* Blades Inspected */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-violet-400" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Blades OK</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cuchillas OK</span>
             <div className="w-8 h-8 rounded-lg bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center">
               <Scissors className="w-4 h-4 text-violet-600 dark:text-violet-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{bladesPassCount}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Blade inspections passed</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Inspecciones de cuchillas aprobadas</p>
         </div>
       </div>
 
@@ -93,11 +93,11 @@ export default async function OperationalSanitationPage() {
           <table className="w-full">
             <thead className="bg-slate-50 dark:bg-slate-800/50">
               <tr>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Completed By</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Sanitizer PPM</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Blades</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Completado por</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">PPM Sanitizante</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cuchillas</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -106,8 +106,8 @@ export default async function OperationalSanitationPage() {
                 <tr>
                   <td colSpan={6} className="text-center py-16 text-slate-500 dark:text-slate-400">
                     <ShieldCheck className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                    <p className="text-sm font-medium">No sanitation logs yet.</p>
-                    <p className="text-xs mt-1">Create the first record to get started.</p>
+                    <p className="text-sm font-medium">Sin registros de sanitación aún.</p>
+                    <p className="text-xs mt-1">Crea el primer registro para comenzar.</p>
                   </td>
                 </tr>
               ) : logs.map((log: any) => (

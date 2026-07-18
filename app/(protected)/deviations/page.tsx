@@ -66,8 +66,8 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
             <AlertTriangle className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Deviations</h1>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">HACCP Prerequisite — food safety & operational deviations</p>
+            <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">Desviaciones</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Prerequisito HACCP — desviaciones de inocuidad y operación</p>
           </div>
         </div>
         <Link
@@ -75,7 +75,7 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
           className="inline-flex items-center gap-2 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm shrink-0"
         >
           <Plus className="w-4 h-4" />
-          Flag Deviation
+          Reportar Desviación
         </Link>
       </div>
 
@@ -91,46 +91,46 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{count ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">all time</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">histórico</p>
         </div>
 
         {/* Open */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Open</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Abiertas</span>
             <div className="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/40 flex items-center justify-center">
               <Clock className="w-4 h-4 text-red-600 dark:text-red-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{openCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">require action</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">requieren acción</p>
         </div>
 
         {/* Critical */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Critical</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Críticas</span>
             <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
               <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{criticalCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">USDA notification may apply</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Puede requerir notificación a USDA</p>
         </div>
 
         {/* Closed */}
         <div className="relative rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#111827] p-4 overflow-hidden shadow-sm">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between mb-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Closed</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Cerradas</span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
           <p className="text-2xl font-black text-slate-900 dark:text-white leading-none">{closedCount ?? 0}</p>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">resolved & verified</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">resueltas y verificadas</p>
         </div>
       </div>
 
@@ -140,13 +140,13 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
           <table className="w-full">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700">
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Date</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Severity</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Description</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Source</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Fecha</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Severidad</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Descripción</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Origen</th>
                 <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">USDA</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Status</th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Identified By</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Estado</th>
+                <th className="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Identificado por</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -158,8 +158,8 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
                       <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
                         <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                       </div>
-                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">No deviations found</p>
-                      <p className="text-xs text-slate-400 dark:text-slate-500">Great work — keep it up!</p>
+                      <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Sin desviaciones registradas</p>
+                      <p className="text-xs text-slate-400 dark:text-slate-500">¡Buen trabajo — sigue así!</p>
                     </div>
                   </td>
                 </tr>
@@ -198,7 +198,7 @@ export default async function DeviationsPage({ searchParams }: { searchParams: P
                       href={`/deviations/${dev.id}`}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors"
                     >
-                      View →
+                      Ver →
                     </Link>
                   </td>
                 </tr>

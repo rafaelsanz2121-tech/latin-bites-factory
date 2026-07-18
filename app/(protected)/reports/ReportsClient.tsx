@@ -130,8 +130,8 @@ export function ReportsClient() {
 
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Reports</h1>
-          <p className="text-sm text-[var(--muted-foreground)] mt-0.5">Search and export food safety records by date range</p>
+          <h1 className="text-2xl font-bold">Reportes</h1>
+          <p className="text-sm text-[var(--muted-foreground)] mt-0.5">Busca y exporta registros de inocuidad por rango de fechas</p>
         </div>
         {totalCount > 0 && (
           <Button variant="outline" onClick={handleExportCSV}>
@@ -150,27 +150,27 @@ export function ReportsClient() {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-1.5">
-              <Label>From</Label>
+              <Label>Desde</Label>
               <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} max={dateTo} />
             </div>
             <div className="space-y-1.5">
-              <Label>To</Label>
+              <Label>Hasta</Label>
               <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} min={dateFrom} max={today} />
             </div>
             <div className="space-y-1.5">
-              <Label>Module</Label>
+              <Label>Módulo</Label>
               <select
                 value={selectedModule}
                 onChange={(e) => setSelectedModule(e.target.value)}
                 className="w-full h-9 px-3 rounded-md border border-[var(--border)] bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--ring)]"
               >
-                <option value="all">All modules</option>
+                <option value="all">Todos los módulos</option>
                 {MODULES.map((m) => <option key={m.key} value={m.key}>{m.label}</option>)}
               </select>
             </div>
           </div>
           <Button onClick={handleSearch} loading={loading}>
-            <FileText className="w-4 h-4" />Generate Report
+            <FileText className="w-4 h-4" />Generar Reporte
           </Button>
         </CardContent>
       </Card>

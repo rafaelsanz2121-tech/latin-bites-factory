@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server"
+import { Greeting } from "@/components/dashboard/Greeting"
 import { redirect } from "next/navigation"
 import {
   AlertTriangle, CheckSquare, ClipboardList, Factory,
@@ -108,9 +109,7 @@ export default async function DashboardPage() {
   const compliancePct = Math.round((coveredCount / stats.coverage.length) * 100)
 
   const now = new Date()
-  const hour = now.getHours()
-  const greeting = hour < 12 ? "Buenos días" : hour < 18 ? "Buenas tardes" : "Buenas noches"
-  const firstName = profile.full_name?.split(" ")[0] ?? ""
+  const firstName = profile.full_name?.split(" ")[0] ?? profile.full_name ?? "" 
 
   return (
     <div className="space-y-6 max-w-[1400px]">
@@ -119,7 +118,7 @@ export default async function DashboardPage() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
-            {greeting}{firstName ? `, ${firstName}` : ""} 👋
+            <Greeting name={firstName || "equipo"} />
           </h1>
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             {now.toLocaleDateString("es-US", { weekday:"long", year:"numeric", month:"long", day:"numeric" })}
