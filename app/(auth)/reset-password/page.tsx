@@ -51,13 +51,13 @@ export default function ResetPasswordPage() {
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center mb-4 shadow-lg shadow-red-900/40">
           <Factory className="w-5 h-5 text-white" />
         </div>
-        <h1 className="text-xl font-black text-white tracking-tight">
+        <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
           Factor<span className="text-red-500">OS</span>
         </h1>
-        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
+        <p className="text-slate-600 dark:text-slate-600 dark:text-slate-400 text-sm mt-1">HACCP Compliance Platform</p>
       </div>
 
-      <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
+      <div className="bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-8">
         {done ? (
           <div className="text-center space-y-4">
             <div className="flex justify-center">
@@ -66,14 +66,14 @@ export default function ResetPasswordPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Contraseña actualizada</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Contraseña actualizada</h2>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Redirigiendo al dashboard…</p>
             </div>
           </div>
         ) : (
           <>
             <div className="mb-6">
-              <h2 className="text-lg font-bold text-white">Nueva contraseña</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Nueva contraseña</h2>
               <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Elige una contraseña segura para tu cuenta.</p>
             </div>
 
@@ -85,7 +85,7 @@ export default function ResetPasswordPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <Label className="text-slate-300">Nueva contraseña</Label>
+                <Label className="text-slate-700 dark:text-slate-300">Nueva contraseña</Label>
                 <div className="relative">
                   <Input
                     type={showPw ? "text" : "password"}
@@ -97,7 +97,7 @@ export default function ResetPasswordPage() {
                   <button
                     type="button"
                     onClick={() => setShowPw(!showPw)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-slate-300"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-300"
                   >
                     {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -105,7 +105,7 @@ export default function ResetPasswordPage() {
               </div>
 
               <div className="space-y-1.5">
-                <Label className="text-slate-300">Confirmar contraseña</Label>
+                <Label className="text-slate-700 dark:text-slate-300">Confirmar contraseña</Label>
                 <Input
                   type="password"
                   placeholder="Repite la contraseña"

@@ -15,7 +15,7 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [plantName, setPlantName] = useState("")
 
-  const inputClass = "w-full bg-white/[0.06] border border-white/10 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
+  const inputClass = "w-full bg-white dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -60,24 +60,24 @@ export default function RegisterPage() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg shadow-red-900/40">
             <Zap className="w-5 h-5 text-white" />
           </div>
-          <span className="font-black text-xl text-white tracking-tight">
+          <span className="font-black text-xl text-slate-900 dark:text-white tracking-tight">
             Factor<span className="text-red-500">OS</span>
           </span>
         </a>
         {!done && (
           <>
-            <h1 className="text-2xl font-black text-white">Crear cuenta</h1>
-            <p className="text-slate-400 text-sm mt-1">Gratis, en menos de un minuto</p>
+            <h1 className="text-2xl font-black text-slate-900 dark:text-white">Crear cuenta</h1>
+            <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Gratis, en menos de un minuto</p>
           </>
         )}
       </div>
 
       {!done ? (
         <form onSubmit={handleSubmit}>
-          <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
+          <div className="bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-8">
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-300">Nombre completo</label>
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Nombre completo</label>
                 <input
                   type="text"
                   placeholder="Juan Pérez"
@@ -90,7 +90,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-300">Email</label>
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
                 <input
                   type="email"
                   placeholder="juan@miplanta.com"
@@ -103,7 +103,7 @@ export default function RegisterPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-slate-300">Contraseña</label>
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Contraseña</label>
                   <input
                     type="password"
                     placeholder="Mínimo 8 caracteres"
@@ -114,7 +114,7 @@ export default function RegisterPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-sm font-medium text-slate-300">Confirmar</label>
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Confirmar</label>
                   <input
                     type="password"
                     placeholder="Repítela"
@@ -127,7 +127,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-slate-300">Nombre de tu negocio o planta</label>
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Nombre de tu negocio o planta</label>
                 <input
                   type="text"
                   placeholder="Ej: Latin Bites"
@@ -153,9 +153,9 @@ export default function RegisterPage() {
               </button>
             </div>
 
-            <p className="text-center text-xs text-slate-500 mt-6">
+            <p className="text-center text-xs text-slate-500 dark:text-slate-500 mt-6">
               ¿Ya tienes cuenta?{" "}
-              <Link href="/login" className="text-slate-400 hover:text-white hover:underline">
+              <Link href="/login" className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:underline">
                 Inicia sesión
               </Link>
             </p>
@@ -163,14 +163,14 @@ export default function RegisterPage() {
         </form>
       ) : (
         /* Success */
-        <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8 text-center">
+        <div className="bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-8 text-center">
           <div className="flex justify-center mb-5">
             <div className="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
               <Check className="w-8 h-8 text-emerald-400" />
             </div>
           </div>
 
-          <h2 className="text-xl font-black text-white mb-1">¡Cuenta creada!</h2>
+          <h2 className="text-xl font-black text-slate-900 dark:text-white mb-1">¡Cuenta creada!</h2>
           <p className="text-slate-400 text-sm mb-6">Todo listo. Inicia sesión para empezar.</p>
 
           <Link

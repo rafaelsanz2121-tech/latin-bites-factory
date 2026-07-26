@@ -43,12 +43,12 @@ function LoginForm() {
 
   // This page always sits on a dark background, so inputs/labels are styled
   // explicitly for dark — independent of the app's light/dark theme.
-  const inputClass = "w-full bg-white/[0.06] border border-white/10 rounded-lg px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
+  const inputClass = "w-full bg-white dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500/50 text-sm"
 
   return (
     <form onSubmit={handleLogin} className="space-y-4">
       <div className="space-y-1.5">
-        <label htmlFor="email" className="text-sm font-medium text-slate-300">Email</label>
+        <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
         <input
           id="email"
           type="email"
@@ -62,7 +62,7 @@ function LoginForm() {
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="password" className="text-sm font-medium text-slate-300">Contraseña</label>
+        <label htmlFor="password" className="text-sm font-medium text-slate-700 dark:text-slate-300">Contraseña</label>
         <input
           id="password"
           type="password"
@@ -80,7 +80,7 @@ function LoginForm() {
       </Button>
 
       <div className="text-center mt-3">
-        <Link href="/forgot-password" className="text-xs text-slate-400 hover:text-white hover:underline">
+        <Link href="/forgot-password" className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:underline">
           ¿Olvidaste tu contraseña?
         </Link>
       </div>
@@ -97,17 +97,17 @@ export default function LoginPage() {
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center shadow-lg shadow-red-900/40">
             <Factory className="w-5 h-5 text-white" />
           </div>
-          <span className="font-black text-xl text-white tracking-tight">
+          <span className="font-black text-xl text-slate-900 dark:text-white tracking-tight">
             Factor<span className="text-red-500">OS</span>
           </span>
         </a>
-        <h1 className="text-2xl font-black text-white">Bienvenido de vuelta</h1>
-        <p className="text-slate-400 text-sm mt-1">Ingresa tus credenciales para continuar</p>
+        <h1 className="text-2xl font-black text-slate-900 dark:text-white">Bienvenido de vuelta</h1>
+        <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">Ingresa tus credenciales para continuar</p>
       </div>
 
-      <div className="bg-white/[0.04] border border-white/10 rounded-2xl shadow-2xl p-8">
+      <div className="bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-8">
         <div className="mb-6">
-          <h2 className="text-lg font-bold text-white">Iniciar sesión</h2>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Iniciar sesión</h2>
           <p className="text-sm text-slate-400 mt-1">
             Usa tus credenciales de empleado para acceder al sistema
           </p>
@@ -117,14 +117,14 @@ export default function LoginPage() {
           <LoginForm />
         </Suspense>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
+        <p className="text-center text-xs text-slate-500 dark:text-slate-500 mt-6">
           ¿No tienes cuenta?{" "}
-          <Link href="/register" className="text-slate-400 hover:text-white hover:underline">
+          <Link href="/register" className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:underline">
             Regístrate
           </Link>
         </p>
 
-        <p className="text-center text-xs text-slate-600 mt-4">
+        <p className="text-center text-xs text-slate-400 dark:text-slate-600 mt-4">
           FactorOS · HACCP Compliance Platform · USDA Ready
         </p>
       </div>

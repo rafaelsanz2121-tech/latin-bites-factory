@@ -203,7 +203,7 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
           <p className="font-black text-sm text-white leading-none tracking-tight">
             Factor<span className="text-red-500">OS</span>
           </p>
-          <p className="text-[10px] text-slate-600 dark:text-slate-400 mt-0.5 font-medium">EST {estNumber}</p>
+          <p className="text-[10px] text-slate-400 mt-0.5 font-medium">EST {estNumber}</p>
         </div>
       </div>
 
@@ -218,7 +218,7 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
           return (
             <div key={section.label} className="mb-1">
               {/* Section label */}
-              <p className="text-[9.5px] font-bold tracking-[1.8px] text-slate-600 px-3 py-2 mt-1 uppercase select-none">
+              <p className="text-[9.5px] font-bold tracking-[1.8px] text-slate-500 px-3 py-2 mt-1 uppercase select-none">
                 {section.label}
               </p>
 
@@ -237,14 +237,14 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
                           "w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150",
                           active
                             ? "text-white bg-white/[0.06] border-l-2 border-red-500 pl-[10px]"
-                            : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                            : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                         )}
                       >
-                        <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0", active ? "text-red-400" : "text-slate-600 dark:text-slate-400")} />
+                        <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0", active ? "text-red-400" : "text-slate-400")} />
                         <span className="flex-1 text-left">{item.label}</span>
                         <ChevronDown
                           className={cn(
-                            "w-3.5 h-3.5 text-slate-600 transition-transform duration-200",
+                            "w-3.5 h-3.5 text-slate-500 transition-transform duration-200",
                             open && "rotate-180"
                           )}
                         />
@@ -260,7 +260,7 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
                                 "flex items-center px-3 py-1.5 rounded-md text-[12.5px] transition-all duration-150",
                                 isActive(child.href)
                                   ? "text-white font-semibold bg-red-500/10 border-l-2 border-red-500 pl-2.5"
-                                  : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                                  : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                               )}
                             >
                               {child.label}
@@ -282,10 +282,10 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
                       "flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] font-medium transition-all duration-150 group",
                       active
                         ? "text-white bg-white/[0.07] border-l-2 border-red-500 pl-[10px]"
-                        : "text-slate-600 dark:text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
+                        : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
                     )}
                   >
-                    <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0 transition-colors", active ? "text-red-400" : "text-slate-600 dark:text-slate-400 group-hover:text-slate-400")} />
+                    <item.icon className={cn("w-[15px] h-[15px] flex-shrink-0 transition-colors", active ? "text-red-400" : "text-slate-400 group-hover:text-slate-400")} />
                     <span className="flex-1">{item.label}</span>
                     {item.badge && (
                       <span className={cn(
@@ -309,11 +309,11 @@ export function Sidebar({ role, orgName = "FactorOS", estNumber = "M/P2643" }: S
       <div className="px-4 py-3 border-t border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-[10.5px] text-slate-600 font-medium truncate">{orgName}</span>
+          <span className="text-[10.5px] text-slate-500 font-medium truncate">{orgName}</span>
         </div>
         <div className="flex items-center gap-1.5 mt-1">
-          <ClipboardList className="w-3 h-3 text-slate-700" />
-          <span className="text-[10px] text-slate-700">EST No. {estNumber} · USDA Inspeccionado</span>
+          <ClipboardList className="w-3 h-3 text-slate-600" />
+          <span className="text-[10px] text-slate-600">EST No. {estNumber} · USDA Inspeccionado</span>
         </div>
       </div>
     </aside>
